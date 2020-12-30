@@ -1,0 +1,53 @@
+{
+  "name": "sonnat.dev-website",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "git@github.com:sonnat/sonnat.dev-website.git",
+  "description": "The documentation website for Sonnat's component library.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "next": "10.0.4",
+    "prop-types": "^15.7.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-ga": "^3.3.0",
+    "smoothscroll-polyfill": "^0.4.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.16.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "prettier": "^2.2.1",
+    "raw-loader": "^4.0.2"
+  },
+  "browserslist": {
+    "production": [
+      "cover 95%",
+      "last 4 versions",
+      "not ie <= 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,scss,css,md,mdx,json}": "prettier --write"
+  }
+}
