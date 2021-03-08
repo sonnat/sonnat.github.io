@@ -3,12 +3,19 @@ import PageLoader from "@sonnat/ui/PageLoader";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
 import { AppProps } from "next/app";
+import Head from "next/head";
 // eslint-disable-next-line import/no-named-as-default
 import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
-import { initGA, logPageView } from "utils/analytics";
+import { analytics, setTitleMeta } from "utils";
 import "../styles/fonts.css";
+
+const googleFontFamily =
+  "https://fonts.googleapis.com/css2?" +
+  "family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
+  "family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
+  "display=swap";
 
 const useGlobalStyles = makeStyles(
   {
@@ -33,7 +40,7 @@ export default function App(props: AppProps) {
   const routeChangeStart = () => setLoading(true);
   const routeChangeComplete = () => {
     setLoading(false);
-    if (isProduction) logPageView();
+    if (isProduction) analytics.logPageView();
   };
 
   React.useEffect(() => {
@@ -61,13 +68,28 @@ export default function App(props: AppProps) {
 
   React.useEffect(() => {
     if (isProduction) {
-      initGA();
-      logPageView();
+      analytics.initGA();
+      analytics.logPageView();
     }
   }, []);
 
   return (
     <SonnatInitializer>
+      <Head>
+        {setTitleMeta("Sonnat Dev: React Components & Developer Resources")}
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width, maximum-scale=5.0, minimum-scale=1.0"
+          key="viewport"
+        />
+        <link rel="preload" as="style" href={googleFontFamily} />
+        <link
+          rel="stylesheet"
+          href={googleFontFamily}
+          media="print"
+          onLoad="this.media = 'all';"
+        />
+      </Head>
       <div id="main-wrapper" data-page={pageName}>
         <CssBaseline />
         <PageLoader loading={loading} />

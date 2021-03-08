@@ -8,12 +8,6 @@ import Document, {
 import ServerStyleSheets from "@sonnat/ui/styles/ServerStyleSheets";
 import * as React from "react";
 
-const googleFontFamily =
-  "https://fonts.googleapis.com/css2?" +
-  "family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
-  "family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
-  "display=swap";
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheets = new ServerStyleSheets();
@@ -48,13 +42,11 @@ export default class MyDocument extends Document {
           <meta name="google" content="notranslate" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="og:image" content="/meta-image-compressed.jpg" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <meta
             name="twitter:image:alt"
-            content="Sonnat Design System | React Components & Developer Resources"
+            content="Sonnat Dev: React Components & Developer Resources"
           />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link rel="preload" as="style" href={googleFontFamily} />
-          <link rel="stylesheet" href={googleFontFamily} />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
