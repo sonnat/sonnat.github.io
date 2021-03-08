@@ -5,6 +5,7 @@ import Document, {
   NextScript,
   DocumentContext
 } from "next/document";
+import ServerStyleSheets from "@sonnat/ui/styles/ServerStyleSheets";
 import * as React from "react";
 
 const googleFontFamily =
@@ -15,12 +16,23 @@ const googleFontFamily =
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
+    const sheets = new ServerStyleSheets();
+    const originalRenderPage = ctx.renderPage;
+
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: App => props => sheets.collect(<App {...props} />)
+      });
+
     const initialProps = await Document.getInitialProps(ctx);
 
     return {
       ...initialProps,
       // Styles fragment is rendered after the app and page rendering finish.
-      styles: [...React.Children.toArray(initialProps.styles)]
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+        sheets.getStyleElement()
+      ]
     };
   }
 
@@ -38,7 +50,7 @@ export default class MyDocument extends Document {
           <meta name="og:image" content="/meta-image-compressed.jpg" />
           <meta
             name="twitter:image:alt"
-            content="Sonnat Design System | Component Library"
+            content="Sonnat Design System | React Components & Developer Resources"
           />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preload" as="style" href={googleFontFamily} />
