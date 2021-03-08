@@ -1,13 +1,13 @@
+import CssBaseline from "@sonnat/ui/CssBaseline";
+import PageLoader from "@sonnat/ui/PageLoader";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
+import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
 import { AppProps } from "next/app";
 // eslint-disable-next-line import/no-named-as-default
 import Router from "next/router";
 import * as React from "react";
-import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
-import CssBaseline from "@sonnat/ui/CssBaseline";
-import PageLoader from "@sonnat/ui/PageLoader";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import smoothScrollPolyfill from "smoothscroll-polyfill";
-
+import smoothScroll from "smoothscroll-polyfill";
+import { initGA, logPageView } from "utils/analytics";
 import "../styles/fonts.css";
 
 const useGlobalStyles = makeStyles(
@@ -31,7 +31,10 @@ export default function App(props: AppProps) {
   const [loading, setLoading] = React.useState(false);
 
   const routeChangeStart = () => setLoading(true);
-  const routeChangeComplete = () => setLoading(false);
+  const routeChangeComplete = () => {
+    setLoading(false);
+    if (isProduction) logPageView();
+  };
 
   React.useEffect(() => {
     const sonnatServerStyles = document.getElementById("sonnat-jss-ssr");
@@ -41,7 +44,7 @@ export default function App(props: AppProps) {
   }, []);
 
   React.useEffect(() => {
-    smoothScrollPolyfill();
+    smoothScroll.polyfill();
   }, []);
 
   React.useEffect(() => {
@@ -54,6 +57,13 @@ export default function App(props: AppProps) {
       Router.events.off("routeChangeComplete", routeChangeComplete);
       Router.events.off("routeChangeError", routeChangeComplete);
     };
+  }, []);
+
+  React.useEffect(() => {
+    if (isProduction) {
+      initGA();
+      logPageView();
+    }
   }, []);
 
   return (
