@@ -45,7 +45,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <meta
             name="twitter:image:alt"
-            content="Sonnat Dev: React Components & Developer Resources"
+            content="Sonnat Developer Tools, React Components & Resources"
           />
           <link
             rel="apple-touch-icon"
