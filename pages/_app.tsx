@@ -1,7 +1,10 @@
 import CssBaseline from "@sonnat/ui/CssBaseline";
 import PageLoader from "@sonnat/ui/PageLoader";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import useDarkMode from "@sonnat/ui/styles/useDarkMode";
+import defaultTheme from "@sonnat/ui/styles/defaultTheme";
 import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
+import WithHeader from "components/layouts/WithHeader";
 import { AppProps } from "next/app";
 import Head from "next/head";
 // eslint-disable-next-line import/no-named-as-default
@@ -9,7 +12,10 @@ import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
 import { analytics, setTitleMeta } from "utils";
+import GlobalContext from "GlobalContext";
+
 import "../styles/fonts.css";
+import "@sonnat/ui/static/sonnat-font-icon.min.css";
 
 const googleFontFamily =
   "https://fonts.googleapis.com/css2?" +
@@ -36,6 +42,9 @@ export default function App(props: AppProps) {
   useGlobalStyles();
 
   const [loading, setLoading] = React.useState(false);
+  const [isDarkMode, setDarkMode] = React.useState(false);
+
+  const theme = useDarkMode(isDarkMode, defaultTheme);
 
   const routeChangeStart = () => setLoading(true);
   const routeChangeComplete = () => {
@@ -74,9 +83,9 @@ export default function App(props: AppProps) {
   }, []);
 
   return (
-    <SonnatInitializer>
+    <SonnatInitializer theme={theme}>
       <Head>
-        {setTitleMeta("Sonnat Dev: React Components & Developer Resources")}
+        {setTitleMeta("Sonnat Developer Tools, React Components & Resources")}
         <meta
           name="viewport"
           content="initial-scale=1.0, width=device-width, maximum-scale=5.0, minimum-scale=1.0"
@@ -90,11 +99,15 @@ export default function App(props: AppProps) {
           onLoad="this.media = 'all';"
         />
       </Head>
-      <div id="main-wrapper" data-page={pageName}>
-        <CssBaseline />
-        <PageLoader loading={loading} />
-        <Page {...pageProps} />
-      </div>
+      <GlobalContext.Provider value={{ isDarkMode, setDarkMode, pageName }}>
+        <div id="main-wrapper">
+          <CssBaseline />
+          <WithHeader>
+            <PageLoader loading={loading} top={64} />
+            <Page {...pageProps} />
+          </WithHeader>
+        </div>
+      </GlobalContext.Provider>
     </SonnatInitializer>
   );
 }
