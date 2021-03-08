@@ -1,8 +1,20 @@
-import Document, { Head, Html, Main, NextScript } from "next/document";
+import Document, {
+  Head,
+  Html,
+  Main,
+  NextScript,
+  DocumentContext
+} from "next/document";
 import * as React from "react";
 
+const googleFontFamily =
+  "https://fonts.googleapis.com/css2?" +
+  "family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
+  "family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
+  "display=swap";
+
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
 
     return {
@@ -24,7 +36,13 @@ export default class MyDocument extends Document {
           <meta name="google" content="notranslate" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="og:image" content="/meta-image-compressed.jpg" />
-          <meta name="twitter:image:alt" content="Sonnat Design System" />
+          <meta
+            name="twitter:image:alt"
+            content="Sonnat Design System | Component Library"
+          />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preload" as="style" href={googleFontFamily} />
+          <link rel="stylesheet" href={googleFontFamily} />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
