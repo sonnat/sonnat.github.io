@@ -229,10 +229,10 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/context-base/-/context-base-0.14.0.tgz#c67fc20a4d891447ca1a855d7d70fa79a3533001"
   integrity sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==
 
-"@sonnat/ui@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.0.tgz#8a84f15ce5dbce8473f6238aff9a433592ee62b7"
-  integrity sha512-Zr4r/Fw6STssrqlDQ7m9YoB9/fH6HMMJJ7mZFjlagvrel2XBdqqCW6n4XdfweZoK/94Lc6hr2M9hkb01+1p0IQ==
+"@sonnat/ui@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.1.tgz#2f29113a14956799791a50c1d83aad7341460295"
+  integrity sha512-7/YHIoaUpugtiLmTy1tWTAnvg+XASs7ZJmVX/MUDQskRa3Qjm9zNvbqslhl4eSMJuBtN6SmKAFEOItJtsokuVQ==
   dependencies:
     "@babel/runtime" "^7.13.6"
     classnames "^2.2.6"
