@@ -20,6 +20,7 @@ const useStyles = makeStyles(
     const {
       colors,
       zIndexes,
+      breakpoints,
       darkMode,
       typography: { pxToRem }
     } = theme;
@@ -41,18 +42,16 @@ const useStyles = makeStyles(
           ? colors.background.origin
           : colors.background.level?.[1],
         boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.12)",
-        transition:
-          "box-shadow 360ms ease," +
-          "background-color 360ms ease," +
-          "padding-top 360ms ease"
+        transition: "box-shadow 360ms ease," + "padding-top 360ms ease"
       },
       container: {
         display: "flex",
-        alignItems: "center",
-        height: "100%"
+        height: pxToRem(64),
+        alignItems: "center"
       },
       logo: {
         marginRight: "auto",
+        cursor: "pointer",
         opacity: 1,
         visibility: "visible",
         transition: "opacity 360ms ease," + "visibility 360ms ease"
@@ -64,7 +63,9 @@ const useStyles = makeStyles(
         marginRight: pxToRem(16),
         height: 24
       },
-      nav: { display: "flex", alignItems: "center" },
+      nav: { alignItems: "center" },
+      desktop: {},
+      mobile: {},
       navList: {
         padding: "0",
         margin: "0",
@@ -82,11 +83,34 @@ const useStyles = makeStyles(
         transition: "color 360ms ease"
       },
       darkModeToggle: {},
-      landing: {
-        boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0)",
-        backgroundColor: colors.transparent,
-        paddingTop: pxToRem(52),
-        "& $logo": { opacity: 0, visibility: "hidden" }
+      landing: {},
+      subHeader: {},
+      subHeaderWrapper: {
+        display: "none",
+        alignItems: "center",
+        width: "100vw",
+        borderTop: `1px solid ${colors.divider}`,
+        paddingRight: pxToRem(16),
+        paddingLeft: pxToRem(16)
+      },
+      [breakpoints.up("sm")]: {
+        landing: {
+          boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0)",
+          backgroundColor: colors.transparent,
+          paddingTop: pxToRem(52),
+          "& $logo": { opacity: 0, visibility: "hidden" }
+        },
+        desktop: { display: "flex" },
+        mobile: { display: "none" }
+      },
+      [breakpoints.down("sm")]: {
+        root: {
+          flexDirection: "column"
+        },
+        mobile: { display: "flex" },
+        desktop: { display: "none" },
+        divider: { display: "none" },
+        subHeaderWrapper: { display: "flex" }
       }
     };
   },
@@ -100,6 +124,61 @@ const Header = React.memo(function Header(props: Props) {
 
   const classes = useStyles();
 
+  const createNav = className => {
+    return (
+      <nav className={createClassName(classes.nav, classes[className])}>
+        <ul className={classes.navList}>
+          <li className={classes.navItem}>
+            <Link href="/" passHref>
+              <Text
+                title="Documentation"
+                rootNode="a"
+                variant="bodyText"
+                size="small"
+                weight="bolder"
+                className={classes.navItemLink}
+              >
+                Docs
+              </Text>
+            </Link>
+          </li>
+          <li className={classes.navItem}>
+            <Link href="https://sonnat.design" passHref>
+              <Text
+                title="Design"
+                rootNode="a"
+                variant="bodyText"
+                target="_blank"
+                rel="noopener noreferrer"
+                size="small"
+                weight="bolder"
+                className={classes.navItemLink}
+              >
+                Design
+              </Text>
+            </Link>
+          </li>
+          <li className={classes.navItem}>
+            <Link href="https://github.com/sonnat/sonnat-ui" passHref>
+              <Text
+                title="Github"
+                rootNode="a"
+                variant="bodyText"
+                target="_blank"
+                rel="noopener noreferrer"
+                size="small"
+                weight="bolder"
+                className={classes.navItemLink}
+              >
+                GitHub
+              </Text>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
   return (
     <header
       className={createClassName(classes.root, className, {
@@ -108,7 +187,11 @@ const Header = React.memo(function Header(props: Props) {
       {...otherProps}
     >
       <Container className={classes.container}>
-        <Logo size={32} variant="line" className={classes.logo} />
+        <Link href="/">
+          <a title="Home" className={classes.logo}>
+            <Logo size={32} variant="line" />
+          </a>
+        </Link>
         <Button
           aria-label="Toggle dark mode"
           leadingIcon={!isDarkMode ? "night-o" : "weather-sunny-o"}
@@ -119,57 +202,11 @@ const Header = React.memo(function Header(props: Props) {
           className={classes.darkModeToggle}
         />
         <Divider vertical className={classes.divider} />
-        <nav className={classes.nav}>
-          <ul className={classes.navList}>
-            <li className={classes.navItem}>
-              <Link href="/" passHref>
-                <Text
-                  title="Documentation"
-                  rootNode="a"
-                  variant="bodyText"
-                  size="small"
-                  weight="bolder"
-                  className={classes.navItemLink}
-                >
-                  Docs
-                </Text>
-              </Link>
-            </li>
-            <li className={classes.navItem}>
-              <Link href="https://sonnat.design" passHref>
-                <Text
-                  title="Design"
-                  rootNode="a"
-                  variant="bodyText"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="small"
-                  weight="bolder"
-                  className={classes.navItemLink}
-                >
-                  Design
-                </Text>
-              </Link>
-            </li>
-            <li className={classes.navItem}>
-              <Link href="https://github.com/sonnat/sonnat-ui" passHref>
-                <Text
-                  title="Github"
-                  rootNode="a"
-                  variant="bodyText"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="small"
-                  weight="bolder"
-                  className={classes.navItemLink}
-                >
-                  Github
-                </Text>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        {createNav("desktop")}
       </Container>
+      <div className={classes.subHeaderWrapper}>
+        <div className={classes.subHeader}>{createNav("mobile")}</div>
+      </div>
     </header>
   );
 });

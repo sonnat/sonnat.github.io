@@ -17,7 +17,6 @@ const useStyles = makeStyles(
     const {
       colors,
       breakpoints,
-      direction,
       typography: { pxToRem }
     } = theme;
 
@@ -32,12 +31,8 @@ const useStyles = makeStyles(
       },
       navigation: { display: "flex", alignItems: "center" },
       logo: {
-        ...(direction === "rtl"
-          ? { marginLeft: pxToRem(16) }
-          : { marginRight: pxToRem(16) }),
-        cursor: "pointer",
-        width: pxToRem(32),
-        height: pxToRem(32)
+        marginRight: pxToRem(16),
+        cursor: "pointer"
       },
       navigationList: {
         padding: "0",
@@ -62,9 +57,7 @@ const useStyles = makeStyles(
       },
       socials: { display: "flex", alignItems: "center" },
       social: {
-        ...(direction === "rtl"
-          ? { marginRight: pxToRem(8) }
-          : { marginLeft: pxToRem(8) }),
+        marginLeft: pxToRem(8),
         cursor: "pointer",
         transition: "color 360ms ease",
         color: colors.text.secondary,
@@ -80,12 +73,11 @@ const useStyles = makeStyles(
         navigation: { flexDirection: "column" },
         navigationList: { marginTop: pxToRem(16), marginBottom: pxToRem(16) },
         social: {
-          ...(direction === "rtl"
-            ? { marginRight: pxToRem(8), marginLeft: pxToRem(8) }
-            : { marginLeft: pxToRem(8), marginRight: pxToRem(8) })
+          marginLeft: pxToRem(8),
+          marginRight: pxToRem(8)
         },
         logo: {
-          ...(direction === "rtl" ? { marginLeft: 0 } : { marginRight: 0 })
+          marginRight: 0
         }
       }
     };
@@ -196,7 +188,7 @@ const Footer = React.memo(function Footer(props: Props) {
             target="_blank"
             rel="noopener noreferrer"
             rootNode="a"
-            identifier="github-cat"
+            identifier="github"
             size={24}
             className={classes.social}
           />
