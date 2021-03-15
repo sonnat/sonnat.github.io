@@ -1,12 +1,14 @@
 import Button from "@sonnat/ui/Button";
 import Container from "@sonnat/ui/Container";
 import Divider from "@sonnat/ui/Divider";
+import { useRouter } from "next/router";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
 import createClassName from "classnames";
 import Logo from "components/Logo";
 import GlobalContext from "GlobalContext";
 import Link from "next/link";
+import BurgerMenu from "./partials/BurgerMenu";
 import * as React from "react";
 
 const componentName = "Header";
@@ -40,7 +42,7 @@ const useStyles = makeStyles(
         paddingLeft: pxToRem(16),
         backgroundColor: !darkMode
           ? colors.background.origin
-          : colors.background.level?.[1],
+          : colors.background.level?.[2],
         boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.12)",
         transition: "box-shadow 360ms ease," + "padding-top 360ms ease"
       },
@@ -82,7 +84,11 @@ const useStyles = makeStyles(
         color: colors.text.secondary,
         transition: "color 360ms ease"
       },
+      activeLink: {
+        color: !darkMode ? colors.primary.origin : colors.primary.light
+      },
       darkModeToggle: {},
+      burgerMenuToggle: { display: "none" },
       landing: {},
       subHeader: {},
       subHeaderWrapper: {
@@ -107,6 +113,11 @@ const useStyles = makeStyles(
         root: {
           flexDirection: "column"
         },
+        container: {
+          justifyContent: "space-between"
+        },
+        burgerMenuToggle: { display: "inline-flex" },
+        logo: { marginRight: 0 },
         mobile: { display: "flex" },
         desktop: { display: "none" },
         divider: { display: "none" },
@@ -120,11 +131,15 @@ const useStyles = makeStyles(
 const Header = React.memo(function Header(props: Props) {
   const { className, ...otherProps } = props;
 
-  const { isDarkMode, setDarkMode, pageName } = React.useContext(GlobalContext);
-
+  const router = useRouter();
   const classes = useStyles();
 
-  const createNav = className => {
+  const { isDarkMode, setDarkMode, pageName } = React.useContext(GlobalContext);
+  const [isBurgerMenuOpen, setBurgerMenuOpen] = React.useState(false);
+
+  const isDemoActive = router.pathname.includes("/docs/");
+
+  const createNav = (className: string) => {
     return (
       <nav className={createClassName(classes.nav, classes[className])}>
         <ul className={classes.navList}>
@@ -136,7 +151,9 @@ const Header = React.memo(function Header(props: Props) {
                 variant="bodyText"
                 size="small"
                 weight="bolder"
-                className={classes.navItemLink}
+                className={createClassName(classes.navItemLink, {
+                  [classes.activeLink]: isDemoActive
+                })}
               >
                 Docs
               </Text>
@@ -181,12 +198,22 @@ const Header = React.memo(function Header(props: Props) {
 
   return (
     <header
+      id="header"
       className={createClassName(classes.root, className, {
         [classes.landing]: pageName === "LandingPage"
       })}
       {...otherProps}
     >
       <Container className={classes.container}>
+        <Button
+          aria-label="Toggle burger menu"
+          leadingIcon={!isBurgerMenuOpen ? "burger-menu" : "close-large"}
+          variant="inlined"
+          onClick={() => {
+            setBurgerMenuOpen?.(!isBurgerMenuOpen);
+          }}
+          className={classes.burgerMenuToggle}
+        />
         <Link href="/">
           <a title="Home" className={classes.logo}>
             <Logo size={32} variant="line" />
@@ -197,7 +224,7 @@ const Header = React.memo(function Header(props: Props) {
           leadingIcon={!isDarkMode ? "night-o" : "weather-sunny-o"}
           variant="inlined"
           onClick={() => {
-            setDarkMode(!isDarkMode);
+            setDarkMode?.(!isDarkMode);
           }}
           className={classes.darkModeToggle}
         />
@@ -207,6 +234,10 @@ const Header = React.memo(function Header(props: Props) {
       <div className={classes.subHeaderWrapper}>
         <div className={classes.subHeader}>{createNav("mobile")}</div>
       </div>
+      <BurgerMenu
+        open={isBurgerMenuOpen}
+        toggle={() => setBurgerMenuOpen(s => !s)}
+      />
     </header>
   );
 });

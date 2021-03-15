@@ -9,7 +9,7 @@ import * as React from "react";
 const componentName = "Footer";
 
 interface Props {
-  className: string;
+  className?: string;
 }
 
 const useStyles = makeStyles(
