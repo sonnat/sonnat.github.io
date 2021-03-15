@@ -6,12 +6,13 @@ import defaultTheme from "@sonnat/ui/styles/defaultTheme";
 import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
 import WithHeader from "components/layouts/WithHeader";
 import { AppProps } from "next/app";
+import { MDXProvider } from "@mdx-js/react";
 import Head from "next/head";
 // eslint-disable-next-line import/no-named-as-default
 import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
-import { analytics, setTitleMeta } from "utils";
+import { analytics, setTitleMeta, createComponentMapping } from "utils";
 import GlobalContext from "GlobalContext";
 
 import "../styles/fonts.css";
@@ -34,6 +35,8 @@ const useGlobalStyles = makeStyles(
 );
 
 const isProduction = process.env.NODE_ENV === "production";
+
+const componentMapping = createComponentMapping();
 
 export default function App(props: AppProps) {
   const { Component: Page, pageProps } = props;
@@ -92,19 +95,16 @@ export default function App(props: AppProps) {
           key="viewport"
         />
         <link rel="preload" as="style" href={googleFontFamily} />
-        <link
-          rel="stylesheet"
-          href={googleFontFamily}
-          media="print"
-          onLoad="this.media = 'all';"
-        />
+        <link rel="stylesheet" href={googleFontFamily} />
       </Head>
       <GlobalContext.Provider value={{ isDarkMode, setDarkMode, pageName }}>
         <div id="main-wrapper">
           <CssBaseline />
           <WithHeader>
             <PageLoader loading={loading} top={64} />
-            <Page {...pageProps} />
+            <MDXProvider components={componentMapping}>
+              <Page {...pageProps} />
+            </MDXProvider>
           </WithHeader>
         </div>
       </GlobalContext.Provider>
