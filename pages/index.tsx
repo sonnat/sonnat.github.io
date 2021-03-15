@@ -130,7 +130,7 @@ const LandingPage: NextPage<Props> = () => {
     <React.Fragment>
       <Head>
         {setTitleMeta(
-          "Sonnat Developer Tools, React Components & Resources | Home"
+          "Home | Sonnat Developer Tools, React Components & Resources"
         )}
         {setDescriptionMeta(
           "React component library using Sonnat Design System to build faster, elegant, and accessible web applications"
