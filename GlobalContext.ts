@@ -3,13 +3,13 @@ import * as React from "react";
 interface GlobalContextValue {
   pageName: string;
   isDarkMode: boolean;
-  setDarkMode: (isDarkMode: boolean) => void;
+  setDarkMode: null | ((isDarkMode: boolean) => void);
 }
 
-const GlobalContext: React.Context<GlobalContextValue> = React.createContext({
+const GlobalContext = React.createContext<GlobalContextValue>({
   pageName: "UnnamedPage",
   isDarkMode: false,
-  setDarkMode: () => {}
+  setDarkMode: null
 });
 
 if (process.env.NODE_ENV !== "production") {
