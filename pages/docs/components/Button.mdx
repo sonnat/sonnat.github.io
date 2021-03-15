@@ -1,0 +1,464 @@
+import { Fragment } from "react";
+import Button from "@sonnat/ui/Button";
+import Code from "@sonnat/ui/Code";
+import WithSidebar from "components/layouts/WithSidebar";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Button",
+  group: "actions",
+  parent: "components",
+  description: "Allows users to take actions, and make choices."
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`https://sonnat.dev/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "button", "دکمه"])}
+</Head>
+
+<h1>
+  <span>Button</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>Allows users to take actions, and make choices.</p>
+
+<h2>
+  <span>Filled Buttons</span>
+  <AnchorButton anchorId="filled-buttons" />
+</h2>
+
+<p>
+  Filled buttons are high-emphasis, distinguished by their use of fill. They
+  indicate the main action to your app.
+</p>
+
+<DemoBox
+  code={[
+    '<Button variant="filled" label="Default" />',
+    '<Button variant="filled" label="Secondary" color="secondary" />',
+    '<Button variant="filled" label="Primary" color="primary" />'
+  ].join("\n")}
+>
+  <Button label="Default" className="demoSubject" />
+  <Button label="Secondary" color="secondary" className="demoSubject" />
+  <Button label="Primary" color="primary" className="demoSubject" />
+</DemoBox>
+
+<p>
+  You can add the elevation and have the raised version of the button with the{" "}
+  <inlineCode>raised</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    '<Button variant="filled" label="Default" raised />',
+    '<Button variant="filled" label="Secondary" color="secondary" raised />',
+    '<Button variant="filled" label="Primary" color="primary" raised />'
+  ].join("\n")}
+>
+  <Button label="Default" className="demoSubject" raised />
+  <Button label="Secondary" color="secondary" className="demoSubject" raised />
+  <Button label="Primary" color="primary" className="demoSubject" raised />
+</DemoBox>
+
+<h2>
+  <span>Outlined Buttons</span>
+  <AnchorButton anchorId="outlined-buttons" />
+</h2>
+
+<p>
+  Outlined buttons are medium-emphasis buttons. They indicate a series of
+  actions without a primary priority to your app.
+</p>
+
+<DemoBox
+  code={[
+    '<Button variant="outlined" label="Default" />',
+    '<Button variant="outlined" label="Secondary" color="secondary" />',
+    '<Button variant="outlined" label="Primary" color="primary" />'
+  ].join("\n")}
+>
+  <Button variant="outlined" label="Default" className="demoSubject" />
+  <Button
+    variant="outlined"
+    label="Secondary"
+    color="secondary"
+    className="demoSubject"
+  />
+  <Button
+    variant="outlined"
+    label="Primary"
+    color="primary"
+    className="demoSubject"
+  />
+</DemoBox>
+
+<h2>
+  <span>Inlined Buttons</span>
+  <AnchorButton anchorId="inlined-buttons" />
+</h2>
+
+<p>Inlined buttons are used for the most secondary action.</p>
+
+<DemoBox
+  code={[
+    '<Button variant="inlined" label="Default" />',
+    '<Button variant="inlined" label="Secondary" color="secondary" />',
+    '<Button variant="inlined" label="Primary" color="primary" />'
+  ].join("\n")}
+>
+  <Button variant="inlined" label="Default" className="demoSubject" />
+  <Button
+    variant="inlined"
+    label="Secondary"
+    color="secondary"
+    className="demoSubject"
+  />
+  <Button
+    variant="inlined"
+    label="Primary"
+    color="primary"
+    className="demoSubject"
+  />
+</DemoBox>
+
+<h2>
+  <span>Buttons with icons and label</span>
+  <AnchorButton anchorId="iconed-buttons" />
+</h2>
+
+<p>
+  Sometimes you might want to have icons for certain button to enhance the UX of
+  the application as we recognize imagery more easily than plain text.
+</p>
+
+<DemoBox
+  code={[
+    `<Button
+  variant="filled"
+  label="Leading and Trailing"
+  leadingIcon="heart"
+  trailingIcon="chevron-down"
+/>`,
+    `<Button
+  variant="outlined"
+  label="Leading"
+  color="secondary"
+  leadingIcon="link"
+/>`,
+    `<Button
+  variant="inlined"
+  label="Trailing"
+  color="primary"
+  trailingIcon="eye"
+/>`
+  ].join("\n")}
+>
+  <Button
+    variant="filled"
+    label="Leading and Trailing"
+    className="demoSubject"
+    leadingIcon="heart"
+    trailingIcon="chevron-down"
+  />
+  <Button
+    variant="outlined"
+    label="Leading"
+    color="secondary"
+    leadingIcon="link"
+    className="demoSubject"
+  />
+  <Button
+    variant="inlined"
+    label="Trailing"
+    color="primary"
+    trailingIcon="eye"
+    className="demoSubject"
+  />
+</DemoBox>
+
+<h2>
+  <span>Icon Buttons</span>
+  <AnchorButton anchorId="icon-buttons" />
+</h2>
+
+<p>
+  Icon buttons don't have any labels or texts but instead they have an icon as
+  their main content.
+</p>
+
+<DemoBox
+  code={[
+    `<Button
+  variant="filled"
+  aria-label="Default"
+  leadingIcon="heart"
+/>`,
+    `<Button
+  variant="outlined"
+  aria-label="Secondary"
+  color="secondary"
+  leadingIcon="link"
+/>`,
+    `<Button
+  variant="inlined"
+  aria-label="Primary"
+  color="primary"
+  leadingIcon="tune"
+/>`
+  ].join("\n")}
+>
+  <Button
+    variant="filled"
+    aria-label="Default"
+    className="demoSubject"
+    leadingIcon="heart"
+  />
+  <Button
+    variant="outlined"
+    aria-label="Secondary"
+    color="secondary"
+    leadingIcon="link"
+    className="demoSubject"
+  />
+  <Button
+    variant="inlined"
+    aria-label="Primary"
+    color="primary"
+    leadingIcon="tune"
+    className="demoSubject"
+  />
+</DemoBox>
+
+<h2>
+  <span>Sizes</span>
+  <AnchorButton anchorId="sizes" />
+</h2>
+
+<p>
+  To have the <del>larger or</del> smaller buttons, use the{" "}
+  <inlineCode>size</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    '<Button label="Small" size="small" />',
+    '<Button label="Medium (default)" size="medium" />'
+  ].join("\n")}
+>
+  <Button label="Small" size="small" className="demoSubject" />
+  <Button label="Medium (default)" size="medium" className="demoSubject" />
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="import" />
+</h3>
+
+```javascript
+// recommended
+import Button from "@sonnat/ui/Button";
+// or
+import { Button } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table>
+  <caption>Button Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The content of the button.</td>
+    </tr>
+    <tr>
+      <td>rootNode</td>
+      <td>elementType</td>
+      <td>"button"</td>
+      <td>
+        The component used for the root node.
+        <br />
+        Either a string to use a HTML element or a component.
+      </td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>rounded</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the button will be rounded.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the button will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>raised</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the button will have elavation.
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can only use the <inlineCode>raised=&#123;true&#125;</inlineCode>{" "}
+        property on <a href="#filled-buttons">filled buttons</a>.
+      </td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the button will have a loading
+        indicator.
+      </td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        Callback fired when the button is clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the button.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>
+        "default"
+        <br />
+        | "primary"
+        <br />| "secondary"
+      </td>
+      <td>"default"</td>
+      <td>The color of the button.</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "filled"
+        <br />
+        | "outlined"
+        <br />| "inlined"
+      </td>
+      <td>"filled"</td>
+      <td>The variant of the button.</td>
+    </tr>
+    <tr>
+      <td>leadingIcon</td>
+      <td>
+        string
+        <br />| node
+      </td>
+      <td>-</td>
+      <td>
+        The leading icon placed before the label.
+        <br />
+        When a string was provided, the component will use it as a{" "}
+        <inlineCode>sonnat-icon</inlineCode> identifier.
+      </td>
+    </tr>
+    <tr>
+      <td>trailingIcon</td>
+      <td>
+        string
+        <br />| node
+      </td>
+      <td>-</td>
+      <td>
+        The trailing icon placed after the label.
+        <br />
+        When a string was provided, the component will use it as a{" "}
+        <inlineCode>sonnat-icon</inlineCode> identifier.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+export default function Page({ children }) {
+  return <WithSidebar>{children}</WithSidebar>;
+}
