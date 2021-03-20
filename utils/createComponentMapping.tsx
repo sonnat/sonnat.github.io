@@ -4,11 +4,17 @@ import { adjustColor } from "@sonnat/ui/styles/colorUtils";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import useTheme from "@sonnat/ui/styles/useTheme";
 import Text, { TextProps } from "@sonnat/ui/Text";
+import Icon from "@sonnat/ui/Icon";
 import createClassName from "classnames";
 import darkTheme from "components/DemoBox/darkTheme";
 import lightTheme from "components/DemoBox/lightTheme";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
+import Link from "next/link";
 import * as React from "react";
+
+interface CustomDivProps extends React.ComponentPropsWithRef<"div"> {
+  "data-notebox"?: boolean;
+}
 
 const useParagraphStyles = makeStyles(
   theme => ({
@@ -97,6 +103,17 @@ const useCodeBlockStyles = makeStyles(
   { name: "CodeBlock" }
 );
 
+const useInlineCodeStyles = makeStyles(
+  theme => ({
+    root: {
+      border: `1px solid ${
+        theme.darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
+      }`
+    }
+  }),
+  { name: "InlineCode" }
+);
+
 const useTableStyles = makeStyles(
   theme => ({
     root: {
@@ -108,6 +125,9 @@ const useTableStyles = makeStyles(
       wordBreak: "normal",
       [theme.breakpoints.down("lg")]: {
         maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
+      },
+      "& li": {
+        fontSize: theme.typography.pxToRem(12)
       },
       "& caption": {
         ...theme.typography.useText({
@@ -169,28 +189,6 @@ const useTableFooterStyles = makeStyles(
         color: theme.colors.text.primary,
         fontSize: theme.typography.pxToRem(12),
         padding: [[theme.typography.pxToRem(8), 0]]
-      },
-      "& ul": {
-        listStyle: "none",
-        paddingRight: 0,
-        paddingLeft: 0,
-        paddingTop: 0,
-        margin: 0
-      },
-      "& ul li": {
-        position: "relative",
-        color: theme.colors.text.primary,
-        fontSize: theme.typography.pxToRem(12),
-        "&:before": {
-          marginRight: theme.typography.pxToRem(8),
-          content: '""',
-          display: "inline-block",
-          width: theme.typography.pxToRem(4),
-          height: theme.typography.pxToRem(4),
-          borderRadius: "50%",
-          flexShrink: 0,
-          backgroundColor: theme.colors.text.primary
-        }
       }
     }
   }),
@@ -248,6 +246,119 @@ const useLinkStyles = makeStyles(
   },
   { name: "Link" }
 );
+
+const useOrderedListStyles = makeStyles(
+  theme => ({
+    root: {
+      counterReset: "section",
+      listStyle: "none",
+      paddingRight: 0,
+      paddingLeft: 0,
+      paddingTop: 0,
+      margin: 0,
+      "& > li:before": {
+        counterIncrement: "section",
+        content: 'counters(section, ".") "-"',
+        width: "auto",
+        height: "auto",
+        backgroundColor: "transparent",
+        borderRadius: "initial",
+        verticalAlign: "initial",
+        marginRight: theme.typography.pxToRem(4)
+      }
+    }
+  }),
+  { name: "OrderedList" }
+);
+
+const useUnorderedListStyles = makeStyles(
+  {
+    root: {
+      listStyle: "none",
+      paddingRight: 0,
+      paddingLeft: 0,
+      paddingTop: 0,
+      margin: 0
+    }
+  },
+  { name: "UnorderedList" }
+);
+
+const useListItemStyles = makeStyles(
+  theme => ({
+    root: {
+      position: "relative",
+      color: theme.colors.text.primary,
+      fontSize: theme.typography.pxToRem(16),
+      "& pre": {
+        marginTop: theme.typography.pxToRem(16),
+        marginBottom: theme.typography.pxToRem(16)
+      },
+      "&:before": {
+        marginRight: theme.typography.pxToRem(8),
+        content: '""',
+        verticalAlign: "middle",
+        display: "inline-block",
+        width: "0.25rem",
+        height: "0.25rem",
+        borderRadius: "0.5em",
+        flexShrink: 0,
+        backgroundColor: theme.colors.text.primary
+      }
+    }
+  }),
+  { name: "ListItem" }
+);
+
+const useCustomDivStyles = makeStyles(
+  theme => ({
+    root: {},
+    noteBox: {
+      display: "flex",
+      alignItems: "center",
+      marginTop: theme.typography.pxToRem(16),
+      color: !theme.darkMode
+        ? theme.colors.secondary.origin
+        : theme.colors.secondary.light
+    },
+    noteBoxIcon: {
+      marginRight: theme.typography.pxToRem(8),
+      alignSelf: "flex-start",
+      position: "relative",
+      top: theme.typography.pxToRem(5)
+    }
+  }),
+  { name: "CustomDiv" }
+);
+
+const CustomDiv = (props: CustomDivProps) => {
+  const { children, "data-notebox": isNoteBox, ...otherProps } = props;
+  const classes = useCustomDivStyles();
+
+  return (
+    <div
+      {...otherProps}
+      className={createClassName(classes.root, {
+        [classes.noteBox]: isNoteBox
+      })}
+    >
+      {isNoteBox ? (
+        <React.Fragment>
+          <Icon
+            size={18}
+            className={classes.noteBoxIcon}
+            identifier="info-circle-large-o"
+          />
+          <Text variant="bodyText" size="small" responsive>
+            {children}
+          </Text>
+        </React.Fragment>
+      ) : (
+        children
+      )}
+    </div>
+  );
+};
 
 const Paragraph = (props: TextProps<{}, "p">) => {
   const { children, ...otherProps } = props;
@@ -349,19 +460,22 @@ const CodeBlock = (props: CodeProps) => {
           style={style}
           className={createClassName(className, classes.root)}
         >
-          {tokens.map((line, i) => (
-            <div key={`${line}/${i}`} {...getLineProps({ line, key: i })}>
-              {line.map(
-                (token, key) =>
-                  !token.empty && (
+          {tokens.map((line, i) => {
+            const isLastLine = i === tokens.length - 1;
+
+            return (
+              <div key={`${line}/${i}`} {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => {
+                  return !(isLastLine && token.empty) ? (
                     <span
                       key={`${token}/${key}`}
                       {...getTokenProps({ token, key })}
                     />
-                  )
-              )}
-            </div>
-          ))}
+                  ) : null;
+                })}
+              </div>
+            );
+          })}
         </Code>
       )}
     </Highlight>
@@ -370,8 +484,13 @@ const CodeBlock = (props: CodeProps) => {
 
 const InlineCode = (props: CodeProps) => {
   const { children, ...otherProps } = props;
+  const classes = useInlineCodeStyles();
 
-  return <Code {...otherProps}>{children}</Code>;
+  return (
+    <Code {...otherProps} className={classes.root}>
+      {children}
+    </Code>
+  );
 };
 
 const HorizontalDivider = (props: DividerProps) => {
@@ -433,14 +552,51 @@ const TH = (props: React.ComponentPropsWithRef<"th">) => {
   );
 };
 
-const Link = (props: React.ComponentPropsWithRef<"a">) => {
-  const { children, ...otherProps } = props;
+const CustomLink = (props: React.ComponentPropsWithRef<"a">) => {
+  const { children, href = "", ...otherProps } = props;
   const classes = useLinkStyles();
 
   return (
-    <a {...otherProps} className={classes.root}>
+    <Link href={href}>
+      <a {...otherProps} className={classes.root}>
+        {children}
+      </a>
+    </Link>
+  );
+};
+
+const OrderedList = (props: React.ComponentPropsWithRef<"ol">) => {
+  const { children, ...otherProps } = props;
+  const classes = useOrderedListStyles();
+
+  return (
+    <ol {...otherProps} className={classes.root}>
       {children}
-    </a>
+    </ol>
+  );
+};
+
+const UnorderedList = (props: React.ComponentPropsWithRef<"ul">) => {
+  const { children, ...otherProps } = props;
+  const classes = useUnorderedListStyles();
+
+  return (
+    <ul {...otherProps} className={classes.root}>
+      {children}
+    </ul>
+  );
+};
+
+const ListItem = (props: React.ComponentPropsWithRef<"li">) => {
+  const { children, ...otherProps } = props;
+  const classes = useListItemStyles();
+
+  return (
+    <li {...otherProps} className={classes.root}>
+      <Text variant="bodyText" size="medium" responsive>
+        {children}
+      </Text>
+    </li>
   );
 };
 
@@ -461,6 +617,10 @@ export default function createComponentMapping() {
     tr: TableRow,
     td: TD,
     th: TH,
-    a: Link
+    a: CustomLink,
+    ul: UnorderedList,
+    ol: OrderedList,
+    li: ListItem,
+    div: CustomDiv
   };
 }
