@@ -8,6 +8,7 @@ import Footer from "components/containers/Footer";
 import Logo from "components/Logo";
 import { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import * as React from "react";
 import { defaultKeywordsMetaContent } from "sharedVars";
 import {
@@ -170,11 +171,14 @@ const LandingPage: NextPage<Props> = () => {
                   and accessible digital experience.
                 </Text>
                 <div className={classes.heroFooter}>
-                  <Button
-                    label="Get Started"
-                    color="primary"
-                    className={classes.gettingStartedBtn}
-                  />
+                  <Link passHref href="/docs/installation">
+                    <Button
+                      rootNode="a"
+                      label="Get Started"
+                      color="primary"
+                      className={classes.gettingStartedBtn}
+                    />
+                  </Link>
                   <div className={classes.license}>
                     <Text
                       rootNode="p"
