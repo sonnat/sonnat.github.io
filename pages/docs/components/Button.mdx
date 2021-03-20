@@ -1,9 +1,8 @@
-import { Fragment } from "react";
 import Button from "@sonnat/ui/Button";
 import Code from "@sonnat/ui/Code";
-import WithSidebar from "components/layouts/WithSidebar";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
 import DemoBox from "components/DemoBox";
 import Head from "next/head";
 import { defaultKeywordsMetaContent } from "sharedVars";
@@ -16,9 +15,8 @@ import {
 
 export const meta = {
   title: "Button",
-  group: "actions",
-  parent: "components",
-  description: "Allows users to take actions, and make choices."
+  description: "Allows users to take actions, and make choices.",
+  layout: WithSidebar
 };
 
 <Head>
@@ -31,12 +29,12 @@ export const meta = {
 </Head>
 
 <h1>
-  <span>Button</span>
+  <span>{meta.title}</span>
   <AnchorButton anchorId="overview" />
   <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
 </h1>
 
-<p>Allows users to take actions, and make choices.</p>
+<p>{meta.description}</p>
 
 <h2>
   <span>Filled Buttons</span>
@@ -278,12 +276,13 @@ export const meta = {
   <AnchorButton anchorId="import" />
 </h3>
 
-```javascript
-// recommended
-import Button from "@sonnat/ui/Button";
+<code
+  className="language-javascript"
+  children={`// recommended
+import Button from "@sonnat/ui/Button";\n
 // or
-import { Button } from "@sonnat/ui";
-```
+import { Button } from "@sonnat/ui";`}
+/>
 
 <h3>
   <span>Properties</span>
@@ -458,7 +457,3 @@ import { Button } from "@sonnat/ui";
     </tr>
   </tfoot>
 </table>
-
-export default function Page({ children }) {
-  return <WithSidebar>{children}</WithSidebar>;
-}
