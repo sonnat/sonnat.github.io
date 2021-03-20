@@ -38,8 +38,6 @@ const useStyles = makeStyles(
         alignItems: "center",
         paddingTop: 0,
         minHeight: pxToRem(64),
-        paddingRight: pxToRem(16),
-        paddingLeft: pxToRem(16),
         backgroundColor: !darkMode
           ? colors.background.origin
           : colors.background.level?.[2],
@@ -91,15 +89,13 @@ const useStyles = makeStyles(
       burgerMenuToggle: { display: "none" },
       landing: {},
       subHeader: {},
+      subHeaderContainer: {},
       subHeaderWrapper: {
         display: "none",
         alignItems: "center",
-        width: "100vw",
-        borderTop: `1px solid ${colors.divider}`,
-        paddingRight: pxToRem(16),
-        paddingLeft: pxToRem(16)
+        width: "100vw"
       },
-      [breakpoints.up("sm")]: {
+      [breakpoints.up("lg")]: {
         landing: {
           boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0)",
           backgroundColor: colors.transparent,
@@ -107,9 +103,10 @@ const useStyles = makeStyles(
           "& $logo": { opacity: 0, visibility: "hidden" }
         },
         desktop: { display: "flex" },
-        mobile: { display: "none" }
+        mobile: { display: "none" },
+        subHeaderContainer: { display: "none" }
       },
-      [breakpoints.down("sm")]: {
+      [breakpoints.down("lg")]: {
         root: {
           flexDirection: "column"
         },
@@ -122,6 +119,11 @@ const useStyles = makeStyles(
         desktop: { display: "none" },
         divider: { display: "none" },
         subHeaderWrapper: { display: "flex" }
+      },
+      [breakpoints.down("sm")]: {
+        subHeaderContainer: {
+          borderTop: `1px solid ${colors.divider}`
+        }
       }
     };
   },
@@ -144,7 +146,7 @@ const Header = React.memo(function Header(props: Props) {
       <nav className={createClassName(classes.nav, classes[className])}>
         <ul className={classes.navList}>
           <li className={classes.navItem}>
-            <Link href="/" passHref>
+            <Link href="/docs/installation" passHref>
               <Text
                 title="Documentation"
                 rootNode="a"
@@ -231,9 +233,11 @@ const Header = React.memo(function Header(props: Props) {
         <Divider vertical className={classes.divider} />
         {createNav("desktop")}
       </Container>
-      <div className={classes.subHeaderWrapper}>
-        <div className={classes.subHeader}>{createNav("mobile")}</div>
-      </div>
+      <Container className={classes.subHeaderContainer}>
+        <div className={classes.subHeaderWrapper}>
+          <div className={classes.subHeader}>{createNav("mobile")}</div>
+        </div>
+      </Container>
       <BurgerMenu
         open={isBurgerMenuOpen}
         toggle={() => setBurgerMenuOpen(s => !s)}
