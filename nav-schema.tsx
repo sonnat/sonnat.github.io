@@ -7,7 +7,7 @@ import { Content, InnerLink, NavItem, Trigger } from "components/Collapsable";
 
 const schema = {
   byChild: {
-    Installation: { label: "Installation", href: "/" },
+    Installation: { label: "Installation", href: "/docs/installation" },
     Components: {
       label: "Components",
       byChild: {
@@ -20,6 +20,16 @@ const schema = {
             }
           },
           children: ["Button"]
+        },
+        Other: {
+          label: "Other",
+          byChild: {
+            CssBaseline: {
+              label: "CssBaseline",
+              href: "/docs/components/CssBaseline"
+            }
+          },
+          children: ["CssBaseline"]
         }
       },
       children: [
@@ -29,21 +39,25 @@ const schema = {
         "Layout",
         "Surface",
         "Feedback",
-        "Navigation"
+        "Navigation",
+        "Other"
       ]
     },
-    Theming: { label: "Theming", href: "/" },
+    Theming: { label: "Theming", href: "/docs/theming" },
     Styling: { label: "Styling", href: "/" },
-    Utility: { label: "Utility", href: "/" },
-    Guides: { label: "Guides", href: "/" }
+    Utilities: { label: "Utilities", href: "/" },
+    "Server-side Rendering": {
+      label: "Server-side Rendering",
+      href: "/docs/serverside-rendering"
+    }
   },
   children: [
     "Installation",
+    "Server-side Rendering",
     "Components",
     "Theming",
     "Styling",
-    "Utility",
-    "Guides"
+    "Utilities"
   ]
 };
 
@@ -166,6 +180,7 @@ export const useNavJsx = (className?: string) => {
                 <ActiveLink
                   href={childSchema.href}
                   activeClassName={classes.active}
+                  passHref
                 >
                   <Text
                     title={childSchema.label}
@@ -190,8 +205,8 @@ export const useNavJsx = (className?: string) => {
                   <Text
                     title={childSchema.label}
                     rootNode="a"
-                    variant="captionText"
-                    size="large"
+                    variant={depth === 1 ? "bodyText" : "captionText"}
+                    size={depth === 1 ? "small" : "large"}
                     className={classes.navigationItemLink}
                   >
                     {childSchema.label}
