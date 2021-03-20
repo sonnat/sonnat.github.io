@@ -1,0 +1,167 @@
+import Button from "@sonnat/ui/Button";
+import Code from "@sonnat/ui/Code";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import Head from "next/head";
+import { defaultKeywordsMetaContent } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Installation",
+  description:
+    "Install Sonnat-UI, " +
+    "the React component library using Sonnat Design System to build faster, " +
+    "elegant, and accessible web applications.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`https://sonnat.dev/docs/installation`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "install",
+    "installation",
+    "getting started",
+    "get started",
+    "شروع",
+    "نصب",
+    "دانلود"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/installation.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Setup</span>
+  <AnchorButton anchorId="setup" />
+</h2>
+
+<p>
+  Ensure your have the latest version of NodeJS, and a package manager:{" "}
+  <a
+    href="https://www.npmjs.com/get-npm"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Get NPM"
+  >
+    NPM
+  </a>{" "}
+  or{" "}
+  <a
+    href="https://yarnpkg.com/getting-started/install"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Get Yarn"
+  >
+    Yarn
+  </a>
+  .
+</p>
+
+<div data-notebox style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
+  Please note that{" "}
+  <a
+    href="https://www.npmjs.com/package/react"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="ReactJs"
+  >
+    react
+  </a>{" "}
+  >= 16.8.0 || 17.0.0 and{" "}
+  <a
+    href="https://www.npmjs.com/package/react-dom"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="ReactJs"
+  >
+    react-dom
+  </a>{" "}
+  >= 16.8.0 || 17.0.0 are peer dependencies.
+</div>
+
+<ol>
+  <li>
+    Run the following script to install and save in your{" "}
+    <inlineCode>package.json</inlineCode> dependencies:
+    <code
+      className="language-bash"
+      children={`// with npm
+npm install @sonnat/ui\n
+// with yarn
+yarn add @sonnat/ui`}
+    />
+  </li>
+  <li>
+    Initialize <inlineCode>@sonnat/ui</inlineCode> in your project:
+    <code
+      className="language-jsx"
+      children={
+        `` +
+        `import CssBaseline from "@sonnat/ui/CssBaseline";
+import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";\n
+const App = () => (
+  <SonnatInitializer>
+    <CssBaseline />
+    <MyComponent />
+  </SonnatInitializer>
+);`
+      }
+    />
+    <div data-notebox style={{ marginBottom: "1rem" }}>
+      <strong>&lt;CssBaseline&gt;</strong> provides basic CSS support, which is
+      similar to <em>normalize.css</em>.<br />
+      Also <strong>&lt;CssBaseline&gt;</strong> will do the following things:
+      <br />
+      1- Exposes CSS variables to the <strong>:root</strong> so it can be used later
+      in CSS.
+      <br />
+      2- Adds <strong>dir=&#123;theme.direction&#125;</strong> to the <strong>
+        body
+      </strong> element.
+      <br />
+      3- Adds <strong>
+        fontFamily=&#123;theme.typography.fontFamily[theme.direction]&#125;
+      </strong> to the body.
+      <br />
+      4- Adds <strong>color=&#123;theme.colors.text.primary&#125;</strong> and <strong>
+        backgroundColor=&#123;theme.colors.background.origin&#125;
+      </strong> to the body.
+      <br />
+      To learn more about the <strong>&lt;CssBaseline&gt;</strong> component, read{" "}
+      <a href="/docs/components/CssBaseline">this</a>.
+    </div>
+  </li>
+  <li>
+    Use <inlineCode>@sonnat/ui</inlineCode> components and utilities anywhere in
+    your React-Tree:
+    <code
+      className="language-jsx"
+      children={
+        `` +
+        `import Button from "@sonnat/ui/Button";\n
+const MyComponent = () => <Button label="Text" />;`
+      }
+    />
+  </li>
+  <li>
+    If your project needs to be rendered on the server as well, follow{" "}
+    <a href="/docs/serverside-rendering">this guide</a>.
+  </li>
+</ol>
