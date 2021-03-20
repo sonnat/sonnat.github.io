@@ -164,22 +164,25 @@ const DemoBox = React.memo(function DemoBox(props: Props) {
                   style={style}
                   className={createClassName(className, classes.codeBlock)}
                 >
-                  {tokens.map((line, i) => (
-                    <div
-                      key={`${line}/${i}`}
-                      {...getLineProps({ line, key: i })}
-                    >
-                      {line.map(
-                        (token, key) =>
-                          !token.empty && (
+                  {tokens.map((line, i) => {
+                    const isLastLine = i === tokens.length - 1;
+
+                    return (
+                      <div
+                        key={`${line}/${i}`}
+                        {...getLineProps({ line, key: i })}
+                      >
+                        {line.map((token, key) => {
+                          return !(isLastLine && token.empty) ? (
                             <span
                               key={`${token}/${key}`}
                               {...getTokenProps({ token, key })}
                             />
-                          )
-                      )}
-                    </div>
-                  ))}
+                          ) : null;
+                        })}
+                      </div>
+                    );
+                  })}
                 </Code>
               )}
             </Highlight>
