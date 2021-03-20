@@ -1,112 +1,103 @@
 import { PrismTheme } from "prism-react-renderer";
 
-// Duotone Dark
-// Author: Simurai, adapted from DuoTone themes for Atom (http://simurai.com/projects/2016/01/01/duotone-themes)
-// Conversion: Bram de Haan (http://atelierbram.github.io/Base2Tone-prism/output/prism/prism-base2tone-evening-dark.css)
-// Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
 const theme: PrismTheme = {
   plain: {
-    // backgroundColor: "#2a2734",
-    color: "#9a86fd"
+    color: "#9CDCFE"
   },
   styles: [
     {
-      types: ["comment", "prolog", "doctype", "cdata", "punctuation"],
+      types: ["prolog"],
       style: {
-        color: "#6c6783"
+        color: "rgb(0, 0, 128)"
       }
     },
     {
-      types: ["namespace"],
+      types: ["comment"],
       style: {
-        opacity: 0.7
+        color: "rgb(106, 153, 85)"
       }
     },
     {
-      types: ["tag", "operator", "number"],
+      types: ["builtin", "changed", "keyword"],
       style: {
-        color: "#e09142"
+        color: "rgb(86, 156, 214)"
       }
     },
     {
-      types: ["property", "function"],
+      types: ["number", "inserted"],
       style: {
-        color: "#9a86fd"
+        color: "rgb(181, 206, 168)"
       }
     },
     {
-      types: ["tag-id", "selector", "atrule-id"],
+      types: ["constant"],
       style: {
-        color: "#eeebff"
+        color: "rgb(100, 102, 149)"
       }
     },
     {
-      types: ["attr-name"],
+      types: ["attr-name", "variable"],
       style: {
-        color: "#c4b9fe"
+        color: "rgb(156, 220, 254)"
       }
     },
     {
-      types: [
-        "boolean",
-        "string",
-        "entity",
-        "url",
-        "attr-value",
-        "keyword",
-        "control",
-        "directive",
-        "unit",
-        "statement",
-        "regex",
-        "at-rule",
-        "placeholder",
-        "variable"
-      ],
+      types: ["deleted", "string", "attr-value"],
       style: {
-        color: "#ffcc99"
+        color: "rgb(206, 145, 120)"
       }
     },
     {
-      types: ["module"],
+      types: ["selector"],
       style: {
-        color: "#e09142"
+        color: "rgb(215, 186, 125)"
       }
     },
     {
-      types: ["imports", "maybe-class-name"],
+      // Fix tag color
+      types: ["tag"],
       style: {
-        color: "#9a86fd"
+        color: "rgb(78, 201, 176)"
       }
     },
     {
-      types: ["deleted"],
+      // Fix tag color for HTML
+      types: ["tag"],
+      languages: ["markup"],
       style: {
-        textDecorationLine: "line-through"
+        color: "rgb(86, 156, 214)"
       }
     },
     {
-      types: ["inserted"],
+      types: ["punctuation", "operator"],
       style: {
-        textDecorationLine: "underline"
+        color: "rgb(212, 212, 212)"
       }
     },
     {
-      types: ["italic"],
+      // Fix punctuation color for HTML
+      types: ["punctuation"],
+      languages: ["markup"],
       style: {
-        fontStyle: "italic"
+        color: "#808080"
       }
     },
     {
-      types: ["important", "bold"],
+      types: ["function"],
       style: {
-        fontWeight: "bold"
+        color: "rgb(220, 220, 170)"
       }
     },
     {
-      types: ["important"],
+      types: ["class-name"],
       style: {
-        color: "#c4b9fe"
+        color: "rgb(78, 201, 176)"
+      }
+    },
+    {
+      types: ["char"],
+      style: {
+        color: "rgb(209, 105, 105)"
       }
     }
   ]
