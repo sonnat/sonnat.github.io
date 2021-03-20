@@ -1,0 +1,266 @@
+import Button from "@sonnat/ui/Button";
+import Code from "@sonnat/ui/Code";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import JsonViewBox from "components/JsonViewBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Theming",
+  description:
+    "Customize Sonnat with your own theme. You can change the breakpoints, coloring, typography and etc.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`https://sonnat.dev/docs/theming`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "theming",
+    "theming",
+    "customize theme",
+    "sonnat theme",
+    "تم",
+    "پوسته"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/theming.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  Themes let you apply a consistent feeling and tone to your application. It
+  allows you to customize all the design aspects of your application in order to
+  meet the specific needs of your business or brand.
+</p>
+
+<h2>
+  <span>Creating the Theme</span>
+  <AnchorButton anchorId="creating-the-theme" />
+</h2>
+
+<h3>
+  <span>createTheme</span>
+  <AnchorButton anchorId="createTheme" />
+</h3>
+
+```typescript
+function createTheme(options?: ThemeOptions): Theme;
+```
+
+<p>Generates a theme object base on the options provided.</p>
+
+<h3>
+  <span>ThemeOptions</span>
+  <AnchorButton anchorId="theme-options" />
+</h3>
+
+```typescript
+export interface ThemeOptions {
+  breakpoints?: {
+    unit?: string;
+    step?: number;
+    values?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xlg";
+  };
+  direction?: "ltr" | "rtl";
+  mixins?: {
+    useDisableUserSelect?: () => CSSProperties;
+    useFontIcon?: (identifier: string) => CSSProperties;
+    useFontIconSize?: (size: number = 16) => CSSProperties;
+    usePreserveAspectRatio?: (ratio: string = "1:1") => CSSProperties;
+    [P: string]: any;
+  };
+  colors?: {
+    primary?: { origin?: string; light?: string; dark?: string };
+    secondary?: { origin?: string; light?: string; dark?: string };
+    error?: { origin?: string; light?: string; dark?: string };
+    warning?: { origin?: string; light?: string; dark?: string };
+    info?: { origin?: string; light?: string; dark?: string };
+    success?: { origin?: string; light?: string; dark?: string };
+    contrastThreshold?: number;
+    [P: string]: any;
+  };
+  typography?: {
+    fontSize?: number;
+    htmlFontSize?: number;
+    ltrFontFamily?: string;
+    rtlFontFamily?: string;
+    monospaceFontFamily?: string;
+    [P: string]: any;
+  };
+  zIndex?: {
+    sticky?: number;
+    header?: number;
+    drawer?: number;
+    backdrop?: number;
+    modal?: number;
+    popover?: number;
+    [P: string]: any;
+  };
+  darkMode?: boolean;
+  [P: string]: any;
+}
+```
+
+<h2>
+  <span>Default Theme</span>
+  <AnchorButton anchorId="default-theme" />
+</h2>
+
+<p>
+  Here's what the theme object looks like with the default values. Explore the
+  default theme object:
+</p>
+
+<JsonViewBox />
+
+<div data-notebox>
+  <strong>Tip:</strong> you can play with the documentation theme object in your
+  browser console, as the theme variable is exposed on all the documentation
+  pages. Please note that the documentation site is using the default theme.
+</div>
+
+<h2>
+  <span>ThemeProvider</span>
+  <AnchorButton anchorId="theme-provider" />
+</h2>
+
+<p>
+  If you wish to customize the theme, you need to use the{" "}
+  <inlineCode>&lt;ThemeProvider&gt;</inlineCode> component in order to inject a
+  theme into your application. However, this is optional;{" "}
+  <strong>@sonnat/ui</strong> comes with a{" "}
+  <a href="#default-theme">default theme</a>.
+</p>
+
+```jsx
+import ThemeProvider from "@sonnat/ui/styles/ThemeProvider";
+
+<ThemeProvider theme={theme}>
+  <CustomComponent />
+</ThemeProvider>;
+```
+
+<div data-notebox>
+  You need to make sure that <strong>&lt;ThemeProvider&gt;</strong> is a parent
+  of the components you are trying to customize.
+</div>
+
+<p>
+  If you are providing the application's main theme and it's not a nested
+  theming situation, you have to pass the theme object to the{" "}
+  <inlineCode>&lt;SonnatInitializer&gt;</inlineCode> instead of{" "}
+  <inlineCode>&lt;ThemeProvider&gt;</inlineCode>.<br />
+  The <em>Initializer</em> is going to use <em>ThemeProvider</em> itself and pass
+  down the theme (or default theme) object.
+</p>
+
+```jsx
+import ThemeProvider from "@sonnat/ui/styles/ThemeProvider";
+import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
+
+<SonnatInitializer theme={mainTheme}>
+  <CustomComponent />
+  <ThemeProvider theme={theme2}>
+    <CustomComponent />
+  </ThemeProvider>;
+</SonnatInitializer>;
+```
+
+<div data-notebox>
+  Please note that you cannot nest <strong>&lt;SonnatInitializer&gt;</strong>
+  !<br />
+  You can only use the <strong>&lt;SonnatInitializer&gt;</strong> once and at
+  the top of your application's React-Tree.
+</div>
+
+<p>
+  <inlineCode>&lt;ThemeProvider&gt;</inlineCode> has a{" "}
+  <inlineCode>theme</inlineCode> prop which should be an{" "}
+  <inlineCode>object</inlineCode> or <inlineCode>function</inlineCode>:
+</p>
+
+<ul>
+  <li>
+    If it is{" "}
+    <strong>
+      <em>Object</em>
+    </strong>
+    , then it gets merged with the theme from a parent <em>ThemeProvider</em> and
+    passed down the react tree.
+  </li>
+  <li>
+    If it is{" "}
+    <strong>
+      <em>Function</em>
+    </strong>
+    , then it's being applied to the theme from a parent <em>ThemeProvider</em>.
+    If the result is an Object it will be passed down the react tree, throws otherwise.
+  </li>
+</ul>
+
+```jsx
+const theme = { themed: true };
+const patch = { merged: true };
+
+<ThemeProvider theme={theme}>
+  {/* { ...initializerTheme, themed: true } */}
+  <ThemeProvider theme={patch}>
+    <DemoBox /> {/* { ...initializerTheme, themed: true, merged: true } */}
+  </ThemeProvider>
+</ThemeProvider>;
+```
+
+```jsx
+const theme = { themed: true };
+const augment = outerTheme => ({...outerTheme, { augmented: true }});
+
+<ThemeProvider theme={theme}>
+  {/* { ...initializerTheme, themed: true } */}
+  <ThemeProvider theme={augment}>
+    <DemoBox /> {/* { ...initializerTheme, themed: true, augmented: true } */}
+  </ThemeProvider>
+</ThemeProvider>;
+```
+
+<h2>
+  <span>useTheme</span>
+  <AnchorButton anchorId="use-theme" />
+</h2>
+
+```typescript
+function useTheme<Theme = DefaultTheme>(): Theme;
+```
+
+<p>
+  This hook returns the theme object so it can be used inside a function
+  component.
+</p>
+
+```jsx
+import React from "react";
+import useTheme from "@sonnat/ui/styles/useTheme";
+
+export default function MyComponent() {
+  const theme = useTheme();
+
+  return <div style={{ color: theme.colors.primary.origin }}></div>;
+}
+```
