@@ -1,0 +1,296 @@
+import Button from "@sonnat/ui/Button";
+import Code from "@sonnat/ui/Code";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import Head from "next/head";
+import { defaultKeywordsMetaContent } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Server-side Rendering",
+  description:
+    "The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`https://sonnat.dev/docs/serverside-rendering`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "server-side rendering",
+    "server side rendering",
+    "ssr"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/serverside-rendering.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  When the server receives the request, it renders the required component(s)
+  into an HTML string, and then sends it as a response to the client. From that
+  point on, the client takes over rendering duties.
+</p>
+
+<p>
+  We are using{" "}
+  <a
+    href="https://cssinjs.org/react-jss"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    ReactJSS (css-in-js styling solution)
+  </a>{" "}
+  to styling our components. And since Material-UI v4 was using the same styling
+  solution with such a User-friendly API that led to great DX (Developer
+  Experience), we have decided to use an API which is similar to Material-UI's.
+</p>
+
+<h2>
+  <span>Sonnat-UI on the Server</span>
+  <AnchorButton anchorId="sonnat-ui-on-the-server" />
+</h2>
+
+<p>
+  All Components of <inlineCode>@sonnat/ui</inlineCode> are compatible with
+  Server-side Rendering. In fact, the document you see now is rendered by the
+  server.
+  <br />
+  It's important to provide the page with the required CSS, otherwise the page
+  will render with just the HTML then wait for the CSS to be injected by the
+  client, causing it to flicker (FOUC). To inject the style down to the client,
+  we need to:
+</p>
+
+<ol>
+  <li>
+    Create a fresh, new <inlineCode>ServerStyleSheets</inlineCode> instance on
+    every request.
+  </li>
+  <li>Render the React tree with the server-side collector.</li>
+  <li>Pull the CSS out.</li>
+  <li>Pass the CSS along to the client.</li>
+</ol>
+
+<p>
+  On the client side, the CSS will be injected a second time before removing the
+  server-side injected CSS.
+</p>
+
+<h2>
+  <span>Setting Up</span>
+  <AnchorButton anchorId="setting-up" />
+</h2>
+
+<h3>
+  <span>Theme Object</span>
+  <AnchorButton anchorId="theme-object" />
+</h3>
+
+<p>
+  Create a theme object that will be shared between the client and the server.
+  <br />
+  If you don't provide a theme object the theming will be defaults to{" "}
+  <a href="/docs/theming#default-theme">Default Theme</a>.
+  <br />
+  (For more detailed information about theming, take a look at{" "}
+  <a href="/docs/theming">this doc</a>.)
+</p>
+
+```jsx
+// file: theme.js
+
+import createTheme from "@sonnat/ui/styles/createTheme";
+
+// Create a theme instance.
+const theme = createTheme({
+  // Your theme options
+});
+
+export default theme;
+```
+
+<h3>
+  <span>Server-side</span>
+  <AnchorButton anchorId="serverside" />
+</h3>
+
+<p>
+  The first thing that we need to do on every request is create a new{" "}
+  <inlineCode>ServerStyleSheets</inlineCode>.
+  <br />
+  When rendering, we will wrap App, the root component, inside a{" "}
+  <inlineCode>&lt;SonnatInitializer&gt;</inlineCode> to make the style
+  configuration and the theme available to all components in the component tree.
+</p>
+
+<div data-notebox style={{ marginTop: 0 }}>
+  <strong>&lt;CssBaseline&gt;</strong> provides basic CSS support, which is
+  similar to <em>normalize.css</em>.<br />
+  Also <strong>&lt;CssBaseline&gt;</strong> will do the following things:
+  <br />
+  1- Exposes CSS variables to the <strong>:root</strong> so it can be used later
+  in CSS.
+  <br />
+  2- Adds <strong>dir=&#123;theme.direction&#125;</strong> to the <strong>
+    body
+  </strong> element.
+  <br />
+  3- Adds <strong>
+    fontFamily=&#123;theme.typography.fontFamily[theme.direction]&#125;
+  </strong> to the body.
+  <br />
+  4- Adds <strong>color=&#123;theme.colors.text.primary&#125;</strong> and <strong>
+    backgroundColor=&#123;theme.colors.background.origin&#125;
+  </strong> to the body.
+  <br />
+  To learn more about the <strong>&lt;CssBaseline&gt;</strong> component, read <a href="/docs/components/CssBaseline">
+    this
+  </a>.
+</div>
+
+<p>
+  The key step in server-side rendering is to render the initial HTML of the
+  component before we send it to the client side. To do this, we use
+  <inlineCode>ReactDOMServer.renderToString()</inlineCode>. We then get the CSS from
+  the sheets using <inlineCode>sheets.toString()</inlineCode>.<br />
+  The final step on the server-side is to inject the initial component HTML and
+  CSS into a template to be rendered on the client side.
+</p>
+
+```jsx
+// file: server.js
+
+import express from "express";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+import ServerStyleSheets from "@sonnat/ui/styles/ServerStyleSheets";
+import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
+import CssBaseline from "@sonnat/ui/CssBaseline";
+import App from "./App";
+import theme from "./theme";
+
+function renderFullPage(html, css) {
+  return `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>My page</title>
+        <style id="jss-server-side">${css}</style>
+      </head>
+      <body>
+        <div id="root">${html}</div>
+      </body>
+    </html>
+  `;
+}
+
+function handleRender(req, res) {
+  const sheets = new ServerStyleSheets();
+
+  // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <SonnatInitializer theme={theme}>
+        <CssBaseline />
+        <App />
+      </SonnatInitializer>
+    )
+  );
+
+  // Grab the CSS from the sheets.
+  const css = sheets.toString();
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, css));
+}
+
+const app = express();
+
+app.use("/build", express.static("build"));
+
+// This is fired every time the server-side receives a request.
+app.use(handleRender);
+
+const port = 3000;
+app.listen(port);
+```
+
+<h3>
+  <span>Client-side</span>
+  <AnchorButton anchorId="clientside" />
+</h3>
+
+<p>
+  The client side is straightforward. All we need to do is remove the
+  server-side generated CSS.
+</p>
+
+```jsx
+// file: client.js
+
+import React from "react";
+import ReactDOM from "react-dom";
+import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
+import CssBaseline from "@sonnat/ui/CssBaseline";
+import App from "./App";
+import theme from "./theme";
+
+function Main() {
+  React.useEffect(() => {
+    const jssStyles = document.querySelector("#sonnat-jss-ssr");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
+  return (
+    <SonnatInitializer theme={theme}>
+      <CssBaseline />
+      <App />
+    </SonnatInitializer>
+  );
+}
+
+ReactDOM.hydrate(<Main />, document.querySelector("#root"));
+```
+
+<h2>
+  <span>Next.js</span>
+  <AnchorButton anchorId="nextjs" />
+</h2>
+
+<p>
+  We host nextjs implementation which you can find in the{" "}
+  <a
+    href="https://github.com/sonnat/sonnat-ui"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    GitHub repository
+  </a>{" "}
+  under the{" "}
+  <a
+    href="https://github.com/sonnat/sonnat-ui/tree/main/examples/nextjs"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    /examples
+  </a>{" "}
+  folder.
+</p>
