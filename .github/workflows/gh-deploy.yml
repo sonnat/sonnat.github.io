@@ -37,6 +37,8 @@ jobs:
       - name: Exporting static version of the app
         run: yarn export
 
+      - run: touch ./out/.nojekyll
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
