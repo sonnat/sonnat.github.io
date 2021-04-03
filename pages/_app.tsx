@@ -12,7 +12,7 @@ import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
 import useStore from "store";
-import { analytics, createComponentMapping, setTitleMeta } from "utils";
+import { /*analytics,*/ createComponentMapping, setTitleMeta } from "utils";
 
 import "../styles/fonts.css";
 import "@sonnat/ui/static/sonnat-font-icon.min.css";
@@ -39,7 +39,7 @@ const useGlobalStyles = makeStyles(
   { name: "GlobalStyles" }
 );
 
-const isProduction = process.env.NODE_ENV === "production";
+// const isProduction = process.env.NODE_ENV === "production";
 
 const componentMapping = createComponentMapping();
 
@@ -60,7 +60,7 @@ export default function App(props: AppProps) {
   const routeChangeStart = () => setLoading(true);
   const routeChangeComplete = () => {
     setLoading(false);
-    if (isProduction) analytics.logPageView();
+    // if (isProduction) analytics.logPageView();
   };
 
   React.useEffect(() => {
@@ -91,12 +91,12 @@ export default function App(props: AppProps) {
     };
   }, []);
 
-  React.useEffect(() => {
-    if (isProduction) {
-      analytics.initGA();
-      analytics.logPageView();
-    }
-  }, []);
+  // React.useEffect(() => {
+  // if (isProduction) {
+  // analytics.initGA();
+  // analytics.logPageView();
+  // }
+  // }, []);
 
   return (
     <SonnatInitializer theme={theme}>
