@@ -1,19 +1,18 @@
+import { MDXProvider } from "@mdx-js/react";
 import CssBaseline from "@sonnat/ui/CssBaseline";
 import PageLoader from "@sonnat/ui/PageLoader";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import useDarkMode from "@sonnat/ui/styles/useDarkMode";
-import defaultTheme from "@sonnat/ui/styles/defaultTheme";
 import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
+import useDarkMode from "@sonnat/ui/styles/useDarkMode";
 import WithHeader from "components/layouts/WithHeader";
 import { AppProps } from "next/app";
-import { MDXProvider } from "@mdx-js/react";
 import Head from "next/head";
 // eslint-disable-next-line import/no-named-as-default
 import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
-import { analytics, setTitleMeta, createComponentMapping } from "utils";
-import GlobalContext from "GlobalContext";
+import useStore from "store";
+import { analytics, createComponentMapping, setTitleMeta } from "utils";
 
 import "../styles/fonts.css";
 import "@sonnat/ui/static/sonnat-font-icon.min.css";
@@ -46,19 +45,17 @@ const componentMapping = createComponentMapping();
 
 export default function App(props: AppProps) {
   const { Component: Page, pageProps } = props;
-  const pageName = Page.name || Page.displayName || "UnnamedPage";
-
-  // @ts-ignore
-  const meta = (Page.isMDXComponent ? Page({}).props.meta : {}) as MDXMeta;
 
   useGlobalStyles();
 
+  const isDarkMode = useStore(state => state.isDarkMode);
+  const theme = useDarkMode(isDarkMode);
+
+  // @ts-ignore
+  const meta = (Page.isMDXComponent ? Page({}).props.meta : {}) as MDXMeta;
   const MDXContentLayout = meta.layout;
 
   const [loading, setLoading] = React.useState(false);
-  const [isDarkMode, setDarkMode] = React.useState(false);
-
-  const theme = useDarkMode(isDarkMode, defaultTheme);
 
   const routeChangeStart = () => setLoading(true);
   const routeChangeComplete = () => {
@@ -113,23 +110,21 @@ export default function App(props: AppProps) {
         <link rel="preload" as="style" href={googleFontFamily} />
         <link rel="stylesheet" href={googleFontFamily} />
       </Head>
-      <GlobalContext.Provider value={{ isDarkMode, setDarkMode, pageName }}>
-        <div id="main-wrapper">
-          <CssBaseline />
-          <WithHeader>
-            <PageLoader loading={loading} top={64} />
-            <MDXProvider components={componentMapping}>
-              {MDXContentLayout ? (
-                <MDXContentLayout>
-                  <Page {...pageProps} />
-                </MDXContentLayout>
-              ) : (
+      <div id="main-wrapper">
+        <CssBaseline />
+        <WithHeader>
+          <PageLoader loading={loading} top={64} />
+          <MDXProvider components={componentMapping}>
+            {MDXContentLayout ? (
+              <MDXContentLayout>
                 <Page {...pageProps} />
-              )}
-            </MDXProvider>
-          </WithHeader>
-        </div>
-      </GlobalContext.Provider>
+              </MDXContentLayout>
+            ) : (
+              <Page {...pageProps} />
+            )}
+          </MDXProvider>
+        </WithHeader>
+      </div>
     </SonnatInitializer>
   );
 }

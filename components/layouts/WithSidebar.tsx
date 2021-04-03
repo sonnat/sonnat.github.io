@@ -1,13 +1,10 @@
-import Sidebar from "components/containers/Sidebar";
-import Footer from "components/containers/Footer";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Container from "@sonnat/ui/Container";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Footer from "components/containers/Footer";
+import Sidebar from "components/containers/Sidebar";
 import * as React from "react";
-import GlobalContext from "GlobalContext";
 
 const componentName = "WithSidebar";
-
-const PAGES_BLACK_LIST = ["ErrorPage", "NotFoundPage"];
 
 interface Props {
   children: React.ReactNode;
@@ -44,16 +41,9 @@ const useStyles = makeStyles(
 );
 
 const WithSidebar = ({ children }: Props) => {
-  const { pageName } = React.useContext(GlobalContext);
-
-  const isAllowedPage = React.useMemo(
-    () => !PAGES_BLACK_LIST.includes(pageName),
-    [pageName]
-  );
-
   const classes = useStyles();
 
-  return isAllowedPage ? (
+  return (
     <main id="main" className={classes.root}>
       <Container className={classes.container}>
         <Sidebar className={classes.sidebar} />
@@ -63,8 +53,6 @@ const WithSidebar = ({ children }: Props) => {
         </section>
       </Container>
     </main>
-  ) : (
-    <React.Fragment>{children}</React.Fragment>
   );
 };
 

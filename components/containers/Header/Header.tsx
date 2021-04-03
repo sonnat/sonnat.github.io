@@ -1,15 +1,16 @@
 import Button from "@sonnat/ui/Button";
 import Container from "@sonnat/ui/Container";
 import Divider from "@sonnat/ui/Divider";
-import { useRouter } from "next/router";
+import NoSsr from "@sonnat/ui/NoSsr";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
 import createClassName from "classnames";
 import Logo from "components/Logo";
-import GlobalContext from "GlobalContext";
 import Link from "next/link";
-import BurgerMenu from "./partials/BurgerMenu";
+import { useRouter } from "next/router";
 import * as React from "react";
+import useStore from "store";
+import BurgerMenu from "./partials/BurgerMenu";
 
 const componentName = "Header";
 
@@ -42,7 +43,9 @@ const useStyles = makeStyles(
           ? colors.background.origin
           : colors.background.level?.[2],
         boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.12)",
-        transition: "box-shadow 360ms ease," + "padding-top 360ms ease"
+        transition: ["box-shadow 360ms ease", "padding-top 360ms ease"].join(
+          ","
+        )
       },
       container: {
         display: "flex",
@@ -87,21 +90,14 @@ const useStyles = makeStyles(
       },
       darkModeToggle: {},
       burgerMenuToggle: { display: "none" },
-      landing: {},
       subHeader: {},
       subHeaderContainer: {},
       subHeaderWrapper: {
         display: "none",
         alignItems: "center",
-        width: "100vw"
+        width: `calc(100vw - ${pxToRem(32)})`
       },
       [breakpoints.up("lg")]: {
-        landing: {
-          boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0)",
-          backgroundColor: colors.transparent,
-          paddingTop: pxToRem(52),
-          "& $logo": { opacity: 0, visibility: "hidden" }
-        },
         desktop: { display: "flex" },
         mobile: { display: "none" },
         subHeaderContainer: { display: "none" }
@@ -136,10 +132,18 @@ const Header = React.memo(function Header(props: Props) {
   const router = useRouter();
   const classes = useStyles();
 
-  const { isDarkMode, setDarkMode, pageName } = React.useContext(GlobalContext);
   const [isBurgerMenuOpen, setBurgerMenuOpen] = React.useState(false);
+  const [isMounted, setMounted] = React.useState(false);
+
+  const isDarkMode = useStore(state => state.isDarkMode);
+  const toggleDarkMode = useStore(state => state.toggleDarkMode);
 
   const isDemoActive = router.pathname.includes("/docs/");
+
+  React.useEffect(() => {
+    setMounted(true);
+    return () => void setMounted(false);
+  }, []);
 
   const createNav = (className: string) => {
     return (
@@ -201,9 +205,7 @@ const Header = React.memo(function Header(props: Props) {
   return (
     <header
       id="header"
-      className={createClassName(classes.root, className, {
-        [classes.landing]: pageName === "LandingPage"
-      })}
+      className={createClassName(classes.root, className)}
       {...otherProps}
     >
       <Container className={classes.container}>
@@ -211,9 +213,7 @@ const Header = React.memo(function Header(props: Props) {
           aria-label="Toggle burger menu"
           leadingIcon={!isBurgerMenuOpen ? "burger-menu" : "close-large"}
           variant="inlined"
-          onClick={() => {
-            setBurgerMenuOpen?.(!isBurgerMenuOpen);
-          }}
+          onClick={() => void (isMounted && setBurgerMenuOpen(s => !s))}
           className={classes.burgerMenuToggle}
         />
         <Link href="/">
@@ -221,15 +221,15 @@ const Header = React.memo(function Header(props: Props) {
             <Logo size={32} variant="line" />
           </a>
         </Link>
-        <Button
-          aria-label="Toggle dark mode"
-          leadingIcon={!isDarkMode ? "night-o" : "weather-sunny-o"}
-          variant="inlined"
-          onClick={() => {
-            setDarkMode?.(!isDarkMode);
-          }}
-          className={classes.darkModeToggle}
-        />
+        <NoSsr>
+          <Button
+            aria-label="Toggle dark mode"
+            leadingIcon={!isDarkMode ? "night-o" : "weather-sunny-o"}
+            variant="inlined"
+            onClick={() => void toggleDarkMode()}
+            className={classes.darkModeToggle}
+          />
+        </NoSsr>
         <Divider vertical className={classes.divider} />
         {createNav("desktop")}
       </Container>
@@ -240,7 +240,7 @@ const Header = React.memo(function Header(props: Props) {
       </Container>
       <BurgerMenu
         open={isBurgerMenuOpen}
-        toggle={() => setBurgerMenuOpen(s => !s)}
+        toggle={() => void (isMounted && setBurgerMenuOpen(s => !s))}
       />
     </header>
   );
