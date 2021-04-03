@@ -2,12 +2,10 @@ import Code, { CodeProps } from "@sonnat/ui/Code";
 import Divider, { DividerProps } from "@sonnat/ui/Divider";
 import { adjustColor } from "@sonnat/ui/styles/colorUtils";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import useTheme from "@sonnat/ui/styles/useTheme";
 import Text, { TextProps } from "@sonnat/ui/Text";
 import Icon from "@sonnat/ui/Icon";
 import createClassName from "classnames";
-import darkTheme from "components/DemoBox/darkTheme";
-import lightTheme from "components/DemoBox/lightTheme";
+import prismTheme from "components/DemoBox/theme";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import Link from "next/link";
 import * as React from "react";
@@ -94,6 +92,7 @@ const useH3Styles = makeStyles(
 const useCodeBlockStyles = makeStyles(
   theme => ({
     root: {
+      backgroundColor: theme.colors.pallete.grey[900],
       marginTop: theme.typography.pxToRem(16),
       [theme.breakpoints.down("lg")]: {
         maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
@@ -439,7 +438,6 @@ const CodeBlock = (props: CodeProps) => {
   const { children, className, ...otherProps } = props;
 
   const classes = useCodeBlockStyles();
-  const theme = useTheme();
 
   const language: Language = (className
     ?.split(" ")
@@ -449,7 +447,7 @@ const CodeBlock = (props: CodeProps) => {
   return (
     <Highlight
       {...defaultProps}
-      theme={theme.darkMode ? darkTheme : lightTheme}
+      theme={prismTheme}
       language={language}
       code={children as string}
     >

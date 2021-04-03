@@ -1,5 +1,4 @@
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import useTheme from "@sonnat/ui/styles/useTheme";
 import Button from "@sonnat/ui/Button";
 import Code from "@sonnat/ui/Code";
 import Tooltip from "@sonnat/ui/Tooltip";
@@ -7,8 +6,7 @@ import createClassName from "classnames";
 import { Collapse } from "react-collapse";
 import useClipboard from "react-use-clipboard";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import darkTheme from "./darkTheme";
-import lightTheme from "./lightTheme";
+import prismTheme from "./theme";
 import * as React from "react";
 
 const componentName = "DemoBox";
@@ -71,12 +69,12 @@ const useStyles = makeStyles(
         }
       },
       codeBlock: {
-        border: "none"
+        border: "none",
+        borderRadius: 0,
+        backgroundColor: theme.colors.pallete.grey[900]
       },
       expanded: {
-        "& $codeWrapper": {
-          backgroundColor: colors.background.level?.[1]
-        }
+        "& $codeWrapper": {}
       },
       collapser: { transition: "height 360ms ease" },
       hAlignCenter: { "& $demoContainer": { justifyContent: "center" } },
@@ -102,7 +100,6 @@ const DemoBox = React.memo(function DemoBox(props: Props) {
   } = props;
 
   const classes = useStyles();
-  const theme = useTheme();
 
   const [isExpanded, setExpanded] = React.useState(false);
   const [isCopied, setCopied] = useClipboard(code || "", {
@@ -156,7 +153,7 @@ const DemoBox = React.memo(function DemoBox(props: Props) {
               {...defaultProps}
               code={code || ""}
               language="jsx"
-              theme={theme.darkMode ? darkTheme : lightTheme}
+              theme={prismTheme}
             >
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <Code
