@@ -495,10 +495,10 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/context-base/-/context-base-0.14.0.tgz#c67fc20a4d891447ca1a855d7d70fa79a3533001"
   integrity sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==
 
-"@sonnat/ui@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.3.tgz#d4863bdd9dca553b9efd3d610250599bb6848c49"
-  integrity sha512-AcbFQrBns4LMWpGniEEjj/+y+S20ctNjHnj8NaT9mgSgezG3AY5XeAGNvIx/j5CDN72dO5GLJDnlPZOQExmE4w==
+"@sonnat/ui@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.5.tgz#476d4879acd0e5c92854520e2b3f2ef649a02269"
+  integrity sha512-qN6qTDTjcBt0zJwvhBCDjK1xhCxG/uBwgKEv7tfQJpN+jvKsdpkQz5gKxCD1s/q3WJxZcTd8tRsFxvoAq775Mw==
   dependencies:
     "@babel/runtime" "^7.13.6"
     classnames "^2.2.6"
@@ -616,13 +616,6 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
-
-"@types/use-persisted-state@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@types/use-persisted-state/-/use-persisted-state-0.3.0.tgz#23370e89bd6c8468afdb05dde2d1bab898128229"
-  integrity sha512-ZT98QuckR95qM7W97lGVqc7fFS9TT6f3txp7R40fl0zxa5BLm3GG7j0i51G12h8DkoJxFAf2oQyYKU99h0pxFA==
-  dependencies:
-    "@types/react" "*"
 
 "@typescript-eslint/eslint-plugin@^4.16.1":
   version "4.16.1"
@@ -4679,6 +4672,11 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zustand@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.3.3.tgz#88b930a873d0f13e406f96958c1409645ea8b370"
+  integrity sha512-KTN/O76rVc9muDoprsCDe/LQjbuq+GHYt5JdYahuXaGZ+8Gyk44SepzTFeQTF5J+b8+/Q+o90BaSEQ3WImKPog==
 
 zwitch@^1.0.0:
   version "1.0.5"
