@@ -206,14 +206,6 @@ import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
     , then it gets merged with the theme from a parent <em>ThemeProvider</em> and
     passed down the react tree.
   </li>
-  <li>
-    If it is{" "}
-    <strong>
-      <em>Function</em>
-    </strong>
-    , then it's being applied to the theme from a parent <em>ThemeProvider</em>.
-    If the result is an Object it will be passed down the react tree, throws otherwise.
-  </li>
 </ul>
 
 ```jsx
@@ -227,6 +219,17 @@ const patch = { merged: true };
   </ThemeProvider>
 </ThemeProvider>;
 ```
+
+<ul style={{ marginTop: "1rem" }}>
+  <li>
+    If it is{" "}
+    <strong>
+      <em>Function</em>
+    </strong>
+    , then it's being applied to the theme from a parent <em>ThemeProvider</em>.
+    If the result is an Object it will be passed down the react tree, throws otherwise.
+  </li>
+</ul>
 
 ```jsx
 const theme = { themed: true };

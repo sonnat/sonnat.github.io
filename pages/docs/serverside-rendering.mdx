@@ -147,17 +147,15 @@ export default theme;
   1- Exposes CSS variables to the <strong>:root</strong> so it can be used later
   in CSS.
   <br />
-  2- Adds <strong>dir=&#123;theme.direction&#125;</strong> to the <strong>
+  2- Adds <strong>dir</strong> attribute (based on the provided theme) to the <strong>
     body
   </strong> element.
   <br />
-  3- Adds <strong>
-    fontFamily=&#123;theme.typography.fontFamily[theme.direction]&#125;
-  </strong> to the body.
+  3- Adds <strong>fontFamily</strong> css property (based on the provided theme)
+  to the body.
   <br />
-  4- Adds <strong>color=&#123;theme.colors.text.primary&#125;</strong> and <strong>
-    backgroundColor=&#123;theme.colors.background.origin&#125;
-  </strong> to the body.
+  4- Adds <strong>color</strong> and <strong>backgroundColor</strong> css properties
+  (based on the provided theme) to the body.
   <br />
   To learn more about the <strong>&lt;CssBaseline&gt;</strong> component, read <a href="/docs/components/CssBaseline">
     this
