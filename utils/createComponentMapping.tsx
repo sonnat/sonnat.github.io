@@ -89,6 +89,28 @@ const useH3Styles = makeStyles(
   { name: "H3" }
 );
 
+const useH4Styles = makeStyles(
+  theme => ({
+    root: {
+      paddingTop: theme.typography.pxToRem(16),
+      alignItems: "center",
+      "@global .anchorButton": {
+        [theme.breakpoints.up("sm")]: {
+          visibility: "hidden",
+          opacity: 0
+        }
+      },
+      "&:hover": {
+        "@global .anchorButton": {
+          visibility: "visible",
+          opacity: 1
+        }
+      }
+    }
+  }),
+  { name: "H4" }
+);
+
 const useCodeBlockStyles = makeStyles(
   theme => ({
     root: {
@@ -330,6 +352,31 @@ const useCustomDivStyles = makeStyles(
   { name: "CustomDiv" }
 );
 
+const useMarkStyles = makeStyles(
+  theme => ({
+    root: {
+      backgroundColor: theme.colors.transparent,
+      color: theme.darkMode
+        ? theme.colors.secondary.light
+        : theme.colors.secondary.origin,
+      fontStyle: "italic",
+      "&:before, &:after": { content: '"\'"' }
+    }
+  }),
+  { name: "Mark" }
+);
+
+const Mark = (props: React.ComponentPropsWithRef<"mark">) => {
+  const { children, ...otherProps } = props;
+  const classes = useMarkStyles();
+
+  return (
+    <mark {...otherProps} className={classes.root}>
+      {children}
+    </mark>
+  );
+};
+
 const CustomDiv = (props: CustomDivProps) => {
   const { children, "data-notebox": isNoteBox, ...otherProps } = props;
   const classes = useCustomDivStyles();
@@ -427,6 +474,25 @@ const H3 = (props: TextProps<{}, "h3">) => {
       display="flex"
       size="small"
       rootNode="h3"
+      responsive
+    >
+      {children}
+    </Text>
+  );
+};
+
+const H4 = (props: TextProps<{}, "h4">) => {
+  const { children, ...otherProps } = props;
+  const classes = useH4Styles();
+
+  return (
+    <Text
+      {...otherProps}
+      className={classes.root}
+      variant="titleText"
+      display="flex"
+      size="extraSmall"
+      rootNode="h4"
       responsive
     >
       {children}
@@ -604,9 +670,11 @@ export default function createComponentMapping() {
     h1: H1,
     h2: H2,
     h3: H3,
+    h4: H4,
     pre: function Pre({ children }: React.ComponentPropsWithRef<"pre">) {
       return <React.Fragment>{children}</React.Fragment>;
     },
+    mark: Mark,
     code: CodeBlock,
     inlineCode: InlineCode,
     hr: HorizontalDivider,
