@@ -50,14 +50,15 @@ const useStyles = makeStyles(
         }
       },
       section: {
-        minHeight: `calc(100vh - ${pxToRem(136)})`,
+        minHeight: `calc(100vh - ${pxToRem(72 + 64)})`,
         paddingTop: pxToRem(32),
         paddingBottom: pxToRem(32),
         display: "flex",
         alignItems: "center"
       },
-      sectionBody: {},
-      sectionContent: {},
+      logo: {},
+      sectionBody: { display: "flex", alignItems: "center" },
+      sectionContent: { flexShrink: 0 },
       heroTitle: {
         paddingTop: pxToRem(32),
         paddingBottom: pxToRem(8),
@@ -109,14 +110,31 @@ const useStyles = makeStyles(
           backgroundColor: colors.transparent
         }
       },
-      sectionImagery: {},
+      sectionImagery: { "& > img": { width: "100%" } },
       footer: { marginTop: 0 },
-      [breakpoints.down("sm")]: {
+      [breakpoints.down("md")]: {
+        "@global": { "#main": { paddingTop: pxToRem(104) } },
+        section: { minHeight: `calc(100vh - ${pxToRem(104 + 72)})` },
+        sectionBody: {
+          flexDirection: "column-reverse"
+        },
+        sectionImagery: {
+          margin: "0 auto",
+          width: "60%"
+        },
+        logo: { display: "none" },
         sectionContent: {
           textAlign: "center"
         },
         license: {
           justifyContent: "center"
+        }
+      },
+      [breakpoints.down("sm")]: {
+        section: { minHeight: `calc(100vh - ${pxToRem(104 + 160)})` },
+        sectionImagery: {
+          margin: "0 auto",
+          width: "75%"
         }
       }
     };
@@ -144,7 +162,7 @@ const LandingPage: NextPage<Props> = () => {
           <Container>
             <div className={classes.sectionBody}>
               <div className={classes.sectionContent}>
-                <Logo size={64} />
+                <Logo className={classes.logo} size={64} />
                 <Text
                   rootNode="h1"
                   variant="heroText"
@@ -205,7 +223,12 @@ const LandingPage: NextPage<Props> = () => {
                   </div>
                 </div>
               </div>
-              <div className={classes.sectionImagery}></div>
+              <div className={classes.sectionImagery}>
+                <img
+                  src="static/media/landing-illustration.png"
+                  alt="The Illustration of Sonnat Developer Tools, React Components & Resources"
+                />
+              </div>
             </div>
           </Container>
         </section>
