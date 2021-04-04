@@ -11,7 +11,7 @@ const nextConfig = {
   experimental: {
     reactStrictMode: true
   },
-  async redirects() {
+  redirects: async function () {
     return [
       {
         source: "/docs",
