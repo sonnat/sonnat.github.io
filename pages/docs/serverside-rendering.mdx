@@ -4,7 +4,7 @@ import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
 import WithSidebar from "components/layouts/WithSidebar";
 import Head from "next/head";
-import { defaultKeywordsMetaContent } from "sharedVars";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
 import {
   setCanonicalMeta,
   setDescriptionMeta,
@@ -24,7 +24,7 @@ export const meta = {
     `${meta.title} | Sonnat Developer Tools, React Components & Resources`
   )}
   {setDescriptionMeta(meta.description)}
-  {setCanonicalMeta(`https://sonnat.dev/docs/serverside-rendering`)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/serverside-rendering`)}
   {setKeywordsMeta([
     ...defaultKeywordsMetaContent,
     "server-side rendering",

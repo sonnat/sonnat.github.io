@@ -5,7 +5,7 @@ import AnchorButton from "components/AnchorButton";
 import WithSidebar from "components/layouts/WithSidebar";
 import JsonViewBox from "components/JsonViewBox";
 import Head from "next/head";
-import { defaultKeywordsMetaContent } from "sharedVars";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
 import {
   setCanonicalMeta,
   setDescriptionMeta,
@@ -25,7 +25,7 @@ export const meta = {
     `${meta.title} | Sonnat Developer Tools, React Components & Resources`
   )}
   {setDescriptionMeta(meta.description)}
-  {setCanonicalMeta(`https://sonnat.dev/docs/theming`)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/theming`)}
   {setKeywordsMeta([
     ...defaultKeywordsMetaContent,
     "theming",
