@@ -1,0 +1,138 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "CssBaseline",
+  description:
+    "This component provides an elegant, consistent, and simple baseline to build upon.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "CssBaseline",
+    "normalize",
+    "reset"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  You might be familiar with{" "}
+  <a
+    href="https://github.com/necolas/normalize.css"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="normalize.css external link"
+  >
+    <inlineCode>normalize.css</inlineCode>
+  </a>
+  , a collection of HTML element and attribute style-normalizations.
+  <br />
+  One of the main purposes of <inlineCode>&lt;CssBaseline&gt;</inlineCode> is to
+  do the similar job.
+</p>
+
+<h2>
+  <span>In-depth Responsibilities</span>
+  <AnchorButton anchorId="indepth-responsibilities" />
+</h2>
+
+<p>
+  In addition to the normalizations, this component will also do the followings:
+</p>
+
+<h3>
+  <span>Page</span>
+  <AnchorButton anchorId="page" />
+</h3>
+
+<ul>
+  <li>Remove the margins in all browsers.</li>
+  <li>
+    Applies the theme's background color (
+    <inlineCode>colors.background.origin</inlineCode>) to the{" "}
+    <inlineCode>&lt;body&gt;</inlineCode> element.
+  </li>
+</ul>
+
+<h3>
+  <span>Layout</span>
+  <AnchorButton anchorId="layout" />
+</h3>
+
+<ul>
+  <li>
+    <inlineCode>box-sizing: border-box</inlineCode> is set globally on the{" "}
+    <inlineCode>&lt;html&gt;</inlineCode> element. Every other element are
+    declared to inherit this property, which ensures that the declared width of
+    the element is never exceeded due to padding or border.
+  </li>
+</ul>
+
+<h3>
+  <span>Typography</span>
+  <AnchorButton anchorId="typography" />
+</h3>
+
+<ul>
+  <li>
+    No base <em>font-size</em> is declared on the{" "}
+    <inlineCode>&lt;html&gt;</inlineCode>, but <strong>16px</strong> is assumed
+    (the browser default).
+  </li>
+  <li>
+    Sets the <em>color</em> property according to the theme's mode (dark or
+    light) on the <inlineCode>&lt;body&gt;</inlineCode> element.
+  </li>
+  <li>
+    Sets the <inlineCode>dir=&#123;theme.direction&#125;</inlineCode> attribute
+    on the <inlineCode>&lt;body&gt;</inlineCode> element.
+  </li>
+  <li>
+    Sets the <em>font-family</em> to{" "}
+    <inlineCode>typography.fontFamily.rtl</inlineCode> or{" "}
+    <inlineCode>typography.fontFamily.ltr</inlineCode> based on the{" "}
+    <inlineCode>theme.direction</inlineCode>.
+  </li>
+  <li>
+    Enables custom font smoothing and text rendering for better display of the
+    web font.
+  </li>
+</ul>
+
+<h3>
+  <span>CSS Variables</span>
+  <AnchorButton anchorId="css-variables" />
+</h3>
+
+<p>
+  Exposes CSS variables to the <inlineCode>:root</inlineCode> so it can be used
+  later in CSS.
+  <br />
+  The CSS variables are prefixed with <inlineCode>--snt-</inlineCode>. (e.g.,{" "}
+  <inlineCode>--snt-ltr-font-family</inlineCode>)
+</p>
