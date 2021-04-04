@@ -10,7 +10,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import * as React from "react";
-import { defaultKeywordsMetaContent } from "sharedVars";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
 import {
   setCanonicalMeta,
   setDescriptionMeta,
@@ -136,7 +136,7 @@ const LandingPage: NextPage<Props> = () => {
         {setDescriptionMeta(
           "React component library using Sonnat Design System to build faster, elegant, and accessible web applications"
         )}
-        {setCanonicalMeta("https://sonnat.dev")}
+        {setCanonicalMeta(siteFullAddress)}
         {setKeywordsMeta(defaultKeywordsMetaContent)}
       </Head>
       <main id="main">
