@@ -14,7 +14,6 @@ import smoothScroll from "smoothscroll-polyfill";
 import useStore from "store";
 import { /*analytics,*/ createComponentMapping, setTitleMeta } from "utils";
 
-import "../styles/fonts.css";
 import "@sonnat/ui/static/sonnat-font-icon.min.css";
 
 interface MDXMeta {
