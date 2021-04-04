@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://sonnat.design">
+  <a href="https://sonnat.github.io">
     <img src="https://sonnat.design/static/media/sonnat-logo-fill.svg" height="128">
     <h1 align="center">Sonnat-UI / Documentation</h1>
   </a>
@@ -11,9 +11,9 @@
 
 </div>
 
-Visit [https://sonnat.dev](https://sonnat.dev) to view the website.
+Visit [https://sonnat.dev](https://sonnat.github.io) to view the website.
 
 ### Authors
 
-- Mostafa Shamsitabar ([@mimshins](https://twitter.com/mimshins))
-- Mahdi Rahman ([@bblndtctv](https://twitter.com/bblndtctv))
+- Mostafa Shamsitabar - Lead engineer at Sonnat([@mimshins](https://twitter.com/mimshins))
+- Mahdi Rahman - Design system manager at Sonnat([@bblndtctv](https://twitter.com/bblndtctv))
