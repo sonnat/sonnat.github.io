@@ -100,7 +100,7 @@ const Footer = React.memo(function Footer(props: Props) {
         </Link>
         <ul className={classes.navigationList}>
           <li className={classes.navigationItem}>
-            <Link href="/" passHref>
+            <Link href="/docs/installation" passHref>
               <Text
                 title="Documentation"
                 rootNode="a"
