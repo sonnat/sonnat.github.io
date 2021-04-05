@@ -54,68 +54,33 @@ export const meta = {
   <AnchorButton anchorId="creating-the-theme" />
 </h2>
 
-<h3>
-  <span>createTheme</span>
-  <AnchorButton anchorId="createTheme" />
-</h3>
+<p>
+  Create a theme object that will be shared between the client and the server.
+  <br />
+  If you don't provide a theme object the theming will be defaults to{" "}
+  <a href="#default-theme">Default Theme</a>.
+</p>
 
-```typescript
-function createTheme(options?: ThemeOptions): Theme;
+```jsx
+// file: theme.js
+
+import createTheme from "@sonnat/ui/styles/createTheme";
+
+// Create a theme instance.
+const theme = createTheme({
+  // Your theme options
+});
+
+export default theme;
 ```
 
-<p>Generates a theme object base on the options provided.</p>
-
-<h3>
-  <span>ThemeOptions</span>
-  <AnchorButton anchorId="theme-options" />
-</h3>
-
-```typescript
-export interface ThemeOptions {
-  breakpoints?: {
-    unit?: string;
-    step?: number;
-    values?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xlg";
-  };
-  direction?: "ltr" | "rtl";
-  mixins?: {
-    useDisableUserSelect?: () => CSSProperties;
-    useFontIcon?: (identifier: string) => CSSProperties;
-    useFontIconSize?: (size: number = 16) => CSSProperties;
-    usePreserveAspectRatio?: (ratio: string = "1:1") => CSSProperties;
-    [P: string]: any;
-  };
-  colors?: {
-    primary?: { origin?: string; light?: string; dark?: string };
-    secondary?: { origin?: string; light?: string; dark?: string };
-    error?: { origin?: string; light?: string; dark?: string };
-    warning?: { origin?: string; light?: string; dark?: string };
-    info?: { origin?: string; light?: string; dark?: string };
-    success?: { origin?: string; light?: string; dark?: string };
-    contrastThreshold?: number;
-    [P: string]: any;
-  };
-  typography?: {
-    fontSize?: number;
-    htmlFontSize?: number;
-    ltrFontFamily?: string;
-    rtlFontFamily?: string;
-    monospaceFontFamily?: string;
-    [P: string]: any;
-  };
-  zIndex?: {
-    sticky?: number;
-    header?: number;
-    drawer?: number;
-    backdrop?: number;
-    modal?: number;
-    popover?: number;
-    [P: string]: any;
-  };
-  darkMode?: boolean;
-  [P: string]: any;
-}
-```
+<div data-notebox style={{ marginBottom: "1rem" }}>
+  To learn more about the createTheme 's API, check out the{" "}
+  <a href="/docs/styling#create-theme" title="createTheme's documentation">
+    <strong>createTheme's documentation</strong>
+  </a>
+  .
+</div>
 
 <h2>
   <span>Default Theme</span>
@@ -136,39 +101,33 @@ export interface ThemeOptions {
 </div>
 
 <h2>
-  <span>ThemeProvider</span>
-  <AnchorButton anchorId="theme-provider" />
+  <span>Passing Down the Theme Object</span>
+  <AnchorButton anchorId="pass-theme" />
 </h2>
 
 <p>
-  If you wish to customize the theme, you need to use the{" "}
-  <inlineCode>&lt;ThemeProvider&gt;</inlineCode> component in order to inject a
-  theme into your application. However, this is optional;{" "}
-  <strong>@sonnat/ui</strong> comes with a{" "}
-  <a href="#default-theme">default theme</a>.
+  If you wish to declare the parent theme of your application, you need to use
+  the <inlineCode>&lt;SonnatInitializer&gt;</inlineCode> component in order to
+  inject the main theme into your application. However, if you want to change
+  the theming behaviour of an inner part of application's react-tree, you can
+  always use nested <inlineCode>&lt;ThemeProvider&gt;</inlineCode> component to
+  merge/augment the parent theme object.
 </p>
 
-```jsx
-import ThemeProvider from "@sonnat/ui/styles/ThemeProvider";
-
-<ThemeProvider theme={theme}>
-  <CustomComponent />
-</ThemeProvider>;
-```
-
-<div data-notebox>
-  You need to make sure that <strong>&lt;ThemeProvider&gt;</strong> is a parent
-  of the components you are trying to customize.
+<div data-notebox style={{ marginTop: "0", marginBottom: "1rem" }}>
+  Check out the documentations of{" "}
+  <a
+    href="/docs/styling#sonnat-initializer"
+    title="SonnatInitializer's documentation"
+  >
+    <strong>&lt;SonnatInitializer&gt;</strong>
+  </a>{" "}
+  and{" "}
+  <a href="/docs/styling#theme-provider" title="ThemeProvider's documentation">
+    <strong>&lt;ThemeProvider&gt;</strong>
+  </a>
+  , to learn more about them.
 </div>
-
-<p>
-  If you are providing the application's main theme and it's not a nested
-  theming situation, you have to pass the theme object to the{" "}
-  <inlineCode>&lt;SonnatInitializer&gt;</inlineCode> instead of{" "}
-  <inlineCode>&lt;ThemeProvider&gt;</inlineCode>.<br />
-  The <em>Initializer</em> is going to use <em>ThemeProvider</em> itself and pass
-  down the theme (or default theme) object.
-</p>
 
 ```jsx
 import ThemeProvider from "@sonnat/ui/styles/ThemeProvider";
@@ -203,22 +162,18 @@ import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
     </strong>
     , then it gets merged with the theme from a parent <em>ThemeProvider</em> and
     passed down the react tree.
-  </li>
-</ul>
-
-```jsx
-const theme = { themed: true };
-const patch = { merged: true };
-
+    <code
+      className="language-jsx"
+      children={`const theme = { themed: true };
+const patch = { merged: true };\n
 <ThemeProvider theme={theme}>
   {/* { ...initializerTheme, themed: true } */}
   <ThemeProvider theme={patch}>
     <DemoBox /> {/* { ...initializerTheme, themed: true, merged: true } */}
   </ThemeProvider>
-</ThemeProvider>;
-```
-
-<ul style={{ marginTop: "1rem" }}>
+</ThemeProvider>;`}
+    />
+  </li>
   <li>
     If it is{" "}
     <strong>
@@ -226,33 +181,31 @@ const patch = { merged: true };
     </strong>
     , then it's being applied to the theme from a parent <em>ThemeProvider</em>.
     If the result is an Object it will be passed down the react tree, throws otherwise.
-  </li>
-</ul>
-
-```jsx
-const theme = { themed: true };
-const augment = outerTheme => ({...outerTheme, { augmented: true }});
-
+    <code
+      className="language-jsx"
+      children={`const theme = { themed: true };
+const augment = outerTheme => ({...outerTheme, { augmented: true }});\n
 <ThemeProvider theme={theme}>
   {/* { ...initializerTheme, themed: true } */}
   <ThemeProvider theme={augment}>
     <DemoBox /> {/* { ...initializerTheme, themed: true, augmented: true } */}
   </ThemeProvider>
-</ThemeProvider>;
-```
+</ThemeProvider>;`}
+    />
+  </li>
+</ul>
 
-<h2>
-  <span>useTheme</span>
-  <AnchorButton anchorId="use-theme" />
+<h2 style={{ marginTop: "-2rem" }}>
+  <span>Accessing the Theme Object</span>
+  <AnchorButton anchorId="access-theme" />
 </h2>
 
-```typescript
-function useTheme<Theme = DefaultTheme>(): Theme;
-```
-
 <p>
-  This hook returns the theme object so it can be used inside a function
-  component.
+  You can access the theme object in Function Components via{" "}
+  <a href="/docs/styling#use-theme" title="useTheme's documentation">
+    useTheme
+  </a>{" "}
+  hook.
 </p>
 
 ```jsx
@@ -263,5 +216,40 @@ export default function MyComponent() {
   const theme = useTheme();
 
   return <div style={{ color: theme.colors.primary.origin }}></div>;
+}
+```
+
+<p>
+  You can also access the theme object when styling components using{" "}
+  <a href="/docs/styling#make-styles" title="makeStyles' documentation">
+    makeStyles
+  </a>{" "}
+  function.
+  <br />
+  This function uses{" "}
+  <a
+    href="/docs/styling#overview"
+    title="Sonnat's styling solution documentation"
+  >
+    our styling solution
+  </a>{" "}
+  at its core.
+</p>
+
+```jsx
+import makeStyles from "@sonnat/ui/styles/makeStyles";
+
+const useThemedStyles = makeStyles(
+  theme => ({
+    root: {
+      color: theme.colors.text.primary
+    }
+  }),
+  { name: "MyThemedStyles" }
+);
+
+function ComponentA(props) {
+  const classes = useThemedStyles();
+  return <div className={classes.root} />;
 }
 ```

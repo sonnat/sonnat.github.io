@@ -137,39 +137,13 @@ export default theme;
   configuration and the theme available to all components in the component tree.
 </p>
 
-<div data-notebox style={{ marginTop: 0 }}>
-  <strong>&lt;CssBaseline&gt;</strong> provides basic CSS support, which is
-  similar to <em>normalize.css</em>.<br />
-  Also <strong>&lt;CssBaseline&gt;</strong> will do the following things:
-  <br />
-  1- Exposes CSS variables to the <strong>:root</strong> so it can be used later
-  in CSS.
-  <br />
-  2- Adds <strong>dir</strong> attribute (based on the provided theme) to the <strong>
-    body
-  </strong> element.
-  <br />
-  3- Adds <strong>fontFamily</strong> css property (based on the provided theme)
-  to the body.
-  <br />
-  4- Adds <strong>color</strong> and <strong>backgroundColor</strong> css properties
-  (based on the provided theme) to the body.
-  <br />
-  To learn more about the <strong>&lt;CssBaseline&gt;</strong> component, read <a
-    href="/docs/components/CssBaseline"
-    title="CssBaseline Doc"
-  >
-    this doc
-  </a>..
-</div>
-
 <p>
   The key step in server-side rendering is to render the initial HTML of the
-  component before we send it to the client side. To do this, we use
-  <inlineCode>ReactDOMServer.renderToString()</inlineCode>. We then get the CSS from
-  the sheets using <inlineCode>sheets.toString()</inlineCode>.<br />
-  The final step on the server-side is to inject the initial component HTML and
-  CSS into a template to be rendered on the client side.
+  component before we send it to the client side. To do this, we use{" "}
+  <inlineCode>ReactDOMServer.renderToString()</inlineCode>. We then get the CSS
+  from the sheets using <inlineCode>sheets.toString()</inlineCode>.<br />
+  The final step on the server-side is to inject the initial component HTML and CSS
+  into a template to be rendered on the client side.
 </p>
 
 ```jsx
@@ -190,7 +164,7 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>My page</title>
-        <style id="jss-server-side">${css}</style>
+        <style id="sonnat-jss-ssr">${css}</style>
       </head>
       <body>
         <div id="root">${html}</div>
@@ -229,6 +203,21 @@ app.use(handleRender);
 const port = 3000;
 app.listen(port);
 ```
+
+<div data-notebox style={{ marginBottom: "1rem" }}>
+  Check out the documentations of{" "}
+  <a
+    href="/docs/styling#sonnat-initializer"
+    title="SonnatInitializer documentation"
+  >
+    <strong>&lt;SonnatInitializer&gt;</strong>
+  </a>{" "}
+  and{" "}
+  <a href="/docs/components/CssBaseline" title="CssBaseline documentation">
+    <strong>&lt;CssBaseline&gt;</strong>
+  </a>
+  , to learn more about them.
+</div>
 
 <h3>
   <span>Client-side</span>
