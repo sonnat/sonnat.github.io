@@ -18,7 +18,8 @@ const useParagraphStyles = makeStyles(
   theme => ({
     root: {
       paddingTop: theme.typography.pxToRem(16),
-      paddingBottom: theme.typography.pxToRem(16)
+      paddingBottom: theme.typography.pxToRem(16),
+      "& + ul, & + ol": { marginTop: theme.typography.pxToRem(-16) }
     }
   }),
   { name: "Paragraph" }
@@ -115,10 +116,12 @@ const useCodeBlockStyles = makeStyles(
   theme => ({
     root: {
       backgroundColor: theme.colors.pallete.grey[900],
-      marginTop: theme.typography.pxToRem(16),
       [theme.breakpoints.down("lg")]: {
         maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
-      }
+      },
+      "& + ul": { marginTop: theme.typography.pxToRem(32) },
+      "& + p": { marginTop: theme.typography.pxToRem(16) },
+      "& + &": { marginTop: theme.typography.pxToRem(16) }
     }
   }),
   { name: "CodeBlock" }
@@ -147,6 +150,7 @@ const useTableStyles = makeStyles(
       [theme.breakpoints.down("lg")]: {
         maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
       },
+      "& ul, & ol": { paddingTop: 0, paddingBottom: 0 },
       "& li": {
         fontSize: theme.typography.pxToRem(12)
       },
@@ -275,8 +279,10 @@ const useOrderedListStyles = makeStyles(
       listStyle: "none",
       paddingRight: 0,
       paddingLeft: 0,
-      paddingTop: 0,
       margin: 0,
+      paddingTop: theme.typography.pxToRem(16),
+      paddingBottom: theme.typography.pxToRem(16),
+      "& + p": { marginTop: theme.typography.pxToRem(-16) },
       "& > li:before": {
         counterIncrement: "section",
         content: 'counters(section, ".") "-"',
@@ -293,15 +299,16 @@ const useOrderedListStyles = makeStyles(
 );
 
 const useUnorderedListStyles = makeStyles(
-  {
+  theme => ({
     root: {
       listStyle: "none",
       paddingRight: 0,
       paddingLeft: 0,
-      paddingTop: 0,
-      margin: 0
+      margin: 0,
+      paddingTop: theme.typography.pxToRem(16),
+      paddingBottom: theme.typography.pxToRem(16)
     }
-  },
+  }),
   { name: "UnorderedList" }
 );
 
@@ -313,7 +320,7 @@ const useListItemStyles = makeStyles(
       fontSize: theme.typography.pxToRem(16),
       "& pre": {
         marginTop: theme.typography.pxToRem(16),
-        marginBottom: theme.typography.pxToRem(16)
+        marginBottom: theme.typography.pxToRem(32)
       },
       "&:before": {
         marginRight: theme.typography.pxToRem(8),
