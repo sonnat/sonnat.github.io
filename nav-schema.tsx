@@ -44,8 +44,7 @@ const schema = {
       ]
     },
     Theming: { label: "Theming", href: "/docs/theming" },
-    Styling: { label: "Styling", href: "/" },
-    Utilities: { label: "Utilities", href: "/" },
+    Styling: { label: "Styling", href: "/docs/styling" },
     "Server-side Rendering": {
       label: "Server-side Rendering",
       href: "/docs/serverside-rendering"
@@ -56,8 +55,7 @@ const schema = {
     "Server-side Rendering",
     "Components",
     "Theming",
-    "Styling",
-    "Utilities"
+    "Styling"
   ]
 };
 
