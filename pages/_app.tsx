@@ -1,9 +1,9 @@
 import { MDXProvider } from "@mdx-js/react";
 import CssBaseline from "@sonnat/ui/CssBaseline";
-import PageLoader from "@sonnat/ui/PageLoader";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
 import useDarkMode from "@sonnat/ui/styles/useDarkMode";
+import MainWrapper from "components/containers/MainWrapper";
 import WithHeader from "components/layouts/WithHeader";
 import { AppProps } from "next/app";
 import Head from "next/head";
@@ -48,17 +48,19 @@ export default function App(props: AppProps) {
   useGlobalStyles();
 
   const isDarkMode = useStore(state => state.isDarkMode);
+  const setBurgerMenuOpen = useStore(state => state.setBurgerMenuOpen);
+  const setPageLoading = useStore(state => state.setPageLoading);
+
   const theme = useDarkMode(isDarkMode);
 
   // @ts-ignore
   const meta = (Page.isMDXComponent ? Page({}).props.meta : {}) as MDXMeta;
   const MDXContentLayout = meta.layout;
 
-  const [loading, setLoading] = React.useState(false);
-
-  const routeChangeStart = () => setLoading(true);
+  const routeChangeStart = () => setPageLoading(true);
   const routeChangeComplete = () => {
-    setLoading(false);
+    setPageLoading(false);
+    setBurgerMenuOpen(false);
     // if (isProduction) analytics.logPageView();
   };
 
@@ -88,6 +90,7 @@ export default function App(props: AppProps) {
       Router.events.off("routeChangeComplete", routeChangeComplete);
       Router.events.off("routeChangeError", routeChangeComplete);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // React.useEffect(() => {
@@ -109,10 +112,9 @@ export default function App(props: AppProps) {
         <link rel="preload" as="style" href={googleFontFamily} />
         <link rel="stylesheet" href={googleFontFamily} />
       </Head>
-      <div id="main-wrapper">
+      <MainWrapper>
         <CssBaseline />
         <WithHeader>
-          <PageLoader loading={loading} top={64} />
           <MDXProvider components={componentMapping}>
             {MDXContentLayout ? (
               <MDXContentLayout>
@@ -123,7 +125,7 @@ export default function App(props: AppProps) {
             )}
           </MDXProvider>
         </WithHeader>
-      </div>
+      </MainWrapper>
     </SonnatInitializer>
   );
 }
