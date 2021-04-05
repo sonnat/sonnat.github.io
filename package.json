@@ -1,8 +1,8 @@
 {
-  "name": "sonnat.github.io",
+  "name": "sonnat-dev-docs",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "git@github.com:sonnat/sonnat.github.io.git",
+  "repository": "git@github.com:sonnat/sonnat-dev-docs.git",
   "description": "The documentation website for Sonnat's component library.",
   "scripts": {
     "dev": "next dev",
