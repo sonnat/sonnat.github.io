@@ -7,6 +7,7 @@ import Text from "@sonnat/ui/Text";
 import Footer from "components/containers/Footer";
 import Logo from "components/Logo";
 import { NextPage } from "next";
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import * as React from "react";
@@ -19,8 +20,6 @@ import {
 } from "utils";
 
 const pageName = "LandingPage";
-
-interface Props {}
 
 const useStyles = makeStyles(
   theme => {
@@ -58,7 +57,7 @@ const useStyles = makeStyles(
       },
       logo: {},
       sectionBody: { display: "flex", alignItems: "center" },
-      sectionContent: { flexShrink: 0 },
+      sectionContent: { flexShrink: 0, maxWidth: pxToRem(520) },
       heroTitle: {
         paddingTop: pxToRem(32),
         paddingBottom: pxToRem(8),
@@ -110,7 +109,7 @@ const useStyles = makeStyles(
           backgroundColor: colors.transparent
         }
       },
-      sectionImagery: { "& > img": { width: "100%" } },
+      sectionImagery: { width: "100%" },
       footer: { marginTop: 0 },
       [breakpoints.down("md")]: {
         "@global": { "#main": { paddingTop: pxToRem(104) } },
@@ -142,7 +141,7 @@ const useStyles = makeStyles(
   { name: pageName }
 );
 
-const LandingPage: NextPage<Props> = () => {
+const LandingPage: NextPage<{}> = () => {
   const classes = useStyles();
 
   return (
@@ -224,9 +223,13 @@ const LandingPage: NextPage<Props> = () => {
                 </div>
               </div>
               <div className={classes.sectionImagery}>
-                <img
-                  src="static/media/landing-illustration.png"
+                <Image
+                  src="/static/media/landing-illustration.png"
                   alt="The Illustration of Sonnat Developer Tools, React Components & Resources"
+                  layout="responsive"
+                  width={630}
+                  height={469.4628099053}
+                  priority
                 />
               </div>
             </div>
