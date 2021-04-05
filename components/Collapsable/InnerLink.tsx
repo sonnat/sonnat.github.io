@@ -4,7 +4,7 @@ import CollapsableContext from "./Context";
 
 interface Props extends ActiveLinkProps {}
 
-const CollapsableInnerLink = (props: Props) => {
+const CollapsableInnerLink: React.FC<Props> = props => {
   const { children, ...otherProps } = props;
   const { setExpanded } = React.useContext(CollapsableContext);
 

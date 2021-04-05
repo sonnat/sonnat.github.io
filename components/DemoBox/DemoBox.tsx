@@ -13,7 +13,6 @@ const componentName = "DemoBox";
 
 interface Props {
   className?: string;
-  children?: React.ReactNode;
   code?: string;
   horizontalAlignment?: "left" | "right" | "center";
 }
@@ -90,7 +89,7 @@ const toCapitalize = (text: string) => {
   return `${first.toUpperCase()}${rest.join("")}`;
 };
 
-const DemoBox = React.memo(function DemoBox(props: Props) {
+const DemoBox = React.memo<Props>(function DemoBox(props) {
   const {
     className,
     children,

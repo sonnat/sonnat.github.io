@@ -9,7 +9,6 @@ import { useNavJsx } from "nav-schema";
 
 interface Props {
   className?: string;
-  children?: React.ReactNode;
 }
 
 const componentName = "Sidebar";
@@ -60,7 +59,7 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-const Sidebar = React.memo(function Sidebar({ children, className }: Props) {
+const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
   const navJsx = useNavJsx();
 
   const scrollBarWidth = React.useMemo(

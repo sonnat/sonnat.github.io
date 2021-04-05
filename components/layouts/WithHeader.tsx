@@ -3,11 +3,7 @@ import * as React from "react";
 
 const componentName = "WithHeader";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-const WithHeader = ({ children }: Props) => {
+const WithHeader: React.FC = ({ children }) => {
   return (
     <React.Fragment>
       <Header />

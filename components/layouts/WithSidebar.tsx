@@ -6,10 +6,6 @@ import * as React from "react";
 
 const componentName = "WithSidebar";
 
-interface Props {
-  children: React.ReactNode;
-}
-
 const useStyles = makeStyles(
   theme => {
     const {
@@ -31,7 +27,6 @@ const useStyles = makeStyles(
       content: {
         flex: "1 0",
         [breakpoints.up("lg")]: {
-          paddingRight: pxToRem(32),
           paddingLeft: pxToRem(32)
         }
       }
@@ -40,7 +35,7 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-const WithSidebar = ({ children }: Props) => {
+const WithSidebar: React.FC = ({ children }) => {
   const classes = useStyles();
 
   return (

@@ -1,6 +1,4 @@
 import * as React from "react";
-import createClass from "classnames";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
 
 export const componentName = "CollapsableContent";
 
@@ -9,22 +7,15 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const useStyles = makeStyles(
-  {
-    root: {}
-  },
-  { name: componentName }
-);
-
-const CollapsableContent = React.memo(function CollapsableContent(
-  props: Props
+const CollapsableContent = React.memo<Props>(function CollapsableContent(
+  props
 ) {
-  const { className, children } = props;
-
-  const localClass = useStyles();
+  const { className, children, ...otherProps } = props;
 
   return (
-    <div className={createClass(localClass.root, className)}>{children}</div>
+    <div className={className} {...otherProps}>
+      {children}
+    </div>
   );
 });
 

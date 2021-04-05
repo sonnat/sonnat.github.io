@@ -132,11 +132,12 @@ const Header = React.memo(function Header(props: Props) {
   const router = useRouter();
   const classes = useStyles();
 
-  const [isBurgerMenuOpen, setBurgerMenuOpen] = React.useState(false);
   const [isMounted, setMounted] = React.useState(false);
 
   const isDarkMode = useStore(state => state.isDarkMode);
   const toggleDarkMode = useStore(state => state.toggleDarkMode);
+  const isBurgerMenuOpen = useStore(state => state.isBurgerMenuOpen);
+  const setBurgerMenuOpen = useStore(state => state.setBurgerMenuOpen);
 
   const isDemoActive = router.pathname.includes("/docs/");
 
@@ -213,7 +214,9 @@ const Header = React.memo(function Header(props: Props) {
           aria-label="Toggle burger menu"
           leadingIcon={!isBurgerMenuOpen ? "burger-menu" : "close-large"}
           variant="inlined"
-          onClick={() => void (isMounted && setBurgerMenuOpen(s => !s))}
+          onClick={() =>
+            void (isMounted && setBurgerMenuOpen(!isBurgerMenuOpen))
+          }
           className={classes.burgerMenuToggle}
         />
         <Link href="/">
@@ -240,7 +243,7 @@ const Header = React.memo(function Header(props: Props) {
       </Container>
       <BurgerMenu
         open={isBurgerMenuOpen}
-        toggle={() => void (isMounted && setBurgerMenuOpen(s => !s))}
+        toggle={() => void (isMounted && setBurgerMenuOpen(!isBurgerMenuOpen))}
       />
     </header>
   );

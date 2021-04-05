@@ -23,7 +23,7 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-const AnchorButton = React.memo(function AnchorButton(props: Props) {
+const AnchorButton = React.memo<Props>(function AnchorButton(props) {
   const { className, anchorId, ...otherProps } = props;
 
   const classes = useStyles();

@@ -4,12 +4,11 @@ import { useRouter } from "next/router";
 import * as React from "react";
 
 export interface Props extends LinkProps {
-  children: React.ReactElement;
   onActive?: () => void;
   activeClassName?: string;
 }
 
-const ActiveLink = (props: Props) => {
+const ActiveLink: React.FC<Props> = props => {
   const {
     children,
     href,
