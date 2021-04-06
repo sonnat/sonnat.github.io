@@ -9,9 +9,14 @@ import prismTheme from "components/DemoBox/theme";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import Link from "next/link";
 import * as React from "react";
+import useTheme from "@sonnat/ui/styles/useTheme";
 
 interface CustomDivProps extends React.ComponentPropsWithRef<"div"> {
   "data-notebox"?: boolean;
+}
+
+interface TableProps extends React.ComponentPropsWithRef<"table"> {
+  cols?: number;
 }
 
 const useParagraphStyles = makeStyles(
@@ -142,14 +147,17 @@ const useTableStyles = makeStyles(
   theme => ({
     root: {
       marginTop: theme.typography.pxToRem(16),
-      borderCollapse: "collapse",
-      captionSide: "bottom",
-      display: "block",
       overflow: "auto",
-      wordBreak: "normal",
+      width: "100%",
+      display: "block",
       [theme.breakpoints.down("lg")]: {
         maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
-      },
+      }
+    },
+    table: {
+      borderCollapse: "collapse",
+      captionSide: "bottom",
+      wordBreak: "normal",
       "& ul, & ol": { paddingTop: 0, paddingBottom: 0 },
       "& li": {
         fontSize: theme.typography.pxToRem(12)
@@ -568,14 +576,20 @@ const HorizontalDivider = (props: DividerProps) => {
   return <Divider {...props} />;
 };
 
-const Table = (props: React.ComponentPropsWithRef<"table">) => {
-  const { children, ...otherProps } = props;
+const Table = (props: TableProps) => {
+  const { children, cols = 1, ...otherProps } = props;
+
   const classes = useTableStyles();
+  const theme = useTheme();
+
+  const width = theme.typography.pxToRem(cols * 200);
 
   return (
-    <table {...otherProps} className={classes.root}>
-      {children}
-    </table>
+    <div className={classes.root}>
+      <table style={{ width }} {...otherProps} className={classes.table}>
+        {children}
+      </table>
+    </div>
   );
 };
 
