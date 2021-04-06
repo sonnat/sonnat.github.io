@@ -47,7 +47,7 @@ const AnchorButton = React.memo<Props>(function AnchorButton(props) {
           className={createClassName(classes.button, "anchorButton")}
           rootNode="a"
           href={`#${anchorId}`}
-          onClick={() => void setCopied(true)}
+          onClick={() => void setCopied()}
           variant="inlined"
           title="Anchor link"
           aria-label="Anchor link"
