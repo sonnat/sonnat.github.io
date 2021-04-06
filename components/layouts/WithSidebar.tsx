@@ -25,7 +25,8 @@ const useStyles = makeStyles(
         }
       },
       content: {
-        flex: "1 0",
+        flex: "1 1",
+        minWidth: 0,
         [breakpoints.up("lg")]: {
           paddingLeft: pxToRem(32)
         }
