@@ -107,7 +107,7 @@ export const meta = {
 function makeStyles(styles, [options]) => useStylesHook;
 ```
 
-<table>
+<table cols={3}>
   <caption>makeStyles Specs</caption>
   <thead>
     <tr>
@@ -285,7 +285,7 @@ export interface ThemeOptions {
   available down the React-Tree.
 </p>
 
-<table>
+<table cols={4}>
   <caption>ThemeProvider Props</caption>
   <thead>
     <tr>
@@ -410,7 +410,7 @@ export default function Component() {
   <strong>root of your component tree</strong>.
 </p>
 
-<table>
+<table cols={4}>
   <caption>SonnatInitializer Props</caption>
   <thead>
     <tr>
@@ -524,7 +524,7 @@ class ServerStyleSheets {
 }
 ```
 
-<table>
+<table cols={2}>
   <caption>ServerStyleSheets Instance Fields</caption>
   <thead>
     <tr>
@@ -612,7 +612,7 @@ function createGenerateClassName(
 ): ClassNameGeneratorFn;
 ```
 
-<table>
+<table cols={3}>
   <caption>createGenerateClassName Specs</caption>
   <thead>
     <tr>
@@ -798,11 +798,12 @@ function useDarkMode<Theme = DefaultTheme>(
 import useStore from "some/state/manager";
 import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
 import useDarkMode from "@sonnat/ui/styles/useDarkMode";
+import theme from "./theme";
 
 export default function App() {
   const isDarkMode = useStore(state => state.isDarkMode);
-  const theme = useDarkMode(isDarkMode);
+  const newTheme = useDarkMode(isDarkMode, theme);
 
-  return <SonnatInitializer theme={theme}>...</SonnatInitializer>;
+  return <SonnatInitializer theme={newTheme}>...</SonnatInitializer>;
 }
 ```
