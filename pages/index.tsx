@@ -57,7 +57,7 @@ const useStyles = makeStyles(
       },
       logo: {},
       sectionBody: { display: "flex", alignItems: "center" },
-      sectionContent: { flexShrink: 0, maxWidth: pxToRem(520) },
+      sectionContent: { flexShrink: 0, maxWidth: pxToRem(530) },
       heroTitle: {
         paddingTop: pxToRem(32),
         paddingBottom: pxToRem(8),
