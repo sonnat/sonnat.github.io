@@ -1,9 +1,13 @@
-import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Button from "@sonnat/ui/Button";
+import Tooltip from "@sonnat/ui/Tooltip";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import createClassName from "classnames";
 import * as React from "react";
+import useClipboard from "react-use-clipboard";
 
 const componentName = "AnchorButton";
+
+const isServer = typeof window === "undefined";
 
 interface Props {
   className?: string;
@@ -26,20 +30,30 @@ const useStyles = makeStyles(
 const AnchorButton = React.memo<Props>(function AnchorButton(props) {
   const { className, anchorId, ...otherProps } = props;
 
+  const anchorHref = isServer
+    ? ""
+    : `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
   const classes = useStyles();
+  const [isCopied, setCopied] = useClipboard(anchorHref, {
+    successDuration: 1000
+  });
 
   return (
     <div {...otherProps} className={createClassName(classes.root, className)}>
       <span id={anchorId} className={classes.anchor}></span>
-      <Button
-        className={createClassName(classes.button, "anchorButton")}
-        rootNode="a"
-        href={`#${anchorId}`}
-        variant="inlined"
-        title="Anchor link"
-        aria-label="Anchor link"
-        leadingIcon="link"
-      />
+      <Tooltip text="Copied to clipboard!" open={isCopied} placement="right">
+        <Button
+          className={createClassName(classes.button, "anchorButton")}
+          rootNode="a"
+          href={`#${anchorId}`}
+          onClick={() => void setCopied(true)}
+          variant="inlined"
+          title="Anchor link"
+          aria-label="Anchor link"
+          leadingIcon="link"
+        />
+      </Tooltip>
     </div>
   );
 });
