@@ -1,5 +1,4 @@
 import Button from "@sonnat/ui/Button";
-import Code from "@sonnat/ui/Code";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
 import WithSidebar from "components/layouts/WithSidebar";
@@ -142,8 +141,8 @@ export const meta = {
 </h2>
 
 <p>
-  Sometimes you might want to have icons for certain button to enhance the UX of
-  the application as we recognize imagery more easily than plain text.
+  Sometimes you might want to have icons for certain buttons to enhance the UX
+  of the application as we recognize imagery more easily than plain text.
 </p>
 
 <DemoBox
@@ -265,6 +264,107 @@ export const meta = {
 </DemoBox>
 
 <h2>
+  <span>Disabled</span>
+  <AnchorButton anchorId="disabled" />
+</h2>
+
+<p>Disabled buttons do not respond to any action.</p>
+
+<DemoBox
+  code={[
+    '<Button label="Small button" size="small" color="primary" disabled />',
+    `<Button
+  label="Button"
+  leadingIcon="heart"
+  disabled
+  color="primary"
+  variant="outlined"
+/>`,
+    `<Button
+  label="Button"
+  trailingIcon="heart"
+  disabled
+  color="secondary"
+  variant="inlined"
+/>`
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <Button label="Small button" size="small" color="primary" disabled />
+  </div>
+  <div className="demoSubject">
+    <Button
+      label="Button"
+      leadingIcon="heart"
+      disabled
+      color="primary"
+      variant="outlined"
+    />
+  </div>
+  <div className="demoSubject">
+    <Button
+      label="Button"
+      trailingIcon="heart"
+      disabled
+      variant="inlined"
+      color="secondary"
+    />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Rounded</span>
+  <AnchorButton anchorId="rounded" />
+</h2>
+
+<p>
+  To have a rounded version of buttons use <inlineCode>rounded</inlineCode>{" "}
+  property.
+</p>
+
+<DemoBox
+  code={[
+    '<Button label="Small button" size="small" rounded />',
+    `<Button
+  label="Button"
+  leadingIcon="heart"
+  rounded
+  color="primary"
+  variant="outlined"
+/>`,
+    `<Button
+  label="Button"
+  trailingIcon="heart"
+  rounded
+  raised
+  color="secondary"
+/>`
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <Button label="Small button" size="small" rounded />
+  </div>
+  <div className="demoSubject">
+    <Button
+      label="Button"
+      leadingIcon="heart"
+      rounded
+      color="primary"
+      variant="outlined"
+    />
+  </div>
+  <div className="demoSubject">
+    <Button
+      label="Button"
+      trailingIcon="heart"
+      rounded
+      raised
+      color="secondary"
+    />
+  </div>
+</DemoBox>
+
+<h2>
   <span>API</span>
   <AnchorButton anchorId="api" />
 </h2>
@@ -276,13 +376,13 @@ export const meta = {
   <AnchorButton anchorId="usage" />
 </h3>
 
-<code
-  className="language-javascript"
-  children={`// recommended
-import Button from "@sonnat/ui/Button";\n
-// or
-import { Button } from "@sonnat/ui";`}
-/>
+```typescript
+// recommended
+import Button from "@sonnat/ui/Button";
+
+//or
+import { Button } from "@sonnat/ui";
+```
 
 <h3>
   <span>Properties</span>
