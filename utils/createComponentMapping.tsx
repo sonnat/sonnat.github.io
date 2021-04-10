@@ -24,7 +24,8 @@ const useParagraphStyles = makeStyles(
     root: {
       paddingTop: theme.typography.pxToRem(16),
       paddingBottom: theme.typography.pxToRem(16),
-      "& + ul, & + ol": { marginTop: theme.typography.pxToRem(-16) }
+      "& + ul, & + ol": { marginTop: theme.typography.pxToRem(-16) },
+      "& + div > table": { marginTop: theme.typography.pxToRem(-16) }
     }
   }),
   { name: "Paragraph" }
@@ -393,13 +394,18 @@ const Mark = (props: React.ComponentPropsWithRef<"mark">) => {
 };
 
 const CustomDiv = (props: CustomDivProps) => {
-  const { children, "data-notebox": isNoteBox, ...otherProps } = props;
+  const {
+    children,
+    "data-notebox": isNoteBox,
+    className,
+    ...otherProps
+  } = props;
   const classes = useCustomDivStyles();
 
   return (
     <div
       {...otherProps}
-      className={createClassName(classes.root, {
+      className={createClassName(classes.root, className, {
         [classes.noteBox]: isNoteBox
       })}
     >

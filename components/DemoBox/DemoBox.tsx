@@ -11,10 +11,16 @@ import * as React from "react";
 
 const componentName = "DemoBox";
 
+type HorizontalAlignKeys = "hAlignCenter" | "hAlignStart" | "hAlignEnd";
+type VerticalAlignKeys = "vAlignCenter" | "vAlignStart" | "vAlignEnd";
+type FlexDirectionKeys = "flexDirectionRow" | "flexDirectionColumn";
+
 interface Props {
   className?: string;
   code?: string;
-  horizontalAlignment?: "left" | "right" | "center";
+  horizontalAlignment?: "start" | "end" | "center";
+  verticalAlignment?: "start" | "end" | "center";
+  flexDirection?: "row" | "column";
 }
 
 const useStyles = makeStyles(
@@ -34,6 +40,9 @@ const useStyles = makeStyles(
         overflow: "hidden",
         "@global .demoSubject": {
           margin: pxToRem(8)
+        },
+        "& + p": {
+          marginTop: pxToRem(16)
         }
       },
       demoContainer: {
@@ -70,15 +79,63 @@ const useStyles = makeStyles(
       codeBlock: {
         border: "none",
         borderRadius: 0,
-        backgroundColor: theme.colors.pallete.grey[900]
+        backgroundColor: theme.colors.pallete.grey[900],
+        maxHeight: pxToRem(500)
       },
       expanded: {
         "& $codeWrapper": {}
       },
       collapser: { transition: "height 360ms ease" },
-      hAlignCenter: { "& $demoContainer": { justifyContent: "center" } },
-      hAlignLeft: { "& $demoContainer": { justifyContent: "flex-start" } },
-      hAlignRight: { "& $demoContainer": { justifyContent: "flex-end" } }
+      flexDirectionRow: { "& $demoContainer": { flexDirection: "row" } },
+      flexDirectionColumn: { "& $demoContainer": { flexDirection: "column" } },
+      hAlignCenter: {
+        "&$flexDirectionRow": {
+          "& $demoContainer": { justifyContent: "center" }
+        },
+        "&$flexDirectionColumn": {
+          "& $demoContainer": { alignItems: "center" }
+        }
+      },
+      hAlignStart: {
+        "&$flexDirectionRow": {
+          "& $demoContainer": { justifyContent: "flex-start" }
+        },
+        "&$flexDirectionColumn": {
+          "& $demoContainer": { alignItems: "flex-start" }
+        }
+      },
+      hAlignEnd: {
+        "&$flexDirectionRow": {
+          "& $demoContainer": { justifyContent: "flex-end" }
+        },
+        "&$flexDirectionColumn": {
+          "& $demoContainer": { alignItems: "flex-end" }
+        }
+      },
+      vAlignCenter: {
+        "&$flexDirectionRow": {
+          "& $demoContainer": { alignItems: "center" }
+        },
+        "&$flexDirectionColumn": {
+          "& $demoContainer": { justifyContent: "center" }
+        }
+      },
+      vAlignStart: {
+        "&$flexDirectionRow": {
+          "& $demoContainer": { alignItems: "flex-start" }
+        },
+        "&$flexDirectionColumn": {
+          "& $demoContainer": { justifyContent: "flex-start" }
+        }
+      },
+      vAlignEnd: {
+        "&$flexDirectionRow": {
+          "& $demoContainer": { alignItems: "flex-end" }
+        },
+        "&$flexDirectionColumn": {
+          "& $demoContainer": { justifyContent: "flex-end" }
+        }
+      }
     };
   },
   { name: componentName }
@@ -89,12 +146,14 @@ const toCapitalize = (text: string) => {
   return `${first.toUpperCase()}${rest.join("")}`;
 };
 
-const DemoBox = React.memo<Props>(function DemoBox(props) {
+const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
   const {
     className,
     children,
     code,
     horizontalAlignment = "center",
+    verticalAlignment = "center",
+    flexDirection = "row",
     ...otherProps
   } = props;
 
@@ -105,17 +164,31 @@ const DemoBox = React.memo<Props>(function DemoBox(props) {
     successDuration: 1000
   });
 
-  const alignKey = `hAlign${toCapitalize(horizontalAlignment)}` as
-    | "hAlignCenter"
-    | "hAlignLeft"
-    | "hAlignRight";
+  const hAlignKey = `hAlign${toCapitalize(
+    horizontalAlignment
+  )}` as HorizontalAlignKeys;
+
+  const vAlignKey = `vAlign${toCapitalize(
+    verticalAlignment
+  )}` as VerticalAlignKeys;
+
+  const flexDirectionKey = `flexDirection${toCapitalize(
+    flexDirection
+  )}` as FlexDirectionKeys;
 
   return (
     <div
       {...otherProps}
-      className={createClassName(classes.root, className, classes[alignKey], {
-        [classes.expanded]: isExpanded
-      })}
+      className={createClassName(
+        classes.root,
+        className,
+        classes[hAlignKey],
+        classes[vAlignKey],
+        classes[flexDirectionKey],
+        {
+          [classes.expanded]: isExpanded
+        }
+      )}
     >
       <div className={classes.demoContainer}>{children}</div>
       <div className={classes.codeWrapper}>
@@ -151,7 +224,7 @@ const DemoBox = React.memo<Props>(function DemoBox(props) {
             <Highlight
               {...defaultProps}
               code={code || ""}
-              language="jsx"
+              language="tsx"
               theme={prismTheme}
             >
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
