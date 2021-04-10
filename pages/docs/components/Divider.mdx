@@ -1,0 +1,176 @@
+import Divider from "@sonnat/ui/Divider";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Divider",
+  description:
+    "A divider is a line or any sort of element that seperates different content.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "divider", "جداکننده"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Horizontal Dividers</span>
+  <AnchorButton anchorId="horizontal-dividers" />
+</h2>
+
+<p>Dividers are horizontal by default.</p>
+
+<DemoBox code={"<Divider />"}>
+  <small className="demoSubject">Content before</small>
+  <Divider />
+  <small className="demoSubject">Content after</small>
+</DemoBox>
+
+<p>
+  Horizontal dividers offer an alternative style. You can achieve a dotted
+  version of divider with the use of the <inlineCode>dotted</inlineCode>{" "}
+  property.
+</p>
+
+<DemoBox flexDirection="column" code={"<Divider dotted />"}>
+  <small className="demoSubject">Content before</small>
+  <Divider dotted />
+  <small className="demoSubject">Content after</small>
+</DemoBox>
+
+<h2>
+  <span>Vertical Dividers</span>
+  <AnchorButton anchorId="vertical-dividers" />
+</h2>
+
+<p>
+  You can also render a divider vertically using the{" "}
+  <inlineCode>vertical</inlineCode> prop. Note that the parent of the vertical
+  divider should be a flex container.
+</p>
+
+<DemoBox code={"<Divider vertical />"}>
+  <small className="demoSubject">Content before</small>
+  <Divider vertical />
+  <small className="demoSubject">Content after</small>
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Divider from "@sonnat/ui/Divider";
+
+//or
+import { Divider } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Divider Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>spaced</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the divider will have spaces around
+        it.
+      </td>
+    </tr>
+    <tr>
+      <td>dotted</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the divider will be rendered as 3-dots
+        instead of a straight line.
+        <br />
+        You can't use it along with <inlineCode>vertical</inlineCode>!
+      </td>
+    </tr>
+    <tr>
+      <td>vertical</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the divider will be vertical.
+        <br />
+        It only works in flexboxes! (the parent should be a flex container)
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
