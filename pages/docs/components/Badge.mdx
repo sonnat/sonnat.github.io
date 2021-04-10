@@ -1,0 +1,382 @@
+import Button from "@sonnat/ui/Button";
+import Badge from "@sonnat/ui/Badge";
+import Text from "@sonnat/ui/Text";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import BadgeVisibilityDemo from "components/demos/BadgeVisibilityDemo";
+import BadgeAlignmentDemo from "components/demos/BadgeAlignmentDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Badge",
+  description: "Displays an indicator that requires attention.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "badge", "نشان", "نشان‌گر"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Filled Badges</span>
+  <AnchorButton anchorId="filled-badges" />
+</h2>
+
+<p>
+  Filled badges show text or number, using primary and secondary colors.
+  <br />
+  You can use them as a standalone badge or as a relative badge applied to its
+  children.
+</p>
+
+<DemoBox
+  code={[
+    '<Badge textContent="NEW" />',
+    '<Badge textContent="NEW" color="secondary" />',
+    `<Badge textContent="5">
+  <Button
+    aria-label="Demo notification button"
+    leadingIcon="email-o"
+    variant="inlined"
+  />
+</Badge>`,
+    `<Badge textContent="5" color="secondary">
+  <Button
+    aria-label="Demo notification button"
+    leadingIcon="email-o"
+    variant="inlined"
+  />
+</Badge>`
+  ].join("\n")}
+>
+  <Badge textContent="NEW" className="demoSubject" />
+  <Badge textContent="NEW" className="demoSubject" color="secondary" />
+  <Badge textContent="5" className="demoSubject">
+    <Button
+      aria-label="Demo notification button"
+      leadingIcon="email-o"
+      variant="inlined"
+    />
+  </Badge>
+  <Badge textContent="5" className="demoSubject" color="secondary">
+    <Button
+      aria-label="Demo notification button"
+      leadingIcon="email-o"
+      variant="inlined"
+    />
+  </Badge>
+</DemoBox>
+
+<h2>
+  <span>Dotted Badges</span>
+  <AnchorButton anchorId="dotted-badges" />
+</h2>
+
+<p>
+  Dotted badge is a small dot indicates that something has changed without
+  giving a count.
+  <br />
+  Just like the filled badges, you can have dotted badges as standalone or
+  relative to its child.
+</p>
+
+<DemoBox
+  code={[
+    '<Badge variant="dotted" />',
+    '<Badge color="secondary" variant="dotted" />',
+    `<Badge variant="dotted">
+  <Text variant="captionText" rootNode="p">
+    This is a typography!
+  </Text>
+</Badge>`,
+    `<Badge variant="dotted" color="secondary">
+  <Button
+    aria-label="Demo download button"
+    leadingIcon="download"
+    variant="inlined"
+  />
+</Badge>`
+  ].join("\n")}
+>
+  <Badge className="demoSubject" variant="dotted" />
+  <Badge className="demoSubject" color="secondary" variant="dotted" />
+  <div className="demoSubject">
+    <Badge variant="dotted">
+      <Text variant="captionText" rootNode="p">
+        This is a typography!
+      </Text>
+    </Badge>
+  </div>
+  <Badge className="demoSubject" color="secondary" variant="dotted">
+    <Button
+      aria-label="Demo download button"
+      leadingIcon="download"
+      variant="inlined"
+    />
+  </Badge>
+</DemoBox>
+
+<p>
+  To have the larger or smaller dotted badges, use the{" "}
+  <inlineCode>dotSize</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    '<Badge dotSize="small" variant="dotted" />',
+    '<Badge dotSize="medium" variant="dotted" />',
+    '<Badge dotSize="large" variant="dotted" />'
+  ].join("\n")}
+>
+  <Badge className="demoSubject" dotSize="small" variant="dotted" />
+  <Badge className="demoSubject" dotSize="medium" variant="dotted" />
+  <Badge className="demoSubject" dotSize="large" variant="dotted" />
+</DemoBox>
+
+<h2>
+  <span>Better Placement</span>
+  <AnchorButton anchorId="better-placement" />
+</h2>
+
+<p>
+  You can use the <inlineCode>childShape</inlineCode> property to place the
+  badge way more accurately relative to the corner of the wrapped child(ren).
+</p>
+
+<DemoBox
+  code={[
+    `<Badge variant="dotted" childShape="rectangular">
+  // Rectangular shape
+  <div></div>
+</Badge>`,
+    `<Badge variant="dotted" childShape="circular">
+  // Circular shape
+  <div></div>
+</Badge>`
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <Badge variant="dotted" childShape="rectangular">
+      <div style={{ width: 32, height: 32, backgroundColor: "#eaeaea" }}></div>
+    </Badge>
+  </div>
+  <div className="demoSubject">
+    <Badge variant="dotted" childShape="circular">
+      <div
+        style={{
+          width: 32,
+          height: 32,
+          borderRadius: "50%",
+          backgroundColor: "#eaeaea"
+        }}
+      ></div>
+    </Badge>
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Visibility</span>
+  <AnchorButton anchorId="visibility" />
+</h2>
+
+<p>
+  The visibility of badges can be controlled using the{" "}
+  <inlineCode>visible</inlineCode> property.
+</p>
+
+<BadgeVisibilityDemo />
+
+<h2>
+  <span>Alignment</span>
+  <AnchorButton anchorId="alignment" />
+</h2>
+
+<p>
+  You can use <inlineCode>horizontalPosition</inlineCode> and{" "}
+  <inlineCode>verticalPosition</inlineCode> properties to move the badge to any
+  corner of the wrapped element.
+</p>
+
+<BadgeAlignmentDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Badge from "@sonnat/ui/Badge";
+
+//or
+import { Badge } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Badge Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>textContent</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The content of the badge.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>If provided the badge will be wrapped around this node.</td>
+    </tr>
+    <tr>
+      <td>parentProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The props of the parent.
+        <br />
+        If component has <inlineCode>children</inlineCode>, this will be applied
+        to the container of badge and the children element. Otherwise this will
+        be applied to the badge itself.
+      </td>
+    </tr>
+    <tr>
+      <td>visable</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the badge will be visable.
+      </td>
+    </tr>
+    <tr>
+      <td>dotSize</td>
+      <td>
+        "small"
+        <br />| "medium"
+        <br />| "large"
+      </td>
+      <td>"medium"</td>
+      <td>
+        The size of the badge when <inlineCode>variant="dotted"</inlineCode>.
+      </td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>
+        "primary"
+        <br />| "secondary"
+      </td>
+      <td>"primary"</td>
+      <td>The color of the badge.</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "filled"
+        <br />| "dotted"
+      </td>
+      <td>"filled"</td>
+      <td>The variant of the badge.</td>
+    </tr>
+    <tr>
+      <td>horizontalPosition</td>
+      <td>
+        "left"
+        <br />| "right"
+      </td>
+      <td>"left"</td>
+      <td>The horizontal position of the badge.</td>
+    </tr>
+    <tr>
+      <td>verticalPosition</td>
+      <td>
+        "top"
+        <br />| "bottom"
+      </td>
+      <td>"top"</td>
+      <td>The vertical position of the badge.</td>
+    </tr>
+    <tr>
+      <td>childShape</td>
+      <td>
+        "rectangular"
+        <br />| "circular"
+      </td>
+      <td>"rectangular"</td>
+      <td>
+        The shape of the child the badge will be wrapped around.
+        <br />
+        Set this for better positioning.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
