@@ -1,0 +1,605 @@
+import Button from "@sonnat/ui/Button";
+import ActionChip from "@sonnat/ui/ActionChip";
+import ChoiceChip from "@sonnat/ui/ChoiceChip";
+import RemovableChip from "@sonnat/ui/RemovableChip";
+import Text from "@sonnat/ui/Text";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import ChipControllingDemo from "components/demos/ChipControllingDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Chip",
+  description:
+    "Chips are compact components that represent discrete information.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "chip", "چیپس"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+<p>
+  Chips allow users to enter information, make selections, filter content, or
+  trigger actions. While buttons are expected to appear consistently and with
+  familiar calls to action, chips should appear dynamically as a group of
+  multiple interactive elements.
+  <br />
+  The most common use will be in some form of input, so some of the behaviour
+  demonstrated here is not shown in context.
+</p>
+
+<h2>
+  <span>ActionChips</span>
+  <AnchorButton anchorId="action-chips" />
+</h2>
+
+<p>
+  Action chips trigger actions related to primary content.
+  <br />
+  Despite that buttons are an alternative to action chips, there is an important
+  difference between them. Buttons should appear persistently and consistently,
+  while action buttons should appear dynamically and contextually.
+</p>
+
+<DemoBox
+  code={[
+    '<ActionChip label="default" color="default" />',
+    '<ActionChip label="primary" color="primary" />',
+    '<ActionChip label="secondary" color="secondary" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ActionChip label="default" color="default" />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="primary" color="primary" />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="secondary" color="secondary" />
+  </div>
+</DemoBox>
+
+<p>
+  You can declare the desired action with the <inlineCode>onClick</inlineCode>{" "}
+  property.
+</p>
+
+<DemoBox
+  code={[
+    `<ActionChip
+  label="with onClick"
+  color="default"
+  onClick={() => {
+    alert("tryin to do something!")
+  }}
+/>`
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ActionChip
+      label="with onClick"
+      color="default"
+      onClick={() => {
+        alert("tryin to do something!");
+      }}
+    />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>RemovableChips</span>
+  <AnchorButton anchorId="removable-chips" />
+</h2>
+
+<p>
+  Removable chips represent information used in fields, and they can be removed
+  with the help of a remove button.
+  <br />
+  They enable user input and verify that input by converting text into chips.
+</p>
+
+<DemoBox
+  code={[
+    '<RemovableChip label="default" color="default" />',
+    '<RemovableChip label="primary" color="primary" />',
+    '<RemovableChip label="secondary" color="secondary" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <RemovableChip label="default" color="default" />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="primary" color="primary" />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="secondary" color="secondary" />
+  </div>
+</DemoBox>
+
+<p>
+  You can declare the desired remove action with the{" "}
+  <inlineCode>onRemove</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    `<RemovableChip
+  label="with onRemove"
+  color="default"
+  onClick={() => {
+    alert("tryin to remove!");
+  }}
+/>`
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <RemovableChip
+      label="with onRemove"
+      color="default"
+      onClick={() => {
+        alert("tryin to remove!");
+      }}
+    />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>ChoiceChips</span>
+  <AnchorButton anchorId="choice-chips" />
+</h2>
+
+<p>
+  Choice chips represent a selection / filters for a collection.
+  <br />
+  They are a good alternative to toggle buttons, radio buttons, checkboxes, and
+  select menus.
+</p>
+
+<DemoBox
+  code={[
+    '<ChoiceChip label="default" color="default" />',
+    '<ChoiceChip label="primary" color="primary" />',
+    '<ChoiceChip label="secondary" color="secondary" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ChoiceChip label="default" color="default" />
+  </div>
+  <div className="demoSubject">
+    <ChoiceChip label="primary" color="primary" />
+  </div>
+  <div className="demoSubject">
+    <ChoiceChip label="secondary" color="secondary" />
+  </div>
+</DemoBox>
+
+<p>
+  Choice chips can be controlled or uncontrolled.
+  <br />
+  To set the default state of the uncontrolled choice chips, use{" "}
+  <inlineCode>defaultSelected</inlineCode> property with a boolean value.
+  <br />
+  To control the state of the controlled choice chips, use{" "}
+  <inlineCode>selected=&#123;boolean&#125;</inlineCode> and{" "}
+  <inlineCode>onToggle</inlineCode> properties.
+</p>
+
+<ChipControllingDemo />
+
+<h2>
+  <span>Disabled</span>
+  <AnchorButton anchorId="disabled" />
+</h2>
+
+<p>Disabled chips do not respond to any action.</p>
+
+<DemoBox
+  code={[
+    '<ChoiceChip label="default" color="default" disabled />',
+    '<RemovableChip label="primary" color="primary" disabled />',
+    '<ActionChip label="secondary" color="secondary" disabled />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ChoiceChip label="default" color="default" disabled />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="primary" color="primary" disabled />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="secondary" color="secondary" disabled />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Rounded</span>
+  <AnchorButton anchorId="rounded" />
+</h2>
+
+<p>
+  To have a rounded version of chips use <inlineCode>rounded</inlineCode>{" "}
+  property.
+</p>
+
+<DemoBox
+  code={[
+    '<ChoiceChip label="default" color="default" rounded />',
+    '<RemovableChip label="primary" color="primary" rounded />',
+    '<ActionChip label="secondary" color="secondary" rounded />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ChoiceChip label="default" color="default" rounded />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="primary" color="primary" rounded />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="secondary" color="secondary" rounded />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Size</span>
+  <AnchorButton anchorId="size" />
+</h2>
+
+<p>
+  To have the <del>larger or</del> smaller chips, use the{" "}
+  <inlineCode>size</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    '<ChoiceChip label="default" color="default" size="small" />',
+    '<RemovableChip label="primary" color="primary" size="small" />',
+    '<ActionChip label="secondary" color="secondary" size="small" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ChoiceChip label="default" color="default" size="small" />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="primary" color="primary" size="small" />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="secondary" color="secondary" size="small" />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Outlined</span>
+  <AnchorButton anchorId="outlined" />
+</h2>
+
+<p>Outlined chips offer an alternative style.</p>
+
+<DemoBox
+  code={[
+    '<ChoiceChip label="default" color="default" variant="outlined" />',
+    '<RemovableChip label="primary" color="primary" variant="outlined" />',
+    '<ActionChip label="secondary" color="secondary" variant="outlined" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ChoiceChip label="default" color="default" variant="outlined" />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="primary" color="primary" variant="outlined" />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="secondary" color="secondary" variant="outlined" />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>With Leading Icon</span>
+  <AnchorButton anchorId="with-leading-icon" />
+</h2>
+
+<p>
+  Sometimes you might want to have icons for certain chips to enhance the UX of
+  the application as we recognize imagery more easily than plain text.
+</p>
+
+<DemoBox
+  code={[
+    '<ChoiceChip label="default" color="default" leadingIcon="heart" />',
+    '<RemovableChip label="primary" color="primary" leadingIcon="heart" />',
+    '<ActionChip label="secondary" color="secondary" leadingIcon="heart" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <ChoiceChip label="default" color="default" leadingIcon="heart" />
+  </div>
+  <div className="demoSubject">
+    <RemovableChip label="primary" color="primary" leadingIcon="heart" />
+  </div>
+  <div className="demoSubject">
+    <ActionChip label="secondary" color="secondary" leadingIcon="heart" />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import ActionChip from "@sonnat/ui/ActionChip";
+import RemovableChip from "@sonnat/ui/RemovableChip";
+import ChoiceChip from "@sonnat/ui/ChoiceChip";
+
+//or
+import { ActionChip, RemovableChip, ChoiceChip } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>Shared Properties</span>
+  <AnchorButton anchorId="shared-properties" />
+</h4>
+
+<p>The properties that are common to choice, action, and removable chips.</p>
+
+<table cols={4}>
+  <caption>Chips Shared Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The content of the chip.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>rounded</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the chip will be rounded.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the chip will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the chip.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>
+        "default"
+        <br />
+        | "primary"
+        <br />| "secondary"
+      </td>
+      <td>"default"</td>
+      <td>The color of the chip.</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "filled"
+        <br />| "outlined"
+      </td>
+      <td>"filled"</td>
+      <td>The variant of the chip.</td>
+    </tr>
+    <tr>
+      <td>leadingIcon</td>
+      <td>
+        string
+        <br />| node
+      </td>
+      <td>-</td>
+      <td>
+        The leading icon placed before the label.
+        <br />
+        When a string was provided, the component will use it as a{" "}
+        <inlineCode>sonnat-icon</inlineCode> identifier.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>ActionChip Specific Properties</span>
+  <AnchorButton anchorId="actionchip-specific-properties" />
+</h4>
+
+<p>The properties that are only available to action chips.</p>
+
+<table cols={4}>
+  <caption>ActionChip Specific Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        Callback fired when the action chip is clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>
+  <span>RemovableChip Specific Properties</span>
+  <AnchorButton anchorId="removablechip-specific-properties" />
+</h4>
+
+<p>The properties that are only available to removable chips.</p>
+
+<table cols={4}>
+  <caption>RemovableChip Specific Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onRemove</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        Callback fired when the remove button is clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>
+  <span>ChoiceChip Specific Properties</span>
+  <AnchorButton anchorId="choicechip-specific-properties" />
+</h4>
+
+<p>The properties that are only available to choice chips.</p>
+
+<table cols={4}>
+  <caption>ChoiceChip Specific Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>selected</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the chip will be selected.
+      </td>
+    </tr>
+    <tr>
+      <td>defaultSelected</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        The default state of <inlineCode>selected</inlineCode>. Use when the
+        component is not controlled.
+      </td>
+    </tr>
+    <tr>
+      <td>onToggle</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        Callback fired when the chip is selected/unselected.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent, isSelected: boolean) => void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+</table>
