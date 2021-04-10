@@ -1,0 +1,179 @@
+import Tag from "@sonnat/ui/Tag";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Tag",
+  description:
+    "Tags mission is to label, categorize, or organize items using keywords that describe them.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "tag", "برچسب", "تگ"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Filled Tags</span>
+  <AnchorButton anchorId="filled-tags" />
+</h2>
+
+<p>Filled/Contained is the default style for the tags.</p>
+
+<DemoBox code={'<Tag label="Filled" />'}>
+  <Tag label="Filled" />
+</DemoBox>
+
+<h2>
+  <span>Outlined Tags</span>
+  <AnchorButton anchorId="outlined-tags" />
+</h2>
+
+<p>Outlined tags offer an alternative style.</p>
+
+<DemoBox code={'<Tag label="Outlined" />'}>
+  <Tag label="Outlined" variant="outlined" />
+</DemoBox>
+
+<h2>
+  <span>With Leading Icon</span>
+  <AnchorButton anchorId="with-leading-icon" />
+</h2>
+
+<p>
+  Tag components can contain an icon. This is done by setting the{" "}
+  <inlineCode>icon</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    '<Tag label="Filled" icon="heart" />',
+    '<Tag label="Outlined" variant="outlined" icon="heart" />'
+  ].join("\n")}
+>
+  <div className="demoSubject">
+    <Tag label="Filled" icon="heart" />
+  </div>
+  <div className="demoSubject">
+    <Tag label="Outlined" variant="outlined" icon="heart" />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Tag from "@sonnat/ui/Tag";
+
+//or
+import { Tag } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Tag Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The content of the tag.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "filled"
+        <br />| "outlined"
+      </td>
+      <td>"filled"</td>
+      <td>The variant of the tag.</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>
+        string
+        <br />| node
+      </td>
+      <td>-</td>
+      <td>
+        The leading icon placed before the label.
+        <br />
+        When a string was provided, the component will use it as a{" "}
+        <inlineCode>sonnat-icon</inlineCode> identifier.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
