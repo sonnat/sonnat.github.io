@@ -12,7 +12,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@sonnat/ui": "^1.0.6",
+    "@sonnat/ui": "^1.0.8",
     "autoprefixer": "^10.2.5",
     "classnames": "^2.2.6",
     "clean-css": "^5.1.2",
