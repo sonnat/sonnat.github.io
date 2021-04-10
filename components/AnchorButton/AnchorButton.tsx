@@ -16,7 +16,11 @@ interface Props {
 
 const useStyles = makeStyles(
   theme => ({
-    root: { position: "relative", marginLeft: theme.typography.pxToRem(8) },
+    root: {
+      position: "relative",
+      marginLeft: theme.typography.pxToRem(8),
+      marginRight: theme.typography.pxToRem(8)
+    },
     button: {},
     anchor: {
       position: "absolute",
