@@ -21,6 +21,36 @@ const schema = {
           },
           children: ["Button"]
         },
+        Display: {
+          label: "Display",
+          byChild: {
+            Badge: {
+              label: "Badge",
+              href: "/docs/components/Badge"
+            },
+            Chip: {
+              label: "Chip",
+              href: "/docs/components/Chip"
+            },
+            Divider: {
+              label: "Divider",
+              href: "/docs/components/Divider"
+            },
+            Tooltip: {
+              label: "Tooltip",
+              href: "/docs/components/Tooltip"
+            },
+            Tag: {
+              label: "Tag",
+              href: "/docs/components/Tag"
+            },
+            Text: {
+              label: "Text",
+              href: "/docs/components/Text"
+            }
+          },
+          children: ["Badge", "Chip", "Divider", "Tooltip", "Tag", "Text"]
+        },
         Other: {
           label: "Other",
           byChild: {
