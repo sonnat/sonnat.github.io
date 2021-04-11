@@ -18,4 +18,4 @@ export const defaultKeywordsMetaContent = [
   "سنّت"
 ];
 
-export const siteFullAddress = "https://sonnat-dev.vercel.app";
+export const siteFullAddress = "https://sonnat.github.io";
