@@ -11,11 +11,11 @@ import Link from "next/link";
 import * as React from "react";
 import useTheme from "@sonnat/ui/styles/useTheme";
 
-interface CustomDivProps extends React.ComponentPropsWithRef<"div"> {
+interface CustomDivProps extends React.ComponentPropsWithoutRef<"div"> {
   "data-notebox"?: boolean;
 }
 
-interface TableProps extends React.ComponentPropsWithRef<"table"> {
+interface TableProps extends React.ComponentPropsWithoutRef<"table"> {
   cols?: number;
 }
 
@@ -349,7 +349,16 @@ const useListItemStyles = makeStyles(
 
 const useCustomDivStyles = makeStyles(
   theme => ({
-    root: {},
+    root: {
+      "&#tickle-anchor": {
+        width: 150,
+        height: 150,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "1px solid #ddd"
+      }
+    },
     noteBox: {
       display: "flex",
       alignItems: "center",
@@ -382,7 +391,7 @@ const useMarkStyles = makeStyles(
   { name: "Mark" }
 );
 
-const Mark = (props: React.ComponentPropsWithRef<"mark">) => {
+const Mark = (props: React.ComponentPropsWithoutRef<"mark">) => {
   const { children, ...otherProps } = props;
   const classes = useMarkStyles();
 
@@ -393,7 +402,10 @@ const Mark = (props: React.ComponentPropsWithRef<"mark">) => {
   );
 };
 
-const CustomDiv = (props: CustomDivProps) => {
+const CustomDiv = React.forwardRef<HTMLDivElement>(function CustomDiv(
+  props: CustomDivProps,
+  ref
+) {
   const {
     children,
     "data-notebox": isNoteBox,
@@ -408,6 +420,7 @@ const CustomDiv = (props: CustomDivProps) => {
       className={createClassName(classes.root, className, {
         [classes.noteBox]: isNoteBox
       })}
+      ref={ref}
     >
       {isNoteBox ? (
         <React.Fragment>
@@ -425,7 +438,7 @@ const CustomDiv = (props: CustomDivProps) => {
       )}
     </div>
   );
-};
+});
 
 const Paragraph = (props: TextProps<{}, "p">) => {
   const { children, ...otherProps } = props;
@@ -599,7 +612,7 @@ const Table = (props: TableProps) => {
   );
 };
 
-const TableFooter = (props: React.ComponentPropsWithRef<"tfoot">) => {
+const TableFooter = (props: React.ComponentPropsWithoutRef<"tfoot">) => {
   const { children, ...otherProps } = props;
   const classes = useTableFooterStyles();
 
@@ -610,7 +623,7 @@ const TableFooter = (props: React.ComponentPropsWithRef<"tfoot">) => {
   );
 };
 
-const TableRow = (props: React.ComponentPropsWithRef<"tr">) => {
+const TableRow = (props: React.ComponentPropsWithoutRef<"tr">) => {
   const { children, ...otherProps } = props;
   const classes = useTableRowStyles();
 
@@ -621,7 +634,7 @@ const TableRow = (props: React.ComponentPropsWithRef<"tr">) => {
   );
 };
 
-const TD = (props: React.ComponentPropsWithRef<"td">) => {
+const TD = (props: React.ComponentPropsWithoutRef<"td">) => {
   const { children, ...otherProps } = props;
   const classes = useTDStyles();
 
@@ -632,7 +645,7 @@ const TD = (props: React.ComponentPropsWithRef<"td">) => {
   );
 };
 
-const TH = (props: React.ComponentPropsWithRef<"th">) => {
+const TH = (props: React.ComponentPropsWithoutRef<"th">) => {
   const { children, ...otherProps } = props;
   const classes = useTHStyles();
 
@@ -643,7 +656,7 @@ const TH = (props: React.ComponentPropsWithRef<"th">) => {
   );
 };
 
-const CustomLink = (props: React.ComponentPropsWithRef<"a">) => {
+const CustomLink = (props: React.ComponentPropsWithoutRef<"a">) => {
   const { children, href = "", ...otherProps } = props;
   const classes = useLinkStyles();
 
@@ -656,7 +669,7 @@ const CustomLink = (props: React.ComponentPropsWithRef<"a">) => {
   );
 };
 
-const OrderedList = (props: React.ComponentPropsWithRef<"ol">) => {
+const OrderedList = (props: React.ComponentPropsWithoutRef<"ol">) => {
   const { children, ...otherProps } = props;
   const classes = useOrderedListStyles();
 
@@ -667,7 +680,7 @@ const OrderedList = (props: React.ComponentPropsWithRef<"ol">) => {
   );
 };
 
-const UnorderedList = (props: React.ComponentPropsWithRef<"ul">) => {
+const UnorderedList = (props: React.ComponentPropsWithoutRef<"ul">) => {
   const { children, ...otherProps } = props;
   const classes = useUnorderedListStyles();
 
@@ -678,7 +691,7 @@ const UnorderedList = (props: React.ComponentPropsWithRef<"ul">) => {
   );
 };
 
-const ListItem = (props: React.ComponentPropsWithRef<"li">) => {
+const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => {
   const { children, ...otherProps } = props;
   const classes = useListItemStyles();
 
@@ -698,7 +711,7 @@ export default function createComponentMapping() {
     h2: H2,
     h3: H3,
     h4: H4,
-    pre: function Pre({ children }: React.ComponentPropsWithRef<"pre">) {
+    pre: function Pre({ children }: React.ComponentPropsWithoutRef<"pre">) {
       return <React.Fragment>{children}</React.Fragment>;
     },
     mark: Mark,
