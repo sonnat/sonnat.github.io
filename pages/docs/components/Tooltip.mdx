@@ -1,0 +1,303 @@
+import Tooltip from "@sonnat/ui/Tooltip";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import TooltipPlacementDemo from "components/demos/TooltipPlacementDemo";
+import TooltipControllingDemo from "components/demos/TooltipControllingDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Tooltip",
+  description:
+    "Tooltips display informative text when users hover over, or tap an element.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "tooltip", "راهنمای ابزار"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Triggers on Hover</span>
+  <AnchorButton anchorId="triggers-on-hover" />
+</h2>
+
+<p>
+  Displays the tooltip when users hover over the anchor element. This behaviour
+  is the default behaviour of the tooltips.
+</p>
+
+<DemoBox
+  code={`<Tooltip text="The informative text!">
+  <div>Hover me!</div>
+</Tooltip>`}
+>
+  <Tooltip text="The informative text!">
+    <div>Hover me!</div>
+  </Tooltip>
+</DemoBox>
+
+<h2>
+  <span>Triggers on Click</span>
+  <AnchorButton anchorId="triggers-on-click" />
+</h2>
+
+<p>Displays the tooltip when users click on the anchor element.</p>
+
+<DemoBox
+  code={`<Tooltip text="The informative text!" triggersOn="click">
+  <div>Click me!</div>
+</Tooltip>`}
+>
+  <Tooltip text="The informative text!" triggersOn="click">
+    <div>Click me!</div>
+  </Tooltip>
+</DemoBox>
+
+<h2>
+  <span>Triggers on MouseMove</span>
+  <AnchorButton anchorId="triggers-on-mousemove" />
+</h2>
+
+<p>
+  When mouse enters the anchor element, the tooltip will be displayed and
+  follows the cursor.
+</p>
+
+<DemoBox
+  code={`<Tooltip text="The informative text!" triggersOn="mouseMove">
+  <div>Tickle me!</div>
+</Tooltip>`}
+>
+  <Tooltip text="The informative text!" triggersOn="mouseMove">
+    <div id="tickle-anchor">Tickle me!</div>
+  </Tooltip>
+</DemoBox>
+
+<h2>
+  <span>Arrow Tails</span>
+  <AnchorButton anchorId="arrow-tails" />
+</h2>
+
+<p>
+  You can use the <inlineCode>tailed</inlineCode> property to give your tooltip
+  an arrow tail indicating which element it refers to.
+</p>
+
+<DemoBox
+  code={`<Tooltip text="The informative text!" tailed>
+  <div>Tailed tooltip!</div>
+</Tooltip>`}
+>
+  <Tooltip text="The informative text!" tailed>
+    <div>Tailed tooltip!</div>
+  </Tooltip>
+</DemoBox>
+
+<h2>
+  <span>Controlled Tooltips</span>
+  <AnchorButton anchorId="controlled-tooltips" />
+</h2>
+
+<p>
+  You can use the <inlineCode>open</inlineCode>, <inlineCode>onOpen</inlineCode>{" "}
+  and <inlineCode>onClose</inlineCode> properties to control the behaviour of
+  the tooltip.
+</p>
+
+<TooltipControllingDemo />
+
+<h2>
+  <span>Placement</span>
+  <AnchorButton anchorId="placement" />
+</h2>
+
+<p>
+  You can use <inlineCode>placement</inlineCode> property to change the
+  tooltip's placement.
+</p>
+
+<TooltipPlacementDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Tooltip from "@sonnat/ui/Tooltip";
+
+//or
+import { Tooltip } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Tooltip Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>
+        The target element. This element works as an anchor for the tooltip.
+      </td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The text content of the tooltip.</td>
+    </tr>
+    <tr>
+      <td>placement</td>
+      <td>
+        "left"
+        <br />
+        | "right"
+        <br />| "top"
+        <br />| "bottom"
+      </td>
+      <td>-</td>
+      <td>
+        The tooltip's placement. It will be auto updated when it collide with
+        the window.
+      </td>
+    </tr>
+    <tr>
+      <td>triggersOn</td>
+      <td>
+        "click"
+        <br />
+        | "hover"
+        <br />| "mouseMove"
+      </td>
+      <td>-</td>
+      <td>The source of the event that will trigger the tooltip.</td>
+    </tr>
+    <tr>
+      <td>tailed</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the tooltip will have an arrow tail.
+      </td>
+    </tr>
+    <tr>
+      <td>open</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the tooltip will be open.
+      </td>
+    </tr>
+    <tr>
+      <td>defaultOpen</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the tooltip will be open on mount. Use
+        when the component is not controlled.
+      </td>
+    </tr>
+    <tr>
+      <td>onOpen</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the component requests to be opened.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.SyntheticEvent | Event) => void
+        </inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onClose</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the component requests to be closed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.SyntheticEvent | Event) => void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
