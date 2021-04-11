@@ -7,7 +7,6 @@ import Text from "@sonnat/ui/Text";
 import Footer from "components/containers/Footer";
 import Logo from "components/Logo";
 import { NextPage } from "next";
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import * as React from "react";
@@ -109,7 +108,10 @@ const useStyles = makeStyles(
           backgroundColor: colors.transparent
         }
       },
-      sectionImagery: { width: "100%" },
+      sectionImagery: {
+        width: "100%",
+        "& > img": { minWidth: "100%", maxWidth: "100%" }
+      },
       footer: { marginTop: 0 },
       [breakpoints.down("md")]: {
         "@global": { "#main": { paddingTop: pxToRem(104) } },
@@ -147,6 +149,17 @@ const LandingPage: NextPage<{}> = () => {
   return (
     <React.Fragment>
       <Head>
+        <link
+          rel="preload"
+          as="image"
+          href="/static/media/landing-illustration-1452.png"
+          // @ts-ignore
+          imagesrcset={[
+            "/static/media/landing-illustration-640.png 640w",
+            "/static/media/landing-illustration-1452.png 1452w"
+          ].join(", ")}
+          imagesizes={["(max-width: 959px) 100vw, 50vw"].join(", ")}
+        />
         {setTitleMeta(
           "Home | Sonnat Developer Tools, React Components & Resources"
         )}
@@ -223,13 +236,15 @@ const LandingPage: NextPage<{}> = () => {
                 </div>
               </div>
               <div className={classes.sectionImagery}>
-                <Image
-                  src="/static/media/landing-illustration.png"
+                <img
                   alt="The Illustration of Sonnat Developer Tools, React Components & Resources"
-                  layout="responsive"
-                  width={630}
-                  height={469.4628099053}
-                  priority
+                  src="/static/media/landing-illustration-1452.png"
+                  decoding="async"
+                  sizes={["(max-width: 959px) 100vw, 50vw"].join(", ")}
+                  srcSet={[
+                    "/static/media/landing-illustration-640.png 640w",
+                    "/static/media/landing-illustration-1452.png 1452w"
+                  ].join(", ")}
                 />
               </div>
             </div>
