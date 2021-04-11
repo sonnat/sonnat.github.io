@@ -20,7 +20,7 @@ const useStyles = makeStyles(
     }
   }),
   {
-    name: ""
+    name: "BadgeAlignmentDemo"
   }
 );
 

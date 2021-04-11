@@ -5,7 +5,6 @@ import * as React from "react";
 const componentName = "ChipControllingDemo";
 
 const demoCode = `import ChoiceChip from "@sonnat/ui/ChoiceChip";
-import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const ChipControllingDemo: React.FC = () => {
@@ -21,7 +20,9 @@ const ChipControllingDemo: React.FC = () => {
       />
     </React.Fragment>
   );
-};`;
+};
+
+export default ChipControllingDemo;`;
 
 const ChipControllingDemo: React.FC = () => {
   const [isSelected, setSelected] = React.useState(false);
