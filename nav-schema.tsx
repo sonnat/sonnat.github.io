@@ -43,13 +43,9 @@ const schema = {
             Tag: {
               label: "Tag",
               href: "/docs/components/Tag"
-            },
-            Text: {
-              label: "Text",
-              href: "/docs/components/Text"
             }
           },
-          children: ["Badge", "Chip", "Divider", "Tooltip", "Tag", "Text"]
+          children: ["Badge", "Chip", "Divider", "Tooltip", "Tag"]
         },
         Other: {
           label: "Other",
