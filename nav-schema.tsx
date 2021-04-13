@@ -1,8 +1,10 @@
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import usePreviousValue from "@sonnat/ui/utils/usePreviousValue";
 import createClassName from "classnames";
 import * as React from "react";
 import Text from "@sonnat/ui/Text";
 import ActiveLink from "components/ActiveLink";
+import { diff } from "deep-diff";
 import { Content, InnerLink, NavItem, Trigger } from "components/Collapsable";
 
 const schema = {
@@ -46,6 +48,24 @@ const schema = {
             }
           },
           children: ["Badge", "Chip", "Divider", "Tooltip", "Tag"]
+        },
+        Navigation: {
+          label: "Navigation",
+          byChild: {
+            Breadcrumb: {
+              label: "Breadcrumb",
+              href: "/docs/components/Breadcrumb"
+            },
+            Menu: {
+              label: "Menu",
+              href: "/docs/components/Menu"
+            },
+            TabBar: {
+              label: "TabBar",
+              href: "/docs/components/TabBar"
+            }
+          },
+          children: ["Breadcrumb", "Menu", "TabBar"]
         },
         Other: {
           label: "Other",
@@ -179,101 +199,107 @@ const useStyles = makeStyles(
   { name: "Nav" }
 );
 
-export const useNavJsx = (className?: string) => {
-  const classes = useStyles();
-  type ClassesType = typeof classes;
+// @ts-ignore
+const schemaToJSX = (schema, classes, depth = 0) => {
+  let jsx;
 
-  // @ts-ignore
-  const schemaToJSX = (schema, classes: ClassesType, depth = 0) => {
-    let jsx;
+  if (schema.children && schema.children.length > 0) {
+    jsx = schema.children.map((child: string, index: number) => {
+      const childSchema = schema.byChild[child];
+      const key = `${child}/${index}`;
 
-    if (schema.children && schema.children.length > 0) {
-      jsx = schema.children.map((child: string, index: number) => {
-        const childSchema = schema.byChild[child];
-        const key = `${child}/${index}`;
+      if (!childSchema) return undefined;
 
-        if (!childSchema) return undefined;
+      const isLeaf = !childSchema.children || childSchema.children.length === 0;
 
-        const isLeaf =
-          !childSchema.children || childSchema.children.length === 0;
-
-        if (isLeaf) {
-          if (depth === 0) {
-            return (
-              <li key={key} className={classes.navigationItem}>
-                <ActiveLink
-                  href={childSchema.href}
-                  activeClassName={classes.active}
-                  passHref
+      if (isLeaf) {
+        if (depth === 0) {
+          return (
+            <li key={key} className={classes.navigationItem}>
+              <ActiveLink
+                href={childSchema.href}
+                activeClassName={classes.active}
+                passHref
+              >
+                <Text
+                  title={childSchema.label}
+                  rootNode="a"
+                  variant="bodyText"
+                  size="small"
+                  className={classes.navigationItemLink}
                 >
-                  <Text
-                    title={childSchema.label}
-                    rootNode="a"
-                    variant="bodyText"
-                    size="small"
-                    className={classes.navigationItemLink}
-                  >
-                    {childSchema.label}
-                  </Text>
-                </ActiveLink>
-              </li>
-            );
-          } else {
-            return (
-              <li key={key} className={classes.navigationItem}>
-                <InnerLink
-                  href={childSchema.href}
-                  activeClassName={classes.active}
-                  passHref
-                >
-                  <Text
-                    title={childSchema.label}
-                    rootNode="a"
-                    variant={depth === 1 ? "bodyText" : "captionText"}
-                    size={depth === 1 ? "small" : "large"}
-                    className={classes.navigationItemLink}
-                  >
-                    {childSchema.label}
-                  </Text>
-                </InnerLink>
-              </li>
-            );
-          }
+                  {childSchema.label}
+                </Text>
+              </ActiveLink>
+            </li>
+          );
         } else {
           return (
             <li key={key} className={classes.navigationItem}>
-              <NavItem
-                trigger={
-                  <Trigger
-                    title={childSchema.label}
-                    className={classes.navigationItemLink}
-                  />
-                }
-                content={
-                  <Content>
-                    <ul className={classes.navigationList}>
-                      {schemaToJSX(childSchema, classes, depth + 1)}
-                    </ul>
-                  </Content>
-                }
-              />
+              <InnerLink
+                href={childSchema.href}
+                activeClassName={classes.active}
+                passHref
+              >
+                <Text
+                  title={childSchema.label}
+                  rootNode="a"
+                  variant={depth === 1 ? "bodyText" : "captionText"}
+                  size={depth === 1 ? "small" : "large"}
+                  className={classes.navigationItemLink}
+                >
+                  {childSchema.label}
+                </Text>
+              </InnerLink>
             </li>
           );
         }
-      });
-    }
+      } else {
+        return (
+          <li key={key} className={classes.navigationItem}>
+            <NavItem
+              trigger={
+                <Trigger
+                  title={childSchema.label}
+                  className={classes.navigationItemLink}
+                />
+              }
+              content={
+                <Content>
+                  <ul className={classes.navigationList}>
+                    {schemaToJSX(childSchema, classes, depth + 1)}
+                  </ul>
+                </Content>
+              }
+            />
+          </li>
+        );
+      }
+    });
+  }
 
-    return jsx;
-  };
+  return jsx;
+};
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const children = React.useMemo(() => schemaToJSX(getSchema(), classes), [
-    classes
-  ]);
+export const useNavJsx = (className?: string) => {
+  const classes = useStyles();
+
+  const children = React.useRef(null);
+  const changeId = React.useRef("");
+
+  const prevClasses = usePreviousValue(classes);
+
+  const classesChanged = diff(classes, prevClasses) != null;
+  const idChanged = classes.root !== changeId.current;
+
+  if (classesChanged && idChanged) {
+    changeId.current = classes.root;
+    children.current = schemaToJSX(getSchema(), classes);
+  }
 
   return (
     <nav className={createClassName(classes.root, className)}>
-      <ul className={classes.navigationList}>{children}</ul>
+      <ul className={classes.navigationList}>{children.current}</ul>
     </nav>
   );
 };
