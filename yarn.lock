@@ -505,10 +505,10 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/context-base/-/context-base-0.14.0.tgz#c67fc20a4d891447ca1a855d7d70fa79a3533001"
   integrity sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==
 
-"@sonnat/ui@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.9.tgz#066f6896c249ff517b92a60f77fdc4c72d28d65a"
-  integrity sha512-kNzNYrctrSlBjUeDWuia3EwbxBCIBLKsuQz5Q8snMCTR3s8HkCzQ7MF4PJfqCiv6qA6eK3/teX3zwi0yD8sVHw==
+"@sonnat/ui@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.10.tgz#e688bc934d00b847b78ac1706e94a6e382c92532"
+  integrity sha512-Lfnb/aUHSfNmbFdrNykbHpvMv6F0oc4Nh+Q09tk/UvHa81mqrnJloqJhzYbpl85xTBNl9LeM1jpYVrGEj2SsJg==
   dependencies:
     "@babel/runtime" "^7.13.6"
     classnames "^2.2.6"
@@ -540,6 +540,11 @@
   dependencies:
     "@types/node" "*"
     source-map "^0.6.0"
+
+"@types/deep-diff@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/deep-diff/-/deep-diff-1.0.0.tgz#7eba3202a99b3a207f758f351f7f86387269fc40"
+  integrity sha512-ENsJcujGbCU/oXhDfQ12mSo/mCBWodT2tpARZKmatoSrf8+cGRCPi0KVj3I0FORhYZfLXkewXu7AoIWqiBLkNw==
 
 "@types/hast@^2.0.0":
   version "2.3.1"
@@ -1519,6 +1524,11 @@ dedent@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha1-JJXduvbrh0q7Dhvp3yLS5aVEMmw=
+
+deep-diff@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-1.0.2.tgz#afd3d1f749115be965e89c63edc7abb1506b9c26"
+  integrity sha512-aWS3UIVH+NPGCD1kki+DCU9Dua032iSsO43LqQpcs4R3+dVv7tX0qBGjiVHJHjplsoUM2XRO/KB92glqc68awg==
 
 deep-is@^0.1.3:
   version "0.1.3"

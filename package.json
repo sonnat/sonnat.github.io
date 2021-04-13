@@ -12,10 +12,11 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@sonnat/ui": "^1.0.9",
+    "@sonnat/ui": "^1.0.10",
     "autoprefixer": "^10.2.5",
     "classnames": "^2.2.6",
     "clean-css": "^5.1.2",
+    "deep-diff": "^1.0.2",
     "next": "^10.0.8",
     "postcss": "^8.2.9",
     "prism-react-renderer": "^1.2.0",
@@ -35,6 +36,7 @@
     "@next/mdx": "^10.0.8",
     "@types/classnames": "^2.2.11",
     "@types/clean-css": "^4.2.3",
+    "@types/deep-diff": "^1.0.0",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.14.32",
     "@types/react": "^17.0.3",
