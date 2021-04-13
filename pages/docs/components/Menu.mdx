@@ -1,0 +1,467 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import MenuSimpleDemo from "components/demos/MenuSimpleDemo";
+import MenuOutsideClickDemo from "components/demos/MenuOutsideClickDemo";
+import MenuWithGroupedItemsDemo from "components/demos/MenuWithGroupedItemsDemo";
+import MenuWithBugWorkaroundDemo from "components/demos/MenuWithBugWorkaroundDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Menu",
+  description: "Displays a list of choices on temporary surfaces.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "menu", "منو"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Simple Menu</span>
+  <AnchorButton anchorId="simple-menu" />
+</h2>
+
+<p>
+  Simple menus open under the anchor element and stick to the left when{" "}
+  <inlineCode>theme.direction === 'ltr'</inlineCode> or to the right when{" "}
+  <inlineCode>theme.direction === 'rtl'</inlineCode>. (you can force the
+  starting point via <inlineCode>placement</inlineCode> property).
+</p>
+
+<MenuSimpleDemo />
+
+<p>
+  You can pass a <strong>outside-click</strong> callback via{" "}
+  <inlineCode>onOutsideClick</inlineCode> property.
+  <br />
+  You can also pass a <strong>outside-click detector</strong> callback (that
+  returns a boolean) via <inlineCode>outsideClickDetector</inlineCode> to
+  overwrite the default detection function. This is super useful in the
+  situations you are having complex interactions and you want to fully control
+  the behaviour of your menus.
+</p>
+
+<MenuOutsideClickDemo />
+
+<h2>
+  <span>Menus with Grouped Items</span>
+  <AnchorButton anchorId="with-grouped-items" />
+</h2>
+
+<MenuWithGroupedItemsDemo />
+
+<h2>
+  <span>Text Overflow</span>
+  <AnchorButton anchorId="text-overflow" />
+</h2>
+
+<p>
+  There is a{" "}
+  <a
+    href="https://bugs.chromium.org/p/chromium/issues/detail?id=327437"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Flexbox bug docs"
+  >
+    flexbox bug
+  </a>{" "}
+  that prevents <inlineCode>text-overflow: ellipsis</inlineCode> from working in
+  a flexbox layout. You can use the following workaround for this issue:
+</p>
+
+<MenuWithBugWorkaroundDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Menu, { MenuItem, MenuItemGroup } from "@sonnat/ui/Menu";
+
+//or
+import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>
+    <mark>Menu</mark> Properties
+  </span>
+  <AnchorButton anchorId="parent-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Menu Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the menu.</td>
+    </tr>
+    <tr>
+      <td>anchorNode</td>
+      <td>null | Element | (element: Element) => Element</td>
+      <td>-</td>
+      <td>
+        An HTML element, or a function that returns one. It's used to set the
+        position of the menu.
+      </td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>placement</td>
+      <td>"left" | "right"</td>
+      <td>-</td>
+      <td>The placement of the menu. (start from "left" or "right")</td>
+    </tr>
+    <tr>
+      <td>minWidth</td>
+      <td>number</td>
+      <td>0</td>
+      <td>Sets the minimum width of the menu.</td>
+    </tr>
+    <tr>
+      <td>searchPlaceholder</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The <inlineCode>placeholder</inlineCode> property of the search field.
+      </td>
+    </tr>
+    <tr>
+      <td>searchEmptyStatementText</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The empty statement text when search results are empty.</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will be searchable.
+      </td>
+    </tr>
+    <tr>
+      <td>searchable</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will be searchable.
+      </td>
+    </tr>
+    <tr>
+      <td>preventPageScrolling</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will block the page's
+        scrolling.
+      </td>
+    </tr>
+    <tr>
+      <td>dense</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will appear denser.
+      </td>
+    </tr>
+    <tr>
+      <td>open</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will be open.
+      </td>
+    </tr>
+    <tr>
+      <td>onOpen</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the menu has opened.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function() => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onClose</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the menu has closed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function() => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onOutsideClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when user has clicked outside of the menu.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>outsideClickDetector</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the user has clicked, and determines whether the
+        click occured outside of the menu or not.
+        <br />
+        It only fires when the menu is open!
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => boolean</inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>Menu/Item</mark> Properties
+  </span>
+  <AnchorButton anchorId="menu-item-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Menu/Item Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the menu item.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the item will be hidden.
+      </td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the item has been clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onFocus</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the item has received focus.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onBlur</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the item has lost focus.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>Menu/ItemGroup</mark> Properties
+  </span>
+  <AnchorButton anchorId="menu-itemgroup-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Menu/ItemGroup Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the group.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>titleClassName</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the classNames applied to the title so you can override or
+        extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The title of the group.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
