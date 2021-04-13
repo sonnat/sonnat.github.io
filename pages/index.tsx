@@ -110,7 +110,14 @@ const useStyles = makeStyles(
       },
       sectionImagery: {
         width: "100%",
-        "& > img": { minWidth: "100%", maxWidth: "100%" }
+        "& > img": {
+          minWidth: "100%",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          minHeight: "100%",
+          height: "auto",
+          width: "auto"
+        }
       },
       footer: { marginTop: 0 },
       [breakpoints.down("md")]: {
@@ -152,11 +159,11 @@ const LandingPage: NextPage<{}> = () => {
         <link
           rel="preload"
           as="image"
-          href="/static/media/landing-illustration-1452.png"
+          href="/static/media/landing-illustration.png"
           // @ts-ignore
           imagesrcset={[
             "/static/media/landing-illustration-640.png 640w",
-            "/static/media/landing-illustration-1452.png 1452w"
+            "/static/media/landing-illustration.png 1452w"
           ].join(", ")}
           imagesizes={["(max-width: 959px) 100vw, 50vw"].join(", ")}
         />
@@ -238,12 +245,14 @@ const LandingPage: NextPage<{}> = () => {
               <div className={classes.sectionImagery}>
                 <img
                   alt="The Illustration of Sonnat Developer Tools, React Components & Resources"
-                  src="/static/media/landing-illustration-1452.png"
+                  src="/static/media/landing-illustration.png"
+                  width={629}
+                  height={469}
                   decoding="async"
                   sizes={["(max-width: 959px) 100vw, 50vw"].join(", ")}
                   srcSet={[
                     "/static/media/landing-illustration-640.png 640w",
-                    "/static/media/landing-illustration-1452.png 1452w"
+                    "/static/media/landing-illustration.png 1452w"
                   ].join(", ")}
                 />
               </div>
