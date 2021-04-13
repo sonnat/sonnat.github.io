@@ -1,0 +1,318 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import TabSimpleScrollableDemo from "components/demos/TabSimpleScrollableDemo";
+import TabSimpleFluidDemo from "components/demos/TabSimpleFluidDemo";
+import TabWithIconsDemo from "components/demos/TabWithIconsDemo";
+import TabControllingDemo from "components/demos/TabControllingDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "TabBar",
+  description:
+    "Tabs make it easy to explore and switch between different views.",
+  layout: WithSidebar
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "tabs",
+    "tab",
+    "tabbar",
+    "tab bar",
+    "تب"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Scrollable Tabs</span>
+  <AnchorButton anchorId="scrollable-tabs" />
+</h2>
+
+<p>A simple uncontrolled scrollable example:</p>
+
+<TabSimpleScrollableDemo />
+
+<p>
+  You can force the left and right scroll buttons to be hidden by setting{" "}
+  <inlineCode>scrollHandleVisibility</inlineCode> property to{" "}
+  <inlineCode>'off'</inlineCode>. (the default value is{" "}
+  <inlineCode>'auto'</inlineCode> which will automatically show these buttons on
+  overflow)
+</p>
+
+<h2>
+  <span>Fluid Tabs</span>
+  <AnchorButton anchorId="fluid-tabs" />
+</h2>
+
+<p>A simple uncontrolled fluid example:</p>
+
+<TabSimpleFluidDemo />
+
+<p>
+  Fluid tabs should be used with a fixed limited number of tabs and when
+  consistent placement will aid muscle memory.
+</p>
+
+<h2>
+  <span>With Icons</span>
+  <AnchorButton anchorId="with-icons" />
+</h2>
+
+<p>
+  To provide icon to the tabs use <inlineCode>icon</inlineCode> property on the{" "}
+  <mark>TabBar/Tab</mark> components.
+</p>
+
+<TabWithIconsDemo />
+
+<h2>
+  <span>Controlled Tabs</span>
+  <AnchorButton anchorId="controlled-tabs" />
+</h2>
+
+<p>
+  You can use the <inlineCode>activeTab</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the behaviour of the
+  tabs.
+</p>
+
+<TabControllingDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import TabBar, { Tab } from "@sonnat/ui/TabBar";
+
+//or
+import { TabBar, Tab } from "@sonnat/ui/TabBar";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>
+    <mark>TabBar</mark> Properties
+  </span>
+  <AnchorButton anchorId="parent-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TabBar Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the tabbar.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>activeTab</td>
+      <td>number | string</td>
+      <td>-</td>
+      <td>The currently selected tab.</td>
+    </tr>
+    <tr>
+      <td>defaultActiveTab</td>
+      <td>number | string</td>
+      <td>-</td>
+      <td>The default selected tab. Use when the tabbar is not controlled.</td>
+    </tr>
+    <tr>
+      <td>dense</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, will make the tabbar and the tabs
+        dense.
+      </td>
+    </tr>
+    <tr>
+      <td>scrollHandleVisibility</td>
+      <td>"auto" | "off"</td>
+      <td>"auto"</td>
+      <td>
+        Determines the behavior of scroll buttons when{" "}
+        <inlineCode>variant="scrollable"</inlineCode> :<br />-{" "}
+        <inlineCode>"auto"</inlineCode> will automatically show them on
+        overflow.
+        <br />- <inlineCode>"off"</inlineCode> won't show them.
+        <br />
+      </td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "scrollable"
+        <br />| "fluid"
+      </td>
+      <td>"scrollable"</td>
+      <td>The variant of the tabbar.</td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.SyntheticEvent | Event, identifier: number |
+          string) => void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>TabBar/Tab</mark> Properties
+  </span>
+  <AnchorButton anchorId="tabbar-tab-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TabBar/Tab Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The label of the tab.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>identifier</td>
+      <td>number | string</td>
+      <td>-</td>
+      <td>
+        A unique identifier for the tab.
+        <br />
+        If not provided the index of the tab (which is zero-base) will be
+        considered as the identifier.
+      </td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the tab has been clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent, identifier: number | string) => void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
