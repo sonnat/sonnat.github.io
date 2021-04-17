@@ -2,6 +2,7 @@ import Code, { CodeProps } from "@sonnat/ui/Code";
 import Divider, { DividerProps } from "@sonnat/ui/Divider";
 import { adjustColor } from "@sonnat/ui/styles/colorUtils";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
 import Text, { TextProps } from "@sonnat/ui/Text";
 import Icon from "@sonnat/ui/Icon";
 import createClassName from "classnames";
@@ -16,7 +17,7 @@ interface CustomDivProps extends React.ComponentPropsWithoutRef<"div"> {
 }
 
 interface TableProps extends React.ComponentPropsWithoutRef<"table"> {
-  cols?: number;
+  cols?: number | "auto";
 }
 
 const useParagraphStyles = makeStyles(
@@ -31,23 +32,28 @@ const useParagraphStyles = makeStyles(
   { name: "Paragraph" }
 );
 
-const useH1Styles = makeStyles(
-  theme => ({
-    root: {
-      alignItems: "center",
-      "@global .anchorButton": {
-        [theme.breakpoints.up("sm")]: {
-          visibility: "hidden",
-          opacity: 0
-        }
-      },
-      "&:hover": {
-        "@global .anchorButton": {
-          visibility: "visible",
-          opacity: 1
-        }
+const baseHeadingStyles = (theme: DefaultTheme) => ({
+  root: {
+    alignItems: "center",
+    "& + .demo-box, & + pre": { marginTop: theme.typography.pxToRem(8) },
+    "@global .anchor-button": {
+      [theme.breakpoints.up("sm")]: {
+        visibility: "hidden",
+        opacity: 0
+      }
+    },
+    "&:hover": {
+      "@global .anchor-button": {
+        visibility: "visible",
+        opacity: 1
       }
     }
+  }
+});
+
+const useH1Styles = makeStyles(
+  theme => ({
+    root: baseHeadingStyles(theme).root
   }),
   { name: "H1" }
 );
@@ -55,20 +61,8 @@ const useH1Styles = makeStyles(
 const useH2Styles = makeStyles(
   theme => ({
     root: {
-      paddingTop: theme.typography.pxToRem(32),
-      alignItems: "center",
-      "@global .anchorButton": {
-        [theme.breakpoints.up("sm")]: {
-          visibility: "hidden",
-          opacity: 0
-        }
-      },
-      "&:hover": {
-        "@global .anchorButton": {
-          visibility: "visible",
-          opacity: 1
-        }
-      }
+      ...baseHeadingStyles(theme).root,
+      paddingTop: theme.typography.pxToRem(32)
     }
   }),
   { name: "H2" }
@@ -77,20 +71,8 @@ const useH2Styles = makeStyles(
 const useH3Styles = makeStyles(
   theme => ({
     root: {
-      paddingTop: theme.typography.pxToRem(32),
-      alignItems: "center",
-      "@global .anchorButton": {
-        [theme.breakpoints.up("sm")]: {
-          visibility: "hidden",
-          opacity: 0
-        }
-      },
-      "&:hover": {
-        "@global .anchorButton": {
-          visibility: "visible",
-          opacity: 1
-        }
-      }
+      ...baseHeadingStyles(theme).root,
+      paddingTop: theme.typography.pxToRem(32)
     }
   }),
   { name: "H3" }
@@ -99,20 +81,8 @@ const useH3Styles = makeStyles(
 const useH4Styles = makeStyles(
   theme => ({
     root: {
-      paddingTop: theme.typography.pxToRem(16),
-      alignItems: "center",
-      "@global .anchorButton": {
-        [theme.breakpoints.up("sm")]: {
-          visibility: "hidden",
-          opacity: 0
-        }
-      },
-      "&:hover": {
-        "@global .anchorButton": {
-          visibility: "visible",
-          opacity: 1
-        }
-      }
+      ...baseHeadingStyles(theme).root,
+      paddingTop: theme.typography.pxToRem(16)
     }
   }),
   { name: "H4" }
@@ -596,16 +566,26 @@ const HorizontalDivider = (props: DividerProps) => {
 };
 
 const Table = (props: TableProps) => {
-  const { children, cols = 1, ...otherProps } = props;
+  const { children, cols = "auto", style, ...otherProps } = props;
 
   const classes = useTableStyles();
   const theme = useTheme();
 
-  const width = theme.typography.pxToRem(cols * 200);
+  const widthProp =
+    cols === "auto"
+      ? { width: "100%" }
+      : { minWidth: theme.typography.pxToRem(cols * 200) };
 
   return (
     <div className={classes.root}>
-      <table style={{ width }} {...otherProps} className={classes.table}>
+      <table
+        style={{
+          ...style,
+          ...widthProp
+        }}
+        {...otherProps}
+        className={classes.table}
+      >
         {children}
       </table>
     </div>
