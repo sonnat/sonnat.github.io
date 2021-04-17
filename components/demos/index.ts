@@ -13,3 +13,8 @@ export { default as TabSimpleScrollableDemo } from "./TabSimpleScrollableDemo";
 export { default as TabSimpleFluidDemo } from "./TabSimpleFluidDemo";
 export { default as TabWithIconsDemo } from "./TabWithIconsDemo";
 export { default as TabControllingDemo } from "./TabControllingDemo";
+export { default as ColumnEqualWidthDemo } from "./ColumnEqualWidthDemo";
+export { default as ColumnWrappingDemo } from "./ColumnWrappingDemo";
+export { default as ColumnWithDifferentWidthDemo } from "./ColumnWithDifferentWidthDemo";
+export { default as ColumnOrderingDemo } from "./ColumnOrderingDemo";
+export { default as ColumnOffsettingDemo } from "./ColumnOffsettingDemo";
