@@ -180,6 +180,7 @@ const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
     <div
       {...otherProps}
       className={createClassName(
+        "demo-box",
         classes.root,
         className,
         classes[hAlignKey],
