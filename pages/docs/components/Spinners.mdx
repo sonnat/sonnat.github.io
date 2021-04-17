@@ -1,0 +1,145 @@
+import MoonSpinner from "@sonnat/ui/Spinner/Moon";
+import ClipSpinner from "@sonnat/ui/Spinner/Clip";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Spinners",
+  description:
+    "Indicates an action with indeterminate wait time running in the background.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "spinners"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Moon Spinner</span>
+  <AnchorButton anchorId="moon-spinner" />
+</h2>
+
+<DemoBox code="<MoonSpinner />">
+  <MoonSpinner />
+</DemoBox>
+
+<h2>
+  <span>Clip Spinner</span>
+  <AnchorButton anchorId="clip-spinner" />
+</h2>
+
+<DemoBox code="<ClipSpinner />">
+  <ClipSpinner />
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import MoonSpinner from "@sonnat/ui/Spinner/Moon";
+import ClipSpinner from "@sonnat/ui/Spinner/Clip";
+
+//or (1)
+import { MoonSpinner, ClipSpinner } from "@sonnat/ui/Spinner";
+
+//or (2)
+import { MoonSpinner, ClipSpinner } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Spinners Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>number</td>
+      <td>20</td>
+      <td>The size of the spinner in pixels.</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Sets the backgroundColor of the spinner.</td>
+    </tr>
+    <tr>
+      <td>foregroundColor</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Sets the foregroundColor (strokes) of the spinner.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
