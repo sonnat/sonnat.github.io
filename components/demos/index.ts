@@ -18,3 +18,5 @@ export { default as ColumnWrappingDemo } from "./ColumnWrappingDemo";
 export { default as ColumnWithDifferentWidthDemo } from "./ColumnWithDifferentWidthDemo";
 export { default as ColumnOrderingDemo } from "./ColumnOrderingDemo";
 export { default as ColumnOffsettingDemo } from "./ColumnOffsettingDemo";
+export { default as SnackbarPlacementDemo } from "./SnackbarPlacementDemo";
+export { default as SnackbarSimpleDemo } from "./SnackbarSimpleDemo";
