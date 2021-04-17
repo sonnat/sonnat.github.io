@@ -1,0 +1,221 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Container",
+  description:
+    "The container centers your content horizontally. It's the most basic layout element.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "container"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Fixed Container</span>
+  <AnchorButton anchorId="fixed-container" />
+</h2>
+
+<p>
+  Fixed container is a responsive, fixed-width container, meaning its{" "}
+  <inlineCode>max-width</inlineCode> changes at each breakpoint.
+</p>
+
+```tsx
+<Container>{/* Your content */}</Container>
+```
+
+<h2>
+  <span>Fluid Container</span>
+  <AnchorButton anchorId="fluid-container" />
+</h2>
+
+<p>
+  Fluid container is a full width container, spanning the entire width of the
+  viewport.
+</p>
+
+```tsx
+<Container fluid>{/* Your content */}</Container>
+```
+
+<h2>
+  <span>Breakpoints and Containers</span>
+  <AnchorButton anchorId="breakpoints-and-containers" />
+</h2>
+
+<p>
+  The table below illustrates how each container’s{" "}
+  <inlineCode>max-width</inlineCode> compares to the original fixed and fluid
+  across each breakpoint.
+</p>
+
+<table>
+  <caption>Breakpoints and Containers</caption>
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Dimensions</th>
+      <th>Fixed Container</th>
+      <th>Fluid Container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xxs</td>
+      <td>&lt; 520</td>
+      <td>100%</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>xs</td>
+      <td>520 - 767</td>
+      <td>100%</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>sm</td>
+      <td>768 - 959</td>
+      <td>100%</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>960 - 1023</td>
+      <td>768px</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>1024 - 1365</td>
+      <td>960px</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>xlg</td>
+      <td>&ge; 1366</td>
+      <td>1184px</td>
+      <td>100%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Container from "@sonnat/ui/Container";
+
+//or
+import { Container } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Container Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the container.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>fluid</td>
+      <td>
+        boolean
+        <br />
+        | "xss" | "xs"
+        <br />
+        | "sm" | "md"
+        <br />| "lg" | "xlg"
+      </td>
+      <td>false</td>
+      <td>
+        Determines whether the container should be fluid or not.
+        <br />
+        If <inlineCode>true</inlineCode>, the container will be fluid in all
+        breakpoints.
+        <br />
+        If <inlineCode>false</inlineCode>, the container will be fixed.
+        <br />
+        If set to breakpoint ("xxs", "xs" and etc.), It will be fluid container
+        in that breakpoint and wider screens.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
