@@ -1,4 +1,5 @@
 import Icon from "@sonnat/ui/Icon";
+import Text from "@sonnat/ui/Text";
 import InputAdornment from "@sonnat/ui/InputAdornment";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import TextField from "@sonnat/ui/TextField";
@@ -53,7 +54,8 @@ const useStyles = makeStyles(
           height: pxToRem(16),
           background: `linear-gradient(180deg, ${colors.background.origin}, rgba(255, 255, 255, 0))`
         }
-      })
+      }),
+      hintText: { marginTop: pxToRem(4) }
     };
   },
   { name: componentName }
@@ -67,13 +69,14 @@ const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
     []
   );
 
-  const localClass = useStyles({ scrollBarWidth });
+  const classes = useStyles({ scrollBarWidth });
 
   return (
-    <aside className={createClass(className, localClass.root)}>
-      <div className={localClass.heading}>
+    <aside className={createClass(className, classes.root)}>
+      <div className={classes.heading}>
         <TextField
           fluid
+          disabled
           name="search"
           leadingAdornment={
             <InputAdornment variant="icon">
@@ -84,6 +87,16 @@ const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
           size="small"
           inputProps={{ autoComplete: "off", "aria-label": "Search" }}
         />
+        <Text
+          className={classes.hintText}
+          variant="captionText"
+          size="medium"
+          color="textHint"
+          display="block"
+          align="center"
+        >
+          Searchbox is under construction!
+        </Text>
       </div>
       {navJsx}
       {children}
