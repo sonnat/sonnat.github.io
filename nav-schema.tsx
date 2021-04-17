@@ -49,6 +49,38 @@ const schema = {
           },
           children: ["Badge", "Chip", "Divider", "Tooltip", "Tag"]
         },
+        Feedback: {
+          label: "Feedback",
+          byChild: {
+            Spinner: {
+              label: "Spinner",
+              href: "/docs/components/Spinner"
+            },
+            Snackbar: {
+              label: "Snackbar",
+              href: "/docs/components/Snackbar"
+            }
+          },
+          children: ["Spinner", "Snackbar"]
+        },
+        Layout: {
+          label: "Layout",
+          byChild: {
+            Container: {
+              label: "Container",
+              href: "/docs/components/Container"
+            },
+            Row: {
+              label: "Row",
+              href: "/docs/components/Row"
+            },
+            Column: {
+              label: "Column",
+              href: "/docs/components/Column"
+            }
+          },
+          children: ["Container", "Row", "Column"]
+        },
         Navigation: {
           label: "Navigation",
           byChild: {
@@ -82,9 +114,9 @@ const schema = {
         "Actions",
         "Controls",
         "Display",
+        "Feedback",
         "Layout",
         "Surface",
-        "Feedback",
         "Navigation",
         "Other"
       ]
@@ -121,7 +153,6 @@ const useStyles = makeStyles(
       root: {
         height: `calc(100% - ${pxToRem(48)})`,
         paddingRight: pxToRem(16),
-        paddingTop: pxToRem(16),
         paddingBottom: pxToRem(16),
         overflowX: "hidden",
         overflowY: "auto"
