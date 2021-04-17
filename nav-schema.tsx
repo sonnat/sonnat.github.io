@@ -30,9 +30,9 @@ const schema = {
               label: "Badge",
               href: "/docs/components/Badge"
             },
-            Chip: {
-              label: "Chip",
-              href: "/docs/components/Chip"
+            Chips: {
+              label: "Chips",
+              href: "/docs/components/Chips"
             },
             Divider: {
               label: "Divider",
@@ -47,21 +47,21 @@ const schema = {
               href: "/docs/components/Tag"
             }
           },
-          children: ["Badge", "Chip", "Divider", "Tooltip", "Tag"]
+          children: ["Badge", "Chips", "Divider", "Tooltip", "Tag"]
         },
         Feedback: {
           label: "Feedback",
           byChild: {
-            Spinner: {
-              label: "Spinner",
-              href: "/docs/components/Spinner"
+            Spinners: {
+              label: "Spinners",
+              href: "/docs/components/Spinners"
             },
             Snackbar: {
               label: "Snackbar",
               href: "/docs/components/Snackbar"
             }
           },
-          children: ["Spinner", "Snackbar"]
+          children: ["Spinners", "Snackbar"]
         },
         Layout: {
           label: "Layout",
@@ -151,7 +151,7 @@ const useStyles = makeStyles(
 
     return {
       root: {
-        height: `calc(100% - ${pxToRem(48)})`,
+        height: `calc(100% - ${pxToRem(72)})`,
         paddingRight: pxToRem(16),
         paddingBottom: pxToRem(16),
         overflowX: "hidden",
