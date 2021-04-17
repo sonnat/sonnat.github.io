@@ -48,7 +48,7 @@ const AnchorButton = React.memo<Props>(function AnchorButton(props) {
       <span id={anchorId} className={classes.anchor}></span>
       <Tooltip text="Copied to clipboard!" open={isCopied} placement="right">
         <Button
-          className={createClassName(classes.button, "anchorButton")}
+          className={createClassName(classes.button, "anchor-button")}
           rootNode="a"
           href={`#${anchorId}`}
           onClick={() => void setCopied()}
