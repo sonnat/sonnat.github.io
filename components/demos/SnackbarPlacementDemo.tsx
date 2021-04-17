@@ -11,7 +11,7 @@ import Button from "@sonnat/ui/Button";
 
 const componentName = "SnackbarPlacementDemo";
 
-type Placement = NonNullable<SnackbarProps["placement"]>;
+type Placement = NonNullable<SnackbarProps<{}>["placement"]>;
 
 const useStyles = makeStyles(
   theme => ({
