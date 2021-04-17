@@ -43,7 +43,7 @@ export default function App(props: AppPropsWithLayout) {
 
   // @ts-ignore
   const meta: MDXMeta = Page.isMDXComponent ? Page({}).props.meta : {};
-  const MdxGetPageLayout = meta.getLayout;
+  const MdxGetPageLayout = meta?.getLayout;
 
   const getPageLayout = MdxGetPageLayout
     ? MdxGetPageLayout
