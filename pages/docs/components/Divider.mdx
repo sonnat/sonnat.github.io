@@ -16,7 +16,7 @@ export const meta = {
   title: "Divider",
   description:
     "A divider is a line or any sort of element that seperates different content.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

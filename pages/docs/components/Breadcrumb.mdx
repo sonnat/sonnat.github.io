@@ -15,7 +15,7 @@ import {
 export const meta = {
   title: "Breadcrumb",
   description: "Shows where users are in the application.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

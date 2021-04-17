@@ -13,7 +13,7 @@ import {
 export const meta = {
   title: "Styling",
   description: "Learn about @sonnat/ui styling solution and api.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

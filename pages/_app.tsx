@@ -5,22 +5,16 @@ import SonnatInitializer from "@sonnat/ui/styles/SonnatInitializer";
 import useDarkMode from "@sonnat/ui/styles/useDarkMode";
 import MainWrapper from "components/containers/MainWrapper";
 import WithHeader from "components/layouts/WithHeader";
-import { AppProps } from "next/app";
 import Head from "next/head";
 // eslint-disable-next-line import/no-named-as-default
 import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
 import useStore from "store";
+import type { AppPropsWithLayout, MDXMeta } from "types";
 import { /*analytics,*/ createComponentMapping, setTitleMeta } from "utils";
 
 import "@sonnat/ui/static/sonnat-font-icon.min.css";
-
-interface MDXMeta {
-  title: string;
-  description: string;
-  layout?: React.FC<React.PropsWithChildren<{}>>;
-}
 
 const googleFontFamily =
   "https://fonts.googleapis.com/css2?" +
@@ -42,20 +36,26 @@ const useGlobalStyles = makeStyles(
 
 const componentMapping = createComponentMapping();
 
-export default function App(props: AppProps) {
+export default function App(props: AppPropsWithLayout) {
   const { Component: Page, pageProps } = props;
 
   useGlobalStyles();
+
+  // @ts-ignore
+  const meta: MDXMeta = Page.isMDXComponent ? Page({}).props.meta : {};
+  const MdxGetPageLayout = meta.getLayout;
+
+  const getPageLayout = MdxGetPageLayout
+    ? MdxGetPageLayout
+    : Page.getLayout || (() => (page: React.ReactNode) => page);
+
+  const withPageLayout = getPageLayout();
 
   const isDarkMode = useStore(state => state.isDarkMode);
   const setBurgerMenuOpen = useStore(state => state.setBurgerMenuOpen);
   const setPageLoading = useStore(state => state.setPageLoading);
 
   const theme = useDarkMode(isDarkMode);
-
-  // @ts-ignore
-  const meta = (Page.isMDXComponent ? Page({}).props.meta : {}) as MDXMeta;
-  const MDXContentLayout = meta.layout;
 
   const routeChangeStart = () => setPageLoading(true);
   const routeChangeComplete = () => {
@@ -116,13 +116,7 @@ export default function App(props: AppProps) {
         <CssBaseline />
         <WithHeader>
           <MDXProvider components={componentMapping}>
-            {MDXContentLayout ? (
-              <MDXContentLayout>
-                <Page {...pageProps} />
-              </MDXContentLayout>
-            ) : (
-              <Page {...pageProps} />
-            )}
+            {withPageLayout(<Page {...pageProps} />)}
           </MDXProvider>
         </WithHeader>
       </MainWrapper>

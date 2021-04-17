@@ -15,7 +15,7 @@ export const meta = {
   title: "CssBaseline",
   description:
     "This component provides an elegant, consistent, and simple baseline to build upon.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

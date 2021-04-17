@@ -16,7 +16,7 @@ export const meta = {
   title: "Tag",
   description:
     "Tags mission is to label, categorize, or organize items using keywords that describe them.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

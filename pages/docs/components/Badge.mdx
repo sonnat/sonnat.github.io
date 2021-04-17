@@ -19,7 +19,7 @@ import {
 export const meta = {
   title: "Badge",
   description: "Displays an indicator that requires attention.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

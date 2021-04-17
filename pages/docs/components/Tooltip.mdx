@@ -18,7 +18,7 @@ export const meta = {
   title: "Tooltip",
   description:
     "Tooltips display informative text when users hover over, or tap an element.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

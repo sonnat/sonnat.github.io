@@ -15,7 +15,7 @@ export const meta = {
   title: "Theming",
   description:
     "Customize Sonnat with your own theme. You can change the breakpoints, coloring, typography and etc.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>

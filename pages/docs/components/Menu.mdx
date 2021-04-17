@@ -18,7 +18,7 @@ import {
 export const meta = {
   title: "Menu",
   description: "Displays a list of choices on temporary surfaces.",
-  layout: WithSidebar
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
 <Head>
