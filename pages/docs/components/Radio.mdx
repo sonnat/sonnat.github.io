@@ -1,0 +1,307 @@
+import Radio from "@sonnat/ui/Radio";
+import RadioGroup from "@sonnat/ui/RadioGroup";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import RadioControlledDemo from "components/demos/RadioControlledDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Radio",
+  description: "Used to select a single state from multiple options.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "radio"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  The difference from{" "}
+  <a href="/docs/components/Select" title="Select documentation">
+    Select
+  </a>{" "}
+  is that Radio is visible to the user and can facilitate the comparison of
+  choice, which means there shouldn't be too many of them.
+</p>
+
+<h2>
+  <span>Simple Radios</span>
+  <AnchorButton anchorId="simple-radios" />
+</h2>
+
+<DemoBox
+  code={`<Radio />
+<Radio disabled />
+<Radio defaultChecked disabled />
+<Radio indeterminated />
+<Radio indeterminated disabled />
+<Radio inputProps={{ id: "radio-0" }} defaultChecked label="Label" />
+<Radio
+  inputProps={{ id: "radio-1" }}
+  defaultChecked
+  label="Label"
+  disabled
+/>`}
+>
+  <Radio />
+  <Radio disabled />
+  <Radio defaultChecked disabled />
+  <Radio indeterminated />
+  <Radio indeterminated disabled />
+  <Radio inputProps={{ id: "radio-0" }} defaultChecked label="Label" />
+  <Radio inputProps={{ id: "radio-1" }} defaultChecked label="Label" disabled />
+</DemoBox>
+
+<h2>
+  <span>Controlled Radios</span>
+  <AnchorButton anchorId="controlled-radios" />
+</h2>
+
+<p>
+  You can use the <inlineCode>checked</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the behaviour of the
+  radio.
+</p>
+
+<RadioControlledDemo />
+
+<h2>
+  <span>
+    With <mark>RadioGroup</mark>
+  </span>
+  <AnchorButton anchorId="with-radiogroup" />
+</h2>
+
+<p>
+  <a href="/docs/components/RadioGroup" title="RadioGroup documentation">
+    RadioGroup
+  </a>{" "}
+  is a helpful wrapper used to group and manage radio controls with an easier
+  API. RadioGroup can also be controlled/uncontrolled like the radios.
+  <br />
+  To learn more about <strong>RadioGroup</strong>'s API,{" "}
+  <a href="/docs/components/RadioGroup" title="RadioGroup documentation">
+    read it's documentation
+  </a>
+  .
+</p>
+
+<DemoBox
+  code={`<RadioGroup name="food" defaultValue={"kebab"}>
+  <Radio inputProps={{ id: "radio-00" }} label="Burger" value="burger" />
+  <Radio inputProps={{ id: "radio-01" }} label="Sushi" value="sushi" />
+  <Radio inputProps={{ id: "radio-02" }} label="Kebab" value="kebab" />
+</RadioGroup>`}
+>
+  <RadioGroup name="food" defaultValue={"kebab"}>
+    <Radio inputProps={{ id: "radio-00" }} label="Burger" value="burger" />
+    <Radio inputProps={{ id: "radio-01" }} label="Sushi" value="sushi" />
+    <Radio inputProps={{ id: "radio-02" }} label="Kebab" value="kebab" />
+  </RadioGroup>
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Radio from "@sonnat/ui/Radio";
+
+//or
+import { Radio } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Radio Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>label</inlineCode> was provided, a{" "}
+        <inlineCode>&lt;label&gt;</inlineCode> element will be rendered next to
+        the radio.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the radio.</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The value of the radio. The DOM API casts this to a string.
+        <br />
+        The browser uses <inlineCode>"on"</inlineCode> as the default value.
+      </td>
+    </tr>
+    <tr>
+      <td>indeterminated</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will appear indeterminate.
+        <br />
+        This does not set the native input element to indeterminate due to
+        inconsistent behavior across browsers.
+      </td>
+    </tr>
+    <tr>
+      <td>readOnly</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will be read-only.
+      </td>
+    </tr>
+    <tr>
+      <td>checked</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will be checked.
+      </td>
+    </tr>
+    <tr>
+      <td>defaultChecked</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        The default state of <inlineCode>checked</inlineCode>. Use when the
+        component is not controlled.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will be required.
+      </td>
+    </tr>
+    <tr>
+      <td>hasError</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will indicate invalid input.
+      </td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>input</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>labelProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>label</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.ChangeEvent, checkedState: boolean) => void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
