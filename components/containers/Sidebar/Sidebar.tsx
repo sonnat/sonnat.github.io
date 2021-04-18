@@ -23,7 +23,6 @@ const useStyles = makeStyles(
 
     return {
       root: ({ scrollBarWidth }) => ({
-        borderRight: `1px solid ${colors.divider}`,
         position: "sticky",
         top: pxToRem(128),
         paddingBottom: pxToRem(32),
