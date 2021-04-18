@@ -1,0 +1,161 @@
+import Checkbox from "@sonnat/ui/Checkbox";
+import CheckGroup from "@sonnat/ui/CheckGroup";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import CheckGroupDemo from "components/demos/CheckGroupDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "CheckGroup",
+  description: "Used to group and manage checkbox controls.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "checkgroup",
+    "group",
+    "checkbox"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Example</span>
+  <AnchorButton anchorId="example" />
+</h2>
+
+<CheckGroupDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import CheckGroup from "@sonnat/ui/CheckGroup";
+
+//or
+import { CheckGroup } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>CheckGroup Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the group.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the checkbox controls.</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string[]</td>
+      <td>-</td>
+      <td>The values of the selected checkboxes.</td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>string[]</td>
+      <td>-</td>
+      <td>The default value. Use when the component is not controlled.</td>
+    </tr>
+    <tr>
+      <td>layoutDirection</td>
+      <td>"row" | "column"</td>
+      <td>"column"</td>
+      <td>The layout direction of the group.</td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when a checkbox has selected.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.ChangeEvent, selectedValues: string[]) => void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
