@@ -35,14 +35,14 @@ export default Demo;
 `;
 
 const CheckGroupDemo: React.FC = () => {
-  const [values, setValues] = React.useState([]);
+  const [values, setValues] = React.useState<string[]>([]);
 
   return (
     <DemoBox flexDirection="column" code={demoCode}>
       <React.Fragment>
         <CheckGroup
           value={values}
-          onChange={(e, selectedValues) => void setValues(selectedValues)}
+          onChange={(_, selectedValues) => void setValues(selectedValues)}
         >
           <Checkbox label="Ali" value="Ali" />
           <Checkbox label="David" value="David" />

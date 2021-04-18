@@ -40,7 +40,7 @@ const RadioGroupDemo: React.FC = () => {
       <React.Fragment>
         <RadioGroup
           value={value}
-          onChange={(e, selectedValue) => void setValue(selectedValue)}
+          onChange={(_, selectedValue) => void setValue(selectedValue)}
         >
           <Radio label="Ali" value="Ali" />
           <Radio label="David" value="David" />
