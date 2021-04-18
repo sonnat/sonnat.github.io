@@ -20,3 +20,5 @@ export { default as ColumnOrderingDemo } from "./ColumnOrderingDemo";
 export { default as ColumnOffsettingDemo } from "./ColumnOffsettingDemo";
 export { default as SnackbarPlacementDemo } from "./SnackbarPlacementDemo";
 export { default as SnackbarSimpleDemo } from "./SnackbarSimpleDemo";
+export { default as CheckboxControlledDemo } from "./CheckboxControlledDemo";
+export { default as RadioControlledDemo } from "./RadioControlledDemo";
