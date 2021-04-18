@@ -22,3 +22,5 @@ export { default as SnackbarPlacementDemo } from "./SnackbarPlacementDemo";
 export { default as SnackbarSimpleDemo } from "./SnackbarSimpleDemo";
 export { default as CheckboxControlledDemo } from "./CheckboxControlledDemo";
 export { default as RadioControlledDemo } from "./RadioControlledDemo";
+export { default as CheckGroupDemo } from "./CheckGroupDemo";
+export { default as RadioGroupDemo } from "./RadioGroupDemo";
