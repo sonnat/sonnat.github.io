@@ -23,6 +23,68 @@ const schema = {
           },
           children: ["Button"]
         },
+        Controls: {
+          label: "Controls",
+          byChild: {
+            Checkbox: {
+              label: "Checkbox",
+              href: "/docs/components/Checkbox"
+            },
+            CheckGroup: {
+              label: "CheckGroup",
+              href: "/docs/components/CheckGroup"
+            },
+            Radio: {
+              label: "Radio",
+              href: "/docs/components/Radio"
+            },
+            RadioGroup: {
+              label: "RadioGroup",
+              href: "/docs/components/RadioGroup"
+            },
+            Switch: {
+              label: "Switch",
+              href: "/docs/components/Switch"
+            },
+            FormControl: {
+              label: "FormControl",
+              href: "/docs/components/FormControl"
+            },
+            RangeSlider: {
+              label: "RangeSlider",
+              href: "/docs/components/RangeSlider"
+            },
+            Select: {
+              label: "Select",
+              href: "/docs/components/Select"
+            },
+            TextField: {
+              label: "TextField",
+              href: "/docs/components/TextField"
+            },
+            TextArea: {
+              label: "TextArea",
+              href: "/docs/components/TextArea"
+            },
+            Stepper: {
+              label: "Stepper",
+              href: "/docs/components/Stepper"
+            }
+          },
+          children: [
+            "Checkbox",
+            "CheckGroup",
+            "Radio",
+            "RadioGroup",
+            "Switch",
+            "FormControl",
+            "RangeSlider",
+            "Select",
+            "TextField",
+            "TextArea",
+            "Stepper"
+          ]
+        },
         Display: {
           label: "Display",
           byChild: {
