@@ -23,7 +23,7 @@ const Demo: React.FC = () => {
       <Radio
         label="Label"
         checked={checked}
-        inputProps={{ id: "ch-box-2" }}
+        inputProps={{ id: "radio-2" }}
         onChange={() => void setChecked(true)}
       />
     </React.Fragment>
