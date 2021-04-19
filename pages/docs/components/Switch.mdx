@@ -1,0 +1,275 @@
+import Switch from "@sonnat/ui/Switch";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import SwitchControlledDemo from "components/demos/SwitchControlledDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Switch",
+  description:
+    "Switches are used for switching between two states or an on-off state.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "switch"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Example</span>
+  <AnchorButton anchorId="example" />
+</h2>
+
+<DemoBox
+  code={`<Switch />
+<Switch disabled />
+<Switch defaultChecked disabled />
+<Switch inputProps={{ id: "sw-box-0" }} defaultChecked label="Label" />
+<Switch
+  inputProps={{ id: "sw-box-1" }}
+  defaultChecked
+  label="Label"
+  disabled
+/>`}
+>
+  <div className="demoSubject">
+    <Switch />
+    <Switch disabled />
+    <Switch defaultChecked disabled />
+  </div>
+  <div className="demoSubject">
+    <Switch inputProps={{ id: "sw-box-0" }} defaultChecked label="Label" />
+  </div>
+  <div className="demoSubject">
+    <Switch
+      inputProps={{ id: "sw-box-1" }}
+      defaultChecked
+      label="Label"
+      disabled
+    />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Controlled Switches</span>
+  <AnchorButton anchorId="controlled-switches" />
+</h2>
+
+<p>
+  You can use the <inlineCode>checked</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the behaviour of the
+  switch.
+</p>
+
+<SwitchControlledDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Switch from "@sonnat/ui/Switch";
+
+//or
+import { Switch } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Switch Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>label</inlineCode> was provided, a{" "}
+        <inlineCode>&lt;label&gt;</inlineCode> element will be rendered next to
+        the switch.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the switch.</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The value of the switch. The DOM API casts this to a string.
+        <br />
+        The browser uses <inlineCode>"on"</inlineCode> as the default value.
+      </td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the switch.</td>
+    </tr>
+    <tr>
+      <td>readOnly</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the switch will be read-only.
+      </td>
+    </tr>
+    <tr>
+      <td>checked</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the switch will be checked.
+      </td>
+    </tr>
+    <tr>
+      <td>defaultChecked</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        The default state of <inlineCode>checked</inlineCode>. Use when the
+        component is not controlled.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the switch will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the switch will be required.
+      </td>
+    </tr>
+    <tr>
+      <td>hasError</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the switch will indicate invalid
+        input.
+      </td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>input</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>labelProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>label</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.ChangeEvent, checkedState: boolean) => void
+        </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the new checked state by accessing{" "}
+        <inlineCode>event.target.checked</inlineCode> (boolean).
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
