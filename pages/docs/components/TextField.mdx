@@ -1,0 +1,503 @@
+import TextField from "@sonnat/ui/TextField";
+import InputAdornment from "@sonnat/ui/InputAdornment";
+import Icon from "@sonnat/ui/Icon";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import TextFieldControlledDemo from "components/demos/TextFieldControlledDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "TextField",
+  description: "TextFields allow users enter and edit text inputs.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "textarea"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Simple TextFields</span>
+  <AnchorButton anchorId="simple-textfields" />
+</h2>
+
+<DemoBox
+  flexDirection="column"
+  horizontalAlignment="start"
+  code={`<TextField
+  name="input"
+  placeholder="Placeholder"
+  fluid
+/>
+<TextField
+  name="input"
+  placeholder="read-only"
+  readOnly
+  fluid
+/>
+<TextField
+  name="input"
+  placeholder="read-only"
+  readOnly
+  defaultValue="Default value + read-only"
+  fluid
+/>
+<TextField
+  name="input"
+  placeholder="read-only"
+  defaultValue="Default value + disabled"
+  disabled
+  fluid
+/>
+<TextField
+  name="input"
+  placeholder="read-only and disabled"
+  readOnly
+  disabled
+  fluid
+/>
+<TextField
+  name="input"
+  placeholder="read-only and disabled | with default value"
+  defaultValue="Default value + disabled + read-only"
+  readOnly
+  disabled
+  fluid
+/>
+<TextField
+  name="input"
+  placeholder="Rounded"
+  fluid
+  rounded
+/>
+<TextField
+  name="input"
+  placeholder="Has Error"
+  fluid
+  hasError
+/>
+<TextField
+  name="input"
+  placeholder="With helper text"
+  fluid
+  helperText="This is an informative helper text."
+/>`}
+>
+  <TextField
+    name="input"
+    placeholder="Placeholder"
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="read-only"
+    readOnly
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="read-only"
+    readOnly
+    defaultValue="Default value + read-only"
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="read-only"
+    defaultValue="Default value + disabled"
+    disabled
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="read-only and disabled"
+    readOnly
+    disabled
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="read-only and disabled | with default value"
+    defaultValue="Default value + disabled + read-only"
+    readOnly
+    disabled
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="Rounded"
+    fluid
+    rounded
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="Has Error"
+    fluid
+    hasError
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    placeholder="With helper text"
+    fluid
+    helperText="This is an informative helper text."
+    className="demoSubject"
+  />
+</DemoBox>
+
+<h2>
+  <span>Legend-Labeled TextFields</span>
+  <AnchorButton anchorId="legend-labeled-textfields" />
+</h2>
+
+<p>
+  Works as an alternative behaviour for the text fields. It's good for
+  standalone text fields.
+</p>
+
+<DemoBox code='<TextField legendLabel="Label" name="input" placeholder="Placeholder" fluid />'>
+  <TextField legendLabel="Label" name="input" placeholder="Placeholder" fluid />
+</DemoBox>
+
+<h2>
+  <span>
+    With <mark>InputAdornment</mark>s
+  </span>
+  <AnchorButton anchorId="with-inputadornments" />
+</h2>
+
+<p>
+  The{" "}
+  <a
+    href="/docs/components/InputAdornment"
+    title="InputAdornment documentation"
+  >
+    InputAdornment
+  </a>{" "}
+  can be used to add a prefix, a suffix, an action, or an icon to an input.
+</p>
+
+<DemoBox
+  code={`<TextField
+  leadingAdornment={
+    <InputAdornment variant="icon">
+      <Icon identifier="heart" />
+    </InputAdornment>
+  }
+  trailingAdornment={<InputAdornment variant="text">KG</InputAdornment>}
+  name="input"
+  placeholder="Placeholder"
+  fluid
+/>`}
+>
+  <TextField
+    leadingAdornment={
+      <InputAdornment variant="icon">
+        <Icon identifier="heart" />
+      </InputAdornment>
+    }
+    trailingAdornment={<InputAdornment variant="text">KG</InputAdornment>}
+    name="input"
+    placeholder="Placeholder"
+    fluid
+  />
+</DemoBox>
+
+<h2>
+  <span>Controlled TextField</span>
+  <AnchorButton anchorId="controlled-textfield" />
+</h2>
+
+<p>
+  You can use the <inlineCode>value</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the behaviour of the
+  text field.
+</p>
+
+<TextFieldControlledDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import TextField from "@sonnat/ui/TextField";
+
+//or
+import { TextField } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>TextField Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the text field.</td>
+    </tr>
+    <tr>
+      <td>legendLabel</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The text of the label in legend style.</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The <inlineCode>placeholder</inlineCode> property of the text field.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The value of the text field. The DOM API casts this to a string.</td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The default value. Use when the component is not controlled.</td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The helper text content.</td>
+    </tr>
+    <tr>
+      <td>helperIcon</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The helper icon.</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the form controller.</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "filled"
+        <br />| "outlined"
+      </td>
+      <td>"outlined"</td>
+      <td>The variant of the text field.</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>
+        "text"
+        <br />| "email"
+        <br />| "password"
+      </td>
+      <td>"text"</td>
+      <td>The type of the input.</td>
+    </tr>
+    <tr>
+      <td>leadingAdornment</td>
+      <td>node</td>
+      <td>-</td>
+      <td>
+        The leading adornment for this component.
+        <br />
+        This can be used to add a prefix, an action, or an icon to the leading
+        of your input.
+      </td>
+    </tr>
+    <tr>
+      <td>trailingAdornment</td>
+      <td>node</td>
+      <td>-</td>
+      <td>
+        The trailing adornment for this component.
+        <br />
+        This can be used to add a suffix, an action, or an icon to the trailing
+        of your input.
+      </td>
+    </tr>
+    <tr>
+      <td>rounded</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be rounded.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>readOnly</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be readOnly.
+      </td>
+    </tr>
+    <tr>
+      <td>focused</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be focused.
+      </td>
+    </tr>
+    <tr>
+      <td>autoFocus</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be focused on
+        mount.
+      </td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be required.
+      </td>
+    </tr>
+    <tr>
+      <td>hasError</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will indicate invalid
+        input.
+      </td>
+    </tr>
+    <tr>
+      <td>fluid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text field will be fluid
+        (max-width: 100%)
+      </td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>input</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.ChangeEvent, value: string) => void
+        </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the current value by accessing{" "}
+        <inlineCode>event.target.value</inlineCode> (string).
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
