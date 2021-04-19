@@ -1,0 +1,381 @@
+import TextArea from "@sonnat/ui/TextArea";
+import InputAdornment from "@sonnat/ui/InputAdornment";
+import Icon from "@sonnat/ui/Icon";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import TextAreaControlledDemo from "components/demos/TextAreaControlledDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "TextArea",
+  description: "TextArea represents a multi-line plain-text editing control.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "textarea"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  Useful when you want to allow users to enter a sizeable amount of free-form
+  text, for example a comment on a review or feedback form.
+</p>
+
+<h2>
+  <span>Simple TextArea</span>
+  <AnchorButton anchorId="simple-textareas" />
+</h2>
+
+<DemoBox
+  flexDirection="column"
+  horizontalAlignment="start"
+  code={`<TextArea
+  name="input"
+  placeholder="Placeholder"
+  fluid
+/>
+<TextArea
+  name="input"
+  placeholder="read-only"
+  readOnly
+  fluid
+/>
+<TextArea
+  name="input"
+  placeholder="read-only"
+  readOnly
+  defaultValue="Default value + read-only"
+  fluid
+/>
+<TextArea
+  name="input"
+  placeholder="read-only"
+  defaultValue="Default value + disabled"
+  disabled
+  fluid
+/>
+<TextArea
+  name="input"
+  placeholder="read-only and disabled"
+  readOnly
+  disabled
+  fluid
+/>
+<TextArea
+  name="input"
+  placeholder="read-only and disabled | with default value"
+  defaultValue="Default value + disabled + read-only"
+  readOnly
+  disabled
+  fluid
+/>
+<TextArea
+  name="input"
+  placeholder="Has Error"
+  fluid
+  hasError
+/>
+<TextArea
+  name="input"
+  placeholder="With helper text"
+  fluid
+  helperText="This is an informative helper text."
+/>`}
+>
+  <TextArea
+    name="input"
+    placeholder="Placeholder"
+    fluid
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="read-only"
+    readOnly
+    fluid
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="read-only"
+    readOnly
+    defaultValue="Default value + read-only"
+    fluid
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="read-only"
+    defaultValue="Default value + disabled"
+    disabled
+    fluid
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="read-only and disabled"
+    readOnly
+    disabled
+    fluid
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="read-only and disabled | with default value"
+    defaultValue="Default value + disabled + read-only"
+    readOnly
+    disabled
+    fluid
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="Has Error"
+    fluid
+    hasError
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="With helper text"
+    fluid
+    helperText="This is an informative helper text."
+    className="demoSubject"
+  />
+</DemoBox>
+
+<h2>
+  <span>Controlled TextArea</span>
+  <AnchorButton anchorId="controlled-textarea" />
+</h2>
+
+<p>
+  You can use the <inlineCode>value</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the behaviour of the
+  textarea.
+</p>
+
+<TextAreaControlledDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import TextArea from "@sonnat/ui/TextArea";
+
+//or
+import { TextArea } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>TextArea Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the textarea.</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The <inlineCode>placeholder</inlineCode> property of the textarea.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The value of the textarea. The DOM API casts this to a string.</td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The default value. Use when the component is not controlled.</td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The helper text content.</td>
+    </tr>
+    <tr>
+      <td>helperIcon</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The helper icon.</td>
+    </tr>
+    <tr>
+      <td>resizable</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be vertically
+        resizable.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>readOnly</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be readOnly.
+      </td>
+    </tr>
+    <tr>
+      <td>focused</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be focused.
+      </td>
+    </tr>
+    <tr>
+      <td>autoFocus</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be focused on mount.
+      </td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be required.
+      </td>
+    </tr>
+    <tr>
+      <td>hasError</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will indicate invalid
+        input.
+      </td>
+    </tr>
+    <tr>
+      <td>fluid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will be fluid (max-width:
+        100%)
+      </td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>textarea</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.ChangeEvent, value: string) => void
+        </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the current value by accessing{" "}
+        <inlineCode>event.target.value</inlineCode> (string).
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
