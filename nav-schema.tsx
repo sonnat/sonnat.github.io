@@ -167,9 +167,13 @@ const schema = {
             CssBaseline: {
               label: "CssBaseline",
               href: "/docs/components/CssBaseline"
+            },
+            InputAdornment: {
+              label: "InputAdornment",
+              href: "/docs/components/InputAdornment"
             }
           },
-          children: ["CssBaseline"]
+          children: ["CssBaseline", "InputAdornment"]
         }
       },
       children: [
