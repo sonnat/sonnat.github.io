@@ -24,3 +24,6 @@ export { default as CheckboxControlledDemo } from "./CheckboxControlledDemo";
 export { default as RadioControlledDemo } from "./RadioControlledDemo";
 export { default as CheckGroupDemo } from "./CheckGroupDemo";
 export { default as RadioGroupDemo } from "./RadioGroupDemo";
+export { default as SwitchControlledDemo } from "./SwitchControlledDemo";
+export { default as FormControlDemo } from "./FormControlDemo";
+export { default as TextFieldControlledDemo } from "./TextFieldControlledDemo";
