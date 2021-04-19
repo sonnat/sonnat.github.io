@@ -16,7 +16,8 @@ import {
 
 export const meta = {
   title: "Checkbox",
-  description: "Used for selecting multiple values from several options.",
+  description:
+    "Checkboxes are used for selecting multiple values from several options.",
   getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
@@ -210,6 +211,15 @@ import { Checkbox } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the checkbox.</td>
+    </tr>
+    <tr>
       <td>indeterminated</td>
       <td>boolean</td>
       <td>false</td>
@@ -300,6 +310,12 @@ import { Checkbox } from "@sonnat/ui";
         <inlineCode>
           function(event: React.ChangeEvent, checkedState: boolean) => void
         </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the new checked state by accessing{" "}
+        <inlineCode>event.target.checked</inlineCode> (boolean).
       </td>
     </tr>
   </tbody>

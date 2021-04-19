@@ -16,7 +16,8 @@ import {
 
 export const meta = {
   title: "Radio",
-  description: "Used to select a single state from multiple options.",
+  description:
+    "Radios are used to select a single state from multiple options.",
   getLayout: () => page => <WithSidebar>{page}</WithSidebar>
 };
 
@@ -55,8 +56,6 @@ export const meta = {
   code={`<Radio />
 <Radio disabled />
 <Radio defaultChecked disabled />
-<Radio indeterminated />
-<Radio indeterminated disabled />
 <Radio inputProps={{ id: "radio-0" }} defaultChecked label="Label" />
 <Radio
   inputProps={{ id: "radio-1" }}
@@ -68,8 +67,6 @@ export const meta = {
   <Radio />
   <Radio disabled />
   <Radio defaultChecked disabled />
-  <Radio indeterminated />
-  <Radio indeterminated disabled />
   <Radio inputProps={{ id: "radio-0" }} defaultChecked label="Label" />
   <Radio inputProps={{ id: "radio-1" }} defaultChecked label="Label" disabled />
 </DemoBox>
@@ -199,15 +196,13 @@ import { Radio } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>indeterminated</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td>size</td>
       <td>
-        If <inlineCode>true</inlineCode>, the radio will appear indeterminate.
-        <br />
-        This does not set the native input element to indeterminate due to
-        inconsistent behavior across browsers.
+        "medium"
+        <br />| "small"
       </td>
+      <td>"medium"</td>
+      <td>The size of the radio.</td>
     </tr>
     <tr>
       <td>readOnly</td>
@@ -287,6 +282,12 @@ import { Radio } from "@sonnat/ui";
         <inlineCode>
           function(event: React.ChangeEvent, checkedState: boolean) => void
         </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the new checked state by accessing{" "}
+        <inlineCode>event.target.checked</inlineCode> (boolean).
       </td>
     </tr>
   </tbody>
