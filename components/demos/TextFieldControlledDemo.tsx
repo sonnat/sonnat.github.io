@@ -41,7 +41,9 @@ const TextFieldControlledDemo: React.FC = () => {
         >
           The value is
           <br />
-          <strong>{`"${value}"`}</strong>
+          <strong
+            style={{ paddingTop: 8, display: "inline-block" }}
+          >{`"${value}"`}</strong>
         </span>
       </React.Fragment>
     </DemoBox>

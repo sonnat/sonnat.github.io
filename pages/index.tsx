@@ -6,7 +6,7 @@ import { adjustColor } from "@sonnat/ui/styles/colorUtils";
 import Text from "@sonnat/ui/Text";
 import Footer from "components/containers/Footer";
 import Logo from "components/Logo";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import * as React from "react";
@@ -150,7 +150,7 @@ const useStyles = makeStyles(
   { name: pageName }
 );
 
-const LandingPage: NextPage<{}> = () => {
+const LandingPage: NextPage = () => {
   const classes = useStyles();
 
   return (
