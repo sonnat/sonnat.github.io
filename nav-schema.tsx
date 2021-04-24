@@ -50,9 +50,9 @@ const schema = {
               label: "FormControl",
               href: "/docs/components/FormControl"
             },
-            RangeSlider: {
-              label: "RangeSlider",
-              href: "/docs/components/RangeSlider"
+            InputSlider: {
+              label: "InputSlider",
+              href: "/docs/components/InputSlider"
             },
             Select: {
               label: "Select",
@@ -66,9 +66,9 @@ const schema = {
               label: "TextArea",
               href: "/docs/components/TextArea"
             },
-            Stepper: {
-              label: "Stepper",
-              href: "/docs/components/Stepper"
+            InputStepper: {
+              label: "InputStepper",
+              href: "/docs/components/InputStepper"
             }
           },
           children: [
@@ -78,11 +78,11 @@ const schema = {
             "RadioGroup",
             "Switch",
             "FormControl",
-            "RangeSlider",
+            "InputSlider",
             "Select",
             "TextField",
             "TextArea",
-            "Stepper"
+            "InputStepper"
           ]
         },
         Display: {
