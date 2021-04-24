@@ -18,4 +18,4 @@ export const defaultKeywordsMetaContent = [
   "سنّت"
 ];
 
-export const siteFullAddress = "https://sonnat.github.io";
+export const siteFullAddress = "https://www.sonnat.dev";
