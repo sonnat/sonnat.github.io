@@ -10,15 +10,6 @@ const nextConfig = {
   trailingSlash: false,
   experimental: {
     reactStrictMode: true
-  },
-  redirects: async function () {
-    return [
-      {
-        source: "/docs",
-        destination: "/docs/installation",
-        permanent: true
-      }
-    ];
   }
 };
 
