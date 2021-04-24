@@ -1,0 +1,272 @@
+import InputStepper from "@sonnat/ui/InputStepper";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import InputStepperControlledDemo from "components/demos/InputStepperControlledDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "InputStepper",
+  description:
+    "An input stepper is a two-segment UI control used to incrementally increase or decrease a numeric value.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "stepper",
+    "number stepper",
+    "number-stepper",
+    "numberstepper",
+    "inputstepper",
+    "input stepper",
+    "input"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Simple InputStepper</span>
+  <AnchorButton anchorId="simple-stepper" />
+</h2>
+
+<DemoBox
+  flexDirection="column"
+  code={`<InputStepper />
+<InputStepper disabled defaultValue={100} />`}
+>
+  <div className="demoSubject">
+    <InputStepper />
+  </div>
+  <div className="demoSubject">
+    <InputStepper disabled defaultValue={100} />
+  </div>
+</DemoBox>
+
+<h2>
+  <span>Controlled InputStepper</span>
+  <AnchorButton anchorId="controlled-stepper" />
+</h2>
+
+<p>
+  You can use the <inlineCode>value</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the behaviour of the
+  stepper.
+</p>
+
+<InputStepperControlledDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import InputStepper from "@sonnat/ui/InputStepper";
+
+//or
+import { InputStepper } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>InputStepper Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the stepper.</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The value of the stepper. The DOM API casts this to a string.</td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The default value. Use when the component is not controlled.</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the stepper.</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the field will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>fluid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the field will be fluid (max-width:
+        100%)
+      </td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>number</td>
+      <td>0</td>
+      <td>The minimum value the stepper can hold.</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>number</td>
+      <td>Infinity</td>
+      <td>The maximum value the stepper can hold.</td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>input</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.ChangeEvent, value: number) => void
+        </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the current value by accessing{" "}
+        <inlineCode>event.target.value</inlineCode> (string).
+      </td>
+    </tr>
+    <tr>
+      <td>onAdd</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the add button has been clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent, value: number) => void
+        </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the current value by accessing{" "}
+        <inlineCode>event.target.value</inlineCode> (string).
+      </td>
+    </tr>
+    <tr>
+      <td>onSubtract</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the subtract button has been clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent, value: number) => void
+        </inlineCode>
+        <br />
+        <em>
+          <strong>Note:</strong>
+        </em>{" "}
+        You can also pull out the current value by accessing{" "}
+        <inlineCode>event.target.value</inlineCode> (string).
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
