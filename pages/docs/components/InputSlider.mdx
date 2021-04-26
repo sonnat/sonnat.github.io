@@ -1,0 +1,386 @@
+import InputSlider from "@sonnat/ui/InputSlider";
+import Code from "@sonnat/ui/Code";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import InputSliderControlledDemo from "components/demos/InputSliderControlledDemo";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "InputSlider",
+  description:
+    "Input sliders allow users to make selections from a range of values.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "inputslider",
+    "slider",
+    "input"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  InputSliders are ideal for adjusting settings such as volume, brightness, or
+  applying image filters.
+</p>
+
+<h2>
+  <span>Continuous InputSlider</span>
+  <AnchorButton anchorId="continuous-inputslider" />
+</h2>
+
+<DemoBox code={`<InputSlider variant="continuous" />`}>
+  <InputSlider variant="continuous" />
+</DemoBox>
+
+<h2>
+  <span>Discrete InputSlider</span>
+  <AnchorButton anchorId="discrete-inputslider" />
+</h2>
+
+<DemoBox code={`<InputSlider variant="discrete" step={10} />`}>
+  <InputSlider variant="discrete" step={10} />
+</DemoBox>
+
+<h2>
+  <span>Bidirectional InputSlider (Range Slider)</span>
+  <AnchorButton anchorId="bidirectional-inputslider" />
+</h2>
+
+<p>
+  If you pass a touple (array with just two elements) as{" "}
+  <inlineCode>value</inlineCode> or <inlineCode>defaultValue</inlineCode>, you
+  will get a bidirectional slider.
+</p>
+
+<DemoBox
+  code={`<InputSlider variant="discrete" step={10} defaultValue={[0, 100]} />`}
+>
+  <InputSlider variant="discrete" step={10} defaultValue={[0, 100]} />
+</DemoBox>
+
+<h2>
+  <span>Controlled InputSlider</span>
+  <AnchorButton anchorId="controlled-inputslider" />
+</h2>
+
+<p>
+  You can use the <inlineCode>value</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the value state of the
+  input slider.
+</p>
+
+<InputSliderControlledDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import InputSlider from "@sonnat/ui/InputSlider";
+
+//or
+import { InputSlider } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>InputSlider Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>number</td>
+      <td>100</td>
+      <td>
+        The maximum allowed value of the slider. Should not be equal to{" "}
+        <inlineCode>min</inlineCode>.
+      </td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>number</td>
+      <td>0</td>
+      <td>
+        The minimum allowed value of the slider. Should not be equal to{" "}
+        <inlineCode>max</inlineCode>.
+      </td>
+    </tr>
+    <tr>
+      <td>fractionDigits</td>
+      <td>number</td>
+      <td>4</td>
+      <td>
+        The Number of digits after the decimal point. Must be in the range 0 to
+        20, inclusive.
+      </td>
+    </tr>
+    <tr>
+      <td>step</td>
+      <td>number</td>
+      <td>-</td>
+      <td>
+        The granularity with which the slider can step through values.
+        <br />
+        It's{" "}
+        <em>
+          <strong>required</strong>
+        </em>{" "}
+        to use this when you are using a <inlineCode>discrete</inlineCode>{" "}
+        slider.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>number[ ] | number</td>
+      <td>-</td>
+      <td>
+        The value of the slider.
+        <br />
+        For <inlineCode>bidirectional</inlineCode> sliders, provide an array
+        with two values.
+      </td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>number[ ] | number</td>
+      <td>-</td>
+      <td>
+        The default value. Use when the component is not controlled.
+        <br />
+        For <inlineCode>bidirectional</inlineCode> sliders, provide an array
+        with two values.
+      </td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "continuous"
+        <br />| "discrete"
+      </td>
+      <td>"continuous"</td>
+      <td>The variant of the slider.</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the slider will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>onMount</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the component mounts.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function() => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onDismount</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the component dismounts.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function() => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the value has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent | React.TouchEvent, value: number[] |
+          number) => void
+        </inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onDragging</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the slider is being dragged.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent | React.TouchEvent, state: State) =>
+          void
+        </inlineCode>
+        <br />
+        Where the <inlineCode>State</inlineCode> is:
+        <Code
+          codeBlock
+          children={`interface HandleState {
+  active: boolean;
+  currentX: number;
+  initialX: number;
+  offsetX: number;
+  zIndex: number;
+};\n
+interface State {
+  sup: HandleState & { right: number };
+  inf: HandleState & { left: number };
+  track: { right: number; left: number };
+};`}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>onDragStart</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the dragging starts.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent | React.TouchEvent, state: State) =>
+          void
+        </inlineCode>
+        <br />
+        Where the <inlineCode>State</inlineCode> is:
+        <Code
+          codeBlock
+          children={`interface HandleState {
+  active: boolean;
+  currentX: number;
+  initialX: number;
+  offsetX: number;
+  zIndex: number;
+};\n
+interface State {
+  sup: HandleState & { right: number };
+  inf: HandleState & { left: number };
+  track: { right: number; left: number };
+};`}
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>onDragEnd</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the dragging ends.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.MouseEvent | React.TouchEvent, state: State) =>
+          void
+        </inlineCode>
+        <br />
+        Where the <inlineCode>State</inlineCode> is:
+        <Code
+          codeBlock
+          children={`interface HandleState {
+  active: boolean;
+  currentX: number;
+  initialX: number;
+  offsetX: number;
+  zIndex: number;
+};\n
+interface State {
+  sup: HandleState & { right: number };
+  inf: HandleState & { left: number };
+  track: { right: number; left: number };
+};`}
+        />
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
