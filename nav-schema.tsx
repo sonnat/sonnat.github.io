@@ -79,10 +79,10 @@ const schema = {
             "Switch",
             "FormControl",
             "InputSlider",
+            "InputStepper",
             "Select",
             "TextField",
-            "TextArea",
-            "InputStepper"
+            "TextArea"
           ]
         },
         Display: {
@@ -95,6 +95,10 @@ const schema = {
             Chips: {
               label: "Chips",
               href: "/docs/components/Chips"
+            },
+            Code: {
+              label: "Code",
+              href: "/docs/components/Code"
             },
             Divider: {
               label: "Divider",
@@ -109,7 +113,7 @@ const schema = {
               href: "/docs/components/Tag"
             }
           },
-          children: ["Badge", "Chips", "Divider", "Tooltip", "Tag"]
+          children: ["Badge", "Chips", "Code", "Divider", "Tooltip", "Tag"]
         },
         Feedback: {
           label: "Feedback",
