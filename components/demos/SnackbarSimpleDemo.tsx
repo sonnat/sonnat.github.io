@@ -10,8 +10,22 @@ import Button from "@sonnat/ui/Button";
 import * as React from "react";
 
 const Demo: React.FC = () => {
+  const [isOpen, setOpen] = React.useState(false);
+  
   return (
     <React.Fragment>
+      <Button
+        label="Toggle Snackbar"
+        variant="outlined"
+        size="small"
+        onClick={() => void setOpen(o => !o)}
+      />
+      <Snackbar
+        text="This is a snackbar!"
+        open={isOpen}
+        closable
+        onClose={() => void setOpen(false)}
+      />
     </React.Fragment>
   );
 };
