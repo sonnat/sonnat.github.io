@@ -1,0 +1,554 @@
+import Select from "@sonnat/ui/Select";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import SelectSimpleDemo from "components/demos/SelectSimpleDemo";
+import SelectControlledValueDemo from "components/demos/SelectControlledValueDemo";
+import SelectControlledOpenDemo from "components/demos/SelectControlledOpenDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Select",
+  description:
+    "Select component is used to select values from a list of options.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "select"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  A dropdown menu for displaying choices. An elegant alternative to the native{" "}
+  <inlineCode>&lt;select&gt;</inlineCode> element.
+  <br />
+  Utilizing{" "}
+  <a href="/docs/components/Radio" title="Radio documentation">
+    Radio
+  </a>{" "}
+  is recommended when there are fewer total options (less than 5).
+</p>
+
+<h2>
+  <span>Simple Selects</span>
+  <AnchorButton anchorId="simple-selects" />
+</h2>
+
+<SelectSimpleDemo />
+
+<h2>
+  <span>Controlled Select Value</span>
+  <AnchorButton anchorId="controlled-select-value" />
+</h2>
+
+<p>
+  You can use the <inlineCode>value</inlineCode>, and{" "}
+  <inlineCode>onChange</inlineCode> properties to control the value of the
+  select.
+</p>
+
+<SelectControlledValueDemo />
+
+<h2>
+  <span>Controlled Open State</span>
+  <AnchorButton anchorId="controlled-open-state" />
+</h2>
+
+<p>
+  You can use the <inlineCode>open</inlineCode>, <inlineCode>onOpen</inlineCode>
+  , and <inlineCode>onClose</inlineCode> properties to control the open state of
+  the select's menu.
+</p>
+
+<SelectControlledOpenDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Select, { SelectOption, SelectOptionGroup } from "@sonnat/ui/Select";
+
+//or
+import { Select, SelectOption, SelectOptionGroup } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>
+    <mark>Select</mark> Properties
+  </span>
+  <AnchorButton anchorId="select-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Select Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The name of the select.</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The <inlineCode>placeholder</inlineCode> property of the select.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string[] | string</td>
+      <td>-</td>
+      <td>
+        The value of the select. Providing an empty string will Select no
+        options.
+        <br />
+        If the value is an object it must have reference equality with the
+        option in order to be selected. If the value is not an object, the
+        string representation must match with the string representation of the
+        option in order to be selected.
+      </td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>string[] | string</td>
+      <td>-</td>
+      <td>The default value. Use when the component is not controlled.</td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The helper text content.</td>
+    </tr>
+    <tr>
+      <td>helperIcon</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The helper icon.</td>
+    </tr>
+    <tr>
+      <td>leadingAdornment</td>
+      <td>node</td>
+      <td>-</td>
+      <td>
+        The leading adornment for this component. This can be used to add a
+        prefix, an action, or an icon to the leading of your input.
+      </td>
+    </tr>
+    <tr>
+      <td>trailingAdornment</td>
+      <td>node</td>
+      <td>-</td>
+      <td>
+        The trailing adornment for this component. This can be used to add a
+        suffix, an action, or an icon to the trailing of your input.
+      </td>
+    </tr>
+    <tr>
+      <td>searchPlaceholder</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        The <inlineCode>placeholder</inlineCode> property of the search field.
+      </td>
+    </tr>
+    <tr>
+      <td>searchEmptyStatementText</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The empty statement text when search results are empty.</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the select.</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "filled"
+        <br />| "outlined"
+      </td>
+      <td>"outlined"</td>
+      <td>The variant of the select.</td>
+    </tr>
+    <tr>
+      <td>rounded</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will be rounded.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>focused</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will be focused.
+      </td>
+    </tr>
+    <tr>
+      <td>autoFocus</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will be focused on mount.
+      </td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will be required.
+      </td>
+    </tr>
+    <tr>
+      <td>hasError</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will indicate invalid
+        input.
+      </td>
+    </tr>
+    <tr>
+      <td>multiple</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will be searchable.
+      </td>
+    </tr>
+    <tr>
+      <td>preventPageScrolling</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will block the page's
+        scrolling.
+      </td>
+    </tr>
+    <tr>
+      <td>searchable</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will support multiple
+        selections (<inlineCode>value</inlineCode> must be an array).
+      </td>
+    </tr>
+    <tr>
+      <td>fluid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the select will be fluid (max-width:
+        100%)
+      </td>
+    </tr>
+    <tr>
+      <td>open</td>
+      <td>boolean</td>
+      <td>-</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the menu will be open.
+      </td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>input</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>onOpen</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the menu has opened.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function() => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onClose</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the menu has closed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function() => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the state has changed.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          function(event: React.SyntheticEvent, value: string[] | string) =>
+          void
+        </inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>Select/Option</mark> Properties
+  </span>
+  <AnchorButton anchorId="select-option-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Select/Option Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the option.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The value of the option.</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        If a label was provided, the select component will use it as the item's
+        display in the menu. It is mandatory to use it when the{" "}
+        <inlineCode>children</inlineCode> prop contains complex content (i.e.
+        containing multiple elements).
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the option will be disabled.
+      </td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the option has been clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>Select/OptionGroup</mark> Properties
+  </span>
+  <AnchorButton anchorId="select-optiongroup-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Select/OptionGroup Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the group.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>titleClassName</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the classNames applied to the title so you can override or
+        extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The title of the group.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
