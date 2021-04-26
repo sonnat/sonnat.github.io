@@ -1,0 +1,158 @@
+import Code from "@sonnat/ui/Code";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Code",
+  description: "Shows source code in a standardized way.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "code",
+    "codeblock",
+    "inlinecode",
+    "block code",
+    "inline code"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<h2>
+  <span>Inline Code</span>
+  <AnchorButton anchorId="sample-row" />
+</h2>
+
+<DemoBox code="<p>This is a simple <Code>Inline Code</Code>.</p>">
+  <p>
+    This is a simple <Code>Inline Code</Code>.
+  </p>
+</DemoBox>
+
+<h2>
+  <span>CodeBlock</span>
+  <AnchorButton anchorId="sample-row" />
+</h2>
+
+<p>
+  You can achieve a multi line code display via{" "}
+  <inlineCode>codeBlock</inlineCode> property.
+</p>
+
+<DemoBox
+  horizontalAlignment="start"
+  code="<Code codeBlock>{`npm install @sonnat/ui
+yarn add @sonnat/ui`}</Code>"
+>
+  <Code codeBlock>{`npm install @sonnat/ui
+yarn add @sonnat/ui`}</Code>
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Code from "@sonnat/ui/Code";
+
+//or
+import { Code } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Code Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>codeBlock</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        Determine whether the component is code-block or not.
+        <br />
+        If <inlineCode>true</inlineCode>, the component will be rendered as a{" "}
+        <inlineCode>&lt;pre&gt;</inlineCode> element. otherwise, the component
+        will be rendered as a <inlineCode>&lt;code&gt;</inlineCode> element.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
