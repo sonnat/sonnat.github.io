@@ -28,3 +28,7 @@ export { default as SwitchControlledDemo } from "./SwitchControlledDemo";
 export { default as FormControlDemo } from "./FormControlDemo";
 export { default as TextFieldControlledDemo } from "./TextFieldControlledDemo";
 export { default as InputStepperControlledDemo } from "./InputStepperControlledDemo";
+export { default as SelectSimpleDemo } from "./SelectSimpleDemo";
+export { default as SelectControlledValueDemo } from "./SelectControlledValueDemo";
+export { default as SelectControlledOpenDemo } from "./SelectControlledOpenDemo";
+export { default as InputSliderControlledDemo } from "./InputSliderControlledDemo";
