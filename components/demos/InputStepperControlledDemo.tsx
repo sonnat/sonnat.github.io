@@ -22,14 +22,14 @@ export default Demo;
 `;
 
 const InputStepperControlledDemo: React.FC = () => {
-  const [value, setValue] = React.useState("0");
+  const [value, setValue] = React.useState(0);
 
   return (
     <DemoBox flexDirection="column" code={demoCode}>
       <React.Fragment>
         <InputStepper
           value={value}
-          onChange={e => void setValue(e.target.value)}
+          onChange={(_, newValue) => void setValue(newValue)}
         />
         <span style={{ marginTop: 16, textAlign: "center" }}>
           The value is
