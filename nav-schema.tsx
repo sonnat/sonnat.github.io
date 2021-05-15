@@ -111,9 +111,26 @@ const schema = {
             Tag: {
               label: "Tag",
               href: "/docs/components/Tag"
+            },
+            Text: {
+              label: "Text",
+              href: "/docs/components/Text"
+            },
+            Icon: {
+              label: "Icon",
+              href: "/docs/components/Icon"
             }
           },
-          children: ["Badge", "Chips", "Code", "Divider", "Tooltip", "Tag"]
+          children: [
+            "Badge",
+            "Chips",
+            "Code",
+            "Divider",
+            "Icon",
+            "Tooltip",
+            "Tag",
+            "Text"
+          ]
         },
         Feedback: {
           label: "Feedback",
@@ -196,6 +213,16 @@ const schema = {
     "Server-side Rendering": {
       label: "Server-side Rendering",
       href: "/docs/serverside-rendering"
+    },
+    Packages: {
+      label: "Packages",
+      byChild: {
+        Icons: {
+          label: "Icons",
+          href: "/docs/packages/Icons"
+        }
+      },
+      children: ["Icons"]
     }
   },
   children: [
@@ -203,7 +230,8 @@ const schema = {
     "Server-side Rendering",
     "Components",
     "Theming",
-    "Styling"
+    "Styling",
+    "Packages"
   ]
 };
 
