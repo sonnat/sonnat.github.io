@@ -505,10 +505,17 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/context-base/-/context-base-0.14.0.tgz#c67fc20a4d891447ca1a855d7d70fa79a3533001"
   integrity sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==
 
-"@sonnat/ui@^1.0.18-canary.0":
-  version "1.0.18-canary.0"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.0.18-canary.0.tgz#363fe47704b673e45eb9acfb24c9b05db0655e0a"
-  integrity sha512-x6YtfoGJmVcs1ptpcDOqI3fRf/VuwcIq6mcCYuPM6wpk+i2Z9Zsa5gvGw3nDJQShco5xkrh9+EVNbKjRPWzspQ==
+"@sonnat/icons@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-1.0.3.tgz#0918b8bb9300e6e5959794a46b11761444ca6777"
+  integrity sha512-UdjqDbopOURr9Y7kTZ5BIzpYguQQ6ppy+LLA7pZOSaCD1RTDMV/stFuXKozu8XdlhE5G2ufhscqXyfk08ALKrg==
+  dependencies:
+    "@babel/runtime" "^7.13.6"
+
+"@sonnat/ui@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.1.1.tgz#0cded44cb4885f222f29654bf62dc1862240d906"
+  integrity sha512-RBKRIv35j/JDH0hnWSvEuHqrKWT1J7YyKt5C9ObVH3CFpmv52ac5aYaLDciDqALZ18XTgPiyCLqLrV49Hd1amQ==
   dependencies:
     "@babel/runtime" "^7.13.6"
     classnames "^2.2.6"
