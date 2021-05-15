@@ -237,10 +237,9 @@ export interface ThemeOptions {
   };
   direction?: "ltr" | "rtl";
   mixins?: {
-    useDisableUserSelect?: () => CSSProperties;
-    useFontIcon?: (identifier: string) => CSSProperties;
-    useFontIconSize?: (size: number = 16) => CSSProperties;
-    usePreserveAspectRatio?: (ratio: string = "1:1") => CSSProperties;
+    useDisableUserSelect: () => CSSProperties;
+    useIconWrapper: (size?: number) => CSSProperties;
+    usePreserveAspectRatio: (ratio: string = "1:1") => CSSProperties;
     [P: string]: any;
   };
   colors?: {
