@@ -1,6 +1,6 @@
 import TextField from "@sonnat/ui/TextField";
 import InputAdornment from "@sonnat/ui/InputAdornment";
-import Icon from "@sonnat/ui/Icon";
+import { Heart } from "@sonnat/icons";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
 import WithSidebar from "components/layouts/WithSidebar";
@@ -210,7 +210,7 @@ export const meta = {
   code={`<TextField
   leadingAdornment={
     <InputAdornment variant="icon">
-      <Icon identifier="heart" />
+      <Heart />
     </InputAdornment>
   }
   trailingAdornment={<InputAdornment variant="text">KG</InputAdornment>}
@@ -222,7 +222,7 @@ export const meta = {
   <TextField
     leadingAdornment={
       <InputAdornment variant="icon">
-        <Icon identifier="heart" />
+        <Heart />
       </InputAdornment>
     }
     trailingAdornment={<InputAdornment variant="text">KG</InputAdornment>}

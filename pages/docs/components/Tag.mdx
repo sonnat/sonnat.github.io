@@ -1,3 +1,4 @@
+import Heart from "@sonnat/icons/Heart";
 import Tag from "@sonnat/ui/Tag";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
@@ -70,15 +71,15 @@ export const meta = {
 
 <DemoBox
   code={[
-    '<Tag label="Filled" icon="heart" />',
-    '<Tag label="Outlined" variant="outlined" icon="heart" />'
+    '<Tag label="Filled" icon={<Heart />} />',
+    '<Tag label="Outlined" variant="outlined" icon={<Heart />} />'
   ].join("\n")}
 >
   <div className="demoSubject">
-    <Tag label="Filled" icon="heart" />
+    <Tag label="Filled" icon={<Heart />} />
   </div>
   <div className="demoSubject">
-    <Tag label="Outlined" variant="outlined" icon="heart" />
+    <Tag label="Outlined" variant="outlined" icon={<Heart />} />
   </div>
 </DemoBox>
 

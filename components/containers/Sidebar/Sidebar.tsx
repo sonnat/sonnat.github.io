@@ -1,12 +1,12 @@
-import Icon from "@sonnat/ui/Icon";
-import Text from "@sonnat/ui/Text";
+import { MagnifierLarge } from "@sonnat/icons";
 import InputAdornment from "@sonnat/ui/InputAdornment";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Text from "@sonnat/ui/Text";
 import TextField from "@sonnat/ui/TextField";
 import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
 import createClass from "classnames";
-import * as React from "react";
 import { useNavJsx } from "nav-schema";
+import * as React from "react";
 
 interface Props {
   className?: string;
@@ -79,7 +79,7 @@ const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
           name="search"
           leadingAdornment={
             <InputAdornment variant="icon">
-              <Icon identifier="magnifier-large" />
+              <MagnifierLarge />
             </InputAdornment>
           }
           placeholder="Search"
@@ -88,8 +88,7 @@ const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
         />
         <Text
           className={classes.hintText}
-          variant="captionText"
-          size="medium"
+          variant="captionSmall"
           color="textHint"
           display="block"
           align="center"

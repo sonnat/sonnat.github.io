@@ -1,3 +1,4 @@
+import { Heart, Link, Tune, ChevronDown, Eye } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
@@ -150,20 +151,20 @@ export const meta = {
     `<Button
   variant="filled"
   label="Leading and Trailing"
-  leadingIcon="heart"
-  trailingIcon="chevron-down"
+  leadingIcon={<Heart />}
+  trailingIcon={<ChevronDown />}
 />`,
     `<Button
   variant="outlined"
   label="Leading"
   color="secondary"
-  leadingIcon="link"
+  leadingIcon={<Link />}
 />`,
     `<Button
   variant="inlined"
   label="Trailing"
   color="primary"
-  trailingIcon="eye"
+  trailingIcon={<Eye />}
 />`
   ].join("\n")}
 >
@@ -171,21 +172,21 @@ export const meta = {
     variant="filled"
     label="Leading and Trailing"
     className="demoSubject"
-    leadingIcon="heart"
-    trailingIcon="chevron-down"
+    leadingIcon={<Heart />}
+    trailingIcon={<ChevronDown />}
   />
   <Button
     variant="outlined"
     label="Leading"
     color="secondary"
-    leadingIcon="link"
+    leadingIcon={<Link />}
     className="demoSubject"
   />
   <Button
     variant="inlined"
     label="Trailing"
     color="primary"
-    trailingIcon="eye"
+    trailingIcon={<Eye />}
     className="demoSubject"
   />
 </DemoBox>
@@ -205,19 +206,19 @@ export const meta = {
     `<Button
   variant="filled"
   aria-label="Default"
-  leadingIcon="heart"
+  leadingIcon={<Heart />}
 />`,
     `<Button
   variant="outlined"
   aria-label="Secondary"
   color="secondary"
-  leadingIcon="link"
+  leadingIcon={<Link />}
 />`,
     `<Button
   variant="inlined"
   aria-label="Primary"
   color="primary"
-  leadingIcon="tune"
+  leadingIcon={<Tune />}
 />`
   ].join("\n")}
 >
@@ -225,20 +226,20 @@ export const meta = {
     variant="filled"
     aria-label="Default"
     className="demoSubject"
-    leadingIcon="heart"
+    leadingIcon={<Heart />}
   />
   <Button
     variant="outlined"
     aria-label="Secondary"
     color="secondary"
-    leadingIcon="link"
+    leadingIcon={<Link />}
     className="demoSubject"
   />
   <Button
     variant="inlined"
     aria-label="Primary"
     color="primary"
-    leadingIcon="tune"
+    leadingIcon={<Tune />}
     className="demoSubject"
   />
 </DemoBox>
@@ -275,14 +276,14 @@ export const meta = {
     '<Button label="Small button" size="small" color="primary" disabled />',
     `<Button
   label="Button"
-  leadingIcon="heart"
+  leadingIcon={<Heart />}
   disabled
   color="primary"
   variant="outlined"
 />`,
     `<Button
   label="Button"
-  trailingIcon="heart"
+  trailingIcon={<Heart />}
   disabled
   color="secondary"
   variant="inlined"
@@ -295,7 +296,7 @@ export const meta = {
   <div className="demoSubject">
     <Button
       label="Button"
-      leadingIcon="heart"
+      leadingIcon={<Heart />}
       disabled
       color="primary"
       variant="outlined"
@@ -304,7 +305,7 @@ export const meta = {
   <div className="demoSubject">
     <Button
       label="Button"
-      trailingIcon="heart"
+      trailingIcon={<Heart />}
       disabled
       variant="inlined"
       color="secondary"
@@ -327,14 +328,14 @@ export const meta = {
     '<Button label="Small button" size="small" rounded />',
     `<Button
   label="Button"
-  leadingIcon="heart"
+  leadingIcon={<Heart />}
   rounded
   color="primary"
   variant="outlined"
 />`,
     `<Button
   label="Button"
-  trailingIcon="heart"
+  trailingIcon={<Heart />}
   rounded
   raised
   color="secondary"
@@ -347,7 +348,7 @@ export const meta = {
   <div className="demoSubject">
     <Button
       label="Button"
-      leadingIcon="heart"
+      leadingIcon={<Heart />}
       rounded
       color="primary"
       variant="outlined"
@@ -356,7 +357,7 @@ export const meta = {
   <div className="demoSubject">
     <Button
       label="Button"
-      trailingIcon="heart"
+      trailingIcon={<Heart />}
       rounded
       raised
       color="secondary"

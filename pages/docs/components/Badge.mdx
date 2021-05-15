@@ -1,5 +1,6 @@
 import Button from "@sonnat/ui/Button";
 import Badge from "@sonnat/ui/Badge";
+import { EmailO, Download } from "@sonnat/icons";
 import Text from "@sonnat/ui/Text";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
@@ -58,14 +59,14 @@ export const meta = {
     `<Badge textContent="5">
   <Button
     aria-label="Demo notification button"
-    leadingIcon="email-o"
+    leadingIcon={<EmailO />}
     variant="inlined"
   />
 </Badge>`,
     `<Badge textContent="5" color="secondary">
   <Button
     aria-label="Demo notification button"
-    leadingIcon="email-o"
+    leadingIcon={<EmailO />}
     variant="inlined"
   />
 </Badge>`
@@ -76,14 +77,14 @@ export const meta = {
   <Badge textContent="5" className="demoSubject">
     <Button
       aria-label="Demo notification button"
-      leadingIcon="email-o"
+      leadingIcon={<EmailO />}
       variant="inlined"
     />
   </Badge>
   <Badge textContent="5" className="demoSubject" color="secondary">
     <Button
       aria-label="Demo notification button"
-      leadingIcon="email-o"
+      leadingIcon={<EmailO />}
       variant="inlined"
     />
   </Badge>
@@ -107,14 +108,14 @@ export const meta = {
     '<Badge variant="dotted" />',
     '<Badge color="secondary" variant="dotted" />',
     `<Badge variant="dotted">
-  <Text variant="captionText" rootNode="p">
+  <Text variant="caption" rootNode="p">
     This is a typography!
   </Text>
 </Badge>`,
     `<Badge variant="dotted" color="secondary">
   <Button
     aria-label="Demo download button"
-    leadingIcon="download"
+    leadingIcon={<Download />}
     variant="inlined"
   />
 </Badge>`
@@ -124,7 +125,7 @@ export const meta = {
   <Badge className="demoSubject" color="secondary" variant="dotted" />
   <div className="demoSubject">
     <Badge variant="dotted">
-      <Text variant="captionText" rootNode="p">
+      <Text variant="caption" rootNode="p">
         This is a typography!
       </Text>
     </Badge>
@@ -132,7 +133,7 @@ export const meta = {
   <Badge className="demoSubject" color="secondary" variant="dotted">
     <Button
       aria-label="Demo download button"
-      leadingIcon="download"
+      leadingIcon={<Download />}
       variant="inlined"
     />
   </Badge>

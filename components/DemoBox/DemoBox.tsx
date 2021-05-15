@@ -1,13 +1,14 @@
-import makeStyles from "@sonnat/ui/styles/makeStyles";
+import { ChevronDown, ChevronUp, ContentCopy } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
 import Code from "@sonnat/ui/Code";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Tooltip from "@sonnat/ui/Tooltip";
 import createClassName from "classnames";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import * as React from "react";
 import { Collapse } from "react-collapse";
 import useClipboard from "react-use-clipboard";
-import Highlight, { defaultProps } from "prism-react-renderer";
 import prismTheme from "./theme";
-import * as React from "react";
 
 const componentName = "DemoBox";
 
@@ -205,7 +206,7 @@ const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
           )}
           <Tooltip text="Copied to clipboard!" open={isCopied}>
             <Button
-              leadingIcon="content-copy"
+              leadingIcon={<ContentCopy />}
               aria-label="Copy the code"
               variant="inlined"
               className={classes.copyCode}
@@ -213,7 +214,7 @@ const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
             />
           </Tooltip>
           <Button
-            leadingIcon={isExpanded ? "chevron-up" : "chevron-down"}
+            leadingIcon={isExpanded ? <ChevronUp /> : <ChevronDown />}
             aria-label="Expand the codebox"
             variant="inlined"
             className={classes.expandCode}

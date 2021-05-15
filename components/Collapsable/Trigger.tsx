@@ -54,12 +54,7 @@ const CollapsableTrigger = React.memo(function CollapsableTrigger(
       })}
       onClick={onClick}
     >
-      <Text
-        title={title}
-        variant="bodyText"
-        size="small"
-        className={classes.title}
-      >
+      <Text title={title} variant="bodySmall" className={classes.title}>
         {title}
       </Text>
     </div>

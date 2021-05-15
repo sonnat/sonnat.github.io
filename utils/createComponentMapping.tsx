@@ -4,7 +4,7 @@ import { adjustColor } from "@sonnat/ui/styles/colorUtils";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
 import Text, { TextProps } from "@sonnat/ui/Text";
-import Icon from "@sonnat/ui/Icon";
+import { InfoCircleLargeO } from "@sonnat/icons";
 import createClassName from "classnames";
 import prismTheme from "components/DemoBox/theme";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
@@ -36,8 +36,8 @@ const baseHeadingStyles = (theme: DefaultTheme) => ({
   root: {
     alignItems: "center",
     "& + .demo-box, & + pre": { marginTop: theme.typography.pxToRem(8) },
-    "@global .anchor-button": {
-      [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("sm")]: {
+      "@global .anchor-button": {
         visibility: "hidden",
         opacity: 0
       }
@@ -53,7 +53,12 @@ const baseHeadingStyles = (theme: DefaultTheme) => ({
 
 const useH1Styles = makeStyles(
   theme => ({
-    root: baseHeadingStyles(theme).root
+    root: {
+      ...baseHeadingStyles(theme).root,
+      [theme.breakpoints.down("sm")]: {
+        ...theme.typography.variants.h4
+      }
+    }
   }),
   { name: "H1" }
 );
@@ -62,7 +67,10 @@ const useH2Styles = makeStyles(
   theme => ({
     root: {
       ...baseHeadingStyles(theme).root,
-      paddingTop: theme.typography.pxToRem(32)
+      paddingTop: theme.typography.pxToRem(32),
+      [theme.breakpoints.down("sm")]: {
+        ...theme.typography.variants.h5
+      }
     }
   }),
   { name: "H2" }
@@ -72,7 +80,10 @@ const useH3Styles = makeStyles(
   theme => ({
     root: {
       ...baseHeadingStyles(theme).root,
-      paddingTop: theme.typography.pxToRem(32)
+      paddingTop: theme.typography.pxToRem(32),
+      [theme.breakpoints.down("sm")]: {
+        ...theme.typography.variants.h6
+      }
     }
   }),
   { name: "H3" }
@@ -82,7 +93,10 @@ const useH4Styles = makeStyles(
   theme => ({
     root: {
       ...baseHeadingStyles(theme).root,
-      paddingTop: theme.typography.pxToRem(16)
+      paddingTop: theme.typography.pxToRem(16),
+      [theme.breakpoints.down("sm")]: {
+        ...theme.typography.variants.subtitle
+      }
     }
   }),
   { name: "H4" }
@@ -394,14 +408,8 @@ const CustomDiv = React.forwardRef<HTMLDivElement>(function CustomDiv(
     >
       {isNoteBox ? (
         <React.Fragment>
-          <Icon
-            size={18}
-            className={classes.noteBoxIcon}
-            identifier="info-circle-large-o"
-          />
-          <Text variant="bodyText" size="small" responsive>
-            {children}
-          </Text>
+          <InfoCircleLargeO size={18} className={classes.noteBoxIcon} />
+          <Text variant="bodySmall">{children}</Text>
         </React.Fragment>
       ) : (
         children
@@ -415,14 +423,7 @@ const Paragraph = (props: TextProps<{}, "p">) => {
   const classes = useParagraphStyles();
 
   return (
-    <Text
-      {...otherProps}
-      className={classes.root}
-      variant="bodyText"
-      size="medium"
-      rootNode="p"
-      responsive
-    >
+    <Text {...otherProps} className={classes.root} variant="body" rootNode="p">
       {children}
     </Text>
   );
@@ -436,11 +437,9 @@ const H1 = (props: TextProps<{}, "h1">) => {
     <Text
       {...otherProps}
       className={classes.root}
-      variant="titleText"
-      size="large"
+      variant="h3"
       display="flex"
       rootNode="h1"
-      responsive
     >
       {children}
     </Text>
@@ -455,11 +454,9 @@ const H2 = (props: TextProps<{}, "h2">) => {
     <Text
       {...otherProps}
       className={classes.root}
-      variant="titleText"
+      variant="h4"
       display="flex"
-      size="medium"
       rootNode="h2"
-      responsive
     >
       {children}
     </Text>
@@ -474,11 +471,9 @@ const H3 = (props: TextProps<{}, "h3">) => {
     <Text
       {...otherProps}
       className={classes.root}
-      variant="titleText"
+      variant="h5"
       display="flex"
-      size="small"
       rootNode="h3"
-      responsive
     >
       {children}
     </Text>
@@ -493,11 +488,9 @@ const H4 = (props: TextProps<{}, "h4">) => {
     <Text
       {...otherProps}
       className={classes.root}
-      variant="titleText"
+      variant="h6"
       display="flex"
-      size="extraSmall"
       rootNode="h4"
-      responsive
     >
       {children}
     </Text>
@@ -677,9 +670,7 @@ const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => {
 
   return (
     <li {...otherProps} className={classes.root}>
-      <Text variant="bodyText" size="medium" responsive>
-        {children}
-      </Text>
+      <Text variant="body">{children}</Text>
     </li>
   );
 };

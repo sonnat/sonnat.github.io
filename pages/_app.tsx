@@ -14,8 +14,6 @@ import useStore from "store";
 import type { AppPropsWithLayout, MDXMeta } from "types";
 import { /*analytics,*/ createComponentMapping, setTitleMeta } from "utils";
 
-import "@sonnat/ui/static/sonnat-font-icon.min.css";
-
 const googleFontFamily =
   "https://fonts.googleapis.com/css2?" +
   "family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&" +
@@ -101,7 +99,7 @@ export default function App(props: AppPropsWithLayout) {
   // }, []);
 
   return (
-    <SonnatInitializer theme={theme}>
+    <SonnatInitializer theme={theme} injectFirst>
       <Head>
         {setTitleMeta("Sonnat Developer Tools, React Components & Resources")}
         <meta

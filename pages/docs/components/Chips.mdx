@@ -1,3 +1,4 @@
+import Heart from "@sonnat/icons/Heart";
 import ActionChip from "@sonnat/ui/ActionChip";
 import ChoiceChip from "@sonnat/ui/ChoiceChip";
 import RemovableChip from "@sonnat/ui/RemovableChip";
@@ -324,19 +325,19 @@ export const meta = {
 
 <DemoBox
   code={[
-    '<ChoiceChip label="default" color="default" leadingIcon="heart" />',
-    '<RemovableChip label="primary" color="primary" leadingIcon="heart" />',
-    '<ActionChip label="secondary" color="secondary" leadingIcon="heart" />'
+    '<ChoiceChip label="default" color="default" leadingIcon={<Heart />} />',
+    '<RemovableChip label="primary" color="primary" leadingIcon={<Heart />} />',
+    '<ActionChip label="secondary" color="secondary" leadingIcon={<Heart />} />'
   ].join("\n")}
 >
   <div className="demoSubject">
-    <ChoiceChip label="default" color="default" leadingIcon="heart" />
+    <ChoiceChip label="default" color="default" leadingIcon={<Heart />} />
   </div>
   <div className="demoSubject">
-    <RemovableChip label="primary" color="primary" leadingIcon="heart" />
+    <RemovableChip label="primary" color="primary" leadingIcon={<Heart />} />
   </div>
   <div className="demoSubject">
-    <ActionChip label="secondary" color="secondary" leadingIcon="heart" />
+    <ActionChip label="secondary" color="secondary" leadingIcon={<Heart />} />
   </div>
 </DemoBox>
 

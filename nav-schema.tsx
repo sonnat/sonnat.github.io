@@ -325,8 +325,7 @@ const schemaToJSX = (schema, classes, depth = 0) => {
                 <Text
                   title={childSchema.label}
                   rootNode="a"
-                  variant="bodyText"
-                  size="small"
+                  variant="bodySmall"
                   className={classes.navigationItemLink}
                 >
                   {childSchema.label}
@@ -345,8 +344,7 @@ const schemaToJSX = (schema, classes, depth = 0) => {
                 <Text
                   title={childSchema.label}
                   rootNode="a"
-                  variant={depth === 1 ? "bodyText" : "captionText"}
-                  size={depth === 1 ? "small" : "large"}
+                  variant={depth === 1 ? "bodySmall" : "caption"}
                   className={classes.navigationItemLink}
                 >
                   {childSchema.label}

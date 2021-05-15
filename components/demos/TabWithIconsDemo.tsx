@@ -1,19 +1,20 @@
-import TabBar, { Tab } from "@sonnat/ui/TabBar";
+import Heart from "@sonnat/icons/Heart";
 import Divider from "@sonnat/ui/Divider";
+import TabBar, { Tab } from "@sonnat/ui/TabBar";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "TabWithIconsDemo";
 
 const demoCode = `<TabBar>
-  <Tab label="Tab 1" icon="heart" />
-  <Tab label="Tab 2" icon="heart" />
-  <Tab label="Tab 3" icon="heart" />
+  <Tab label="Tab 1" {<Heart />} />
+  <Tab label="Tab 2" icon={<Heart />} />
+  <Tab label="Tab 3" icon={<Heart />} />
 </TabBar>
 <TabBar>
-  <Tab icon="heart" />
-  <Tab icon="heart" />
-  <Tab icon="heart" />
+  <Tab icon={<Heart />} />
+  <Tab icon={<Heart />} />
+  <Tab icon={<Heart />} />
 </TabBar>`;
 
 const TabWithIconsDemo: React.FC = () => {
@@ -21,15 +22,15 @@ const TabWithIconsDemo: React.FC = () => {
     <DemoBox code={demoCode}>
       <React.Fragment>
         <TabBar>
-          <Tab label="Tab 1" icon="heart" />
-          <Tab label="Tab 2" icon="heart" />
-          <Tab label="Tab 3" icon="heart" />
+          <Tab label="Tab 1" icon={<Heart />} />
+          <Tab label="Tab 2" icon={<Heart />} />
+          <Tab label="Tab 3" icon={<Heart />} />
         </TabBar>
         <Divider spaced />
         <TabBar>
-          <Tab icon="heart" />
-          <Tab icon="heart" />
-          <Tab icon="heart" />
+          <Tab icon={<Heart />} />
+          <Tab icon={<Heart />} />
+          <Tab icon={<Heart />} />
         </TabBar>
       </React.Fragment>
     </DemoBox>

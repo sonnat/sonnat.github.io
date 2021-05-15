@@ -1,5 +1,6 @@
-import makeStyles from "@sonnat/ui/styles/makeStyles";
+import PencilO from "@sonnat/icons/PencilO";
 import Button from "@sonnat/ui/Button";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import createClassName from "classnames";
 import * as React from "react";
 
@@ -33,7 +34,7 @@ const PageEditButton = React.memo(function PageEditButton(props: Props) {
       rel="noopener noreferrer"
       title="Edit page on github"
       aria-label="Edit page on github"
-      leadingIcon="pencil-o"
+      leadingIcon={<PencilO />}
     />
   );
 });

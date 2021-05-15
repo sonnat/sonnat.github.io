@@ -1,8 +1,7 @@
-import Text from "@sonnat/ui/Text";
-import Icon from "@sonnat/ui/Icon";
+import { GithubCat, Twitter, SonnatThinO } from "@sonnat/icons";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Text from "@sonnat/ui/Text";
 import createClassName from "classnames";
-import Logo from "components/Logo";
 import Link from "next/link";
 import * as React from "react";
 
@@ -32,7 +31,16 @@ const useStyles = makeStyles(
       navigation: { display: "flex", alignItems: "center" },
       logo: {
         marginRight: pxToRem(16),
-        cursor: "pointer"
+        cursor: "pointer",
+        color: colors.text.secondary,
+        transition: [
+          "opacity 360ms ease",
+          "visibility 360ms ease",
+          "color 360ms ease"
+        ].join(", "),
+        "&:hover": {
+          color: colors.text.primary
+        }
       },
       navigationList: {
         padding: "0",
@@ -95,7 +103,7 @@ const Footer = React.memo(function Footer(props: Props) {
       <nav className={classes.navigation}>
         <Link href="/">
           <a title="Home" className={classes.logo}>
-            <Logo variant="line" size={32} />
+            <SonnatThinO size={32} title="Sonnat Design System's Logo" />
           </a>
         </Link>
         <ul className={classes.navigationList}>
@@ -104,8 +112,7 @@ const Footer = React.memo(function Footer(props: Props) {
               <Text
                 title="Documentation"
                 rootNode="a"
-                variant="captionText"
-                size="large"
+                variant="caption"
                 className={classes.navigationItemLink}
               >
                 Docs
@@ -120,8 +127,7 @@ const Footer = React.memo(function Footer(props: Props) {
                 rootNode="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="captionText"
-                size="large"
+                variant="caption"
                 className={classes.navigationItemLink}
               >
                 Design
@@ -139,8 +145,7 @@ const Footer = React.memo(function Footer(props: Props) {
                 rootNode="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="captionText"
-                size="large"
+                variant="caption"
                 className={classes.navigationItemLink}
               >
                 Feedback
@@ -158,8 +163,7 @@ const Footer = React.memo(function Footer(props: Props) {
                 rootNode="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="captionText"
-                size="large"
+                variant="caption"
                 className={classes.navigationItemLink}
               >
                 Careers
@@ -170,28 +174,14 @@ const Footer = React.memo(function Footer(props: Props) {
       </nav>
       <div className={classes.socials}>
         <Link href="https://twitter.com/sonnatdesign" passHref>
-          <Icon
-            aria-hidden={undefined}
-            title="Twitter"
-            target="_blank"
-            rel="noopener noreferrer"
-            rootNode="a"
-            identifier="twitter"
-            size={24}
-            className={classes.social}
-          />
+          <a title="Twitter" target="_blank" rel="noopener noreferrer">
+            <Twitter size={24} className={classes.social} />
+          </a>
         </Link>
         <Link href="https://github.com/sonnat/sonnat-ui" passHref>
-          <Icon
-            aria-hidden={undefined}
-            title="GitHub"
-            target="_blank"
-            rel="noopener noreferrer"
-            rootNode="a"
-            identifier="github"
-            size={24}
-            className={classes.social}
-          />
+          <a title="GitHub" target="_blank" rel="noopener noreferrer">
+            <GithubCat size={24} className={classes.social} />
+          </a>
         </Link>
       </div>
     </footer>

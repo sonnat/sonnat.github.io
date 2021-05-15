@@ -1,6 +1,7 @@
+import Link from "@sonnat/icons/Link";
 import Button from "@sonnat/ui/Button";
-import Tooltip from "@sonnat/ui/Tooltip";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Tooltip from "@sonnat/ui/Tooltip";
 import createClassName from "classnames";
 import * as React from "react";
 import useClipboard from "react-use-clipboard";
@@ -55,7 +56,7 @@ const AnchorButton = React.memo<Props>(function AnchorButton(props) {
           variant="inlined"
           title="Anchor link"
           aria-label="Anchor link"
-          leadingIcon="link"
+          leadingIcon={<Link />}
         />
       </Tooltip>
     </div>
