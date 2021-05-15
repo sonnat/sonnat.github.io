@@ -1,0 +1,348 @@
+import Text from "@sonnat/ui/Text";
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Text",
+  description:
+    "Use text component to present your design and content as clearly and efficiently as possible.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "text",
+    "typography",
+    "type",
+    "متن",
+    "تایپوگرافی"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  The typeface will not be automatically loaded by Sonnat-UI. The developer is
+  responsible for loading all the fonts used in their application.
+</p>
+
+<h2>
+  <span>Headings</span>
+  <AnchorButton anchorId="headings" />
+</h2>
+
+<DemoBox
+  horizontalAlignment="start"
+  flexDirection="column"
+  code={`<Text variant="h1">Heading Display 1</Text>
+<Text variant="h2">Heading Display 2</Text>
+<Text variant="h3">Heading Display 3</Text>
+<Text variant="h4">Heading Display 4</Text>
+<Text variant="h5">Heading Display 5</Text>
+<Text variant="h6">Heading Display 6</Text>`}
+>
+  <Text variant="h1">Heading Display 1</Text>
+  <Text variant="h2">Heading Display 2</Text>
+  <Text variant="h3">Heading Display 3</Text>
+  <Text variant="h4">Heading Display 4</Text>
+  <Text variant="h5">Heading Display 5</Text>
+  <Text variant="h6">Heading Display 6</Text>
+</DemoBox>
+
+<h2>
+  <span>Subtitles</span>
+  <AnchorButton anchorId="subtitles" />
+</h2>
+
+<DemoBox
+  horizontalAlignment="start"
+  flexDirection="column"
+  code={`<Text variant="subtitle">
+  <strong>Subtitle:</strong> The evil rabbit jumps over the fence
+</Text>
+<Text variant="subtitleSmall">
+  <strong>Small Subtitle:</strong> The evil rabbit jumps over the fence
+</Text>`}
+>
+  <Text variant="subtitle">
+    <strong>Subtitle:</strong> The evil rabbit jumps over the fence
+  </Text>
+  <Text variant="subtitleSmall">
+    <strong>Small Subtitle:</strong> The evil rabbit jumps over the fence
+  </Text>
+</DemoBox>
+
+<h2>
+  <span>Paragraphs (body)</span>
+  <AnchorButton anchorId="paragraphs" />
+</h2>
+
+<DemoBox
+  horizontalAlignment="start"
+  flexDirection="column"
+  code={`<Text variant="body">
+  <strong>Body:</strong> func is a modern command line framework that is
+  lighter and more elegant compared with other products, with more scaffolding
+  support and an excellent developer experience at the same time.
+</Text>
+<Text variant="bodySmall">
+  <strong>Small Body:</strong> func is a modern command line framework that is
+  lighter and more elegant compared with other products, with more scaffolding
+  support and an excellent developer experience at the same time.
+</Text>`}
+>
+  <Text variant="body">
+    <strong>Body:</strong> func is a modern command line framework that is
+    lighter and more elegant compared with other products, with more scaffolding
+    support and an excellent developer experience at the same time.
+  </Text>
+  <Text variant="bodySmall">
+    <strong>Small Body:</strong> func is a modern command line framework that is
+    lighter and more elegant compared with other products, with more scaffolding
+    support and an excellent developer experience at the same time.
+  </Text>
+</DemoBox>
+
+<h2>
+  <span>Captions</span>
+  <AnchorButton anchorId="captions" />
+</h2>
+
+<DemoBox
+  horizontalAlignment="start"
+  flexDirection="column"
+  code={`<Text variant="caption">
+  <strong>Caption:</strong> Piet Mondrian and Pétro (Nelly) van Doesburg in
+  Mondrian's Paris studio, 1923
+</Text>
+<Text variant="captionSmall">
+  <strong>Small Caption:</strong> Piet Mondrian and Pétro (Nelly) van Doesburg
+  in Mondrian's Paris studio, 1923
+</Text>`}
+>
+  <Text variant="caption">
+    <strong>Caption:</strong> Piet Mondrian and Pétro (Nelly) van Doesburg in
+    Mondrian's Paris studio, 1923
+  </Text>
+  <Text variant="captionSmall">
+    <strong>Small Caption:</strong> Piet Mondrian and Pétro (Nelly) van Doesburg
+    in Mondrian's Paris studio, 1923
+  </Text>
+</DemoBox>
+
+<h2>
+  <span>Access Variants via Theme</span>
+  <AnchorButton anchorId="access-variants-via-theme" />
+</h2>
+
+<p>
+  In some situations you might not be able to use the{" "}
+  <inlineCode>&lt;Text /&gt;</inlineCode> component. Hopefully, you might be
+  able to take advantage of the{" "}
+  <inlineCode>theme.typography.variants</inlineCode> key.
+</p>
+
+<h2>
+  <span>Separate the Semantics from the Style</span>
+  <AnchorButton anchorId="separate-the-semantics-from-the-style" />
+</h2>
+
+<p>
+  It’s important to realize that the style of a typography is independent from
+  the semantic underlying element. Don't skip heading levels. In order to solve
+  this problem, you need to separate the semantics from the style.
+  <br /> You can change the text element's semantic with the <inlineCode>
+    rootNode
+  </inlineCode> property:
+</p>
+
+<DemoBox
+  code={`{/* There is already an h1 in the page, let's not duplicate it. */}
+<Text variant="h1" rootNode="strong">
+  Heading Display 1
+</Text>`}
+>
+  <Text variant="h1" rootNode="strong">
+    Heading Display 1
+  </Text>
+</DemoBox>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Text from "@sonnat/ui/Text";
+
+//or
+import { Text } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Text Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>noWrap</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the text will not wrap, but instead
+        will truncate or clip based on the <inlineCode>textOverflow</inlineCode>{" "}
+        prop provided.
+        <br />
+        Note that text overflow can only happen when the element has a width in
+        order to overflow.
+      </td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>
+        "inherit"
+        <br />| "textPrimary"
+        <br />| "textSecondary"
+        <br />| "textHint"
+        <br />| "textDisabled"
+        <br />| "primary"
+        <br />| "secondary"
+        <br />| "error"
+        <br />| "success"
+        <br />| "warning"
+        <br />| "info"
+      </td>
+      <td>"inherit"</td>
+      <td>The color of the text.</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>
+        "h1"
+        <br />| "h2"
+        <br />| "h3"
+        <br />| "h4"
+        <br />| "h5"
+        <br />| "h6"
+        <br />| "subtitle"
+        <br />| "subtitleSmall"
+        <br />| "body"
+        <br />| "bodySmall"
+        <br />| "caption"
+        <br />| "captionSmall"
+      </td>
+      <td></td>
+      <td>Applies the theme typography styles.</td>
+    </tr>
+    <tr>
+      <td>align</td>
+      <td>
+        "initial"
+        <br />| "inherit"
+        <br />| "left"
+        <br />| "right"
+        <br />| "center"
+        <br />| "justify"
+      </td>
+      <td></td>
+      <td>Set the text-align on the text.</td>
+    </tr>
+    <tr>
+      <td>display</td>
+      <td>
+        "initial"
+        <br />| "block"
+        <br />| "inline"
+        <br />| "inline-block"
+        <br />| "flex"
+        <br />| "inline-flex"
+      </td>
+      <td>"initial"</td>
+      <td>Set the display on the text.</td>
+    </tr>
+    <tr>
+      <td>textOverflow</td>
+      <td>
+        "clip"
+        <br />| "ellipsis"
+      </td>
+      <td>"ellipsis"</td>
+      <td>Set the text-overflow on the text.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
