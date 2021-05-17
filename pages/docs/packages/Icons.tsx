@@ -9,15 +9,14 @@ import type { IconProps } from "@sonnat/ui/Icon";
 import InputAdornment from "@sonnat/ui/InputAdornment";
 import Row from "@sonnat/ui/Row";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import throttle from "lodash.throttle";
 import Text from "@sonnat/ui/Text";
 import TextField from "@sonnat/ui/TextField";
 import WithSidebar from "components/layouts/WithSidebar";
 import IconDrawer from "components/partials/IconDrawer";
 import IconSample from "components/partials/IconSample";
-import useIsomorphicLayoutEffect from "utils/useIsomorphicLayoutEffect";
 import globAsync from "fast-glob";
 import fse from "fs-extra";
+import throttle from "lodash.throttle";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -31,6 +30,7 @@ import {
   setKeywordsMeta,
   setTitleMeta
 } from "utils";
+import useIsomorphicLayoutEffect from "utils/useIsomorphicLayoutEffect";
 
 const pageName = "IconsPackagePage";
 
@@ -149,7 +149,10 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
       const IconComponent = dynamic<IconProps>(
         // @ts-ignore
-        async () => await import(`@sonnat/icons`)[iconData.pascalCaseName]
+        async () =>
+          import(`@sonnat/icons`).then(
+            module => module[iconData.pascalCaseName]
+          )
       );
 
       return (
