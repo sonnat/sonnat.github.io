@@ -1,4 +1,4 @@
-import { Download, GithubCat, Magnifier } from "@sonnat/icons";
+import { Close, Download, GithubCat, Magnifier } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
 import ChoiceChip from "@sonnat/ui/ChoiceChip";
 import Code from "@sonnat/ui/Code";
@@ -42,7 +42,6 @@ const useStyles = makeStyles(
     } = theme;
 
     return {
-      section: {},
       sectionHead: {},
       sectionBody: {},
       heading: {},
@@ -76,6 +75,12 @@ const useStyles = makeStyles(
       outlinedChip: {},
       iconSample: {
         marginBottom: pxToRem(16)
+      },
+      emptyState: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: "1 0"
       },
       [breakpoints.down("sm")]: {
         heading: {
@@ -133,7 +138,9 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
   >(null);
 
   const [variant, setVariant] = React.useState<"filled" | "outlined" | "">("");
+  const [searchValue, setSearchValue] = React.useState("");
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
+  const [hasEmptyState, setHasEmptyState] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState<IconDataState | null>(
     null
   );
@@ -160,6 +167,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
           data-key={`${iconData.kebabCaseName}`}
           key={iconData.pascalCaseName}
           sm={2}
+          all={4}
         >
           <IconSample
             className={classes.iconSample}
@@ -182,7 +190,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
     setFilteredIcons(cachedSource);
   }, [cachedSource]);
 
-  const onSearch = (value: string) => {
+  const onSearch = throttle((value: string) => {
     const key = value.toLowerCase();
 
     if (key && key.length >= 2) {
@@ -194,23 +202,53 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
       setFilteredIcons(filtered);
     } else setFilteredIcons(cachedSource);
-  };
+
+    setSearchValue(value);
+  }, 750);
 
   const cachedResult = React.useMemo(() => {
+    let filtered: JSX.Element[] | null | undefined = filteredIcons;
+
     if (variant === "filled") {
-      return filteredIcons?.filter(jsx => {
+      filtered = filteredIcons?.filter(jsx => {
         const jsxKey: string = jsx.props["data-key"];
 
         return !jsxKey.includes("-o");
       });
     } else if (variant === "outlined") {
-      return filteredIcons?.filter(jsx => {
+      filtered = filteredIcons?.filter(jsx => {
         const jsxKey: string = jsx.props["data-key"];
 
         return jsxKey.includes("-o");
       });
-    } else return filteredIcons;
+    }
+
+    if (filtered?.length === 0) setHasEmptyState(true);
+    else setHasEmptyState(false);
+
+    return filtered;
   }, [variant, filteredIcons]);
+
+  const renderEmptyState = () => (
+    <div className={classes.emptyState}>
+      <Text
+        variant="bodySmall"
+        rootNode="p"
+        color="textSecondary"
+        align="center"
+      >
+        No results found for the provided input!
+      </Text>
+    </div>
+  );
+
+  const clearSearch = () => {
+    setSearchValue("");
+    setHasEmptyState(false);
+    setFilteredIcons(cachedSource);
+  };
+
+  const display = hasEmptyState ? renderEmptyState() : cachedResult;
 
   return (
     <React.Fragment>
@@ -232,97 +270,100 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
           "svg"
         ])}
       </Head>
-      <main id="main">
-        <section id="main-section" className={classes.section}>
-          <Container>
-            <div className={classes.sectionHead}>
-              <Text className={classes.heading} variant="h3" rootNode="h1">
-                Sonnat Icon Set
-              </Text>
-              <Text className={classes.description} variant="body" rootNode="p">
-                The growing icon collection that allows designers and developers
-                to download or install SVG Icons for any projects.
-                <br />
-                Start using it in ReactJS projects:{" "}
-                <Code>{`npm install @sonnat/icons`}</Code> or{" "}
-                <Code>{`yarn add @sonnat/icons`}</Code>.
-              </Text>
-              <div className={classes.headActionBar}>
-                <Button
-                  rootNode="a"
-                  download="sonnat-icons.zip"
-                  href={zipPath}
-                  label="Download"
-                  leadingIcon={<Download />}
-                  color="primary"
-                />
-                <Button
-                  rootNode="a"
-                  href="https://github.com/sonnat/sonnat-ui/tree/next/packages/sonnat-icons"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  label="Github"
-                  leadingIcon={<GithubCat />}
-                  variant="inlined"
-                />
-              </div>
-              <Divider />
-            </div>
-            <div className={classes.sectionBody}>
-              <div className={classes.bodyActionBar}>
-                <TextField
-                  fluid
-                  onChange={e => void throttle(onSearch, 250)(e.target.value)}
-                  className={classes.searchField}
-                  placeholder="Search for icon"
-                  leadingAdornment={
-                    <InputAdornment variant="icon">
-                      <Magnifier />
-                    </InputAdornment>
-                  }
-                />
-                <Divider vertical className={classes.fieldSeparator} />
-                <div className={classes.chips}>
-                  <ChoiceChip
-                    className={classes.filledChip}
-                    label="Filled"
-                    variant="outlined"
-                    rounded
-                    color="primary"
-                    selected={variant === "filled"}
-                    onToggle={(_, isSelected) =>
-                      void (isSelected ? setVariant("filled") : setVariant(""))
-                    }
-                  />
-                  <ChoiceChip
-                    className={classes.outlinedChip}
-                    label="Outlined"
-                    variant="outlined"
-                    rounded
-                    color="primary"
-                    selected={variant === "outlined"}
-                    onToggle={(_, isSelected) =>
-                      void (isSelected
-                        ? setVariant("outlined")
-                        : setVariant(""))
-                    }
-                  />
-                </div>
-              </div>
-              <div className={classes.bodyContent}>
-                <Container fluid noPadding>
-                  <Row>{cachedResult}</Row>
-                </Container>
-              </div>
-            </div>
+      <div className={classes.sectionHead}>
+        <Text className={classes.heading} variant="h3" rootNode="h1">
+          Sonnat Icon Set
+        </Text>
+        <Text className={classes.description} variant="body" rootNode="p">
+          The growing icon collection that allows designers and developers to
+          download or install SVG Icons for any projects.
+          <br />
+          Start using it in ReactJS projects:{" "}
+          <Code>{`npm install @sonnat/icons`}</Code> or{" "}
+          <Code>{`yarn add @sonnat/icons`}</Code>.
+        </Text>
+        <div className={classes.headActionBar}>
+          <Button
+            rootNode="a"
+            download="sonnat-icons.zip"
+            href={zipPath}
+            label="Download"
+            leadingIcon={<Download />}
+            color="primary"
+          />
+          <Button
+            rootNode="a"
+            href="https://github.com/sonnat/sonnat-ui/tree/next/packages/sonnat-icons"
+            target="_blank"
+            rel="noopener noreferrer"
+            label="Github"
+            leadingIcon={<GithubCat />}
+            variant="inlined"
+          />
+        </div>
+        <Divider />
+      </div>
+      <div className={classes.sectionBody}>
+        <div className={classes.bodyActionBar}>
+          <TextField
+            fluid
+            value={searchValue}
+            onChange={e => void onSearch(e.target.value)}
+            className={classes.searchField}
+            placeholder="Search for icon"
+            leadingAdornment={
+              <InputAdornment variant="icon">
+                <Magnifier />
+              </InputAdornment>
+            }
+            trailingAdornment={
+              searchValue && (
+                <InputAdornment
+                  variant="icon"
+                  onClick={() => void clearSearch()}
+                >
+                  <Close />
+                </InputAdornment>
+              )
+            }
+          />
+          <Divider vertical className={classes.fieldSeparator} />
+          <div className={classes.chips}>
+            <ChoiceChip
+              className={classes.filledChip}
+              label="Filled"
+              variant="outlined"
+              rounded
+              color="primary"
+              selected={variant === "filled"}
+              onToggle={(_, isSelected) =>
+                void (isSelected ? setVariant("filled") : setVariant(""))
+              }
+            />
+            <ChoiceChip
+              className={classes.outlinedChip}
+              label="Outlined"
+              variant="outlined"
+              rounded
+              color="primary"
+              selected={variant === "outlined"}
+              onToggle={(_, isSelected) =>
+                void (isSelected ? setVariant("outlined") : setVariant(""))
+              }
+            />
+          </div>
+        </div>
+        <div className={classes.bodyContent}>
+          <Container fluid noPadding>
+            <Row>{display}</Row>
           </Container>
-        </section>
-        <IconDrawer
-          data={selectedIcon}
-          open={isDrawerOpen}
-          toggle={() => void setDrawerOpen(!isDrawerOpen)}
-        />
-      </main>
+        </div>
+      </div>
+      <IconDrawer
+        data={selectedIcon}
+        open={isDrawerOpen}
+        toggle={() => void setDrawerOpen(!isDrawerOpen)}
+      />
     </React.Fragment>
   );
 };
