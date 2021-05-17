@@ -4,3 +4,4 @@ export { default as setCanonicalMeta } from "./setCanonicalMeta";
 export { default as setDescriptionMeta } from "./setDescriptionMeta";
 export { default as setKeywordsMeta } from "./setKeywordsMeta";
 export { default as createComponentMapping } from "./createComponentMapping";
+export { default as useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
