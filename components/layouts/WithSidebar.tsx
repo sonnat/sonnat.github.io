@@ -30,6 +30,12 @@ const useStyles = makeStyles(
         [breakpoints.up("lg")]: {
           paddingLeft: pxToRem(32)
         }
+      },
+      article: {
+        minHeight: `calc(100vh - ${pxToRem(328)})`,
+        [breakpoints.down("sm")]: {
+          minHeight: "auto"
+        }
       }
     };
   },
@@ -44,7 +50,7 @@ const WithSidebar: React.FC = ({ children }) => {
       <Container className={classes.container}>
         <Sidebar className={classes.sidebar} />
         <section className={classes.content}>
-          <article>{children}</article>
+          <article className={classes.article}>{children}</article>
           <Footer />
         </section>
       </Container>
