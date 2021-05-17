@@ -1,4 +1,4 @@
-import { GithubCat, Twitter, SonnatThinO } from "@sonnat/icons";
+import { Github, Twitter, SonnatThinO } from "@sonnat/icons";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
 import createClassName from "classnames";
@@ -180,7 +180,7 @@ const Footer = React.memo(function Footer(props: Props) {
         </Link>
         <Link href="https://github.com/sonnat/sonnat-ui" passHref>
           <a title="GitHub" target="_blank" rel="noopener noreferrer">
-            <GithubCat size={24} className={classes.social} />
+            <Github size={24} className={classes.social} />
           </a>
         </Link>
       </div>

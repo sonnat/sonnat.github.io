@@ -1,4 +1,4 @@
-import { Close, Download, GithubCat, Magnifier } from "@sonnat/icons";
+import { Close, Download, Github, Magnifier } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
 import ChoiceChip from "@sonnat/ui/ChoiceChip";
 import Code from "@sonnat/ui/Code";
@@ -259,7 +259,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
         {setDescriptionMeta(
           "The growing icon collection that allows designers and developers to download or install SVG Icons for any projects."
         )}
-        {setCanonicalMeta(siteFullAddress)}
+        {setCanonicalMeta(`${siteFullAddress}/docs/packages/Icons`)}
         {setKeywordsMeta([
           ...defaultKeywordsMetaContent,
           "sonnat",
@@ -297,7 +297,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             label="Github"
-            leadingIcon={<GithubCat />}
+            leadingIcon={<Github />}
             variant="inlined"
           />
         </div>
