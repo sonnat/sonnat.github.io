@@ -28,7 +28,7 @@ const PageEditButton = React.memo(function PageEditButton(props: Props) {
       {...otherProps}
       className={createClassName(classes.root, className)}
       rootNode="a"
-      href={`https://github.com/sonnat/sonnat-dev-docs/tree/main/${href}`}
+      href={`https://github.com/sonnat/sonnat.github.io/blob/main/${href}`}
       variant="inlined"
       target="_blank"
       rel="noopener noreferrer"
