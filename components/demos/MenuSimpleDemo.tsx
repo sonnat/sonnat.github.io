@@ -41,12 +41,11 @@ export default MenuSimpleDemo;
 
 const MenuSimpleDemo: React.FC = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
-  const anchorElement = React.useRef<HTMLButtonElement>();
+  const anchorElement = React.useRef<HTMLButtonElement>(null);
 
   return (
     <DemoBox code={demoCode}>
       <React.Fragment>
-        {/* @ts-ignore */}
         <Button
           aria-controls="simple-menu-1"
           ref={anchorElement}

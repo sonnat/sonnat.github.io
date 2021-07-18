@@ -1,8 +1,5 @@
-import { MagnifierLarge } from "@sonnat/icons";
-import InputAdornment from "@sonnat/ui/InputAdornment";
+import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
-import TextField from "@sonnat/ui/TextField";
 import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
 import createClass from "classnames";
 import { useNavJsx } from "nav-schema";
@@ -12,9 +9,17 @@ interface Props {
   className?: string;
 }
 
+interface MakeStylesData {
+  scrollBarWidth: number;
+}
+
 const componentName = "Sidebar";
 
-const useStyles = makeStyles(
+const useStyles = makeStyles<
+  DefaultTheme,
+  MakeStylesData,
+  "root" | "heading" | "hintText"
+>(
   theme => {
     const {
       colors,
@@ -60,7 +65,10 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
+const Sidebar: React.FC<Props> = React.memo(function Sidebar({
+  children,
+  className
+}) {
   const navJsx = useNavJsx();
 
   const scrollBarWidth = React.useMemo(
@@ -72,7 +80,7 @@ const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
 
   return (
     <aside className={createClass(className, classes.root)}>
-      <div className={classes.heading}>
+      {/* <div className={classes.heading}>
         <TextField
           fluid
           disabled
@@ -95,7 +103,7 @@ const Sidebar = React.memo<Props>(function Sidebar({ children, className }) {
         >
           Searchbox is under construction!
         </Text>
-      </div>
+      </div> */}
       {navJsx}
       {children}
     </aside>

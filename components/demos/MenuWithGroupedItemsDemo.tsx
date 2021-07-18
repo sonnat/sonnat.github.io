@@ -53,7 +53,7 @@ export default MenuWithGroupedItemsDemo;
 
 const MenuWithGroupedItemsDemo: React.FC = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
-  const anchorElement = React.useRef<HTMLButtonElement>();
+  const anchorElement = React.useRef<HTMLButtonElement>(null);
 
   const closeCallback = () => void setMenuOpen(false);
 

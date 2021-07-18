@@ -1,4 +1,5 @@
 import PortalDestination from "@sonnat/ui/PortalDestination";
+import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import createClass from "classnames";
 import { useNavJsx } from "nav-schema";
@@ -11,7 +12,11 @@ interface Props {
   toggle?: () => void;
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles<
+  DefaultTheme,
+  unknown,
+  "root" | "dimmer" | "open" | "active"
+>(
   theme => {
     const {
       colors,

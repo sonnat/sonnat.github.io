@@ -26,7 +26,7 @@ const useStyles = makeStyles(
       colors,
       darkMode,
       breakpoints,
-      typography: { pxToRem, fontWeight }
+      typography: { pxToRem }
     } = theme;
 
     const primary = !darkMode ? colors.primary.origin : colors.primary.light;
@@ -59,8 +59,7 @@ const useStyles = makeStyles(
       sectionContent: { flexShrink: 0, maxWidth: pxToRem(530) },
       heroTitle: {
         paddingTop: pxToRem(32),
-        paddingBottom: pxToRem(8),
-        fontWeight: fontWeight.bold
+        paddingBottom: pxToRem(16)
       },
       heroParagraph: {},
       heroFooter: {},
@@ -185,7 +184,12 @@ const LandingPage: NextPage = () => {
             <div className={classes.sectionBody}>
               <div className={classes.sectionContent}>
                 <SonnatSvgLogo className={classes.logo} size={64} />
-                <Text rootNode="h1" variant="h3" className={classes.heroTitle}>
+                <Text
+                  rootNode="h1"
+                  variant="h3"
+                  weight="bold"
+                  className={classes.heroTitle}
+                >
                   Sonnat Developer Tools,
                   <br />
                   React Components & Resources
@@ -207,6 +211,7 @@ const LandingPage: NextPage = () => {
                       rootNode="a"
                       label="Get Started"
                       color="primary"
+                      size="large"
                       className={classes.gettingStartedBtn}
                     />
                   </Link>

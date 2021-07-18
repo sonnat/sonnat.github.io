@@ -42,7 +42,7 @@ export default MenuOutsideClickDemo;
 
 const MenuOutsideClickDemo: React.FC = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
-  const anchorElement = React.useRef<HTMLButtonElement>();
+  const anchorElement = React.useRef<HTMLButtonElement>(null);
 
   return (
     <DemoBox code={demoCode}>

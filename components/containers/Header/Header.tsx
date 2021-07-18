@@ -2,8 +2,8 @@ import {
   BurgerMenu as BurgerMenuIcon,
   CloseLarge,
   MoonO,
-  WeatherSunnyO,
-  SonnatThinO
+  SonnatThinO,
+  WeatherSunnyO
 } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
 import Container from "@sonnat/ui/Container";
@@ -51,7 +51,25 @@ const useStyles = makeStyles(
         boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.12)",
         transition: ["box-shadow 360ms ease", "padding-top 360ms ease"].join(
           ","
-        )
+        ),
+        [breakpoints.up("lg")]: {
+          "& $desktop": { display: "flex" },
+          "& $mobile": { display: "none" },
+          "& $subHeaderContainer": { display: "none" }
+        },
+        [breakpoints.down("lg")]: {
+          flexDirection: "column",
+          "& $container": { justifyContent: "space-between" },
+          "& $burgerMenuToggle": { display: "inline-flex" },
+          "& $logo": { marginRight: 0 },
+          "& $mobile": { display: "flex" },
+          "& $desktop": { display: "none" },
+          "& $divider": { display: "none" },
+          "& $subHeaderWrapper": { display: "flex" }
+        },
+        [breakpoints.down("sm")]: {
+          "& $subHeaderContainer": { borderTop: `1px solid ${colors.divider}` }
+        }
       },
       container: {
         display: "flex",
@@ -114,30 +132,6 @@ const useStyles = makeStyles(
         display: "none",
         alignItems: "center",
         width: `calc(100vw - ${pxToRem(32)})`
-      },
-      [breakpoints.up("lg")]: {
-        desktop: { display: "flex" },
-        mobile: { display: "none" },
-        subHeaderContainer: { display: "none" }
-      },
-      [breakpoints.down("lg")]: {
-        root: {
-          flexDirection: "column"
-        },
-        container: {
-          justifyContent: "space-between"
-        },
-        burgerMenuToggle: { display: "inline-flex" },
-        logo: { marginRight: 0 },
-        mobile: { display: "flex" },
-        desktop: { display: "none" },
-        divider: { display: "none" },
-        subHeaderWrapper: { display: "flex" }
-      },
-      [breakpoints.down("sm")]: {
-        subHeaderContainer: {
-          borderTop: `1px solid ${colors.divider}`
-        }
       }
     };
   },
@@ -166,7 +160,7 @@ const Header = React.memo(function Header(props: Props) {
 
   const createNav = (className: string) => {
     return (
-      <nav className={createClassName(classes.nav, classes[className])}>
+      <nav className={createClassName(classes.nav, className)}>
         <ul className={classes.navList}>
           <li className={classes.navItem}>
             <Link href="/docs/installation" passHref>
