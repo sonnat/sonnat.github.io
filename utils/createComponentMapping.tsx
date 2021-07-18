@@ -355,7 +355,7 @@ const useCustomDivStyles = makeStyles(
       marginRight: theme.typography.pxToRem(8),
       alignSelf: "flex-start",
       position: "relative",
-      top: theme.typography.pxToRem(5)
+      top: theme.typography.pxToRem(2)
     }
   }),
   { name: "CustomDiv" }
