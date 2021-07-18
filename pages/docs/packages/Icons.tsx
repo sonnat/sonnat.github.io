@@ -259,7 +259,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
         {setDescriptionMeta(
           "The growing icon collection that allows designers and developers to download or install SVG Icons for any projects."
         )}
-        {setCanonicalMeta(`${siteFullAddress}/docs/packages/Icons`)}
+        {setCanonicalMeta(`${siteFullAddress}/docs/packages/icons`)}
         {setKeywordsMeta([
           ...defaultKeywordsMetaContent,
           "sonnat",
