@@ -212,14 +212,14 @@ const schema = {
     Styling: { label: "Styling", href: "/docs/styling" },
     "Server-side Rendering": {
       label: "Server-side Rendering",
-      href: "/docs/serverside-rendering"
+      href: "/docs/server-side-rendering"
     },
     Packages: {
       label: "Packages",
       byChild: {
         Icons: {
           label: "Icons",
-          href: "/docs/packages/Icons"
+          href: "/docs/packages/icons"
         }
       },
       children: ["Icons"]
