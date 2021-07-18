@@ -22,7 +22,7 @@ export const meta = {
     `${meta.title} | Sonnat Developer Tools, React Components & Resources`
   )}
   {setDescriptionMeta(meta.description)}
-  {setCanonicalMeta(`${siteFullAddress}/docs/serverside-rendering`)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/server-side-rendering`)}
   {setKeywordsMeta([
     ...defaultKeywordsMetaContent,
     "server-side rendering",
@@ -65,10 +65,6 @@ export const meta = {
 </h2>
 
 <p>
-  All Components of <inlineCode>@sonnat/ui</inlineCode> are compatible with
-  Server-side Rendering. In fact, the document you see now is rendered by the
-  server.
-  <br />
   It's important to provide the page with the required CSS, otherwise the page
   will render with just the HTML then wait for the CSS to be injected by the
   client, causing it to flicker (FOUC). To inject the style down to the client,
@@ -102,7 +98,6 @@ export const meta = {
 
 <p>
   Create a theme object that will be shared between the client and the server.
-  <br />
   If you don't provide a theme object the theming will be defaults to{" "}
   <a href="/docs/theming#default-theme">Default Theme</a>.
   <br />
@@ -130,9 +125,8 @@ export default theme;
 
 <p>
   The first thing that we need to do on every request is create a new{" "}
-  <inlineCode>ServerStyleSheets</inlineCode>.
-  <br />
-  When rendering, we will wrap App, the root component, inside a{" "}
+  <inlineCode>ServerStyleSheets</inlineCode>. When rendering, we will wrap App,
+  the root component, inside a{" "}
   <inlineCode>&lt;SonnatInitializer&gt;</inlineCode> to make the style
   configuration and the theme available to all components in the component tree.
 </p>

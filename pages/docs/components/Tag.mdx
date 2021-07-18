@@ -44,8 +44,22 @@ export const meta = {
 
 <p>Filled/Contained is the default style for the tags.</p>
 
-<DemoBox code={'<Tag label="Filled" />'}>
-  <Tag label="Filled" />
+<DemoBox
+  code={`<Tag label="Default" color="default" />
+<Tag label="Primary" color="primary" />
+<Tag label="Secondary" color="secondary" />
+<Tag label="Success" color="success" />
+<Tag label="Error" color="error" />
+<Tag label="Warning" color="warning" />
+<Tag label="Info" color="info" />`}
+>
+  <Tag className="demoSubject" label="Default" color="default" />
+  <Tag className="demoSubject" label="Primary" color="primary" />
+  <Tag className="demoSubject" label="Secondary" color="secondary" />
+  <Tag className="demoSubject" label="Success" color="success" />
+  <Tag className="demoSubject" label="Error" color="error" />
+  <Tag className="demoSubject" label="Warning" color="warning" />
+  <Tag className="demoSubject" label="Info" color="info" />
 </DemoBox>
 
 <h2>
@@ -55,8 +69,47 @@ export const meta = {
 
 <p>Outlined tags offer an alternative style.</p>
 
-<DemoBox code={'<Tag label="Outlined" />'}>
-  <Tag label="Outlined" variant="outlined" />
+<DemoBox
+  code={`<Tag variant="outlined" label="Default" color="default" />
+<Tag variant="outlined" label="Primary" color="primary" />
+<Tag variant="outlined" label="Secondary" color="secondary" />
+<Tag variant="outlined" label="Success" color="success" />
+<Tag variant="outlined" label="Error" color="error" />
+<Tag variant="outlined" label="Warning" color="warning" />
+<Tag variant="outlined" label="Info" color="info" />`}
+>
+  <Tag
+    variant="outlined"
+    className="demoSubject"
+    label="Default"
+    color="default"
+  />
+  <Tag
+    variant="outlined"
+    className="demoSubject"
+    label="Primary"
+    color="primary"
+  />
+  <Tag
+    variant="outlined"
+    className="demoSubject"
+    label="Secondary"
+    color="secondary"
+  />
+  <Tag
+    variant="outlined"
+    className="demoSubject"
+    label="Success"
+    color="success"
+  />
+  <Tag variant="outlined" className="demoSubject" label="Error" color="error" />
+  <Tag
+    variant="outlined"
+    className="demoSubject"
+    label="Warning"
+    color="warning"
+  />
+  <Tag variant="outlined" className="demoSubject" label="Info" color="info" />
 </DemoBox>
 
 <h2>
@@ -81,6 +134,91 @@ export const meta = {
   <div className="demoSubject">
     <Tag label="Outlined" variant="outlined" icon={<Heart />} />
   </div>
+</DemoBox>
+
+<h2>
+  <span>Denser</span>
+  <AnchorButton anchorId="denser" />
+</h2>
+
+<p>
+  To have denser tags, use the <inlineCode>dense</inlineCode> property.
+</p>
+
+<DemoBox
+  code={`<Tag dense label="Default" color="default" />
+<Tag dense label="Primary" color="primary" />
+<Tag dense label="Secondary" color="secondary" />
+<Tag dense label="Success" color="success" />
+<Tag dense label="Error" color="error" />
+<Tag dense label="Warning" color="warning" />
+<Tag dense label="Info" color="info" />`}
+>
+  <Tag dense className="demoSubject" label="Default" color="default" />
+  <Tag dense className="demoSubject" label="Primary" color="primary" />
+  <Tag dense className="demoSubject" label="Secondary" color="secondary" />
+  <Tag dense className="demoSubject" label="Success" color="success" />
+  <Tag dense className="demoSubject" label="Error" color="error" />
+  <Tag dense className="demoSubject" label="Warning" color="warning" />
+  <Tag dense className="demoSubject" label="Info" color="info" />
+</DemoBox>
+
+<h2>
+  <span>Removable Tags</span>
+  <AnchorButton anchorId="removable-tags" />
+</h2>
+
+<p>
+  To have removable tags, assign a callback to the{" "}
+  <inlineCode>onRemove</inlineCode> property.
+</p>
+
+<DemoBox
+  code={`<Tag onRemove={() => {}} label="Default" color="default" />
+<Tag onRemove={() => {}} label="Primary" color="primary" />
+<Tag onRemove={() => {}} label="Secondary" color="secondary" />
+<Tag onRemove={() => {}} label="Success" color="success" />
+<Tag onRemove={() => {}} label="Error" color="error" />
+<Tag onRemove={() => {}} label="Warning" color="warning" />
+<Tag onRemove={() => {}} label="Info" color="info" />`}
+>
+  <Tag
+    onRemove={() => {}}
+    className="demoSubject"
+    label="Default"
+    color="default"
+  />
+  <Tag
+    onRemove={() => {}}
+    className="demoSubject"
+    label="Primary"
+    color="primary"
+  />
+  <Tag
+    onRemove={() => {}}
+    className="demoSubject"
+    label="Secondary"
+    color="secondary"
+  />
+  <Tag
+    onRemove={() => {}}
+    className="demoSubject"
+    label="Success"
+    color="success"
+  />
+  <Tag
+    onRemove={() => {}}
+    className="demoSubject"
+    label="Error"
+    color="error"
+  />
+  <Tag
+    onRemove={() => {}}
+    className="demoSubject"
+    label="Warning"
+    color="warning"
+  />
+  <Tag onRemove={() => {}} className="demoSubject" label="Info" color="info" />
 </DemoBox>
 
 <h2>
@@ -149,10 +287,47 @@ import { Tag } from "@sonnat/ui";
       <td>The variant of the tag.</td>
     </tr>
     <tr>
+      <td>color</td>
+      <td>
+        "default"
+        <br />| "primary"
+        <br />| "secondary"
+        <br />| "success"
+        <br />| "error"
+        <br />| "warning"
+        <br />| "info"
+      </td>
+      <td>"filled"</td>
+      <td>The color of the tag.</td>
+    </tr>
+    <tr>
       <td>icon</td>
       <td>node</td>
       <td>-</td>
       <td>The leading icon element placed before the label.</td>
+    </tr>
+    <tr>
+      <td>dense</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, will make the tag denser.
+      </td>
+    </tr>
+    <tr>
+      <td>onRemove</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The Callback fires when the tag's remove button is clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          {`function(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void`}
+        </inlineCode>
+      </td>
     </tr>
   </tbody>
   <tfoot>

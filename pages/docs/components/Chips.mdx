@@ -266,25 +266,25 @@ export const meta = {
 </h2>
 
 <p>
-  To have the <del>larger or</del> smaller chips, use the{" "}
-  <inlineCode>size</inlineCode> property.
+  To have the larger or smaller chips, use the <inlineCode>size</inlineCode>{" "}
+  property.
 </p>
 
 <DemoBox
   code={[
-    '<ChoiceChip label="default" color="default" size="small" />',
-    '<RemovableChip label="primary" color="primary" size="small" />',
-    '<ActionChip label="secondary" color="secondary" size="small" />'
+    '<ChoiceChip label="Large" color="default" size="Large" />',
+    '<RemovableChip label="Medium (default)" color="primary" size="medium" />',
+    '<ActionChip label="Small" color="secondary" size="small" />'
   ].join("\n")}
 >
   <div className="demoSubject">
-    <ChoiceChip label="default" color="default" size="small" />
+    <ChoiceChip label="Large" color="default" size="large" />
   </div>
   <div className="demoSubject">
-    <RemovableChip label="primary" color="primary" size="small" />
+    <RemovableChip label="Medium (default)" color="primary" size="medium" />
   </div>
   <div className="demoSubject">
-    <ActionChip label="secondary" color="secondary" size="small" />
+    <ActionChip label="Small" color="secondary" size="small" />
   </div>
 </DemoBox>
 
@@ -425,7 +425,8 @@ import { ActionChip, RemovableChip, ChoiceChip } from "@sonnat/ui";
     <tr>
       <td>size</td>
       <td>
-        "medium"
+        "large"
+        <br />| "medium"
         <br />| "small"
       </td>
       <td>"medium"</td>

@@ -296,6 +296,27 @@ const SelectSimpleDemo: React.FC = () => {
         </Select>
         <Select
           fluid
+          multiple
+          placeholder="Large"
+          name="input"
+          className="demoSubject"
+          size="large"
+        >
+          {renderChildren(children)}
+        </Select>
+        <Select
+          fluid
+          multiple
+          placeholder="Medium (default)"
+          name="input"
+          className="demoSubject"
+          size="medium"
+        >
+          {renderChildren(children)}
+        </Select>
+        <Select
+          fluid
+          multiple
           placeholder="Small"
           name="input"
           className="demoSubject"

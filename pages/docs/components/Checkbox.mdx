@@ -87,6 +87,28 @@ export const meta = {
 </DemoBox>
 
 <h2>
+  <span>Sizes</span>
+  <AnchorButton anchorId="sizes" />
+</h2>
+
+<p>
+  To have the larger or smaller checkboxes, use the{" "}
+  <inlineCode>size</inlineCode> property.
+</p>
+
+<DemoBox
+  code={[
+    '<Checkbox label="Small" size="small" />',
+    '<Checkbox label="Medium (default)" size="medium" />',
+    '<Checkbox label="Large" size="large" />'
+  ].join("\n")}
+>
+  <Checkbox label="Small" size="small" className="demoSubject" />
+  <Checkbox label="Medium (default)" size="medium" className="demoSubject" />
+  <Checkbox label="Large" size="large" className="demoSubject" />
+</DemoBox>
+
+<h2>
   <span>Controlled Checkboxes</span>
   <AnchorButton anchorId="controlled-checkboxes" />
 </h2>
@@ -213,7 +235,8 @@ import { Checkbox } from "@sonnat/ui";
     <tr>
       <td>size</td>
       <td>
-        "medium"
+        "large"
+        <br />| "medium"
         <br />| "small"
       </td>
       <td>"medium"</td>

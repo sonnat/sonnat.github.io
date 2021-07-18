@@ -65,6 +65,29 @@ export const meta = {
 </DemoBox>
 
 <h2>
+  <span>Sizes</span>
+  <AnchorButton anchorId="sizes" />
+</h2>
+
+<p>
+  To have the larger or smaller switches, use the <inlineCode>size</inlineCode>{" "}
+  property.
+</p>
+
+<DemoBox
+  flexDirection="column"
+  code={[
+    '<InputStepper size="small" />',
+    '<InputStepper size="medium" />',
+    '<InputStepper size="large" />'
+  ].join("\n")}
+>
+  <InputStepper size="small" className="demoSubject" />
+  <InputStepper size="medium" className="demoSubject" />
+  <InputStepper size="large" className="demoSubject" />
+</DemoBox>
+
+<h2>
   <span>Controlled InputStepper</span>
   <AnchorButton anchorId="controlled-stepper" />
 </h2>
@@ -148,7 +171,8 @@ import { InputStepper } from "@sonnat/ui";
     <tr>
       <td>size</td>
       <td>
-        "medium"
+        "large"
+        <br />| "medium"
         <br />| "small"
       </td>
       <td>"medium"</td>

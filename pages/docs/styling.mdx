@@ -225,10 +225,16 @@ function ComponentC(props) {
 <p>Generates a theme object base on the options provided.</p>
 
 ```typescript
-function createTheme(options?: ThemeOptions): Theme;
+function createTheme<CustomOptions extends object = {}>(
+  options?: Partial<ThemeOptions> & CustomThemeOptions<CustomOptions>
+): Theme & { custom: CustomOptions };
 ```
 
 ```typescript
+type CustomThemeOptions<O = {}> = {
+  custom: O | ((theme: Omit<Theme, "custom">) => O);
+};
+
 export interface ThemeOptions {
   breakpoints?: {
     unit?: string;
@@ -243,12 +249,12 @@ export interface ThemeOptions {
     [P: string]: any;
   };
   colors?: {
-    primary?: { origin?: string; light?: string; dark?: string };
-    secondary?: { origin?: string; light?: string; dark?: string };
-    error?: { origin?: string; light?: string; dark?: string };
-    warning?: { origin?: string; light?: string; dark?: string };
-    info?: { origin?: string; light?: string; dark?: string };
-    success?: { origin?: string; light?: string; dark?: string };
+    primary?: string | { origin?: string; light?: string; dark?: string };
+    secondary?: string | { origin?: string; light?: string; dark?: string };
+    error?: string | { origin?: string; light?: string; dark?: string };
+    warning?: string | { origin?: string; light?: string; dark?: string };
+    info?: string | { origin?: string; light?: string; dark?: string };
+    success?: string | { origin?: string; light?: string; dark?: string };
     contrastThreshold?: number;
     [P: string]: any;
   };
@@ -272,6 +278,42 @@ export interface ThemeOptions {
   darkMode?: boolean;
   [P: string]: any;
 }
+```
+
+<h4>
+  <span>Example</span>
+  <AnchorButton anchorId="create-theme-example" />
+</h4>
+
+```tsx
+import createTheme from "@sonnat/ui/styles/createTheme";
+
+interface CustomOptions {
+  primaryHover: string;
+  primaryActive: string;
+  myOrangeColor: string;
+}
+
+const theme = createTheme<CustomOptions>({
+  direction: 'rtl',
+  colors: {
+    primary: "blue",
+  },
+  typography?: {
+    ltrFontFamily?: "Roboto";
+    rtlFontFamily?: 'IRANSans';
+    monospaceFontFamily?: "RobotoMono";
+  },
+  custom: (theme) => {
+    return {
+      primaryHover: theme.colors.createPrimaryColor({ alpha: 0.5 }),
+      primaryActive: theme.colors.createPrimaryColor({ alpha: 0.7 }),
+      myOrangeColor: "orange"
+    }
+  }
+});
+
+export default theme;
 ```
 
 <h3>

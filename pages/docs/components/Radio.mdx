@@ -72,6 +72,28 @@ export const meta = {
 </DemoBox>
 
 <h2>
+  <span>Sizes</span>
+  <AnchorButton anchorId="sizes" />
+</h2>
+
+<p>
+  To have the larger or smaller radios, use the <inlineCode>size</inlineCode>{" "}
+  property.
+</p>
+
+<DemoBox
+  code={[
+    '<Radio label="Small" size="small" />',
+    '<Radio label="Medium (default)" size="medium" />',
+    '<Radio label="Large" size="large" />'
+  ].join("\n")}
+>
+  <Radio label="Small" size="small" className="demoSubject" />
+  <Radio label="Medium (default)" size="medium" className="demoSubject" />
+  <Radio label="Large" size="large" className="demoSubject" />
+</DemoBox>
+
+<h2>
   <span>Controlled Radios</span>
   <AnchorButton anchorId="controlled-radios" />
 </h2>
@@ -198,7 +220,8 @@ import { Radio } from "@sonnat/ui";
     <tr>
       <td>size</td>
       <td>
-        "medium"
+        "large"
+        <br />| "medium"
         <br />| "small"
       </td>
       <td>"medium"</td>

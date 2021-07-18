@@ -53,12 +53,14 @@ export const meta = {
   name="input"
   placeholder="Placeholder"
   fluid
+  minRows={4}
 />
 <TextArea
   name="input"
   placeholder="read-only"
   readOnly
   fluid
+  minRows={4}
 />
 <TextArea
   name="input"
@@ -66,6 +68,7 @@ export const meta = {
   readOnly
   defaultValue="Default value + read-only"
   fluid
+  minRows={4}
 />
 <TextArea
   name="input"
@@ -73,13 +76,15 @@ export const meta = {
   defaultValue="Default value + disabled"
   disabled
   fluid
+  minRows={4}
 />
 <TextArea
   name="input"
   placeholder="read-only and disabled"
   readOnly
   disabled
-  fluid
+  fluidm
+  inRows={4}
 />
 <TextArea
   name="input"
@@ -88,24 +93,52 @@ export const meta = {
   readOnly
   disabled
   fluid
+  minRows={4}
 />
 <TextArea
   name="input"
   placeholder="Has Error"
   fluid
+  minRows={4}
   hasError
 />
 <TextArea
   name="input"
   placeholder="With helper text"
   fluid
+  minRows={4}
   helperText="This is an informative helper text."
+/>
+<TextArea
+  name="input"
+  placeholder="Auto Resize"
+  fluid
+  minRows={4}
+  autoResize
 />`}
 >
   <TextArea
     name="input"
-    placeholder="Placeholder"
+    placeholder="Large"
     fluid
+    minRows={4}
+    size="large"
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="Medium (default)"
+    fluid
+    minRows={4}
+    size="medium"
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="Small"
+    fluid
+    minRows={4}
+    size="small"
     className="demoSubject"
   />
   <TextArea
@@ -113,6 +146,7 @@ export const meta = {
     placeholder="read-only"
     readOnly
     fluid
+    minRows={4}
     className="demoSubject"
   />
   <TextArea
@@ -121,6 +155,7 @@ export const meta = {
     readOnly
     defaultValue="Default value + read-only"
     fluid
+    minRows={4}
     className="demoSubject"
   />
   <TextArea
@@ -129,6 +164,7 @@ export const meta = {
     defaultValue="Default value + disabled"
     disabled
     fluid
+    minRows={4}
     className="demoSubject"
   />
   <TextArea
@@ -137,6 +173,7 @@ export const meta = {
     readOnly
     disabled
     fluid
+    minRows={4}
     className="demoSubject"
   />
   <TextArea
@@ -146,12 +183,14 @@ export const meta = {
     readOnly
     disabled
     fluid
+    minRows={4}
     className="demoSubject"
   />
   <TextArea
     name="input"
     placeholder="Has Error"
     fluid
+    minRows={4}
     hasError
     className="demoSubject"
   />
@@ -159,7 +198,16 @@ export const meta = {
     name="input"
     placeholder="With helper text"
     fluid
+    minRows={4}
     helperText="This is an informative helper text."
+    className="demoSubject"
+  />
+  <TextArea
+    name="input"
+    placeholder="Auto Resize"
+    fluid
+    minRows={4}
+    autoResize
     className="demoSubject"
   />
 </DemoBox>
@@ -228,6 +276,21 @@ import { TextArea } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
+      <td>minRows</td>
+      <td>string | number</td>
+      <td>-</td>
+      <td>Minimum number of rows to display.</td>
+    </tr>
+    <tr>
+      <td>maxRows</td>
+      <td>string | number</td>
+      <td>-</td>
+      <td>
+        Maximum number of rows to display. (works only when <inlineCode>{`autoResize={true}`}</inlineCode>
+        )
+      </td>
+    </tr>
+    <tr>
       <td>name</td>
       <td>string</td>
       <td>-</td>
@@ -264,6 +327,25 @@ import { TextArea } from "@sonnat/ui";
       <td>node</td>
       <td>-</td>
       <td>The helper icon element placed before the helper text.</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>
+        "large"
+        <br />| "medium"
+        <br />| "small"
+      </td>
+      <td>"medium"</td>
+      <td>The size of the textarea.</td>
+    </tr>
+    <tr>
+      <td>autoResize</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the textarea will automatically adjust
+        the height.
+      </td>
     </tr>
     <tr>
       <td>resizable</td>

@@ -250,18 +250,20 @@ export const meta = {
 </h2>
 
 <p>
-  To have the <del>larger or</del> smaller buttons, use the{" "}
-  <inlineCode>size</inlineCode> property.
+  To have the larger or smaller buttons, use the <inlineCode>size</inlineCode>{" "}
+  property.
 </p>
 
 <DemoBox
   code={[
     '<Button label="Small" size="small" />',
-    '<Button label="Medium (default)" size="medium" />'
+    '<Button label="Medium (default)" size="medium" />',
+    '<Button label="Large" size="large" />'
   ].join("\n")}
 >
   <Button label="Small" size="small" className="demoSubject" />
   <Button label="Medium (default)" size="medium" className="demoSubject" />
+  <Button label="Large" size="large" className="demoSubject" />
 </DemoBox>
 
 <h2>
@@ -273,7 +275,9 @@ export const meta = {
 
 <DemoBox
   code={[
-    '<Button label="Small button" size="small" color="primary" disabled />',
+    '<Button label="Button" color="default" disabled />',
+    '<Button label="Button" color="primary" disabled />',
+    '<Button label="Button" color="secondary" disabled />',
     `<Button
   label="Button"
   leadingIcon={<Heart />}
@@ -291,7 +295,13 @@ export const meta = {
   ].join("\n")}
 >
   <div className="demoSubject">
-    <Button label="Small button" size="small" color="primary" disabled />
+    <Button label="Button" color="default" disabled />
+  </div>
+  <div className="demoSubject">
+    <Button label="Button" color="primary" disabled />
+  </div>
+  <div className="demoSubject">
+    <Button label="Button" color="secondary" disabled />
   </div>
   <div className="demoSubject">
     <Button
@@ -325,7 +335,7 @@ export const meta = {
 
 <DemoBox
   code={[
-    '<Button label="Small button" size="small" rounded />',
+    '<Button label="Button" rounded />',
     `<Button
   label="Button"
   leadingIcon={<Heart />}
@@ -343,7 +353,7 @@ export const meta = {
   ].join("\n")}
 >
   <div className="demoSubject">
-    <Button label="Small button" size="small" rounded />
+    <Button label="Button" rounded />
   </div>
   <div className="demoSubject">
     <Button
@@ -486,7 +496,8 @@ import { Button } from "@sonnat/ui";
     <tr>
       <td>size</td>
       <td>
-        "medium"
+        "large"
+        <br />| "medium"
         <br />| "small"
       </td>
       <td>"medium"</td>
