@@ -1,0 +1,190 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import DemoBox from "components/DemoBox";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Image",
+  description: "Displays image content.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "Image"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  Image will show Skeleton until the image is loaded.
+  <br />
+  We are using a similar api to{" "}
+  <a
+    href="https://nextjs.org/docs/api-reference/next/image"
+    rel="noopener noreferrer"
+    target="_blank"
+    title="NextJS's Image Component"
+  >
+    next/image
+  </a>{" "}
+  component.
+</p>
+
+<h2>
+  <span>Layout</span>
+  <AnchorButton anchorId="layout" />
+</h2>
+
+<p>
+  The layout behavior of the image as the viewport changes size. Defaults to{" "}
+  <inlineCode>intrinsic</inlineCode>.
+</p>
+<p>
+  When <inlineCode>fixed</inlineCode>, the image dimensions will not change as
+  the viewport changes (no responsiveness) similar to the native{" "}
+  <inlineCode>img</inlineCode> element.
+</p>
+<p>
+  When <inlineCode>intrinsic</inlineCode>, the image will scale the dimensions
+  down for smaller viewports but maintain the original dimensions for larger
+  viewports.
+</p>
+<p>
+  When <inlineCode>responsive</inlineCode>, the image will scale the dimensions
+  down for smaller viewports and scale up for larger viewports.
+</p>
+<p>
+  When <inlineCode>fill</inlineCode>, the image will stretch both width and
+  height to the dimensions of the parent element, provided the parent element is
+  relative. This is usually paired with the <inlineCode>object-fit</inlineCode>{" "}
+  css property.
+</p>
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Image from "@sonnat/ui/Image";
+
+//or
+import { Image } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<table cols={4}>
+  <caption>Image Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>src</td>
+      <td>string | object</td>
+      <td>-</td>
+      <td>
+        The size of the image. Must be one of the following:
+        <br />
+        1- A statically imported image file, or
+        <br />
+        2- A path string.
+      </td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>string | number</td>
+      <td>-</td>
+      <td>
+        The width of the image, in pixels. Must be an integer without a unit.
+        Required, except for statically imported images, or those with{" "}
+        <inlineCode>{`layout="fill"`}</inlineCode>.
+      </td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>string | number</td>
+      <td>-</td>
+      <td>
+        The height of the image, in pixels. Must be an integer without a unit.
+        Required, except for statically imported images, or those with{" "}
+        <inlineCode>{`layout="fill"`}</inlineCode>.
+      </td>
+    </tr>
+    <tr>
+      <td>layout</td>
+      <td>
+        "fill"
+        <br />| "fixed"
+        <br />| "intrinsic"
+        <br />| "responsive"
+      </td>
+      <td>"intrinsic"</td>
+      <td>The layout behavior of the image as the viewport changes size.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
