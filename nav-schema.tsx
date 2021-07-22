@@ -116,19 +116,34 @@ const schema = {
               label: "Text",
               href: "/docs/components/Text"
             },
+            Table: {
+              label: "Table",
+              href: "/docs/components/Table"
+            },
             Icon: {
               label: "Icon",
               href: "/docs/components/Icon"
+            },
+            Image: {
+              label: "Image",
+              href: "/docs/components/Image"
+            },
+            Card: {
+              label: "Card",
+              href: "/docs/components/Card"
             }
           },
           children: [
             "Badge",
+            "Card",
             "Chips",
             "Code",
             "Divider",
             "Icon",
+            "Image",
             "Tooltip",
             "Tag",
+            "Table",
             "Text"
           ]
         },
@@ -142,9 +157,13 @@ const schema = {
             Snackbar: {
               label: "Snackbar",
               href: "/docs/components/Snackbar"
+            },
+            Dialog: {
+              label: "Dialog",
+              href: "/docs/components/Dialog"
             }
           },
-          children: ["Spinners", "Snackbar"]
+          children: ["Dialog", "Spinners", "Snackbar"]
         },
         Layout: {
           label: "Layout",
