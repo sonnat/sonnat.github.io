@@ -42,9 +42,8 @@ const useStyles = makeStyles(
         "@global .demoSubject": {
           margin: pxToRem(8)
         },
-        "& + p": {
-          marginTop: pxToRem(16)
-        }
+        "& + &": { marginTop: pxToRem(16) },
+        "& + p": { marginTop: pxToRem(16) }
       },
       demoContainer: {
         display: "flex",
