@@ -80,30 +80,6 @@ const Sidebar: React.FC<Props> = React.memo(function Sidebar({
 
   return (
     <aside className={createClass(className, classes.root)}>
-      {/* <div className={classes.heading}>
-        <TextField
-          fluid
-          disabled
-          name="search"
-          leadingAdornment={
-            <InputAdornment variant="icon">
-              <MagnifierLarge />
-            </InputAdornment>
-          }
-          placeholder="Search"
-          size="small"
-          inputProps={{ autoComplete: "off", "aria-label": "Search" }}
-        />
-        <Text
-          className={classes.hintText}
-          variant="captionSmall"
-          color="textHint"
-          display="block"
-          align="center"
-        >
-          Searchbox is under construction!
-        </Text>
-      </div> */}
       {navJsx}
       {children}
     </aside>
