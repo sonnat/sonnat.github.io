@@ -160,7 +160,12 @@ const Header = React.memo(function Header(props: Props) {
 
   const createNav = (className: string) => {
     return (
-      <nav className={createClassName(classes.nav, className)}>
+      <nav
+        className={createClassName(
+          classes.nav,
+          classes[className as "desktop" | "mobile"]
+        )}
+      >
         <ul className={classes.navList}>
           <li className={classes.navItem}>
             <Link href="/docs/installation" passHref>
