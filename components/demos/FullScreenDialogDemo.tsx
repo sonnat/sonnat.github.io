@@ -71,7 +71,6 @@ const Demo: React.FC = () => {
         fullScreen
         onEscapeKeyUp={() => void setDialogOpen(false)}
         open={isDialogOpen}
-        className={classes.root}
         aria-labelledby="dialog-header-1"
         aria-describedby="dialog-body-1"
       >
@@ -184,7 +183,6 @@ const FullScreenDialogDemo: React.FC = () => {
         fullScreen
         onEscapeKeyUp={() => void setDialogOpen(false)}
         open={isDialogOpen}
-        className={classes.root}
         aria-labelledby="dialog-header-1"
         aria-describedby="dialog-body-1"
       >

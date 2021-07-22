@@ -15,14 +15,9 @@ interface MakeStylesData {
 
 const componentName = "Sidebar";
 
-const useStyles = makeStyles<
-  DefaultTheme,
-  MakeStylesData,
-  "root" | "heading" | "hintText"
->(
+const useStyles = makeStyles<DefaultTheme, MakeStylesData, "root" | "hintText">(
   theme => {
     const {
-      colors,
       typography: { pxToRem }
     } = theme;
 

@@ -90,18 +90,15 @@ const sort = (
   data: DataRow[],
   comparator: ReturnType<typeof getComparator>
 ): DataRow[] => {
-  const stabilizedThis: [DataRow, number] = data.map((el, index) => [
-    el,
-    index
-  ]);
+  const stabilizedThis = data.map((el, index) => [el, index]);
 
   stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
+    const order = comparator(a[0] as DataRow, b[0] as DataRow);
     if (order !== 0) return order;
-    return a[1] - b[1];
+    return (a[1] as number) - (b[1] as number);
   });
 
-  return stabilizedThis.map(touple => touple[0]);
+  return stabilizedThis.map(touple => touple[0] as DataRow);
 };
 
 const Demo: React.FC = () => {
@@ -243,18 +240,15 @@ const sort = (
   data: DataRow[],
   comparator: ReturnType<typeof getComparator>
 ): DataRow[] => {
-  const stabilizedThis: [DataRow, number] = data.map((el, index) => [
-    el,
-    index
-  ]);
+  const stabilizedThis = data.map((el, index) => [el, index]);
 
   stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
+    const order = comparator(a[0] as DataRow, b[0] as DataRow);
     if (order !== 0) return order;
-    return a[1] - b[1];
+    return (a[1] as number) - (b[1] as number);
   });
 
-  return stabilizedThis.map(touple => touple[0]);
+  return stabilizedThis.map(touple => touple[0] as DataRow);
 };
 
 const TableSortDemo: React.FC = () => {

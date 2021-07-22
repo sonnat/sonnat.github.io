@@ -74,7 +74,6 @@ const Demo: React.FC = () => {
         onBackdropClick={() => void setDialogOpen(false)}
         onEscapeKeyUp={() => void setDialogOpen(false)}
         open={isDialogOpen}
-        className={classes.root}
         aria-labelledby="dialog-header-0"
         aria-describedby="dialog-body-0"
       >
@@ -185,7 +184,6 @@ const BasicDialogDemo: React.FC = () => {
         onBackdropClick={() => void setDialogOpen(false)}
         onEscapeKeyUp={() => void setDialogOpen(false)}
         open={isDialogOpen}
-        className={classes.root}
         aria-labelledby="dialog-header-0"
         aria-describedby="dialog-body-0"
       >
