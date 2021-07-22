@@ -1,0 +1,379 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import BasicDialogDemo from "components/demos/BasicDialogDemo";
+import FullScreenDialogDemo from "components/demos/FullScreenDialogDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Dialog",
+  description:
+    "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "Dialog"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  Dialogs disable all app functionality when they appear, and remain on screen
+  until confirmed, dismissed, or a required action has been taken.
+  <br />
+  Dialogs are purposefully interruptive, so they should be used sparingly.
+</p>
+
+<p>
+  Sonnat's Dialogs are fully customizable. We have implemented the basic
+  features so you can add your own features without any problem / overriding
+  hells.
+</p>
+
+<p>
+  Dialogs have a maxHeight of <inlineCode>70vh</inlineCode>. If the height
+  exceeds the maxHeight value it will automatically make the UI scrollable and
+  also will add some elevation to the Header and the ActionBar.
+</p>
+
+<h2>
+  <span>Basic Dialog</span>
+  <AnchorButton anchorId="basic-dialog" />
+</h2>
+
+<BasicDialogDemo />
+
+<h2>
+  <span>Fullscreen Dialog</span>
+  <AnchorButton anchorId="fullscreen-dialog" />
+</h2>
+
+<p>
+  To have a fullscreen dialog, use the <inlineCode>fullScreen</inlineCode>{" "}
+  property.
+</p>
+
+<FullScreenDialogDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Dialog, {
+  DialogHeader,
+  DialogBody,
+  DialogActionBar
+} from "@sonnat/ui/Dialog";
+
+//or
+import { Dialog, DialogHeader, DialogBody, DialogActionBar } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>
+    <mark>Dialog</mark> Properties
+  </span>
+  <AnchorButton anchorId="parent-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Dialog Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>maxWidth</td>
+      <td>number</td>
+      <td>-</td>
+      <td>
+        A number in pixels which determines the `max-width` of the dialog.
+      </td>
+    </tr>
+    <tr>
+      <td>fullScreen</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the dialog will be full-screen.
+      </td>
+    </tr>
+    <tr>
+      <td>open</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the dialog will be open.
+      </td>
+    </tr>
+    <tr>
+      <td>onOpen</td>
+      <td>function</td>
+      <td>-</td>
+      <td>The Callback fires when the dialog has opened.</td>
+    </tr>
+    <tr>
+      <td>onClose</td>
+      <td>function</td>
+      <td>-</td>
+      <td>The Callback fires when the dialog has closed.</td>
+    </tr>
+    <tr>
+      <td>onBackdropClick</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        Callback fired when the backdrop is clicked.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>
+          {`function(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void`}
+        </inlineCode>
+      </td>
+    </tr>
+    <tr>
+      <td>onEscapeKeyUp</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        Callback fired when the <inlineCode>Escape</inlineCode> key is released.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>{`function(event: KeyboardEvent) => void`}</inlineCode>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>DialogHeader</mark> Properties
+  </span>
+  <AnchorButton anchorId="dialog-header-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>DialogHeader Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>string</td>
+      <td>-</td>
+      <td>The title to display in the header.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>DialogBody</mark> Properties
+  </span>
+  <AnchorButton anchorId="dialog-body-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>DialogBody Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>DialogActionBar</mark> Properties
+  </span>
+  <AnchorButton anchorId="dialog-actionbar-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>DialogActionBar Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
