@@ -268,7 +268,7 @@ const useStyles = makeStyles(
 
     return {
       root: {
-        height: `calc(100% - ${pxToRem(72)})`,
+        height: `100%`,
         paddingRight: pxToRem(16),
         paddingBottom: pxToRem(16),
         overflowX: "hidden",

@@ -39,24 +39,8 @@ const useStyles = makeStyles<
           left: 0,
           right: 0,
           bottom: pxToRem(32),
-          height: pxToRem(16),
-          background: `linear-gradient(180deg, rgba(255, 255, 255, 0), ${colors.background.origin})`
-        }
-      }),
-      heading: ({ scrollBarWidth }) => ({
-        position: "relative",
-        zIndex: 2,
-        paddingBottom: pxToRem(16),
-        paddingRight: pxToRem(16),
-        "&:after": {
-          marginRight: pxToRem(scrollBarWidth),
-          content: '""',
-          position: "absolute",
-          bottom: pxToRem(-16),
-          left: 0,
-          right: 0,
-          height: pxToRem(16),
-          background: `linear-gradient(180deg, ${colors.background.origin}, rgba(255, 255, 255, 0))`
+          height: pxToRem(16)
+          // background: `linear-gradient(transparent, ${colors.background.origin})`
         }
       }),
       hintText: { marginTop: pxToRem(4) }
