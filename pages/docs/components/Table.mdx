@@ -1,0 +1,496 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import TableBasicDemo from "components/demos/TableBasicDemo";
+import TableDenseDemo from "components/demos/TableDenseDemo";
+import TableSelectionDemo from "components/demos/TableSelectionDemo";
+import TableSortDemo from "components/demos/TableSortDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Table",
+  description:
+    "Tables are containers for displaying information. They allow users to quickly scan, compare, and take action on large amounts of data.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "Table"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  When including tools, they should be placed directly above or below the table.
+</p>
+
+<p>
+  Sonnat's Tables are fully customizable. We have implemented the basic features
+  so you can add your own features without any problem / overriding hells.
+</p>
+
+<h2>
+  <span>Basic Table</span>
+  <AnchorButton anchorId="basic-table" />
+</h2>
+
+<TableBasicDemo />
+
+<h2>
+  <span>Dense Table</span>
+  <AnchorButton anchorId="dense-table" />
+</h2>
+
+<p>
+  To have a denser table, use the <inlineCode>dense</inlineCode> property.
+</p>
+
+<TableDenseDemo />
+
+<h2>
+  <span>With Selection</span>
+  <AnchorButton anchorId="with-selection" />
+</h2>
+
+<TableSelectionDemo />
+
+<h2>
+  <span>With Sort</span>
+  <AnchorButton anchorId="with-sort" />
+</h2>
+
+<TableSortDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Table, {
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableCell
+} from "@sonnat/ui/Table";
+
+//or
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableCell
+} from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>
+    <mark>Table</mark> Properties
+  </span>
+  <AnchorButton anchorId="parent-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Table Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>caption</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Set the content of the <inlineCode>&lt;caption&gt;</inlineCode> element.
+      </td>
+    </tr>
+    <tr>
+      <td>htmlTableProps</td>
+      <td>object</td>
+      <td>-</td>
+      <td>
+        The properties applied to the <inlineCode>&lt;table&gt;</inlineCode>{" "}
+        element.
+      </td>
+    </tr>
+    <tr>
+      <td>dense</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the table will appear denser.
+      </td>
+    </tr>
+    <tr>
+      <td>borderLess</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the table will be border-less.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>TableHeader</mark> Properties
+  </span>
+  <AnchorButton anchorId="table-header-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TableHeader Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>TableBody</mark> Properties
+  </span>
+  <AnchorButton anchorId="table-body-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TableBody Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>TableFooter</mark> Properties
+  </span>
+  <AnchorButton anchorId="table-footer-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TableFooter Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>TableRow</mark> Properties
+  </span>
+  <AnchorButton anchorId="table-row-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TableRow Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>verticalAlign</td>
+      <td>
+        "top"
+        <br />| "middle"
+        <br />| "bottom"
+      </td>
+      <td>"middle"</td>
+      <td>Set the vertical-align css property of the table row.</td>
+    </tr>
+    <tr>
+      <td>selected</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the table row will indicate the
+        selected state.
+      </td>
+    </tr>
+    <tr>
+      <td>hoverable</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the table row will indicate the
+        hovered state on <inlineCode>{`:hover`}</inlineCode>.
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>TableCell</mark> Properties
+  </span>
+  <AnchorButton anchorId="table-cell-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>TableCell Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the component.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>textAlign</td>
+      <td>
+        "inherit"
+        <br />| "center"
+        <br />| "justify"
+        <br />| "left"
+        <br />| "right"
+      </td>
+      <td>"inherit"</td>
+      <td>Set the text-align css property of the table cell.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
