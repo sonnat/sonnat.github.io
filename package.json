@@ -12,7 +12,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@sonnat/icons": "^1.1.0",
+    "@sonnat/icons": "^1.2.0",
     "@sonnat/ui": "^1.2.0",
     "autoprefixer": "^10.2.5",
     "classnames": "^2.2.6",
