@@ -1,4 +1,4 @@
-import ArowDown from "@sonnat/icons/ArowDown";
+import ArrowDown from "@sonnat/icons/ArrowDown";
 import ArrowUp from "@sonnat/icons/ArrowUp";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Table, {
@@ -14,7 +14,7 @@ import * as React from "react";
 
 const componentName = "TableSortDemo";
 
-const demoCode = `import ArowDown from "@sonnat/icons/ArowDown";
+const demoCode = `import ArrowDown from "@sonnat/icons/ArowDown";
 import ArrowUp from "@sonnat/icons/ArrowUp";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Table, {
@@ -114,7 +114,7 @@ const Demo: React.FC = () => {
   };
 
   const ArrowUpIcon = <ArrowUp size={20} className={classes.sortIcon} />;
-  const ArrowDownIcon = <ArowDown size={20} className={classes.sortIcon} />;
+  const ArrowDownIcon = <ArrowDown size={20} className={classes.sortIcon} />;
 
   return (
     <Table caption="Table With Selection">
@@ -264,7 +264,7 @@ const TableSortDemo: React.FC = () => {
   };
 
   const ArrowUpIcon = <ArrowUp size={20} className={classes.sortIcon} />;
-  const ArrowDownIcon = <ArowDown size={20} className={classes.sortIcon} />;
+  const ArrowDownIcon = <ArrowDown size={20} className={classes.sortIcon} />;
 
   return (
     <DemoBox flexDirection="column" code={demoCode}>

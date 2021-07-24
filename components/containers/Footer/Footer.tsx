@@ -1,4 +1,4 @@
-import { Github, Twitter, SonnatThinO } from "@sonnat/icons";
+import { Github, Twitter, SonnatOThin } from "@sonnat/icons";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
 import createClassName from "classnames";
@@ -103,7 +103,7 @@ const Footer = React.memo(function Footer(props: Props) {
       <nav className={classes.navigation}>
         <Link href="/">
           <a title="Home" className={classes.logo}>
-            <SonnatThinO size={32} title="Sonnat Design System's Logo" />
+            <SonnatOThin size={32} title="Sonnat Design System's Logo" />
           </a>
         </Link>
         <ul className={classes.navigationList}>

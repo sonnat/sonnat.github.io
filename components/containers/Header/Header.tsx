@@ -2,7 +2,7 @@ import {
   BurgerMenu as BurgerMenuIcon,
   CloseLarge,
   MoonO,
-  SonnatThinO,
+  SonnatOThin,
   WeatherSunnyO
 } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
@@ -232,7 +232,7 @@ const Header = React.memo(function Header(props: Props) {
         />
         <Link href="/">
           <a title="Home" className={classes.logo}>
-            <SonnatThinO size={32} title="Sonnat Design System's Logo" />
+            <SonnatOThin size={32} title="Sonnat Design System's Logo" />
           </a>
         </Link>
         <NoSsr>
