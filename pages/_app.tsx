@@ -6,8 +6,6 @@ import useDarkMode from "@sonnat/ui/styles/useDarkMode";
 import MainWrapper from "components/containers/MainWrapper";
 import WithHeader from "components/layouts/WithHeader";
 import Head from "next/head";
-// eslint-disable-next-line import/no-named-as-default
-import Router from "next/router";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
 import useStore from "store";
@@ -35,7 +33,7 @@ const useGlobalStyles = makeStyles(
 const componentMapping = createComponentMapping();
 
 export default function App(props: AppPropsWithLayout) {
-  const { Component: Page, pageProps } = props;
+  const { Component: Page, pageProps, router } = props;
 
   useGlobalStyles();
 
@@ -79,14 +77,14 @@ export default function App(props: AppPropsWithLayout) {
   }, [theme]);
 
   React.useEffect(() => {
-    Router.events.on("routeChangeStart", routeChangeStart);
-    Router.events.on("routeChangeComplete", routeChangeComplete);
-    Router.events.on("routeChangeError", routeChangeComplete);
+    router.events.on("routeChangeStart", routeChangeStart);
+    router.events.on("routeChangeComplete", routeChangeComplete);
+    router.events.on("routeChangeError", routeChangeComplete);
 
     return () => {
-      Router.events.off("routeChangeStart", routeChangeStart);
-      Router.events.off("routeChangeComplete", routeChangeComplete);
-      Router.events.off("routeChangeError", routeChangeComplete);
+      router.events.off("routeChangeStart", routeChangeStart);
+      router.events.off("routeChangeComplete", routeChangeComplete);
+      router.events.off("routeChangeError", routeChangeComplete);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -113,9 +111,11 @@ export default function App(props: AppPropsWithLayout) {
       <MainWrapper>
         <CssBaseline />
         <WithHeader>
-          <MDXProvider components={componentMapping}>
-            {withPageLayout(<Page {...pageProps} />)}
-          </MDXProvider>
+          {withPageLayout(
+            <MDXProvider components={componentMapping}>
+              <Page {...pageProps} />
+            </MDXProvider>
+          )}
         </WithHeader>
       </MainWrapper>
     </SonnatInitializer>
