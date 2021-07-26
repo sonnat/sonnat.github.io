@@ -525,10 +525,10 @@
   dependencies:
     "@babel/runtime" "^7.13.6"
 
-"@sonnat/ui@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.2.0.tgz#0a29cc732defcfb62a13f147a714023dbf9edefa"
-  integrity sha512-i8xIz45Cl9H7Drm4Sjvoht+g/kxkLfWXYYimd/nKamDvzEpoPDhwqvJmwRmhtkd59ZMKrnUfS8M63fwXDRdt/Q==
+"@sonnat/ui@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.2.1.tgz#94530880903d425eac44d4b26b3382fbf90419aa"
+  integrity sha512-rPGz+LA/+GgO9VFOVTk/Wc/iJxmKShNyUs8KMwbCzTxJ+FtCq6WeVroyclZN5u4zmpyRLhMO2lq44vGYWOfS2Q==
   dependencies:
     "@babel/runtime" "^7.13.6"
     classnames "^2.2.6"
