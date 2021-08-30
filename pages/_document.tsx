@@ -15,6 +15,7 @@ const prefixer = PostCss([AutoPrefixer]);
 const cleaner = new CleanCss();
 
 export default class MyDocument extends Document {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   static async getInitialProps(ctx: DocumentContext) {
     const sheets = new ServerStyleSheets();
 
@@ -51,7 +52,7 @@ export default class MyDocument extends Document {
     };
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Html lang="en-US">
         <Head>

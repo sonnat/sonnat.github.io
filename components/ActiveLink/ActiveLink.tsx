@@ -17,9 +17,9 @@ const ActiveLink: React.FC<Props> = props => {
     ...otherProps
   } = props;
 
-  const child = React.Children.only(
-    children
-  ) as NonNullable<React.ReactElement>;
+  const child = React.Children.only(children) as NonNullable<
+    React.ReactElement<{ className?: string }>
+  >;
 
   const router = useRouter();
 

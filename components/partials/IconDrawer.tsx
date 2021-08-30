@@ -1,27 +1,14 @@
-import { Download, CloseLarge } from "@sonnat/icons";
+import { CloseLarge, Download } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
-import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
-import Text from "@sonnat/ui/Text";
+import Code from "@sonnat/ui/Code";
 import PortalDestination from "@sonnat/ui/PortalDestination";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Text from "@sonnat/ui/Text";
+import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
 import cls from "classnames";
 import * as React from "react";
-import Code from "@sonnat/ui/Code";
 
 const componentName = "IconDrawer";
-
-interface IconData {
-  kebabCaseName: string;
-  pascalCaseName: string;
-  file: string;
-  component: React.ReactNode;
-}
-
-interface IconDrawerProps {
-  data: IconData | null;
-  open?: boolean;
-  toggle?: () => void;
-}
 
 const useStyles = makeStyles(
   theme => {
@@ -115,6 +102,19 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
+interface IconData {
+  kebabCaseName: string;
+  pascalCaseName: string;
+  file: string;
+  component: React.ReactNode;
+}
+
+interface IconDrawerProps {
+  data: IconData | null;
+  open?: boolean;
+  toggle?: () => void;
+}
+
 const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
   props
 ) {
@@ -156,7 +156,7 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
         <div className={classes.showcase}>
           <i className={classes.iconWrapper}>{data?.component}</i>
           <Text variant="bodySmall" color="textSecondary">
-            {data?.kebabCaseName}
+            {data?.kebabCaseName as string}
           </Text>
         </div>
         <div className={classes.usage}>
@@ -173,18 +173,16 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
             <Code>{`@sonnat/ui`}</Code> and <Code>{`react`}</Code> are the peer
             dependencies.)
           </Text>
-          <Code
-            className={classes.usageCaseCode}
-            codeBlock
-          >{`import { ${data?.pascalCaseName} } from "@sonnat/icons";`}</Code>
+          <Code className={classes.usageCaseCode} codeBlock>{`import { ${
+            data?.pascalCaseName as string
+          } } from "@sonnat/icons";`}</Code>
           <Text className={classes.usageCase} variant="bodySmall" rootNode="p">
             To only export the SVG paths: (In this case, <Code>{`react`}</Code>{" "}
             is the peer dependency.)
           </Text>
-          <Code
-            className={classes.usageCaseCode}
-            codeBlock
-          >{`import { ${data?.pascalCaseName} } from "@sonnat/icons/paths";`}</Code>
+          <Code className={classes.usageCaseCode} codeBlock>{`import { ${
+            data?.pascalCaseName as string
+          } } from "@sonnat/icons/paths";`}</Code>
         </div>
         <div className={classes.bottomBar}>
           <Button
@@ -194,7 +192,7 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
             leadingIcon={<Download />}
             color="primary"
             href={data?.file}
-            download={`${data?.kebabCaseName}.svg`}
+            download={`${data?.kebabCaseName as string}.svg`}
           />
         </div>
       </section>

@@ -1,5 +1,5 @@
-import Switch from "@sonnat/ui/Switch";
 import Button from "@sonnat/ui/Button";
+import Switch from "@sonnat/ui/Switch";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

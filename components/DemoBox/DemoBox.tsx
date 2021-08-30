@@ -239,13 +239,13 @@ const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
 
                     return (
                       <div
-                        key={`${line}/${i}`}
+                        key={`${line.length}/${i}`}
                         {...getLineProps({ line, key: i })}
                       >
                         {line.map((token, key) => {
                           return !(isLastLine && token.empty) ? (
                             <span
-                              key={`${token}/${key}`}
+                              key={`${token.content}/${key}`}
                               {...getTokenProps({ token, key })}
                             />
                           ) : null;

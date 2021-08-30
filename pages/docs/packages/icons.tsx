@@ -155,6 +155,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
       const iconData = icons.byName[iconName];
 
       const IconComponent = dynamic<IconProps>(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         async () =>
           import(`@sonnat/icons`).then(
@@ -195,6 +196,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
     if (key && key.length >= 2) {
       const filtered = cachedSource.filter(jsx => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const jsxKey: string = jsx.props["data-key"];
 
         return jsxKey.includes(key);
@@ -211,12 +213,14 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
     if (variant === "filled") {
       filtered = filteredIcons?.filter(jsx => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const jsxKey: string = jsx.props["data-key"];
 
         return !jsxKey.includes("-o");
       });
     } else if (variant === "outlined") {
       filtered = filteredIcons?.filter(jsx => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const jsxKey: string = jsx.props["data-key"];
 
         return jsxKey.includes("-o");

@@ -1,4 +1,4 @@
-import { CloseLarge, AccountPlusO } from "@sonnat/icons";
+import { AccountPlusO, CloseLarge } from "@sonnat/icons";
 import Button from "@sonnat/ui/Button";
 import Dialog, { DialogBody, DialogHeader } from "@sonnat/ui/Dialog";
 import makeStyles from "@sonnat/ui/styles/makeStyles";

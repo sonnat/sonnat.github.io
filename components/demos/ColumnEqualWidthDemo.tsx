@@ -1,7 +1,7 @@
-import Container from "@sonnat/ui/Container";
-import Row from "@sonnat/ui/Row";
 import Column from "@sonnat/ui/Column";
+import Container from "@sonnat/ui/Container";
 import Divider from "@sonnat/ui/Divider";
+import Row from "@sonnat/ui/Row";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import DemoBox from "components/DemoBox";
 import * as React from "react";

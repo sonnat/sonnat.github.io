@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import usePreviousValue from "@sonnat/ui/utils/usePreviousValue";
 import createClassName from "classnames";
@@ -254,7 +258,7 @@ const schema = {
   ]
 };
 
-export const getSchema = () => {
+export const getSchema = (): Readonly<typeof schema> => {
   return Object.freeze(schema);
 };
 
@@ -347,6 +351,7 @@ const useStyles = makeStyles(
   { name: "Nav" }
 );
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const schemaToJSX = (schema, classes, depth = 0) => {
   let jsx;
@@ -427,7 +432,7 @@ const schemaToJSX = (schema, classes, depth = 0) => {
   return jsx;
 };
 
-export const useNavJsx = (className?: string) => {
+export const useNavJsx = (className?: string): JSX.Element => {
   const classes = useStyles();
 
   const children = React.useRef(null);

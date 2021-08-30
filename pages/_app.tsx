@@ -32,13 +32,17 @@ const useGlobalStyles = makeStyles(
 
 const componentMapping = createComponentMapping();
 
-export default function App(props: AppPropsWithLayout) {
+export default function App(props: AppPropsWithLayout): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { Component: Page, pageProps, router } = props;
 
   useGlobalStyles();
 
+  /* eslint-disable */
   // @ts-ignore
   const meta: MDXMeta = Page.isMDXComponent ? Page({}).props.meta : {};
+  /* eslint-enable */
+
   const MdxGetPageLayout = meta?.getLayout;
 
   const getPageLayout = MdxGetPageLayout
@@ -72,6 +76,7 @@ export default function App(props: AppPropsWithLayout) {
   }, []);
 
   React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (process.browser) window.theme = theme;
   }, [theme]);

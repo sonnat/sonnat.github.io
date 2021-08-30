@@ -1,9 +1,8 @@
 import Badge, { BadgeProps } from "@sonnat/ui/Badge";
-import FormControl from "@sonnat/ui/FormControl";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import FormControlLabel from "@sonnat/ui/FormControlLabel";
-import RadioGroup from "@sonnat/ui/RadioGroup";
+import FormControl, { FormControlLabel } from "@sonnat/ui/FormControl";
 import Radio from "@sonnat/ui/Radio";
+import RadioGroup from "@sonnat/ui/RadioGroup";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

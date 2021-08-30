@@ -13,7 +13,7 @@ const DocsPage: NextPage = () => {
   const router = useRouter();
 
   if (typeof window !== "undefined") {
-    router.replace("/docs/installation");
+    void router.replace("/docs/installation");
   }
 
   return (

@@ -1,11 +1,10 @@
-import Tooltip, { TooltipProps } from "@sonnat/ui/Tooltip";
-import FormControl from "@sonnat/ui/FormControl";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import FormControlLabel from "@sonnat/ui/FormControlLabel";
-import RadioGroup from "@sonnat/ui/RadioGroup";
+import FormControl, { FormControlLabel } from "@sonnat/ui/FormControl";
 import Radio from "@sonnat/ui/Radio";
-import DemoBox from "components/DemoBox";
+import RadioGroup from "@sonnat/ui/RadioGroup";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Tooltip, { TooltipProps } from "@sonnat/ui/Tooltip";
 import clx from "classnames";
+import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "TooltipPlacementDemo";

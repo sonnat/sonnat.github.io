@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export default function setDescriptionMeta(description: string) {
+export default function setDescriptionMeta(description: string): JSX.Element {
   return (
     <Fragment>
       <meta name="description" content={description} />

@@ -1,5 +1,5 @@
-import TabBar, { Tab } from "@sonnat/ui/TabBar";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import TabBar, { Tab } from "@sonnat/ui/TabBar";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

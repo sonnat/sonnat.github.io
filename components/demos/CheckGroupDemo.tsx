@@ -1,5 +1,5 @@
-import CheckGroup from "@sonnat/ui/CheckGroup";
 import Checkbox from "@sonnat/ui/Checkbox";
+import CheckGroup from "@sonnat/ui/CheckGroup";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

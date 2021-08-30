@@ -1,5 +1,5 @@
-import Snackbar from "@sonnat/ui/Snackbar";
 import Button from "@sonnat/ui/Button";
+import Snackbar from "@sonnat/ui/Snackbar";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

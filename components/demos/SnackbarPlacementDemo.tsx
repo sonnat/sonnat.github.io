@@ -1,17 +1,16 @@
-import Snackbar, { SnackbarProps } from "@sonnat/ui/Snackbar";
-import FormControl from "@sonnat/ui/FormControl";
-import FormControlLabel from "@sonnat/ui/FormControlLabel";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import RadioGroup from "@sonnat/ui/RadioGroup";
-import Radio from "@sonnat/ui/Radio";
-import DemoBox from "components/DemoBox";
-import clx from "classnames";
-import * as React from "react";
 import Button from "@sonnat/ui/Button";
+import FormControl, { FormControlLabel } from "@sonnat/ui/FormControl";
+import Radio from "@sonnat/ui/Radio";
+import RadioGroup from "@sonnat/ui/RadioGroup";
+import Snackbar, { SnackbarProps } from "@sonnat/ui/Snackbar";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
+import clx from "classnames";
+import DemoBox from "components/DemoBox";
+import * as React from "react";
 
 const componentName = "SnackbarPlacementDemo";
 
-type Placement = NonNullable<SnackbarProps<{}>["placement"]>;
+type Placement = NonNullable<SnackbarProps<Record<string, never>>["placement"]>;
 
 const useStyles = makeStyles(
   theme => ({

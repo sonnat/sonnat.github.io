@@ -1,5 +1,5 @@
-import Checkbox from "@sonnat/ui/Checkbox";
 import Button from "@sonnat/ui/Button";
+import Checkbox from "@sonnat/ui/Checkbox";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

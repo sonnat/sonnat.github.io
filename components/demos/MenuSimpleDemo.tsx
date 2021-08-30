@@ -1,5 +1,5 @@
-import Menu, { MenuItem } from "@sonnat/ui/Menu";
 import Button from "@sonnat/ui/Button";
+import Menu, { MenuItem } from "@sonnat/ui/Menu";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

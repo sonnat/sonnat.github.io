@@ -1,5 +1,5 @@
-import RadioGroup from "@sonnat/ui/RadioGroup";
 import Radio from "@sonnat/ui/Radio";
+import RadioGroup from "@sonnat/ui/RadioGroup";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

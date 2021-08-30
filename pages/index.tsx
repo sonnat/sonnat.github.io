@@ -162,6 +162,7 @@ const LandingPage: NextPage = () => {
           rel="preload"
           as="image"
           href="/static/media/landing-illustration.png"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           imagesrcset={[
             "/static/media/landing-illustration-640.png 640w",

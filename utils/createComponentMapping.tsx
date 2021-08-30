@@ -418,7 +418,7 @@ const CustomDiv = React.forwardRef<HTMLDivElement>(function CustomDiv(
   );
 });
 
-const Paragraph = (props: TextProps<{}, "p">) => {
+const Paragraph = (props: TextProps<Record<string, never>, "p">) => {
   const { children, ...otherProps } = props;
   const classes = useParagraphStyles();
 
@@ -429,7 +429,7 @@ const Paragraph = (props: TextProps<{}, "p">) => {
   );
 };
 
-const H1 = (props: TextProps<{}, "h1">) => {
+const H1 = (props: TextProps<Record<string, never>, "h1">) => {
   const { children, ...otherProps } = props;
   const classes = useH1Styles();
 
@@ -446,7 +446,7 @@ const H1 = (props: TextProps<{}, "h1">) => {
   );
 };
 
-const H2 = (props: TextProps<{}, "h2">) => {
+const H2 = (props: TextProps<Record<string, never>, "h2">) => {
   const { children, ...otherProps } = props;
   const classes = useH2Styles();
 
@@ -463,7 +463,7 @@ const H2 = (props: TextProps<{}, "h2">) => {
   );
 };
 
-const H3 = (props: TextProps<{}, "h3">) => {
+const H3 = (props: TextProps<Record<string, never>, "h3">) => {
   const { children, ...otherProps } = props;
   const classes = useH3Styles();
 
@@ -480,7 +480,7 @@ const H3 = (props: TextProps<{}, "h3">) => {
   );
 };
 
-const H4 = (props: TextProps<{}, "h4">) => {
+const H4 = (props: TextProps<Record<string, never>, "h4">) => {
   const { children, ...otherProps } = props;
   const classes = useH4Styles();
 
@@ -525,11 +525,14 @@ const CodeBlock = (props: CodeProps) => {
             const isLastLine = i === tokens.length - 1;
 
             return (
-              <div key={`${line}/${i}`} {...getLineProps({ line, key: i })}>
+              <div
+                key={`${line.length}/${i}`}
+                {...getLineProps({ line, key: i })}
+              >
                 {line.map((token, key) => {
                   return !(isLastLine && token.empty) ? (
                     <span
-                      key={`${token}/${key}`}
+                      key={`${token.content}/${key}`}
                       {...getTokenProps({ token, key })}
                     />
                   ) : null;
@@ -675,6 +678,7 @@ const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function createComponentMapping() {
   return {
     p: Paragraph,

@@ -1,4 +1,4 @@
-import { Github, Twitter, SonnatOThin } from "@sonnat/icons";
+import { Github, SonnatOThin, Twitter } from "@sonnat/icons";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
 import createClassName from "classnames";

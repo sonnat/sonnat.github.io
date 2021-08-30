@@ -2,9 +2,7 @@ import * as React from "react";
 import ActiveLink, { Props as ActiveLinkProps } from "components/ActiveLink";
 import CollapsableContext from "./Context";
 
-interface Props extends ActiveLinkProps {}
-
-const CollapsableInnerLink: React.FC<Props> = props => {
+const CollapsableInnerLink: React.FC<ActiveLinkProps> = props => {
   const { children, ...otherProps } = props;
   const { setExpanded } = React.useContext(CollapsableContext);
 

@@ -1,5 +1,5 @@
-import Menu, { MenuItem } from "@sonnat/ui/Menu";
 import Button from "@sonnat/ui/Button";
+import Menu, { MenuItem } from "@sonnat/ui/Menu";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
@@ -47,7 +47,6 @@ const MenuOutsideClickDemo: React.FC = () => {
   return (
     <DemoBox code={demoCode}>
       <React.Fragment>
-        {/* @ts-ignore */}
         <Button
           aria-controls="simple-menu-2"
           ref={anchorElement}

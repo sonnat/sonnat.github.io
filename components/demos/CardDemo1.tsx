@@ -1,17 +1,17 @@
+import { Heart } from "@sonnat/icons";
+import DotsVertical from "@sonnat/icons/DotsVertical";
+import Button from "@sonnat/ui/Button";
 import Card, {
+  CardActionBar,
   CardBody,
   CardHeader,
-  CardMedia,
-  CardActionBar
+  CardMedia
 } from "@sonnat/ui/Card";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Image from "@sonnat/ui/Image";
-import DotsVertical from "@sonnat/icons/DotsVertical";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Text from "@sonnat/ui/Text";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
-import Button from "@sonnat/ui/Button";
-import Text from "@sonnat/ui/Text";
-import { Heart } from "@sonnat/icons";
 
 const componentName = "CardDemo1";
 

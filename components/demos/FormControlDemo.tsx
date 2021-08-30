@@ -1,9 +1,10 @@
-import TextField from "@sonnat/ui/TextField";
-import FormControl from "@sonnat/ui/FormControl";
-import FormControlLabel from "@sonnat/ui/FormControlLabel";
-import FormControlDescription from "@sonnat/ui/FormControlDescription";
-import FormControlFeedback from "@sonnat/ui/FormControlFeedback";
+import FormControl, {
+  FormControlDescription,
+  FormControlFeedback,
+  FormControlLabel
+} from "@sonnat/ui/FormControl";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import TextField from "@sonnat/ui/TextField";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
