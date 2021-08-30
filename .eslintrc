@@ -1,6 +1,9 @@
 {
+  "root": true,
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
     "plugin:import/recommended",
     "plugin:import/errors",
@@ -18,7 +21,7 @@
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "JSX": true
+    "JSX": "readonly"
   },
   "plugins": [
     "eslint-plugin-import",
@@ -28,43 +31,27 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "rules": {
-    "no-const-assign": "error",
-    "no-case-declarations": "warn",
-    "no-empty-pattern": "error",
-    "no-fallthrough": "warn",
-    "no-global-assign": "error",
     "no-alert": "error",
-    "no-with": "error",
-    "no-delete-var": "error",
-    "no-shadow-restricted-names": "error",
-    "no-dupe-class-members": "error",
-    "no-new-symbol": "error",
-    "no-this-before-super": "error",
-    "no-undef": "error",
     "no-console": "warn",
-    "no-octal": "error",
-    "no-redeclare": "error",
-    "no-self-assign": "error",
-    "no-useless-catch": "error",
-    "no-useless-escape": "warn",
-    "no-unused-vars": "warn",
-    "no-mixed-spaces-and-tabs": "warn",
-    "no-class-assign": "error",
-    "constructor-super": "error",
-    "require-yield": "error",
     "prefer-const": "error",
     "default-case": "warn",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@next/next/no-img-element": "off",
     "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/react-in-jsx-scope": "off"
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.d.ts"], // TypeScript files extension
+      "parserOptions": {
+        "sourceType": "module",
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"
