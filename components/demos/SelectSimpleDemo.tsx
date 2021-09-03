@@ -48,6 +48,14 @@ const Demo: React.FC = () => {
       </Select>
       <Select
         fluid
+        placeholder="Filled variant"
+        name="input"
+        variant="filled"
+      >
+        {renderChildren(children)}
+      </Select>
+      <Select
+        fluid
         placeholder="Searchable"
         name="input"
         searchable
@@ -193,6 +201,15 @@ const SelectSimpleDemo: React.FC = () => {
           fluid
           placeholder="Placeholder"
           name="input"
+          className="demoSubject"
+        >
+          {renderChildren(children)}
+        </Select>
+        <Select
+          fluid
+          placeholder="Filled variant"
+          name="input"
+          variant="filled"
           className="demoSubject"
         >
           {renderChildren(children)}

@@ -144,6 +144,24 @@ import { Snackbar } from "@sonnat/ui";
       <td>The horizontal placement of the snackbar.</td>
     </tr>
     <tr>
+      <td>autoHide</td>
+      <td>
+        boolean
+        <br />| number
+      </td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the snackbar automatically closes
+        after a calculated time.
+        <br />
+        This calculated time depends on the number of characters in the
+        snackbar's content.
+        <br />
+        If a number is entered, the snackbar will be closed after that amount of
+        time (in miliseconds).
+      </td>
+    </tr>
+    <tr>
       <td>open</td>
       <td>boolean</td>
       <td>false</td>
@@ -172,7 +190,7 @@ import { Snackbar } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the component has closed.
+        The callback fires when the component has closed.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -185,7 +203,7 @@ import { Snackbar } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the item has received focus.
+        The callback fires when the item has received focus.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -193,7 +211,6 @@ import { Snackbar } from "@sonnat/ui";
         <inlineCode>function() => void</inlineCode>
       </td>
     </tr>
-
   </tbody>
   <tfoot>
     <tr>

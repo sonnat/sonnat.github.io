@@ -22,12 +22,13 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-const demoCode = `import FormControl from "@sonnat/ui/FormControl";
-import FormControlLabel from "@sonnat/ui/FormControlLabel";
-import FormControlDescription from "@sonnat/ui/FormControlDescription";
-import FormControlFeedback from "@sonnat/ui/FormControlFeedback";
-import TextField from "@sonnat/ui/TextField";
+const demoCode = `import FormControl, {
+  FormControlDescription,
+  FormControlFeedback,
+  FormControlLabel
+} from "@sonnat/ui/FormControl";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import TextField from "@sonnat/ui/TextField";
 import * as React from "react";
 
 const useStyles = makeStyles(

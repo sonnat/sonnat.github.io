@@ -53,6 +53,12 @@ export const meta = {
 />
 <TextField
   name="input"
+  variant="filled"
+  placeholder="Filled variant"
+  fluid
+/>
+<TextField
+  name="input"
   placeholder="read-only"
   readOnly
   fluid
@@ -108,6 +114,13 @@ export const meta = {
   <TextField
     name="input"
     placeholder="Placeholder"
+    fluid
+    className="demoSubject"
+  />
+  <TextField
+    name="input"
+    variant="filled"
+    placeholder="Filled variant"
     fluid
     className="demoSubject"
   />
@@ -470,7 +483,7 @@ import { TextField } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the state has changed.
+        The callback fires when the state has changed.
         <br />
         <em>
           <strong>Signature:</strong>

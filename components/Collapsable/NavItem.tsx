@@ -1,6 +1,6 @@
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import * as React from "react";
-import { Collapse } from "react-collapse";
+import { UnmountClosed as Collapse } from "react-collapse";
 import CollapsableContext from "./Context";
 
 const componentName = "CollapsableNavItem";

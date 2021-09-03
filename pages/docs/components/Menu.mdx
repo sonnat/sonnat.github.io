@@ -237,7 +237,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the menu has opened.
+        The callback fires when the menu has opened.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -250,7 +250,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the menu has closed.
+        The callback fires when the menu has closed.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -259,11 +259,24 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
+      <td>onEscapeKeyDown</td>
+      <td>function</td>
+      <td>-</td>
+      <td>
+        The callback fires when the `Escape` key is released.
+        <br />
+        <em>
+          <strong>Signature:</strong>
+        </em>{" "}
+        <inlineCode>function(event: KeyboardEvent) => void</inlineCode>
+      </td>
+    </tr>
+    <tr>
       <td>onOutsideClick</td>
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when user has clicked outside of the menu.
+        The callback fires when user has clicked outside of the menu.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -276,7 +289,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the user has clicked, and determines whether the
+        The callback fires when the user has clicked, and determines whether the
         click occured outside of the menu or not.
         <br />
         It only fires when the menu is open!
@@ -350,7 +363,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the item has been clicked.
+        The callback fires when the item has been clicked.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -363,7 +376,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the item has received focus.
+        The callback fires when the item has received focus.
         <br />
         <em>
           <strong>Signature:</strong>
@@ -376,7 +389,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>function</td>
       <td>-</td>
       <td>
-        The Callback fires when the item has lost focus.
+        The callback fires when the item has lost focus.
         <br />
         <em>
           <strong>Signature:</strong>

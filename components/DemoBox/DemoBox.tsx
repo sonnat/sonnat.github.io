@@ -6,7 +6,7 @@ import Tooltip from "@sonnat/ui/Tooltip";
 import createClassName from "classnames";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import * as React from "react";
-import { Collapse } from "react-collapse";
+import { UnmountClosed as Collapse } from "react-collapse";
 import useClipboard from "react-use-clipboard";
 import prismTheme from "./theme";
 
