@@ -215,9 +215,13 @@ const schema = {
             InputAdornment: {
               label: "InputAdornment",
               href: "/docs/components/InputAdornment"
+            },
+            Flex: {
+              label: "Flex",
+              href: "/docs/components/Flex"
             }
           },
-          children: ["CssBaseline", "InputAdornment"]
+          children: ["CssBaseline", "InputAdornment", "Flex"]
         }
       },
       children: [

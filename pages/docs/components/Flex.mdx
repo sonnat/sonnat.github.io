@@ -1,0 +1,419 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import FlexDirectionDemo from "components/demos/FlexDirectionDemo";
+import FlexJustifyDemo from "components/demos/FlexJustifyDemo";
+import FlexAlignDemo from "components/demos/FlexAlignDemo";
+import FlexAlignSelfDemo from "components/demos/FlexAlignSelfDemo";
+import FlexAlignContentDemo from "components/demos/FlexAlignContentDemo";
+import FlexWrapDemo from "components/demos/FlexWrapDemo";
+import FlexFillDemo from "components/demos/FlexFillDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Flex",
+  description:
+    "The flex component serves as a wrapper component which brings most of the responsive flexbox utilities.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/components/${meta.title}`)}
+  {setKeywordsMeta([...defaultKeywordsMetaContent, "flex", "flexbox"])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/components/${meta.title}.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<div data-notebox style={{ marginBottom: 16 }}>
+  Responsive variations also exist for all of the flexbox main properties. Those
+  properties will have the following shape:
+</div>
+
+```ts
+type WithBreakpoint<T> = {
+  xxs?: T;
+  xs?: T;
+  sm?: T;
+  md?: T;
+  lg?: T;
+  xlg?: T;
+};
+
+type ResponsivePropType<T> = T | WithBreakpoint<T>;
+
+type Prop<PropValue> = ResponsivePropType<PropValue>;
+```
+
+<h2>
+  <span>Direction</span>
+  <AnchorButton anchorId="direction" />
+</h2>
+
+<FlexDirectionDemo />
+
+<h2>
+  <span>Main-Axis Alignment</span>
+  <AnchorButton anchorId="main-axis-alignment" />
+</h2>
+
+<p>
+  Use <inlineCode>mainAxisAlignment</inlineCode> prop to change the alignment of
+  flex items on the main axis (the x-axis when <inlineCode>{`direction={"row" | "row-reverse"}`}</inlineCode>
+  , y-axis when <inlineCode>{`direction={"column" | "column-reverse"}`}</inlineCode>
+  ).
+</p>
+
+<FlexJustifyDemo />
+
+<h2>
+  <span>Cross-Axis Alignment</span>
+  <AnchorButton anchorId="cross-axis-alignment" />
+</h2>
+
+<p>
+  Use <inlineCode>crossAxisAlignment</inlineCode> prop to change the alignment
+  of flex items on the cross axis (the y-axis when <inlineCode>{`direction={"row" | "row-reverse"}`}</inlineCode>
+  , x-axis when <inlineCode>{`direction={"column" | "column-reverse"}`}</inlineCode>
+  ).
+</p>
+
+<FlexAlignDemo />
+
+<h2>
+  <span>Align Content</span>
+  <AnchorButton anchorId="align-content" />
+</h2>
+
+<p>
+  Use <inlineCode>contentAlignment</inlineCode> prop to align flex items
+  together on the cross axis (the y-axis when <inlineCode>{`direction={"row" | "row-reverse"}`}</inlineCode>
+  , x-axis when <inlineCode>{`direction={"column" | "column-reverse"}`}</inlineCode>
+  ).
+</p>
+
+<div data-notebox style={{ marginBottom: 16, marginTop: 0 }}>
+  This property has no effect on single rows of flex items.
+</div>
+
+<FlexAlignContentDemo />
+
+<h2>
+  <span>Wrapping</span>
+  <AnchorButton anchorId="flex-wrap" />
+</h2>
+
+<p>
+  Use <inlineCode>wrap</inlineCode> prop to change the wrapping behavior of flex
+  items in the flexbox.
+</p>
+
+<FlexWrapDemo />
+
+<h2>
+  <span>Flex Item Self Alignment</span>
+  <AnchorButton anchorId="self-alignment" />
+</h2>
+
+<p>
+  Use <inlineCode>crossAxisSelfAlignment</inlineCode> prop on FlexItem to change
+  the alignment of that specific item on the cross axis (the y-axis when{" "}
+  <inlineCode>{`direction={"row" | "row-reverse"}`}</inlineCode>, x-axis when{" "}
+  <inlineCode>{`direction={"column" | "column-reverse"}`}</inlineCode>
+  ).
+</p>
+
+<FlexAlignSelfDemo />
+
+<h2>
+  <span>Flex Item Force Fill</span>
+  <AnchorButton anchorId="force-fill" />
+</h2>
+
+<p>
+  Use <inlineCode>fill</inlineCode> prop on FlexItems to force them into widths
+  equal to their content (or equal widths if their content does not surpass
+  their border-boxes) while taking up all available horizontal space.
+</p>
+
+<FlexFillDemo />
+
+<h2>
+  <span>API</span>
+  <AnchorButton anchorId="api" />
+</h2>
+
+<p>Learn more about the properties and the customization points.</p>
+
+<h3>
+  <span>Usage</span>
+  <AnchorButton anchorId="usage" />
+</h3>
+
+```typescript
+// recommended
+import Flex, { FlexItem } from "@sonnat/ui/Flex";
+
+//or
+import { Flex, FlexItem } from "@sonnat/ui";
+```
+
+<h3>
+  <span>Properties</span>
+  <AnchorButton anchorId="properties" />
+</h3>
+
+<p>
+  Note that the documentation avoids mentioning all the native props (there are
+  a lot) in this section of the components.
+</p>
+
+<h4>
+  <span>
+    <mark>Flex</mark> Properties
+  </span>
+  <AnchorButton anchorId="parent-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>Flex Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the container.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>rootNode</td>
+      <td>elementType</td>
+      <td>"div"</td>
+      <td>
+        The component used for the root node.
+        <br />
+        Either a string to use a HTML element or a component.
+      </td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>ResponsivePropType&lt;"block" | "inline"&gt;</td>
+      <td>"block"</td>
+      <td>The variant of the flexbox.</td>
+    </tr>
+    <tr>
+      <td>wrap</td>
+      <td>ResponsivePropType&lt;"nowrap" | "wrap" | "wrap-reverse"&gt;</td>
+      <td>"nowrap"</td>
+      <td>Changes how flex items wrap in the flexbox.</td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>
+        ResponsivePropType&lt;"row" | "column" | "row-reverse" |
+        "column-reverse"&gt;
+      </td>
+      <td>"row"</td>
+      <td>Sets the direction of flex items in the flexbox.</td>
+    </tr>
+    <tr>
+      <td>mainAxisAlignment</td>
+      <td>
+        ResponsivePropType&lt;"start" | "end" | "center" | "between" | "around"
+        | "evenly"&gt;
+      </td>
+      <td>"start"</td>
+      <td>
+        Changes the alignment of flex items on the main axis in the flexbox.
+      </td>
+    </tr>
+    <tr>
+      <td>crossAxisAlignment</td>
+      <td>
+        ResponsivePropType&lt;"start" | "end" | "center" | "baseline" |
+        "stretch"&gt;
+      </td>
+      <td>"stretch"</td>
+      <td>
+        Changes the alignment of flex items on the cross axis in the flexbox.
+      </td>
+    </tr>
+    <tr>
+      <td>contentAlignment</td>
+      <td>
+        ResponsivePropType&lt;""start" | "end" | "center" | "between" | "around"
+        | "evenly" | "stretch"&gt;
+      </td>
+      <td>"start"</td>
+      <td>
+        Aligns flex items together on the cross axis in the flexbox.
+        <br />
+        (Note: This property has no effect on single rows of flex items.)
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>FlexItem</mark> Properties
+  </span>
+  <AnchorButton anchorId="flex-item-properties" />
+</h4>
+
+<table cols={4}>
+  <caption>FlexItem Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>node</td>
+      <td>-</td>
+      <td>The content of the container.</td>
+    </tr>
+    <tr>
+      <td>className</td>
+      <td>string</td>
+      <td>-</td>
+      <td>
+        Append to the class names applied to the component so you can override
+        or extend the styles.
+      </td>
+    </tr>
+    <tr>
+      <td>rootNode</td>
+      <td>elementType</td>
+      <td>"div"</td>
+      <td>
+        The component used for the root node.
+        <br />
+        Either a string to use a HTML element or a component.
+      </td>
+    </tr>
+    <tr>
+      <td>fill</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        Use it on a series of sibling flex items to force them into widths equal
+        to their content (or equal widths if their content does not surpass
+        their border-boxes) while taking up all available horizontal space.
+      </td>
+    </tr>
+    <tr>
+      <td>mainAxisSelfAlignment</td>
+      <td>
+        ResponsivePropType&lt;"start" | "end" | "center" | "between" | "around"
+        | "evenly"&gt;
+      </td>
+      <td>"start"</td>
+      <td>
+        Changes the alignment of flex item individually on the main axis in the
+        flexbox.
+      </td>
+    </tr>
+    <tr>
+      <td>crossAxisAlignment</td>
+      <td>
+        ResponsivePropType&lt;"start" | "end" | "center" | "baseline" |
+        "stretch"&gt;
+      </td>
+      <td>"stretch"</td>
+      <td>
+        Changes the alignment of flex item individually on the cross axis in the
+        flexbox.
+      </td>
+    </tr>
+    <tr>
+      <td>autoMarginStart</td>
+      <td>ResponsivePropType&lt;boolean&gt;</td>
+      <td>false</td>
+      <td>Pushes the flex items on the left side to the left.</td>
+    </tr>
+    <tr>
+      <td>autoMarginEnd</td>
+      <td>ResponsivePropType&lt;boolean&gt;</td>
+      <td>false</td>
+      <td>Pushes the flex items on the right side to the right.</td>
+    </tr>
+    <tr>
+      <td>autoMarginTop</td>
+      <td>ResponsivePropType&lt;boolean&gt;</td>
+      <td>false</td>
+      <td>Pushes the above flex items to the top.</td>
+    </tr>
+    <tr>
+      <td>autoMarginBottom</td>
+      <td>ResponsivePropType&lt;boolean&gt;</td>
+      <td>false</td>
+      <td>Pushes the bottom flex items to the bottom.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
