@@ -553,10 +553,10 @@
   dependencies:
     "@babel/runtime" "^7.13.6"
 
-"@sonnat/ui@^1.3.2-canary.1":
-  version "1.3.2-canary.1"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.3.2-canary.1.tgz#eceff83ac2a098370dee08f65e7296c36fdc5185"
-  integrity sha512-I1mhWpC3wE69D5nE/gzcYGpT1m/zXFtBCO2AQs4DCy10a4TPdEnnBXa1hvaB7OP3I62InecJUDlzT5KdjBja4A==
+"@sonnat/ui@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-1.3.2.tgz#0e0707bb50d83edc6ccb2652254bb3710a99e06e"
+  integrity sha512-m7oYcEejb7XiBcDhrzKhfWLkHzn7U/s3wFIKGJzzba84ZDDIRuq3eiHijqbURL1CqPuNuJoXgtn5/D5BCxMHGw==
   dependencies:
     "@babel/runtime" "^7.13.6"
     classnames "^2.2.6"
