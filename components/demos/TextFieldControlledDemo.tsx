@@ -14,8 +14,8 @@ const Demo: React.FC = () => {
     <React.Fragment>
       <TextField
         value={value}
+        inputProps={{ "aria-label": "Label" }}
         onChange={e => void setValue(e.target.value)}
-        legendLabel="Label"
       />
       <span>The value is {\`"\${value}"\`}</span>
     </React.Fragment>
@@ -33,8 +33,8 @@ const TextFieldControlledDemo: React.FC = () => {
       <React.Fragment>
         <TextField
           value={value}
+          inputProps={{ "aria-label": "Label" }}
           onChange={e => void setValue(e.target.value)}
-          legendLabel="Label"
         />
         <span
           style={{ marginTop: 16, whiteSpace: "pre-wrap", textAlign: "center" }}
