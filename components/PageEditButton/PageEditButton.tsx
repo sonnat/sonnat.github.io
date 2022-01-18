@@ -1,7 +1,5 @@
 import PencilO from "@sonnat/icons/PencilO";
 import { IconButton } from "@sonnat/ui";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import c from "classnames";
 import * as React from "react";
 
 const componentName = "PageEditButton";
@@ -11,20 +9,14 @@ interface Props {
   href: string;
 }
 
-const useStyles = makeStyles(
-  { root: { marginLeft: "auto" } },
-  { name: componentName }
-);
-
 const PageEditButtonBase = (props: Props) => {
   const { className, href, ...otherProps } = props;
-
-  const classes = useStyles();
 
   return (
     <IconButton
       {...otherProps}
-      className={c(classes.root, className)}
+      style={{ marginLeft: "auto" }}
+      className={className}
       as="a"
       href={`https://github.com/sonnat/sonnat.github.io/blob/main/${href}`}
       variant="inlined"

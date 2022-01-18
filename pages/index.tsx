@@ -20,6 +20,7 @@ const useStyles = makeStyles(
       colors,
       darkMode,
       breakpoints,
+      spacings: { spacer },
       typography: { pxToRem }
     } = theme;
 
@@ -36,13 +37,11 @@ const useStyles = makeStyles(
     });
 
     return {
-      "@global": {
-        "#main": { paddingTop: pxToRem(64) }
-      },
+      "@global": { "#main": { paddingTop: pxToRem(64) } },
       section: {
         minHeight: `calc(100vh - ${pxToRem(72 + 64)})`,
-        paddingTop: pxToRem(32),
-        paddingBottom: pxToRem(32),
+        paddingTop: pxToRem(spacer.px * 2),
+        paddingBottom: pxToRem(spacer.px * 2),
         display: "flex",
         alignItems: "center"
       },
@@ -50,22 +49,22 @@ const useStyles = makeStyles(
       sectionBody: { display: "flex", alignItems: "center" },
       sectionContent: { flexShrink: 0, maxWidth: pxToRem(530) },
       heroTitle: {
-        paddingTop: pxToRem(32),
-        paddingBottom: pxToRem(16)
+        paddingTop: pxToRem(spacer.px * 2),
+        paddingBottom: spacer.rem
       },
       heroParagraph: {},
       heroFooter: {},
       gettingStartedBtn: {
-        marginTop: pxToRem(32),
-        marginBottom: pxToRem(32)
+        marginTop: pxToRem(spacer.px * 2),
+        marginBottom: pxToRem(spacer.px * 2)
       },
       license: { display: "flex" },
       licenseText: {},
       licenseDivider: {
-        marginRight: pxToRem(8),
-        marginLeft: pxToRem(8),
-        marginTop: pxToRem(4),
-        marginBottom: pxToRem(4)
+        marginRight: pxToRem(spacer.px * 0.5),
+        marginLeft: pxToRem(spacer.px * 0.5),
+        marginTop: pxToRem(spacer.px * 0.25),
+        marginBottom: pxToRem(spacer.px * 0.25)
       },
       githubLink: {
         position: "relative",
@@ -89,7 +88,7 @@ const useStyles = makeStyles(
           bottom: 0,
           left: 0,
           right: 0,
-          height: pxToRem(1),
+          height: 1,
           backgroundColor: colors.transparent
         }
       },

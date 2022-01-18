@@ -18,6 +18,7 @@ import makeStyles from "@sonnat/ui/styles/makeStyles";
 import WithSidebar from "components/layouts/WithSidebar";
 import IconDrawer from "components/partials/IconDrawer";
 import IconSample from "components/partials/IconSample";
+import { MediaQueryContext } from "context";
 import globAsync from "fast-glob";
 import fse from "fs-extra";
 import throttle from "lodash.throttle";
@@ -34,7 +35,6 @@ import {
   setKeywordsMeta,
   setTitleMeta
 } from "utils";
-import { MediaQueryContext } from "context";
 
 const pageName = "IconsPackagePage";
 
@@ -42,6 +42,7 @@ const useStyles = makeStyles(
   theme => {
     const {
       breakpoints,
+      spacings: { spacer },
       typography: { pxToRem, variants }
     } = theme;
 
@@ -50,36 +51,34 @@ const useStyles = makeStyles(
       sectionBody: {},
       heading: {},
       description: {
-        marginTop: pxToRem(16),
-        marginBottom: pxToRem(32)
+        marginTop: spacer.rem,
+        marginBottom: pxToRem(spacer.px * 2)
       },
       headActionBar: {
         display: "flex",
         alignItems: "center",
-        marginBottom: pxToRem(32),
-        "& > * + *": {
-          marginLeft: pxToRem(8)
-        }
+        marginBottom: pxToRem(spacer.px * 2),
+        "& > * + *": { marginLeft: pxToRem(spacer.px * 0.5) }
       },
       bodyActionBar: {
-        marginTop: pxToRem(32),
-        marginBottom: pxToRem(32),
+        marginTop: pxToRem(spacer.px * 2),
+        marginBottom: pxToRem(spacer.px * 2),
         display: "flex",
         alignItems: "center"
       },
-      searchField: {
-        marginRight: pxToRem(32)
-      },
+      searchField: { marginRight: pxToRem(spacer.px * 2) },
       fieldSeparator: {
-        marginTop: pxToRem(8),
-        marginBottom: pxToRem(8)
+        marginTop: pxToRem(spacer.px * 0.5),
+        marginBottom: pxToRem(spacer.px * 0.5)
       },
-      chips: { display: "flex", alignItems: "center", marginLeft: pxToRem(64) },
-      filledChip: { marginRight: pxToRem(8) },
+      chips: {
+        display: "flex",
+        alignItems: "center",
+        marginLeft: pxToRem(spacer.px * 4)
+      },
+      filledChip: { marginRight: pxToRem(spacer.px * 0.5) },
       outlinedChip: {},
-      iconSample: {
-        marginBottom: pxToRem(16)
-      },
+      iconSample: { marginBottom: spacer.rem },
       emptyState: {
         display: "flex",
         alignItems: "center",
@@ -90,7 +89,7 @@ const useStyles = makeStyles(
         heading: { fontSize: variants.h4.fontSize },
         headActionBar: { "& > *": { flexShrink: 0, flexGrow: 1 } },
         bodyActionBar: { flexDirection: "column", alignItems: "flex-start" },
-        searchField: { marginRight: 0, marginBottom: pxToRem(16) },
+        searchField: { marginRight: 0, marginBottom: spacer.rem },
         chips: { marginLeft: 0 }
       }
     };

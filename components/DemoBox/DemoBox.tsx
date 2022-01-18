@@ -29,6 +29,7 @@ const useStyles = makeStyles(
       colors,
       darkMode,
       swatches,
+      spacings: { spacer },
       typography: { pxToRem }
     } = theme;
 
@@ -39,18 +40,16 @@ const useStyles = makeStyles(
         }`,
         borderRadius: 4,
         overflow: "hidden",
-        "@global .demoSubject": {
-          margin: pxToRem(8)
-        },
-        "& + &": { marginTop: pxToRem(16) },
-        "& + p": { marginTop: pxToRem(16) }
+        "@global .demoSubject": { margin: pxToRem(spacer.px * 0.5) },
+        "& + &": { marginTop: spacer.rem },
+        "& + p": { marginTop: spacer.rem }
       },
       demoContainer: {
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
         minHeight: pxToRem(100),
-        padding: pxToRem(32),
+        padding: pxToRem(spacer.px * 2),
         backgroundColor: colors.background.origin,
         [theme.breakpoints.down("sm")]: { flexDirection: "column" }
       },
@@ -63,11 +62,11 @@ const useStyles = makeStyles(
         flexWrap: "wrap",
         alignItems: "center",
         height: pxToRem(56),
-        paddingLeft: pxToRem(8),
-        paddingRight: pxToRem(8)
+        paddingLeft: pxToRem(spacer.px * 0.5),
+        paddingRight: pxToRem(spacer.px * 0.5)
       },
       viewCode: {},
-      copyCode: { marginLeft: "auto", marginRight: pxToRem(8) },
+      copyCode: { marginLeft: "auto", marginRight: pxToRem(spacer.px * 0.5) },
       expandCode: {},
       codeContainer: {
         [theme.breakpoints.down("lg")]: {
