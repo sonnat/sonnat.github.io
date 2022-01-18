@@ -3,13 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import makeStyles from "@sonnat/ui/styles/makeStyles";
+import Text from "@sonnat/ui/Text";
 import usePreviousValue from "@sonnat/ui/utils/usePreviousValue";
 import createClassName from "classnames";
-import * as React from "react";
-import Text from "@sonnat/ui/Text";
 import ActiveLink from "components/ActiveLink";
-import { diff } from "deep-diff";
 import { Content, InnerLink, NavItem, Trigger } from "components/Collapsable";
+import isDeepEqual from "fast-deep-equal/react";
+import * as React from "react";
 
 const schema = {
   byChild: {
@@ -443,8 +443,8 @@ export const useNavJsx = (className?: string): JSX.Element => {
   const changeId = React.useRef("");
 
   const prevClasses = usePreviousValue(classes);
+  const classesChanged = !isDeepEqual(classes, prevClasses);
 
-  const classesChanged = diff(classes, prevClasses) != null;
   const idChanged = classes.root !== changeId.current;
 
   if (classesChanged && idChanged) {
