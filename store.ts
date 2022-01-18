@@ -1,27 +1,29 @@
-import createStore, { State } from "zustand";
+import createStore, { type State } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface IState extends State {
-  isDarkMode: boolean;
   isBurgerMenuOpen: boolean;
   isPageLoading: boolean;
-  toggleDarkMode: () => void;
   setPageLoading: (isLoading: boolean) => void;
   setBurgerMenuOpen: (isOpen: boolean) => void;
 }
 
-const useStore = createStore<IState>(
+export const useDarkModeStore = createStore<{
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+}>(
   persist(
     set => ({
-      isDarkMode: false,
-      isBurgerMenuOpen: false,
-      isPageLoading: false,
-      setPageLoading: isLoading => set(() => ({ isPageLoading: isLoading })),
-      setBurgerMenuOpen: isOpen => set(() => ({ isBurgerMenuOpen: isOpen })),
+      isDarkMode: false as boolean,
       toggleDarkMode: () => set(state => ({ isDarkMode: !state.isDarkMode }))
     }),
-    { name: "theme-mode-storage", whitelist: ["isDarkMode"] }
+    { name: "theme-mode-storage" }
   )
 );
 
-export default useStore;
+export const usePageStore = createStore<IState>(set => ({
+  isBurgerMenuOpen: false,
+  isPageLoading: false,
+  setPageLoading: isLoading => set(() => ({ isPageLoading: isLoading })),
+  setBurgerMenuOpen: isOpen => set(() => ({ isBurgerMenuOpen: isOpen }))
+}));

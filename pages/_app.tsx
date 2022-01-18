@@ -8,9 +8,9 @@ import WithHeader from "components/layouts/WithHeader";
 import Head from "next/head";
 import * as React from "react";
 import smoothScroll from "smoothscroll-polyfill";
-import useStore from "store";
+import { usePageStore, useDarkModeStore } from "store";
 import type { AppPropsWithLayout, MDXMeta } from "types";
-import { /*analytics,*/ createComponentMapping, setTitleMeta } from "utils";
+import { createComponentMapping, setTitleMeta } from "utils";
 
 const googleFontFamily =
   "https://fonts.googleapis.com/css2?" +
@@ -27,8 +27,6 @@ const useGlobalStyles = makeStyles(
   },
   { name: "GlobalStyles" }
 );
-
-// const isProduction = process.env.NODE_ENV === "production";
 
 const componentMapping = createComponentMapping();
 
@@ -51,9 +49,9 @@ export default function App(props: AppPropsWithLayout): JSX.Element {
 
   const withPageLayout = getPageLayout();
 
-  const isDarkMode = useStore(state => state.isDarkMode);
-  const setBurgerMenuOpen = useStore(state => state.setBurgerMenuOpen);
-  const setPageLoading = useStore(state => state.setPageLoading);
+  const isDarkMode = useDarkModeStore(state => state.isDarkMode);
+  const setBurgerMenuOpen = usePageStore(state => state.setBurgerMenuOpen);
+  const setPageLoading = usePageStore(state => state.setPageLoading);
 
   const theme = useDarkMode(isDarkMode);
 
@@ -61,7 +59,6 @@ export default function App(props: AppPropsWithLayout): JSX.Element {
   const routeChangeComplete = () => {
     setPageLoading(false);
     setBurgerMenuOpen(false);
-    // if (isProduction) analytics.logPageView();
   };
 
   React.useEffect(() => {
@@ -93,13 +90,6 @@ export default function App(props: AppPropsWithLayout): JSX.Element {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // React.useEffect(() => {
-  // if (isProduction) {
-  // analytics.initGA();
-  // analytics.logPageView();
-  // }
-  // }, []);
 
   return (
     <SonnatInitializer theme={theme} injectFirst>
