@@ -2,6 +2,7 @@ import Container from "@sonnat/ui/Container";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Footer from "components/containers/Footer";
 import Sidebar from "components/containers/Sidebar";
+import { MediaQueryContext } from "context";
 import * as React from "react";
 
 const componentName = "WithSidebar";
@@ -20,8 +21,7 @@ const useStyles = makeStyles(
       sidebar: {
         height: `calc(100vh - ${pxToRem(192)})`,
         width: pxToRem(256),
-        flexShrink: 0,
-        [breakpoints.down("lg")]: { display: "none" }
+        flexShrink: 0
       },
       content: {
         flex: "1 1",
@@ -40,10 +40,12 @@ const useStyles = makeStyles(
 const WithSidebar: React.FC = ({ children }) => {
   const classes = useStyles();
 
+  const mediaQuery = React.useContext(MediaQueryContext);
+
   return (
     <main id="main" className={classes.root}>
       <Container className={classes.container}>
-        <Sidebar className={classes.sidebar} />
+        {mediaQuery.isDesktop && <Sidebar className={classes.sidebar} />}
         <section className={classes.content}>
           <article className={classes.article}>{children}</article>
           <Footer />

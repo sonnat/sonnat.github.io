@@ -4,7 +4,7 @@ import makeStyles from "@sonnat/ui/styles/makeStyles";
 import createClassName from "classnames";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import * as React from "react";
-import { UnmountClosed as Collapse } from "react-collapse";
+import useCollapse from "react-collapsed";
 import useClipboard from "react-use-clipboard";
 import prismTheme from "./theme";
 
@@ -52,9 +52,7 @@ const useStyles = makeStyles(
         minHeight: pxToRem(100),
         padding: pxToRem(32),
         backgroundColor: colors.background.origin,
-        [theme.breakpoints.down("sm")]: {
-          flexDirection: "column"
-        }
+        [theme.breakpoints.down("sm")]: { flexDirection: "column" }
       },
       codeWrapper: {
         borderTop: `1px solid ${colors.divider}`,
@@ -85,7 +83,6 @@ const useStyles = makeStyles(
       expanded: {
         "& $codeWrapper": {}
       },
-      collapser: { transition: "height 360ms ease" },
       flexDirectionRow: { "& $demoContainer": { flexDirection: "row" } },
       flexDirectionColumn: { "& $demoContainer": { flexDirection: "column" } },
       hAlignCenter: {
@@ -159,10 +156,11 @@ const DemoBoxBase = (props: Props) => {
 
   const classes = useStyles();
 
-  const [isExpanded, setExpanded] = React.useState(false);
   const [isCopied, setCopied] = useClipboard(code || "", {
     successDuration: 1000
   });
+
+  const { isExpanded, setExpanded, getCollapseProps } = useCollapse();
 
   const hAlignKey = `hAlign${toCapitalize(
     horizontalAlignment
@@ -220,7 +218,7 @@ const DemoBoxBase = (props: Props) => {
             onClick={() => setExpanded(s => !s)}
           />
         </div>
-        <Collapse theme={{ collapse: classes.collapser }} isOpened={isExpanded}>
+        <div {...getCollapseProps()}>
           <div className={classes.codeContainer}>
             <Highlight
               {...defaultProps}
@@ -257,7 +255,7 @@ const DemoBoxBase = (props: Props) => {
               )}
             </Highlight>
           </div>
-        </Collapse>
+        </div>
       </div>
     </div>
   );

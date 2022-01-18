@@ -6,6 +6,7 @@ import {
   WeatherSunnyO
 } from "@sonnat/icons";
 import { Container, Divider, IconButton, NoSsr, Text } from "@sonnat/ui";
+import useIsMounted from "@utilityjs/use-is-mounted";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import c from "classnames";
 import Link from "next/link";
@@ -13,6 +14,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useDarkModeStore, usePageStore } from "store";
 import BurgerMenu from "./partials/BurgerMenu";
+import { MediaQueryContext } from "context";
 
 const componentName = "Header";
 
@@ -49,20 +51,10 @@ const useStyles = makeStyles(
         transition: ["box-shadow 360ms ease", "padding-top 360ms ease"].join(
           ","
         ),
-        [breakpoints.up("lg")]: {
-          "& $desktop": { display: "flex" },
-          "& $mobile": { display: "none" },
-          "& $subHeaderContainer": { display: "none" }
-        },
         [breakpoints.down("lg")]: {
           flexDirection: "column",
           "& $container": { justifyContent: "space-between" },
-          "& $burgerMenuToggle": { display: "inline-flex" },
-          "& $logo": { marginRight: 0 },
-          "& $mobile": { display: "flex" },
-          "& $desktop": { display: "none" },
-          "& $divider": { display: "none" },
-          "& $subHeaderWrapper": { display: "flex" }
+          "& $logo": { marginRight: 0 }
         },
         [breakpoints.down("sm")]: {
           "& $subHeaderContainer": { borderTop: `1px solid ${colors.divider}` }
@@ -93,7 +85,7 @@ const useStyles = makeStyles(
         marginRight: spaces[7].rem,
         height: 24
       },
-      nav: { alignItems: "center" },
+      nav: { display: "flex", alignItems: "center" },
       desktop: {},
       mobile: {},
       navList: {
@@ -116,7 +108,7 @@ const useStyles = makeStyles(
         color: !darkMode ? colors.primary.origin : colors.primary.light
       },
       darkModeToggle: {},
-      burgerMenuToggle: { display: "none" },
+      burgerMenuToggle: { display: "inline-flex" },
       subHeader: {},
       subHeaderContainer: {
         display: "flex",
@@ -124,7 +116,7 @@ const useStyles = makeStyles(
         height: pxToRem(40)
       },
       subHeaderWrapper: {
-        display: "none",
+        display: "flex",
         alignItems: "center",
         width: `calc(100vw - ${pxToRem(32)})`
       }
@@ -139,7 +131,9 @@ const HeaderBase = (props: Props) => {
   const router = useRouter();
   const classes = useStyles();
 
-  const [isMounted, setMounted] = React.useState(false);
+  const mediaQuery = React.useContext(MediaQueryContext);
+
+  const isMounted = useIsMounted();
 
   const isDarkMode = useDarkModeStore(state => state.isDarkMode);
   const toggleDarkMode = useDarkModeStore(state => state.toggleDarkMode);
@@ -147,11 +141,6 @@ const HeaderBase = (props: Props) => {
   const setBurgerMenuOpen = usePageStore(state => state.setBurgerMenuOpen);
 
   const isDemoActive = router.pathname.includes("/docs/");
-
-  React.useEffect(() => {
-    setMounted(true);
-    return () => void setMounted(false);
-  }, []);
 
   const createNav = (className: string) => {
     return (
@@ -209,15 +198,17 @@ const HeaderBase = (props: Props) => {
   return (
     <header id="header" className={c(classes.root, className)} {...otherProps}>
       <Container className={classes.container}>
-        <IconButton
-          aria-label="Toggle burger menu"
-          icon={!isBurgerMenuOpen ? <BurgerMenuIcon /> : <CloseLarge />}
-          variant="inlined"
-          onClick={() =>
-            void (isMounted && setBurgerMenuOpen(!isBurgerMenuOpen))
-          }
-          className={classes.burgerMenuToggle}
-        />
+        {!mediaQuery.isDesktop && (
+          <IconButton
+            aria-label="Toggle burger menu"
+            icon={!isBurgerMenuOpen ? <BurgerMenuIcon /> : <CloseLarge />}
+            variant="inlined"
+            onClick={() =>
+              void (isMounted() && setBurgerMenuOpen(!isBurgerMenuOpen))
+            }
+            className={classes.burgerMenuToggle}
+          />
+        )}
         <Link href="/">
           <a title="Home" className={classes.logo}>
             <SonnatThin size={32} title="Sonnat Design System's Logo" />
@@ -232,18 +223,29 @@ const HeaderBase = (props: Props) => {
             className={classes.darkModeToggle}
           />
         </NoSsr>
-        <Divider vertical className={classes.divider} />
-        {createNav("desktop")}
+
+        {mediaQuery.isDesktop && (
+          <>
+            <Divider vertical className={classes.divider} />
+            {createNav("desktop")}
+          </>
+        )}
       </Container>
-      <Container className={classes.subHeaderContainer}>
-        <div className={classes.subHeaderWrapper}>
-          <div className={classes.subHeader}>{createNav("mobile")}</div>
-        </div>
-      </Container>
-      <BurgerMenu
-        open={isBurgerMenuOpen}
-        toggle={() => void (isMounted && setBurgerMenuOpen(!isBurgerMenuOpen))}
-      />
+      {!mediaQuery.isDesktop && (
+        <>
+          <Container className={classes.subHeaderContainer}>
+            <div className={classes.subHeaderWrapper}>
+              <div className={classes.subHeader}>{createNav("mobile")}</div>
+            </div>
+          </Container>
+          <BurgerMenu
+            open={isBurgerMenuOpen}
+            toggle={() =>
+              void (isMounted() && setBurgerMenuOpen(!isBurgerMenuOpen))
+            }
+          />
+        </>
+      )}
     </header>
   );
 };

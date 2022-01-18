@@ -13,22 +13,9 @@ interface Props {
 }
 
 const useStyles = makeStyles(
-  ({ colors, spacings: { spaces }, typography: { fontWeight, pxToRem } }) => ({
-    root: {},
-    title: {
-      color: colors.text.secondary,
-      transition: "color 360ms ease",
-      "&:hover": { color: colors.text.primary }
-    },
-    divider: {
-      width: 1,
-      height: `calc(100% - ${pxToRem(24)})`,
-      marginRight: spaces[4].rem,
-      marginLeft: spaces[3].rem,
-      backgroundColor: colors.divider
-    },
+  ({ colors, typography: { fontWeight } }) => ({
     active: {
-      "& $title": {
+      "& > span": {
         color: colors.text.primary,
         fontWeight: fontWeight.medium
       }
@@ -45,12 +32,10 @@ const CollapsableTriggerBase = (props: Props) => {
   return (
     <div
       role="button"
-      className={createClass(classes.root, className, {
-        [classes.active]: active
-      })}
+      className={createClass(className, { [classes.active]: active })}
       onClick={onClick}
     >
-      <Text title={title} variant="bodySmall" className={classes.title}>
+      <Text title={title} variant="bodySmall">
         {title}
       </Text>
     </div>

@@ -1,6 +1,5 @@
-import makeStyles from "@sonnat/ui/styles/makeStyles";
 import * as React from "react";
-import { UnmountClosed as Collapse } from "react-collapse";
+import useCollapse from "react-collapsed";
 import CollapsableContext from "./Context";
 
 const componentName = "CollapsableNavItem";
@@ -11,59 +10,43 @@ interface Props {
   isExpanded?: boolean;
 }
 
-const useStyles = makeStyles(
-  {
-    root: { width: "100%" },
-    collapseWrapper: { transition: "height 360ms ease" },
-    collapseContainer: {}
-  },
-  { name: componentName }
-);
-
 const CollapsableNavItemBase = (props: Props) => {
-  const { trigger: triggerComponent, content, isExpanded = false } = props;
-
-  const classes = useStyles();
-  const [isCollapsed, setCollapsed] = React.useState(!isExpanded);
+  const {
+    trigger: triggerComponent,
+    content,
+    isExpanded: isExpandedProp = false
+  } = props;
 
   const { setExpanded: setParentExpanded } =
     React.useContext(CollapsableContext);
 
-  const triggerClickListener = React.useCallback(() => {
-    setCollapsed(c => !c);
-  }, []);
+  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } =
+    useCollapse({
+      defaultExpanded: isExpandedProp
+    });
 
-  const triggerProps = {
-    onClick: triggerClickListener,
-    active: !isCollapsed
-  };
-
-  const trigger = React.cloneElement(triggerComponent, triggerProps);
+  const trigger = React.cloneElement(triggerComponent, {
+    ...getToggleProps(),
+    active: isExpanded
+  });
 
   const context = React.useMemo(
     () => ({
-      isExpanded: !isCollapsed,
+      isExpanded,
       setExpanded: (bool: boolean) => {
-        setCollapsed(!bool);
+        setExpanded(bool);
         if (setParentExpanded) setParentExpanded(bool);
       }
     }),
-    [isCollapsed, setParentExpanded]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isExpanded, setParentExpanded]
   );
 
   return (
-    <div className={classes.root}>
+    <div style={{ width: "100%" }}>
       <CollapsableContext.Provider value={context}>
         {trigger}
-        <Collapse
-          theme={{
-            collapse: classes.collapseWrapper,
-            content: classes.collapseContainer
-          }}
-          isOpened={!isCollapsed}
-        >
-          {content}
-        </Collapse>
+        <div {...getCollapseProps()}>{content}</div>
       </CollapsableContext.Provider>
     </div>
   );
