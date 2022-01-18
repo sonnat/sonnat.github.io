@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Close, Download, Github, Magnifier } from "@sonnat/icons";
 import {
   Button,
@@ -30,9 +32,9 @@ import {
   setCanonicalMeta,
   setDescriptionMeta,
   setKeywordsMeta,
-  setTitleMeta,
-  useIsomorphicLayoutEffect
+  setTitleMeta
 } from "utils";
+import { MediaQueryContext } from "context";
 
 const pageName = "IconsPackagePage";
 
@@ -85,22 +87,11 @@ const useStyles = makeStyles(
         flex: "1 0"
       },
       [breakpoints.down("sm")]: {
-        heading: {
-          fontSize: variants.h4.fontSize
-        },
-        headActionBar: {
-          "& > *": {
-            flexShrink: 0,
-            flexGrow: 1
-          }
-        },
-        bodyActionBar: {
-          flexDirection: "column",
-          alignItems: "flex-start"
-        },
+        heading: { fontSize: variants.h4.fontSize },
+        headActionBar: { "& > *": { flexShrink: 0, flexGrow: 1 } },
+        bodyActionBar: { flexDirection: "column", alignItems: "flex-start" },
         searchField: { marginRight: 0, marginBottom: pxToRem(16) },
-        chips: { marginLeft: 0 },
-        fieldSeparator: { display: "none" }
+        chips: { marginLeft: 0 }
       }
     };
   },
@@ -135,14 +126,14 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 }) => {
   const classes = useStyles();
 
-  const [filteredIcons, setFilteredIcons] = React.useState<
-    JSX.Element[] | null
-  >(null);
+  const mediaQuery = React.useContext(MediaQueryContext);
 
   const [variant, setVariant] = React.useState<"filled" | "outlined" | "">("");
+
   const [searchValue, setSearchValue] = React.useState("");
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const [hasEmptyState, setHasEmptyState] = React.useState(false);
+
   const [selectedIcon, setSelectedIcon] = React.useState<IconDataState | null>(
     null
   );
@@ -189,16 +180,14 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useIsomorphicLayoutEffect(() => {
-    setFilteredIcons(cachedSource);
-  }, [cachedSource]);
+  const [filteredIcons, setFilteredIcons] =
+    React.useState<JSX.Element[]>(cachedSource);
 
   const onSearch = throttle((value: string) => {
     const key = value.toLowerCase();
 
     if (key && key.length >= 2) {
       const filtered = cachedSource.filter(jsx => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const jsxKey: string = jsx.props["data-key"];
 
         return jsxKey.includes(key);
@@ -211,20 +200,16 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
   }, 750);
 
   const cachedResult = React.useMemo(() => {
-    let filtered: JSX.Element[] | null | undefined = filteredIcons;
+    let filtered: JSX.Element[] = filteredIcons;
 
     if (variant === "filled") {
-      filtered = filteredIcons?.filter(jsx => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      filtered = filteredIcons.filter(jsx => {
         const jsxKey: string = jsx.props["data-key"];
-
         return !jsxKey.includes("-o");
       });
     } else if (variant === "outlined") {
-      filtered = filteredIcons?.filter(jsx => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      filtered = filteredIcons.filter(jsx => {
         const jsxKey: string = jsx.props["data-key"];
-
         return jsxKey.includes("-o");
       });
     }
@@ -328,7 +313,9 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
               )
             }
           />
-          <Divider vertical className={classes.fieldSeparator} />
+          {!mediaQuery.isMobile && (
+            <Divider vertical className={classes.fieldSeparator} />
+          )}
           <div className={classes.chips}>
             <ChoiceChip
               className={classes.filledChip}
