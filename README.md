@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://www.sonnat.dev">
     <img src="https://raw.githubusercontent.com/sonnat/sonnat-ui/next/sonnat.svg" height="128">
-    <h1 align="center">Sonnat-UI's Documentation</h1>
+    <h1 align="center">Sonnat Dev Documentation</h1>
   </a>
 </div>
 
