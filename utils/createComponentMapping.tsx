@@ -1,16 +1,24 @@
-import Code, { CodeProps } from "@sonnat/ui/Code";
-import Divider, { DividerProps } from "@sonnat/ui/Divider";
-import { adjustColor } from "@sonnat/ui/styles/colorUtils";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
-import Text, { TextProps } from "@sonnat/ui/Text";
 import { InfoCircleLargeO } from "@sonnat/icons";
-import createClassName from "classnames";
+import {
+  Code,
+  Divider,
+  Text,
+  type CodeProps,
+  type DividerProps,
+  type TextProps
+} from "@sonnat/ui";
+import {
+  adjustColorHsla,
+  makeStyles,
+  useTheme,
+  type Breakpoints,
+  type Spacings
+} from "@sonnat/ui/styles";
+import c from "classnames";
 import prismTheme from "components/DemoBox/theme";
-import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import Link from "next/link";
+import Highlight, { defaultProps, type Language } from "prism-react-renderer";
 import * as React from "react";
-import useTheme from "@sonnat/ui/styles/useTheme";
 
 interface CustomDivProps extends React.ComponentPropsWithoutRef<"div"> {
   "data-notebox"?: boolean;
@@ -23,121 +31,128 @@ interface TableProps extends React.ComponentPropsWithoutRef<"table"> {
 const useParagraphStyles = makeStyles(
   theme => ({
     root: {
-      paddingTop: theme.typography.pxToRem(16),
-      paddingBottom: theme.typography.pxToRem(16),
-      "& + ul, & + ol": { marginTop: theme.typography.pxToRem(-16) },
-      "& + div > table": { marginTop: theme.typography.pxToRem(-16) }
+      paddingTop: theme.spacings.spaces[7].rem,
+      paddingBottom: theme.spacings.spaces[7].rem,
+      "& + ul, & + ol": { marginTop: `-${theme.spacings.spaces[7].rem}` },
+      "& + div > table": { marginTop: `-${theme.spacings.spaces[7].rem}` }
     }
   }),
   { name: "Paragraph" }
 );
 
-const baseHeadingStyles = (theme: DefaultTheme) => ({
+const baseHeadingStyles = (
+  spaces: Spacings["spaces"],
+  breakpoints: Breakpoints
+) => ({
   root: {
     alignItems: "center",
-    "& + .demo-box, & + pre": { marginTop: theme.typography.pxToRem(8) },
-    [theme.breakpoints.up("sm")]: {
-      "@global .anchor-button": {
-        visibility: "hidden",
-        opacity: 0
-      }
+    "& + .demo-box, & + pre": { marginTop: spaces[3].rem },
+    [breakpoints.up("sm")]: {
+      "@global .anchor-button": { visibility: "hidden", opacity: 0 }
     },
     "&:hover": {
-      "@global .anchor-button": {
-        visibility: "visible",
-        opacity: 1
-      }
+      "@global .anchor-button": { visibility: "visible", opacity: 1 }
     }
   }
 });
 
 const useH1Styles = makeStyles(
-  theme => ({
+  ({ breakpoints, typography: { variants }, spacings: { spaces } }) => ({
     root: {
-      ...baseHeadingStyles(theme).root,
-      [theme.breakpoints.down("sm")]: {
-        ...theme.typography.variants.h4
-      }
+      ...baseHeadingStyles(spaces, breakpoints).root,
+      [breakpoints.down("sm")]: { ...variants.h4 }
     }
   }),
   { name: "H1" }
 );
 
 const useH2Styles = makeStyles(
-  theme => ({
+  ({
+    breakpoints,
+    typography: { pxToRem, variants },
+    spacings: { spaces, spacer }
+  }) => ({
     root: {
-      ...baseHeadingStyles(theme).root,
-      paddingTop: theme.typography.pxToRem(32),
-      [theme.breakpoints.down("sm")]: {
-        ...theme.typography.variants.h5
-      }
+      ...baseHeadingStyles(spaces, breakpoints).root,
+      paddingTop: pxToRem(spacer.px * 2),
+      [breakpoints.down("sm")]: { ...variants.h5 }
     }
   }),
   { name: "H2" }
 );
 
 const useH3Styles = makeStyles(
-  theme => ({
+  ({
+    breakpoints,
+    typography: { pxToRem, variants },
+    spacings: { spaces, spacer }
+  }) => ({
     root: {
-      ...baseHeadingStyles(theme).root,
-      paddingTop: theme.typography.pxToRem(32),
-      [theme.breakpoints.down("sm")]: {
-        ...theme.typography.variants.h6
-      }
+      ...baseHeadingStyles(spaces, breakpoints).root,
+      paddingTop: pxToRem(spacer.px * 2),
+      [breakpoints.down("sm")]: { ...variants.h6 }
     }
   }),
   { name: "H3" }
 );
 
 const useH4Styles = makeStyles(
-  theme => ({
+  ({
+    breakpoints,
+    typography: { variants },
+    spacings: { spaces, spacer }
+  }) => ({
     root: {
-      ...baseHeadingStyles(theme).root,
-      paddingTop: theme.typography.pxToRem(16),
-      [theme.breakpoints.down("sm")]: {
-        ...theme.typography.variants.subtitle
-      }
+      ...baseHeadingStyles(spaces, breakpoints).root,
+      paddingTop: spacer.rem,
+      [breakpoints.down("sm")]: { ...variants.subtitle }
     }
   }),
   { name: "H4" }
 );
 
 const useCodeBlockStyles = makeStyles(
-  theme => ({
+  ({
+    breakpoints,
+    swatches,
+    typography: { pxToRem },
+    spacings: { spacer }
+  }) => ({
     root: {
-      backgroundColor: theme.colors.pallete.grey[900],
-      [theme.breakpoints.down("lg")]: {
-        maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
-      },
-      "& + ul": { marginTop: theme.typography.pxToRem(32) },
-      "& + p": { marginTop: theme.typography.pxToRem(16) },
-      "& + &": { marginTop: theme.typography.pxToRem(16) }
+      backgroundColor: swatches.grey[900],
+      [breakpoints.down("lg")]: { maxWidth: `calc(100vw - ${pxToRem(32)})` },
+      "& + ul": { marginTop: pxToRem(spacer.px * 2) },
+      "& + p": { marginTop: spacer.rem },
+      "& + &": { marginTop: spacer.rem }
     }
   }),
   { name: "CodeBlock" }
 );
 
 const useInlineCodeStyles = makeStyles(
-  theme => ({
+  ({ darkMode }) => ({
     root: {
-      border: `1px solid ${
-        theme.darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"
-      }`
+      border: `1px solid rgba(${darkMode ? 255 : 0}, ${darkMode ? 255 : 0}, ${
+        darkMode ? 255 : 0
+      }, 0.08)`
     }
   }),
   { name: "InlineCode" }
 );
 
 const useTableStyles = makeStyles(
-  theme => ({
+  ({
+    colors,
+    breakpoints,
+    typography: { pxToRem, variants },
+    spacings: { spaces }
+  }) => ({
     root: {
-      marginTop: theme.typography.pxToRem(16),
+      marginTop: spaces[7].rem,
       overflow: "auto",
       width: "100%",
       display: "block",
-      [theme.breakpoints.down("lg")]: {
-        maxWidth: `calc(100vw - ${theme.typography.pxToRem(32)})`
-      }
+      [breakpoints.down("lg")]: { maxWidth: `calc(100vw - ${pxToRem(32)})` }
     },
     table: {
       borderCollapse: "collapse",
@@ -145,15 +160,14 @@ const useTableStyles = makeStyles(
       wordBreak: "normal",
       "& ul, & ol": { paddingTop: 0, paddingBottom: 0 },
       "& li": {
-        fontSize: theme.typography.pxToRem(12)
+        fontSize: variants.caption.fontSize,
+        lineHeight: variants.caption.lineHeight
       },
       "& caption": {
-        ...theme.typography.useText({
-          fontSize: theme.typography.pxToRem(12),
-          color: theme.colors.text.secondary
-        }),
+        ...variants.caption,
+        color: colors.text.secondary,
         textAlign: "left",
-        padding: [[theme.typography.pxToRem(8), 0]]
+        padding: [[spaces[3].rem, 0]]
       }
     }
   }),
@@ -161,39 +175,34 @@ const useTableStyles = makeStyles(
 );
 
 const useTHStyles = makeStyles(
-  theme => ({
+  ({ colors, typography: { pxToRem, variants }, spacings: { spaces } }) => ({
     root: {
-      ...theme.typography.useText({
-        fontSize: theme.typography.pxToRem(14),
-        fontWeight: theme.typography.fontWeight.medium,
-        color: theme.colors.text.primary
-      }),
+      ...variants.subtitleSmall,
+      color: colors.text.primary,
       textAlign: "left",
-      padding: [[theme.typography.pxToRem(14), theme.typography.pxToRem(16)]],
+      padding: [[spaces[6].rem, spaces[7].rem]],
       whiteSpace: "pre",
-      minWidth: theme.typography.pxToRem(120)
+      minWidth: pxToRem(120)
     }
   }),
   { name: "TH" }
 );
 
 const useTDStyles = makeStyles(
-  theme => ({
+  ({ colors, typography: { variants }, spacings: { spaces } }) => ({
     root: {
-      ...theme.typography.useText({
-        fontSize: theme.typography.pxToRem(14),
-        color: theme.colors.text.primary
-      }),
-      padding: [[theme.typography.pxToRem(10), theme.typography.pxToRem(16)]]
+      ...variants.bodySmall,
+      color: colors.text.primary,
+      padding: [[spaces[4].rem, spaces[7].rem]]
     }
   }),
   { name: "TD" }
 );
 
 const useTableRowStyles = makeStyles(
-  theme => ({
+  ({ colors }) => ({
     root: {
-      borderBottom: `1px solid ${theme.colors.divider}`,
+      borderBottom: `1px solid ${colors.divider}`,
       verticalAlign: "top"
     }
   }),
@@ -201,12 +210,12 @@ const useTableRowStyles = makeStyles(
 );
 
 const useTableFooterStyles = makeStyles(
-  theme => ({
+  ({ colors, typography: { variants }, spacings: { spaces } }) => ({
     root: {
       "& td": {
-        color: theme.colors.text.primary,
-        fontSize: theme.typography.pxToRem(12),
-        padding: [[theme.typography.pxToRem(8), 0]]
+        ...variants.caption,
+        color: colors.text.primary,
+        padding: [[spaces[3].rem, 0]]
       }
     }
   }),
@@ -215,20 +224,16 @@ const useTableFooterStyles = makeStyles(
 
 const useLinkStyles = makeStyles(
   theme => {
-    const {
-      colors,
-      darkMode,
-      typography: { pxToRem }
-    } = theme;
+    const { colors, darkMode } = theme;
 
     const primary = !darkMode ? colors.primary.origin : colors.primary.light;
 
-    const primaryHover = adjustColor(primary, {
+    const primaryHover = adjustColorHsla(primary, {
       saturation: -8,
       lightness: +8
     });
 
-    const primaryActive = adjustColor(primary, {
+    const primaryActive = adjustColorHsla(primary, {
       saturation: +8,
       lightness: -4
     });
@@ -256,7 +261,7 @@ const useLinkStyles = makeStyles(
           bottom: 0,
           left: 0,
           right: 0,
-          height: pxToRem(1),
+          height: 1,
           backgroundColor: colors.transparent
         }
       }
@@ -266,16 +271,16 @@ const useLinkStyles = makeStyles(
 );
 
 const useOrderedListStyles = makeStyles(
-  theme => ({
+  ({ spacings: { spaces } }) => ({
     root: {
       counterReset: "section",
       listStyle: "none",
       paddingRight: 0,
       paddingLeft: 0,
       margin: 0,
-      paddingTop: theme.typography.pxToRem(16),
-      paddingBottom: theme.typography.pxToRem(16),
-      "& + p": { marginTop: theme.typography.pxToRem(-16) },
+      paddingTop: spaces[7].rem,
+      paddingBottom: spaces[7].rem,
+      "& + p": { marginTop: `-${spaces[7].rem}` },
       "& > li:before": {
         counterIncrement: "section",
         content: 'counters(section, ".") "-"',
@@ -284,7 +289,7 @@ const useOrderedListStyles = makeStyles(
         backgroundColor: "transparent",
         borderRadius: "initial",
         verticalAlign: "initial",
-        marginRight: theme.typography.pxToRem(4)
+        marginRight: spaces[1].rem
       }
     }
   }),
@@ -292,39 +297,44 @@ const useOrderedListStyles = makeStyles(
 );
 
 const useUnorderedListStyles = makeStyles(
-  theme => ({
+  ({ spacings: { spaces } }) => ({
     root: {
       listStyle: "none",
       paddingRight: 0,
       paddingLeft: 0,
       margin: 0,
-      paddingTop: theme.typography.pxToRem(16),
-      paddingBottom: theme.typography.pxToRem(16)
+      paddingTop: spaces[7].rem,
+      paddingBottom: spaces[7].rem
     }
   }),
   { name: "UnorderedList" }
 );
 
 const useListItemStyles = makeStyles(
-  theme => ({
+  ({
+    colors,
+    radius,
+    spacings: { spaces, spacer },
+    typography: { variants, pxToRem }
+  }) => ({
     root: {
+      ...variants.body,
       position: "relative",
-      color: theme.colors.text.primary,
-      fontSize: theme.typography.pxToRem(16),
+      color: colors.text.primary,
       "& pre": {
-        marginTop: theme.typography.pxToRem(16),
-        marginBottom: theme.typography.pxToRem(32)
+        marginTop: spaces[7].rem,
+        marginBottom: pxToRem(spacer.px * 2)
       },
       "&:before": {
-        marginRight: theme.typography.pxToRem(8),
+        marginRight: spaces[3].rem,
         content: '""',
         verticalAlign: "middle",
         display: "inline-block",
-        width: "0.25rem",
-        height: "0.25rem",
-        borderRadius: "0.5em",
+        width: pxToRem(4),
+        height: pxToRem(4),
+        borderRadius: radius.medium,
         flexShrink: 0,
-        backgroundColor: theme.colors.text.primary
+        backgroundColor: colors.text.primary
       }
     }
   }),
@@ -332,7 +342,7 @@ const useListItemStyles = makeStyles(
 );
 
 const useCustomDivStyles = makeStyles(
-  theme => ({
+  ({ darkMode, swatches, spacings: { spaces } }) => ({
     root: {
       "&#tickle-anchor": {
         width: 150,
@@ -346,28 +356,24 @@ const useCustomDivStyles = makeStyles(
     noteBox: {
       display: "flex",
       alignItems: "center",
-      marginTop: theme.typography.pxToRem(16),
-      color: !theme.darkMode
-        ? theme.colors.secondary.origin
-        : theme.colors.secondary.light
+      marginTop: spaces[7].rem,
+      color: !darkMode ? swatches.navy[600] : swatches.navy[400]
     },
     noteBoxIcon: {
-      marginRight: theme.typography.pxToRem(8),
+      marginRight: spaces[3].rem,
       alignSelf: "flex-start",
       position: "relative",
-      top: theme.typography.pxToRem(2)
+      top: spaces[0].rem
     }
   }),
   { name: "CustomDiv" }
 );
 
 const useMarkStyles = makeStyles(
-  theme => ({
+  ({ colors, swatches, darkMode }) => ({
     root: {
-      backgroundColor: theme.colors.transparent,
-      color: theme.darkMode
-        ? theme.colors.secondary.light
-        : theme.colors.secondary.origin,
+      backgroundColor: colors.transparent,
+      color: !darkMode ? swatches.navy[600] : swatches.navy[400],
       fontStyle: "italic",
       "&:before, &:after": { content: '"\'"' }
     }
@@ -377,6 +383,7 @@ const useMarkStyles = makeStyles(
 
 const Mark = (props: React.ComponentPropsWithoutRef<"mark">) => {
   const { children, ...otherProps } = props;
+
   const classes = useMarkStyles();
 
   return (
@@ -386,9 +393,9 @@ const Mark = (props: React.ComponentPropsWithoutRef<"mark">) => {
   );
 };
 
-const CustomDiv = React.forwardRef<HTMLDivElement>(function CustomDiv(
+const CustomDiv = React.forwardRef(function CustomDiv(
   props: CustomDivProps,
-  ref
+  ref: React.Ref<HTMLDivElement>
 ) {
   const {
     children,
@@ -401,10 +408,10 @@ const CustomDiv = React.forwardRef<HTMLDivElement>(function CustomDiv(
   return (
     <div
       {...otherProps}
-      className={createClassName(classes.root, className, {
+      ref={ref}
+      className={c(classes.root, className, {
         [classes.noteBox]: isNoteBox
       })}
-      ref={ref}
     >
       {isNoteBox ? (
         <React.Fragment>
@@ -418,19 +425,21 @@ const CustomDiv = React.forwardRef<HTMLDivElement>(function CustomDiv(
   );
 });
 
-const Paragraph = (props: TextProps<Record<string, never>, "p">) => {
+const Paragraph = (props: TextProps<"p">) => {
   const { children, ...otherProps } = props;
+
   const classes = useParagraphStyles();
 
   return (
-    <Text {...otherProps} className={classes.root} variant="body" rootNode="p">
+    <Text {...otherProps} className={classes.root} variant="body" as="p">
       {children}
     </Text>
   );
 };
 
-const H1 = (props: TextProps<Record<string, never>, "h1">) => {
+const H1 = (props: TextProps<"h1">) => {
   const { children, ...otherProps } = props;
+
   const classes = useH1Styles();
 
   return (
@@ -439,15 +448,16 @@ const H1 = (props: TextProps<Record<string, never>, "h1">) => {
       className={classes.root}
       variant="h3"
       display="flex"
-      rootNode="h1"
+      as="h1"
     >
       {children}
     </Text>
   );
 };
 
-const H2 = (props: TextProps<Record<string, never>, "h2">) => {
+const H2 = (props: TextProps<"h2">) => {
   const { children, ...otherProps } = props;
+
   const classes = useH2Styles();
 
   return (
@@ -456,15 +466,16 @@ const H2 = (props: TextProps<Record<string, never>, "h2">) => {
       className={classes.root}
       variant="h4"
       display="flex"
-      rootNode="h2"
+      as="h2"
     >
       {children}
     </Text>
   );
 };
 
-const H3 = (props: TextProps<Record<string, never>, "h3">) => {
+const H3 = (props: TextProps<"h3">) => {
   const { children, ...otherProps } = props;
+
   const classes = useH3Styles();
 
   return (
@@ -473,15 +484,16 @@ const H3 = (props: TextProps<Record<string, never>, "h3">) => {
       className={classes.root}
       variant="h5"
       display="flex"
-      rootNode="h3"
+      as="h3"
     >
       {children}
     </Text>
   );
 };
 
-const H4 = (props: TextProps<Record<string, never>, "h4">) => {
+const H4 = (props: TextProps<"h4">) => {
   const { children, ...otherProps } = props;
+
   const classes = useH4Styles();
 
   return (
@@ -490,7 +502,7 @@ const H4 = (props: TextProps<Record<string, never>, "h4">) => {
       className={classes.root}
       variant="h6"
       display="flex"
-      rootNode="h4"
+      as="h4"
     >
       {children}
     </Text>
@@ -519,7 +531,7 @@ const CodeBlock = (props: CodeProps) => {
           {...otherProps}
           codeBlock
           style={style}
-          className={createClassName(className, classes.root)}
+          className={c(className, classes.root)}
         >
           {tokens.map((line, i) => {
             const isLastLine = i === tokens.length - 1;
@@ -548,6 +560,7 @@ const CodeBlock = (props: CodeProps) => {
 
 const InlineCode = (props: CodeProps) => {
   const { children, ...otherProps } = props;
+
   const classes = useInlineCodeStyles();
 
   return (
@@ -590,6 +603,7 @@ const Table = (props: TableProps) => {
 
 const TableFooter = (props: React.ComponentPropsWithoutRef<"tfoot">) => {
   const { children, ...otherProps } = props;
+
   const classes = useTableFooterStyles();
 
   return (
@@ -601,6 +615,7 @@ const TableFooter = (props: React.ComponentPropsWithoutRef<"tfoot">) => {
 
 const TableRow = (props: React.ComponentPropsWithoutRef<"tr">) => {
   const { children, ...otherProps } = props;
+
   const classes = useTableRowStyles();
 
   return (
@@ -612,6 +627,7 @@ const TableRow = (props: React.ComponentPropsWithoutRef<"tr">) => {
 
 const TD = (props: React.ComponentPropsWithoutRef<"td">) => {
   const { children, ...otherProps } = props;
+
   const classes = useTDStyles();
 
   return (
@@ -623,6 +639,7 @@ const TD = (props: React.ComponentPropsWithoutRef<"td">) => {
 
 const TH = (props: React.ComponentPropsWithoutRef<"th">) => {
   const { children, ...otherProps } = props;
+
   const classes = useTHStyles();
 
   return (
@@ -634,6 +651,7 @@ const TH = (props: React.ComponentPropsWithoutRef<"th">) => {
 
 const CustomLink = (props: React.ComponentPropsWithoutRef<"a">) => {
   const { children, href = "", ...otherProps } = props;
+
   const classes = useLinkStyles();
 
   return (
@@ -647,6 +665,7 @@ const CustomLink = (props: React.ComponentPropsWithoutRef<"a">) => {
 
 const OrderedList = (props: React.ComponentPropsWithoutRef<"ol">) => {
   const { children, ...otherProps } = props;
+
   const classes = useOrderedListStyles();
 
   return (
@@ -658,6 +677,7 @@ const OrderedList = (props: React.ComponentPropsWithoutRef<"ol">) => {
 
 const UnorderedList = (props: React.ComponentPropsWithoutRef<"ul">) => {
   const { children, ...otherProps } = props;
+
   const classes = useUnorderedListStyles();
 
   return (
@@ -669,6 +689,7 @@ const UnorderedList = (props: React.ComponentPropsWithoutRef<"ul">) => {
 
 const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => {
   const { children, ...otherProps } = props;
+
   const classes = useListItemStyles();
 
   return (
@@ -678,6 +699,10 @@ const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => {
   );
 };
 
+const Pre = (props: React.ComponentPropsWithoutRef<"pre">) => (
+  <>{props.children}</>
+);
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function createComponentMapping() {
   return {
@@ -686,9 +711,7 @@ export default function createComponentMapping() {
     h2: H2,
     h3: H3,
     h4: H4,
-    pre: function Pre({ children }: React.ComponentPropsWithoutRef<"pre">) {
-      return <React.Fragment>{children}</React.Fragment>;
-    },
+    pre: Pre,
     mark: Mark,
     code: CodeBlock,
     inlineCode: InlineCode,

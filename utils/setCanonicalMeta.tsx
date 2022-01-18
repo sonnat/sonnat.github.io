@@ -1,10 +1,8 @@
-import { Fragment } from "react";
+const setCanonicalMeta = (canonical: string): JSX.Element => (
+  <>
+    <link rel="canonical" href={canonical} />
+    <meta name="og:url" content={canonical} />
+  </>
+);
 
-export default function setCanonicalMeta(canonical: string): JSX.Element {
-  return (
-    <Fragment>
-      <link rel="canonical" href={canonical} />
-      <meta name="og:url" content={canonical} />
-    </Fragment>
-  );
-}
+export default setCanonicalMeta;

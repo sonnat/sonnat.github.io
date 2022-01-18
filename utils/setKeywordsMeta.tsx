@@ -1,3 +1,5 @@
-export default function setKeywordsMeta(keywords: string[]): JSX.Element {
-  return <meta name="keywords" content={keywords.join(", ")} />;
-}
+const setKeywordsMeta = (keywords: string[]): JSX.Element => (
+  <meta name="keywords" content={keywords.join(", ")} />
+);
+
+export default setKeywordsMeta;

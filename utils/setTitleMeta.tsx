@@ -1,10 +1,8 @@
-import { Fragment } from "react";
+const setTitleMeta = (title: string): JSX.Element => (
+  <>
+    <title>{title}</title>
+    <meta name="og:title" content={title} />
+  </>
+);
 
-export default function setTitleMeta(title: string): JSX.Element {
-  return (
-    <Fragment>
-      <title>{title}</title>
-      <meta name="og:title" content={title} />
-    </Fragment>
-  );
-}
+export default setTitleMeta;
