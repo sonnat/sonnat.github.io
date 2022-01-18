@@ -1292,15 +1292,15 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@sonnat/icons@^2.0.0-rc.1":
-  version "2.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.0.0-rc.1.tgz#2e3ffd6aa17f82b8d4257ed585eecfaf150284ab"
-  integrity sha512-jwbwPRTsIE/ARcBYr8YCdIarQxOfcir9mD2qcdbxC3Um7T6Mn0kpw2mNbiBBXgvsXZRSmJY7OW8QD8Fye3ohkg==
+"@sonnat/icons@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.0.0.tgz#02616a5c2b3e549599a4dce38be9699dcf60dad7"
+  integrity sha512-adB0ib50VVIig55JcayONDon8kqsXoul4sJ968VqxTTrHYYUkaAsJ+Dn5llm56gSWu+I4FZX/fKsB8r+vE/1BQ==
 
-"@sonnat/ui@^2.0.0-rc.2":
-  version "2.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.0-rc.2.tgz#b687edec4af374aff6dbd689023f4267ca5d8616"
-  integrity sha512-Gvrw8+T8DQph2mKdIYGxdG2ZKkwq1Yv0yRv/UV7dBSyw7kON4xwSArGiY/E4z0qh40LBOlIuw/FEPvy8AuUfTA==
+"@sonnat/ui@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.0.tgz#b466e3e439c7c6a822af8dd4fa7b5b47492817e3"
+  integrity sha512-50ielWh2xQIpQkHpDpV/c46t+pJljRz0PczWz8aFz50FvN6xEGZajyzQ8pifbo2oRwkLlIqzsiQ+NWvidNzapg==
   dependencies:
     classnames "^2.3.1"
     color "^4.1.0"
