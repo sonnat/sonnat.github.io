@@ -51,13 +51,14 @@ export default function App(props: AppPropsWithLayout): JSX.Element {
 
   const isDarkMode = useDarkModeStore(state => state.isDarkMode);
   const setBurgerMenuOpen = usePageStore(state => state.setBurgerMenuOpen);
-  const setPageLoading = usePageStore(state => state.setPageLoading);
+  const setPageLoaded = usePageStore(state => state.setPageLoaded);
+  const setRouteChanged = usePageStore(state => state.setRouteChanged);
 
   const theme = useDarkMode(isDarkMode);
 
-  const routeChangeStart = () => setPageLoading(true);
+  const routeChangeStart = () => setRouteChanged(true);
   const routeChangeComplete = () => {
-    setPageLoading(false);
+    setRouteChanged(false);
     setBurgerMenuOpen(false);
   };
 
@@ -77,6 +78,14 @@ export default function App(props: AppPropsWithLayout): JSX.Element {
     // @ts-ignore
     if (process.browser) window.theme = theme;
   }, [theme]);
+
+  React.useEffect(() => {
+    const handleLoad = () => void setPageLoaded(true);
+
+    window.addEventListener("load", handleLoad);
+    return () => void window.removeEventListener("load", handleLoad);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     router.events.on("routeChangeStart", routeChangeStart);

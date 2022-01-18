@@ -3,8 +3,10 @@ import { persist } from "zustand/middleware";
 
 interface IState extends State {
   isBurgerMenuOpen: boolean;
-  isPageLoading: boolean;
-  setPageLoading: (isLoading: boolean) => void;
+  isPageLoaded: boolean;
+  isRouteChanged: boolean;
+  setPageLoaded: (isLoaded: boolean) => void;
+  setRouteChanged: (isChanged: boolean) => void;
   setBurgerMenuOpen: (isOpen: boolean) => void;
 }
 
@@ -23,7 +25,9 @@ export const useDarkModeStore = createStore<{
 
 export const usePageStore = createStore<IState>(set => ({
   isBurgerMenuOpen: false,
-  isPageLoading: false,
-  setPageLoading: isLoading => set(() => ({ isPageLoading: isLoading })),
+  isPageLoaded: false,
+  isRouteChanged: false,
+  setPageLoaded: isLoaded => set(() => ({ isPageLoaded: isLoaded })),
+  setRouteChanged: isChanged => set(() => ({ isRouteChanged: isChanged })),
   setBurgerMenuOpen: isOpen => set(() => ({ isBurgerMenuOpen: isOpen }))
 }));
