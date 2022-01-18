@@ -1,14 +1,13 @@
-import { AppProps } from "next/app";
-import { NextComponentType, NextPageContext } from "next";
+import type { AppProps } from "next/app";
+import type { NextComponentType, NextPageContext } from "next";
 import * as React from "react";
 
 export type GetLayout = () => (page: React.ReactNode) => React.ReactNode;
 
-export type NextComponentTypeWithLayout<
-  P = Record<string, never>
-> = NextComponentType<NextPageContext, unknown, P> & {
-  getLayout?: GetLayout;
-};
+export type NextComponentTypeWithLayout<P = Record<string, never>> =
+  NextComponentType<NextPageContext, unknown, P> & {
+    getLayout?: GetLayout;
+  };
 
 export type NextPageWithLayout<
   P = Record<string, never>,
