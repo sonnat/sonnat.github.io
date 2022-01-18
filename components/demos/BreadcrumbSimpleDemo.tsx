@@ -11,7 +11,7 @@ const demoCode = `<Breadcrumb>
   <BreadcrumbItem><a href="#">Breadcrumb</a></BreadcrumbItem>
 </Breadcrumb>`;
 
-const BreadcrumbSimpleDemo: React.FC = () => {
+const BreadcrumbSimpleDemo = () => {
   return (
     <DemoBox code={demoCode}>
       <React.Fragment>

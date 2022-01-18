@@ -7,7 +7,7 @@ const componentName = "SelectControlledOpenDemo";
 const demoCode = `import Select, { SelectOption, SelectOptionGroup } from "@sonnat/ui/Select";;
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [open, setOpen] = React.useState(false);
   
   return (
@@ -18,7 +18,6 @@ const Demo: React.FC = () => {
         onClose={() => void setOpen(false)}
         fluid
         placeholder="Placeholder"
-        name="input"
       >
         <SelectOption value="jack" key="k0">Jack</SelectOption>,
         <SelectOption value="asghar" key="k1">Asghar</SelectOption>,
@@ -49,7 +48,7 @@ const Demo: React.FC = () => {
 
 export default Demo;`;
 
-const SelectControlledOpenDemo: React.FC = () => {
+const SelectControlledOpenDemo = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -61,7 +60,6 @@ const SelectControlledOpenDemo: React.FC = () => {
           onClose={() => void setOpen(false)}
           fluid
           placeholder="Placeholder"
-          name="input"
         >
           <SelectOption value="jack" key="k0">
             Jack

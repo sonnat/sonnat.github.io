@@ -1,34 +1,40 @@
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
-import cls from "classnames";
+import c from "classnames";
 import * as React from "react";
 
 const componentName = "IconSample";
 
 const useStyles = makeStyles(
-  theme => ({
+  ({
+    colors,
+    darkMode,
+    radius,
+    mixins: { asIconWrapper },
+    spacings: { spaces }
+  }) => ({
     root: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       cursor: "pointer",
-      padding: theme.typography.pxToRem(8),
-      borderRadius: theme.typography.pxToRem(4),
-      backgroundColor: theme.colors.transparent,
+      padding: spaces[3].rem,
+      borderRadius: radius.small,
+      backgroundColor: colors.transparent,
       transition: "background-color 360ms ease",
       "&:hover": {
-        backgroundColor: theme.darkMode
-          ? theme.colors.createWhiteColor({ alpha: 0.04 })
-          : theme.colors.createBlackColor({ alpha: 0.04 })
+        backgroundColor: darkMode
+          ? colors.createWhiteColor({ alpha: 0.04 }, true)
+          : colors.createBlackColor({ alpha: 0.04 }, true)
       }
     },
     iconWrapper: {
-      ...theme.mixins.useIconWrapper(40),
-      marginBottom: theme.typography.pxToRem(16),
-      color: theme.colors.text.secondary
+      ...asIconWrapper(40),
+      marginBottom: spaces[7].rem,
+      color: colors.text.secondary
     },
-    iconName: { color: theme.colors.text.secondary, textAlign: "center" }
+    iconName: { color: colors.text.secondary, textAlign: "center" }
   }),
   { name: componentName }
 );
@@ -40,14 +46,14 @@ interface IconSampleProps {
   onSelect: React.MouseEventHandler;
 }
 
-const IconSample: React.FC<IconSampleProps> = React.memo(props => {
+const IconSample = (props: IconSampleProps) => {
   const { name, icon, onSelect, className, ...otherProps } = props;
 
   const classes = useStyles();
 
   return (
     <article
-      className={cls(classes.root, className)}
+      className={c(classes.root, className)}
       {...otherProps}
       onClick={onSelect}
     >
@@ -57,7 +63,7 @@ const IconSample: React.FC<IconSampleProps> = React.memo(props => {
       </Text>
     </article>
   );
-});
+};
 
 IconSample.displayName = componentName;
 

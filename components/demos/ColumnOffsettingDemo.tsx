@@ -1,18 +1,14 @@
-import Column from "@sonnat/ui/Column";
-import Container from "@sonnat/ui/Container";
-import Row from "@sonnat/ui/Row";
+import { Column, Container, Row } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "ColumnOffsettingDemo";
 
-const demoCode = `import Container from "@sonnat/ui/Container";
-import Row from "@sonnat/ui/Row";
-import Column from "@sonnat/ui/Column";
+const demoCode = `import { Column, Container, Row } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <Container>
       <Row>
@@ -34,25 +30,28 @@ export default Demo;
 `;
 
 const useStyles = makeStyles(
-  theme => ({
+  ({
+    colors,
+    darkMode,
+    swatches,
+    typography: { variants },
+    spacings: { gutter }
+  }) => ({
     col: {
+      ...variants.bodySmall,
       display: "flex",
-      paddingTop: theme.typography.pxToRem(theme.spacings.gutter),
-      paddingBottom: theme.typography.pxToRem(theme.spacings.gutter),
-      lineHeight: 1.45,
-      fontSize: theme.typography.pxToRem(14),
-      color: theme.colors.text.primary,
+      paddingTop: gutter,
+      paddingBottom: gutter,
+      color: colors.text.primary,
       alignItems: "center",
       justifyContent: "center",
-      border: `1px solid ${theme.colors.divider}`,
-      backgroundColor: theme.darkMode
-        ? theme.colors.pallete.grey[900]
-        : theme.colors.pallete.grey[100]
+      border: `1px solid ${colors.divider}`,
+      backgroundColor: darkMode ? swatches.grey[900] : swatches.grey[100]
     }
   }),
   { name: componentName }
 );
-const ColumnOffsettingDemo: React.FC = () => {
+const ColumnOffsettingDemo = () => {
   const classes = useStyles();
 
   return (

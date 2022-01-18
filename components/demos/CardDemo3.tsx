@@ -1,33 +1,39 @@
 import { Heart } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Card, { CardActionBar, CardBody, CardHeader } from "@sonnat/ui/Card";
+import {
+  Button,
+  Card,
+  CardActionBar,
+  CardBody,
+  CardHeader,
+  IconButton,
+  Text
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "CardDemo3";
 
 const demoCode = `import { Heart } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Card, { CardActionBar, CardBody, CardHeader } from "@sonnat/ui/Card";
+import {
+  Button,
+  Card,
+  CardActionBar,
+  CardBody,
+  CardHeader,
+  IconButton,
+  Text
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
 import * as React from "react";
 
-const useStyles = makeStyles(theme => {
-  const { breakpoints } = theme;
-
-  return {
-    root: {
-      display: "flex",
-      alignItems: "flex-start",
-      [breakpoints.down("sm")]: {
-        flexDirection: "column"
-      }
-    }
-  };
-});
+const useStyles = makeStyles(({ breakpoints }) => ({
+  root: {
+    display: "flex",
+    alignItems: "flex-start",
+    [breakpoints.down("sm")]: { flexDirection: "column" }
+  }
+}));
 
 const Demo: React.FC = () => {
   const classes = useStyles();
@@ -44,7 +50,7 @@ const Demo: React.FC = () => {
       </CardHeader>
       <div>
         <CardBody>
-          <Text variant="body" rootNode="p" color="textSecondary">
+          <Text variant="body" as="p" color="textSecondary">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
             doloribus molestiae fugit molestias.
           </Text>
@@ -52,9 +58,9 @@ const Demo: React.FC = () => {
         <CardActionBar>
           <Button label="Action 1" variant="inlined" />
           <Button label="Action 2" variant="inlined" />
-          <Button
+          <IconButton
             style={{ marginLeft: "auto" }}
-            leadingIcon={<Heart />}
+            icon={<Heart />}
             variant="inlined"
             aria-label="Demo Button"
           />
@@ -67,21 +73,15 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const useStyles = makeStyles(theme => {
-  const { breakpoints } = theme;
+const useStyles = makeStyles(({ breakpoints }) => ({
+  root: {
+    display: "flex",
+    alignItems: "flex-start",
+    [breakpoints.down("sm")]: { flexDirection: "column" }
+  }
+}));
 
-  return {
-    root: {
-      display: "flex",
-      alignItems: "flex-start",
-      [breakpoints.down("sm")]: {
-        flexDirection: "column"
-      }
-    }
-  };
-});
-
-const CardDemo3: React.FC = () => {
+const CardDemo3 = () => {
   const classes = useStyles();
 
   return (
@@ -97,7 +97,7 @@ const CardDemo3: React.FC = () => {
         </CardHeader>
         <div>
           <CardBody>
-            <Text variant="body" rootNode="p" color="textSecondary">
+            <Text variant="body" as="p" color="textSecondary">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
               doloribus molestiae fugit molestias.
             </Text>
@@ -105,9 +105,9 @@ const CardDemo3: React.FC = () => {
           <CardActionBar>
             <Button label="Action 1" variant="inlined" />
             <Button label="Action 2" variant="inlined" />
-            <Button
+            <IconButton
               style={{ marginLeft: "auto" }}
-              leadingIcon={<Heart />}
+              icon={<Heart />}
               variant="inlined"
               aria-label="Demo Button"
             />

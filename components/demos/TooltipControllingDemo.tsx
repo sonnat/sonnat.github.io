@@ -7,7 +7,7 @@ const componentName = "TooltipControllingDemo";
 const demoCode = `import Tooltip from "@sonnat/ui/Tooltip";
 import * as React from "react";
 
-const TooltipControllingDemo: React.FC = () => {
+const TooltipControllingDemo = () => {
   const [isOpen, setOpen] = React.useState(false);
 
   return (
@@ -29,7 +29,7 @@ const TooltipControllingDemo: React.FC = () => {
 
 export default TooltipControllingDemo;`;
 
-const TooltipControllingDemo: React.FC = () => {
+const TooltipControllingDemo = () => {
   const [isOpen, setOpen] = React.useState(false);
 
   return (

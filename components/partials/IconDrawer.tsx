@@ -1,11 +1,8 @@
 import { CloseLarge, Download } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Code from "@sonnat/ui/Code";
-import PortalDestination from "@sonnat/ui/PortalDestination";
+import { Button, Code, IconButton, PortalDestination, Text } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
 import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
-import cls from "classnames";
+import c from "classnames";
 import * as React from "react";
 
 const componentName = "IconDrawer";
@@ -16,7 +13,8 @@ const useStyles = makeStyles(
       colors,
       zIndexes,
       darkMode,
-      mixins: { useIconWrapper },
+      spacings: { spaces },
+      mixins: { asIconWrapper },
       typography: { pxToRem }
     } = theme;
 
@@ -32,10 +30,10 @@ const useStyles = makeStyles(
         height: `100%`,
         overflow: "auto",
         top: 0,
-        backgroundColor: darkMode ? colors.background.level?.[2] : colors.white,
+        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
         zIndex: zIndexes.drawer,
         opacity: 0,
-        padding: [[0, pxToRem(16)]],
+        padding: [[0, spaces[7].rem]],
         visibility: "hidden",
         transition:
           "transform 360ms ease, opacity 260ms ease, visibility 260ms ease"
@@ -45,33 +43,33 @@ const useStyles = makeStyles(
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
-        marginBottom: pxToRem(16),
-        marginTop: pxToRem(16)
+        marginBottom: spaces[7].rem,
+        marginTop: spaces[7].rem
       },
-      iconWrapper: useIconWrapper(64),
-      usage: { paddingTop: pxToRem(16) },
-      usageTitle: { marginBottom: pxToRem(16) },
-      usageCase: { marginBottom: pxToRem(16) },
-      usageCaseCode: { marginBottom: pxToRem(24) },
+      iconWrapper: asIconWrapper(64),
+      usage: { paddingTop: spaces[7].rem },
+      usageTitle: { marginBottom: spaces[7].rem },
+      usageCase: { marginBottom: spaces[7].rem },
+      usageCaseCode: { marginBottom: spaces[10].rem },
       topBar: {
         position: "sticky",
         top: 0,
         display: "flex",
         justifyContent: "flex-end",
-        marginRight: pxToRem(-16),
-        marginLeft: pxToRem(-16),
-        padding: [[pxToRem(4), pxToRem(16)]],
-        backgroundColor: darkMode ? colors.background.level?.[2] : colors.white,
+        marginRight: pxToRem(-spaces[7].px),
+        marginLeft: pxToRem(-spaces[7].px),
+        padding: [[spaces[1].rem, spaces[7].rem]],
+        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
         borderBottom: `1px solid ${colors.divider}`
       },
       bottomBar: {
         position: "sticky",
         bottom: 0,
-        marginRight: pxToRem(-16),
-        marginLeft: pxToRem(-16),
+        marginRight: pxToRem(-spaces[7].px),
+        marginLeft: pxToRem(-spaces[7].px),
         marginTop: "auto",
-        padding: pxToRem(16),
-        backgroundColor: darkMode ? colors.background.level?.[2] : colors.white,
+        padding: spaces[7].rem,
+        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
         borderTop: `1px solid ${colors.divider}`
       },
       downloadBtn: { width: "100%" },
@@ -83,7 +81,7 @@ const useStyles = makeStyles(
         bottom: 0,
         zIndex: zIndexes.drawer - 1,
         backgroundColor: !darkMode
-          ? "rgba(0, 0, 0, 0.26)"
+          ? "rgba(0, 0, 0, 0.24)"
           : "rgba(0, 0, 0, 0.56)",
         visibility: "hidden",
         opacity: 0,
@@ -143,11 +141,11 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
 
   return (
     <PortalDestination>
-      <section className={cls(classes.root, { [classes.open]: isOpen })}>
+      <section className={c(classes.root, { [classes.open]: isOpen })}>
         <div className={classes.topBar}>
-          <Button
+          <IconButton
             aria-label="Close the drawer"
-            leadingIcon={<CloseLarge />}
+            icon={<CloseLarge />}
             variant="inlined"
             size="small"
             onClick={() => void toggle()}
@@ -163,12 +161,12 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
           <Text
             className={classes.usageTitle}
             variant="h6"
-            rootNode="strong"
+            as="strong"
             display="block"
           >
             Usage:
           </Text>
-          <Text className={classes.usageCase} variant="bodySmall" rootNode="p">
+          <Text className={classes.usageCase} variant="bodySmall" as="p">
             To use along with <Code>{`@sonnat/ui`}</Code>: (In this case,{" "}
             <Code>{`@sonnat/ui`}</Code> and <Code>{`react`}</Code> are the peer
             dependencies.)
@@ -176,7 +174,7 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
           <Code className={classes.usageCaseCode} codeBlock>{`import { ${
             data?.pascalCaseName as string
           } } from "@sonnat/icons";`}</Code>
-          <Text className={classes.usageCase} variant="bodySmall" rootNode="p">
+          <Text className={classes.usageCase} variant="bodySmall" as="p">
             To only export the SVG paths: (In this case, <Code>{`react`}</Code>{" "}
             is the peer dependency.)
           </Text>
@@ -186,7 +184,7 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
         </div>
         <div className={classes.bottomBar}>
           <Button
-            rootNode="a"
+            as="a"
             className={classes.downloadBtn}
             label="Download the SVG"
             leadingIcon={<Download />}
@@ -197,7 +195,7 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
         </div>
       </section>
       <div
-        className={cls(classes.dimmer, { [classes.open]: isOpen })}
+        className={c(classes.dimmer, { [classes.open]: isOpen })}
         onClick={toggle}
       ></div>
     </PortalDestination>

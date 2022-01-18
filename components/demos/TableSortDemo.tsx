@@ -1,40 +1,40 @@
-import ArrowDown from "@sonnat/icons/ArrowDown";
-import ArrowUp from "@sonnat/icons/ArrowUp";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Table, {
+import { ArrowDown, ArrowUp } from "@sonnat/icons";
+import {
+  Table,
   TableBody,
   TableCell,
   TableHeader,
-  TableRow
-} from "@sonnat/ui/Table";
-import Tag from "@sonnat/ui/Tag";
+  TableRow,
+  Tag
+} from "@sonnat/ui";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import clx from "classnames";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "TableSortDemo";
 
-const demoCode = `import ArrowDown from "@sonnat/icons/ArowDown";
-import ArrowUp from "@sonnat/icons/ArrowUp";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Table, {
+const demoCode = `import { ArrowDown, ArrowUp } from "@sonnat/icons";
+import {
+  Table,
   TableBody,
   TableCell,
   TableHeader,
-  TableRow
-} from "@sonnat/ui/Table";
-import Tag from "@sonnat/ui/Tag";
+  TableRow,
+  Tag
+} from "@sonnat/ui";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import clx from "classnames";
 import * as React from "react";
 
 const useStyles = makeStyles(theme => {
   const {
     colors,
-    typography: { pxToRem }
+    spacings: { spaces }
   } = theme;
 
   return {
-    tags: { "& > * + *": { marginLeft: pxToRem(8) } },
+    tags: { "& > * + *": { marginLeft: spaces[3].rem } },
     interactableHead: {},
     headContent: {
       display: "inline-flex",
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => {
       "&:hover > $sortIcon": { opacity: 1, visibility: "visible" }
     },
     sortIcon: {
-      marginLeft: pxToRem(8),
+      marginLeft: spaces[3].rem,
       opacity: 0,
       visibility: "hidden",
       color: colors.text.disabled,
@@ -101,7 +101,7 @@ const sort = (
   return stabilizedThis.map(touple => touple[0] as DataRow);
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const classes = useStyles();
 
   const [order, setOrder] = React.useState<Order>("asc");
@@ -180,11 +180,11 @@ export default Demo;`;
 const useStyles = makeStyles(theme => {
   const {
     colors,
-    typography: { pxToRem }
+    spacings: { spaces }
   } = theme;
 
   return {
-    tags: { "& > * + *": { marginLeft: pxToRem(8) } },
+    tags: { "& > * + *": { marginLeft: spaces[3].rem } },
     interactableHead: {},
     headContent: {
       display: "inline-flex",
@@ -193,7 +193,7 @@ const useStyles = makeStyles(theme => {
       "&:hover > $sortIcon": { opacity: 1, visibility: "visible" }
     },
     sortIcon: {
-      marginLeft: pxToRem(8),
+      marginLeft: spaces[3].rem,
       opacity: 0,
       visibility: "hidden",
       color: colors.text.disabled,
@@ -251,7 +251,7 @@ const sort = (
   return stabilizedThis.map(touple => touple[0] as DataRow);
 };
 
-const TableSortDemo: React.FC = () => {
+const TableSortDemo = () => {
   const classes = useStyles();
 
   const [order, setOrder] = React.useState<Order>("asc");

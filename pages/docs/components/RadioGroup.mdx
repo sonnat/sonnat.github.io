@@ -61,7 +61,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import RadioGroup from "@sonnat/ui/RadioGroup";
 
 //or
@@ -105,12 +104,6 @@ import { RadioGroup } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>name</td>
-      <td>string</td>
-      <td>-</td>
-      <td>The name of the radio controls.</td>
-    </tr>
-    <tr>
       <td>value</td>
       <td>string</td>
       <td>-</td>
@@ -138,9 +131,7 @@ import { RadioGroup } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.ChangeEvent, selectedValues: string[]) => void
-        </inlineCode>
+        <inlineCode>function(selectedValues: string[]) => void</inlineCode>
       </td>
     </tr>
   </tbody>

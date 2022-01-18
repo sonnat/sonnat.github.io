@@ -7,7 +7,7 @@ const componentName = "TextFieldControlledDemo";
 const demoCode = `import TextField from "@sonnat/ui/TextField";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState("");
 
   return (
@@ -15,7 +15,7 @@ const Demo: React.FC = () => {
       <TextField
         value={value}
         inputProps={{ "aria-label": "Label" }}
-        onChange={e => void setValue(e.target.value)}
+        onChange={v => void setValue(v)}
       />
       <span>The value is {\`"\${value}"\`}</span>
     </React.Fragment>
@@ -25,7 +25,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const TextFieldControlledDemo: React.FC = () => {
+const TextFieldControlledDemo = () => {
   const [value, setValue] = React.useState("");
 
   return (
@@ -34,7 +34,7 @@ const TextFieldControlledDemo: React.FC = () => {
         <TextField
           value={value}
           inputProps={{ "aria-label": "Label" }}
-          onChange={e => void setValue(e.target.value)}
+          onChange={v => void setValue(v)}
         />
         <span
           style={{ marginTop: 16, whiteSpace: "pre-wrap", textAlign: "center" }}

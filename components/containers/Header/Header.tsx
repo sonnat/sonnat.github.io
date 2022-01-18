@@ -1,21 +1,17 @@
 import {
   BurgerMenu as BurgerMenuIcon,
   CloseLarge,
-  MoonO,
-  SonnatOThin,
+  SonnatThin,
+  WeatherNightO,
   WeatherSunnyO
 } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Container from "@sonnat/ui/Container";
-import Divider from "@sonnat/ui/Divider";
-import NoSsr from "@sonnat/ui/NoSsr";
+import { Container, Divider, IconButton, NoSsr, Text } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
-import createClassName from "classnames";
+import c from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
-import useStore from "store";
+import { useDarkModeStore, usePageStore } from "store";
 import BurgerMenu from "./partials/BurgerMenu";
 
 const componentName = "Header";
@@ -31,6 +27,7 @@ const useStyles = makeStyles(
       zIndexes,
       breakpoints,
       darkMode,
+      spacings: { spaces },
       typography: { pxToRem }
     } = theme;
 
@@ -47,7 +44,7 @@ const useStyles = makeStyles(
         minHeight: pxToRem(64),
         backgroundColor: !darkMode
           ? colors.background.origin
-          : colors.background.level?.[2],
+          : colors.background.accents[2],
         boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.12)",
         transition: ["box-shadow 360ms ease", "padding-top 360ms ease"].join(
           ","
@@ -87,15 +84,13 @@ const useStyles = makeStyles(
           "visibility 360ms ease",
           "color 360ms ease"
         ].join(", "),
-        "&:hover": {
-          color: colors.text.primary
-        }
+        "&:hover": { color: colors.text.primary }
       },
       divider: {
         marginTop: "auto",
         marginBottom: "auto",
-        marginLeft: pxToRem(16),
-        marginRight: pxToRem(16),
+        marginLeft: spaces[7].rem,
+        marginRight: spaces[7].rem,
         height: 24
       },
       nav: { alignItems: "center" },
@@ -109,7 +104,7 @@ const useStyles = makeStyles(
         alignItems: "center"
       },
       navItem: {
-        padding: [[pxToRem(6), pxToRem(16)]],
+        padding: [[spaces[2].rem, spaces[7].rem]],
         cursor: "pointer",
         "&:hover > $navItemLink": { color: colors.text.primary }
       },
@@ -138,7 +133,7 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-const Header = React.memo(function Header(props: Props) {
+const HeaderBase = (props: Props) => {
   const { className, ...otherProps } = props;
 
   const router = useRouter();
@@ -146,10 +141,10 @@ const Header = React.memo(function Header(props: Props) {
 
   const [isMounted, setMounted] = React.useState(false);
 
-  const isDarkMode = useStore(state => state.isDarkMode);
-  const toggleDarkMode = useStore(state => state.toggleDarkMode);
-  const isBurgerMenuOpen = useStore(state => state.isBurgerMenuOpen);
-  const setBurgerMenuOpen = useStore(state => state.setBurgerMenuOpen);
+  const isDarkMode = useDarkModeStore(state => state.isDarkMode);
+  const toggleDarkMode = useDarkModeStore(state => state.toggleDarkMode);
+  const isBurgerMenuOpen = usePageStore(state => state.isBurgerMenuOpen);
+  const setBurgerMenuOpen = usePageStore(state => state.setBurgerMenuOpen);
 
   const isDemoActive = router.pathname.includes("/docs/");
 
@@ -161,19 +156,16 @@ const Header = React.memo(function Header(props: Props) {
   const createNav = (className: string) => {
     return (
       <nav
-        className={createClassName(
-          classes.nav,
-          classes[className as "desktop" | "mobile"]
-        )}
+        className={c(classes.nav, classes[className as "desktop" | "mobile"])}
       >
         <ul className={classes.navList}>
           <li className={classes.navItem}>
             <Link href="/docs/installation" passHref>
               <Text
                 title="Documentation"
-                rootNode="a"
+                as="a"
                 variant="subtitleSmall"
-                className={createClassName(classes.navItemLink, {
+                className={c(classes.navItemLink, {
                   [classes.activeLink]: isDemoActive
                 })}
               >
@@ -182,24 +174,24 @@ const Header = React.memo(function Header(props: Props) {
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link href="https://sonnat.design" passHref>
+            <Link href="https://github.com/sonnat" passHref>
               <Text
-                title="Design"
-                rootNode="a"
+                title="CodeSandbox Playground"
+                as="a"
                 variant="subtitleSmall"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classes.navItemLink}
               >
-                Design
+                Playground
               </Text>
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link href="https://github.com/sonnat/sonnat-ui" passHref>
+            <Link href="https://github.com/sonnat" passHref>
               <Text
                 title="Github"
-                rootNode="a"
+                as="a"
                 variant="subtitleSmall"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -215,15 +207,11 @@ const Header = React.memo(function Header(props: Props) {
   };
 
   return (
-    <header
-      id="header"
-      className={createClassName(classes.root, className)}
-      {...otherProps}
-    >
+    <header id="header" className={c(classes.root, className)} {...otherProps}>
       <Container className={classes.container}>
-        <Button
+        <IconButton
           aria-label="Toggle burger menu"
-          leadingIcon={!isBurgerMenuOpen ? <BurgerMenuIcon /> : <CloseLarge />}
+          icon={!isBurgerMenuOpen ? <BurgerMenuIcon /> : <CloseLarge />}
           variant="inlined"
           onClick={() =>
             void (isMounted && setBurgerMenuOpen(!isBurgerMenuOpen))
@@ -232,13 +220,13 @@ const Header = React.memo(function Header(props: Props) {
         />
         <Link href="/">
           <a title="Home" className={classes.logo}>
-            <SonnatOThin size={32} title="Sonnat Design System's Logo" />
+            <SonnatThin size={32} title="Sonnat Design System's Logo" />
           </a>
         </Link>
         <NoSsr>
-          <Button
+          <IconButton
             aria-label="Toggle dark mode"
-            leadingIcon={!isDarkMode ? <MoonO /> : <WeatherSunnyO />}
+            icon={!isDarkMode ? <WeatherNightO /> : <WeatherSunnyO />}
             variant="inlined"
             onClick={() => void toggleDarkMode()}
             className={classes.darkModeToggle}
@@ -258,7 +246,9 @@ const Header = React.memo(function Header(props: Props) {
       />
     </header>
   );
-});
+};
+
+const Header = React.memo(HeaderBase);
 
 Header.displayName = componentName;
 

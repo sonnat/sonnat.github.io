@@ -1,23 +1,25 @@
 import { Close, Download, Github, Magnifier } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import ChoiceChip from "@sonnat/ui/ChoiceChip";
-import Code from "@sonnat/ui/Code";
-import Column from "@sonnat/ui/Column";
-import Container from "@sonnat/ui/Container";
-import Divider from "@sonnat/ui/Divider";
-import type { IconProps } from "@sonnat/ui/Icon";
-import InputAdornment from "@sonnat/ui/InputAdornment";
-import Row from "@sonnat/ui/Row";
+import {
+  Button,
+  ChoiceChip,
+  Code,
+  Column,
+  Container,
+  Divider,
+  InputAdornment,
+  Row,
+  Text,
+  TextField,
+  type IconProps
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
-import TextField from "@sonnat/ui/TextField";
 import WithSidebar from "components/layouts/WithSidebar";
 import IconDrawer from "components/partials/IconDrawer";
 import IconSample from "components/partials/IconSample";
 import globAsync from "fast-glob";
 import fse from "fs-extra";
 import throttle from "lodash.throttle";
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import path from "path";
@@ -28,9 +30,9 @@ import {
   setCanonicalMeta,
   setDescriptionMeta,
   setKeywordsMeta,
-  setTitleMeta
+  setTitleMeta,
+  useIsomorphicLayoutEffect
 } from "utils";
-import useIsomorphicLayoutEffect from "utils/useIsomorphicLayoutEffect";
 
 const pageName = "IconsPackagePage";
 
@@ -235,12 +237,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
   const renderEmptyState = () => (
     <div className={classes.emptyState}>
-      <Text
-        variant="bodySmall"
-        rootNode="p"
-        color="textSecondary"
-        align="center"
-      >
+      <Text variant="bodySmall" as="p" color="textSecondary" align="center">
         No results found for the provided input!
       </Text>
     </div>
@@ -275,10 +272,10 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
         ])}
       </Head>
       <div className={classes.sectionHead}>
-        <Text className={classes.heading} variant="h3" rootNode="h1">
+        <Text className={classes.heading} variant="h3" as="h1">
           Sonnat Icon Set
         </Text>
-        <Text className={classes.description} variant="body" rootNode="p">
+        <Text className={classes.description} variant="body" as="p">
           The growing icon collection that allows designers and developers to
           download or install SVG Icons for any projects.
           <br />
@@ -288,7 +285,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
         </Text>
         <div className={classes.headActionBar}>
           <Button
-            rootNode="a"
+            as="a"
             download="sonnat-icons.zip"
             href={zipPath}
             label="Download"
@@ -296,8 +293,8 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
             color="primary"
           />
           <Button
-            rootNode="a"
-            href="https://github.com/sonnat/sonnat-ui/tree/next/packages/sonnat-icons"
+            as="a"
+            href="https://github.com/sonnat/sonnat-icons"
             target="_blank"
             rel="noopener noreferrer"
             label="Github"
@@ -312,7 +309,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
           <TextField
             fluid
             value={searchValue}
-            onChange={e => void onSearch(e.target.value)}
+            onChange={newValue => void onSearch(newValue)}
             className={classes.searchField}
             placeholder="Search for icon"
             leadingAdornment={
@@ -340,7 +337,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
               rounded
               color="primary"
               selected={variant === "filled"}
-              onToggle={(_, isSelected) =>
+              onToggle={isSelected =>
                 void (isSelected ? setVariant("filled") : setVariant(""))
               }
             />
@@ -351,7 +348,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
               rounded
               color="primary"
               selected={variant === "outlined"}
-              onToggle={(_, isSelected) =>
+              onToggle={isSelected =>
                 void (isSelected ? setVariant("outlined") : setVariant(""))
               }
             />

@@ -1,9 +1,12 @@
+import ActiveLink, {
+  type Props as ActiveLinkProps
+} from "components/ActiveLink";
 import * as React from "react";
-import ActiveLink, { Props as ActiveLinkProps } from "components/ActiveLink";
 import CollapsableContext from "./Context";
 
 const CollapsableInnerLink: React.FC<ActiveLinkProps> = props => {
   const { children, ...otherProps } = props;
+
   const { setExpanded } = React.useContext(CollapsableContext);
 
   const onActive = React.useCallback(() => {

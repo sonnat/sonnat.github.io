@@ -75,9 +75,9 @@ export const meta = {
 </h2>
 
 <p>
-  You can use the <inlineCode>open</inlineCode>, <inlineCode>onOpen</inlineCode>
-  , and <inlineCode>onClose</inlineCode> properties to control the open state of
-  the select's menu.
+  You can use the <inlineCode>open</inlineCode>, <inlineCode>onOpen</inlineCode>,
+  and <inlineCode>onClose</inlineCode> properties to control the open state of the
+  select's menu.
 </p>
 
 <SelectControlledOpenDemo />
@@ -95,7 +95,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import Select, { SelectOption, SelectOptionGroup } from "@sonnat/ui/Select";
 
 //or
@@ -146,17 +145,11 @@ import { Select, SelectOption, SelectOptionGroup } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>name</td>
-      <td>string</td>
-      <td>-</td>
-      <td>The name of the select.</td>
-    </tr>
-    <tr>
       <td>placeholder</td>
       <td>string</td>
       <td>-</td>
       <td>
-        The <inlineCode>placeholder</inlineCode> property of the select.
+        The <inlineCode>placeholder</inlineCode> text of the select.
       </td>
     </tr>
     <tr>
@@ -164,13 +157,8 @@ import { Select, SelectOption, SelectOptionGroup } from "@sonnat/ui";
       <td>string[] | string</td>
       <td>-</td>
       <td>
-        The value of the select. Providing an empty string will Select no
+        The value of the select. Providing an empty string/array will select no
         options.
-        <br />
-        If the value is an object it must have reference equality with the
-        option in order to be selected. If the value is not an object, the
-        string representation must match with the string representation of the
-        option in order to be selected.
       </td>
     </tr>
     <tr>
@@ -378,10 +366,7 @@ import { Select, SelectOption, SelectOptionGroup } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.SyntheticEvent, value: string[] | string) =>
-          void
-        </inlineCode>
+        <inlineCode>function(value: string[] | string) => void</inlineCode>
       </td>
     </tr>
   </tbody>
@@ -435,7 +420,11 @@ import { Select, SelectOption, SelectOptionGroup } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>value</td>
+      <td>
+        value
+        <br />
+        <mark>required</mark>
+      </td>
       <td>string</td>
       <td>-</td>
       <td>The value of the option.</td>

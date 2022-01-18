@@ -174,17 +174,17 @@ export const meta = {
   the semantic underlying element. Don't skip heading levels. In order to solve
   this problem, you need to separate the semantics from the style.
   <br /> You can change the text element's semantic with the <inlineCode>
-    rootNode
+    as
   </inlineCode> property:
 </p>
 
 <DemoBox
   code={`{/* There is already an h1 in the page, let's not duplicate it. */}
-<Text variant="h1" rootNode="strong">
+<Text variant="h1" as="strong">
   Heading Display 1
 </Text>`}
 >
-  <Text variant="h1" rootNode="strong">
+  <Text variant="h1" as="strong">
     Heading Display 1
   </Text>
 </DemoBox>
@@ -202,11 +202,10 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import Text from "@sonnat/ui/Text";
 
 //or
-import { Text } from "@sonnat/ui";
+import { value Text } from "@sonnat/ui";
 ```
 
 <h3>

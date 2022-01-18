@@ -1,47 +1,40 @@
-import Button from "@sonnat/ui/Button";
-import Checkbox from "@sonnat/ui/Checkbox";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Table, {
+import {
+  Button,
+  Checkbox,
+  Table,
   TableBody,
   TableCell,
   TableFooter,
   TableHeader,
-  TableRow
-} from "@sonnat/ui/Table";
-import Tag from "@sonnat/ui/Tag";
-import Text from "@sonnat/ui/Text";
+  TableRow,
+  Tag,
+  Text
+} from "@sonnat/ui";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "TableSelectionDemo";
 
-const demoCode = `import Button from "@sonnat/ui/Button";
-import Checkbox from "@sonnat/ui/Checkbox";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Table, {
+const demoCode = `import {
+  Button,
+  Checkbox,
+  Table,
   TableBody,
   TableCell,
   TableFooter,
   TableHeader,
-  TableRow
-} from "@sonnat/ui/Table";
-import Tag from "@sonnat/ui/Tag";
-import Text from "@sonnat/ui/Text";
+  TableRow,
+  Tag,
+  Text
+} from "@sonnat/ui";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import * as React from "react";
 
-const useStyles = makeStyles(theme => {
-  const {
-    typography: { pxToRem }
-  } = theme;
-
-  return {
-    tags: { "& > * + *": { marginLeft: pxToRem(8) } },
-    footBar: {
-      display: "flex",
-      alignItems: "center"
-    }
-  };
-});
+const useStyles = makeStyles(({ spacings: { spaces } }) => ({
+  tags: { "& > * + *": { marginLeft: spaces[3].rem } },
+  footBar: { display: "flex", alignItems: "center" }
+}));
 
 interface DataRow {
   name: string;
@@ -55,7 +48,7 @@ const dataRows: DataRow[] = [
   { name: "Jude Brown", age: 23, tags: ["Back-end Developer", "Junior"] }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const classes = useStyles();
 
   const [selected, setSelected] = React.useState<DataRow[]>([]);
@@ -88,9 +81,7 @@ const Demo: React.FC = () => {
             <Checkbox
               checked={selected.length === dataRows.length}
               indeterminated={isIndeterminated}
-              onChange={(_, checkedState) =>
-                void toggleSelectAll(checkedState)
-              }
+              onChange={checkedState =>void toggleSelectAll(checkedState)}
               inputProps={{ "aria-label": "Select all names" }}
             />
             Name
@@ -106,7 +97,7 @@ const Demo: React.FC = () => {
               <TableCell>
                 <Checkbox
                   checked={selected.some(s => s.name === dataRow.name)}
-                  onChange={(_, checkedState) =>
+                  onChange={checkedState =>
                     void toggleSelectRow(checkedState, dataRow)
                   }
                   inputProps={{ "aria-label": \`Select $\{dataRow.name}\` }}
@@ -146,19 +137,10 @@ const Demo: React.FC = () => {
 
 export default Demo;`;
 
-const useStyles = makeStyles(theme => {
-  const {
-    typography: { pxToRem }
-  } = theme;
-
-  return {
-    tags: { "& > * + *": { marginLeft: pxToRem(8) } },
-    footBar: {
-      display: "flex",
-      alignItems: "center"
-    }
-  };
-});
+const useStyles = makeStyles(({ spacings: { spaces } }) => ({
+  tags: { "& > * + *": { marginLeft: spaces[3].rem } },
+  footBar: { display: "flex", alignItems: "center" }
+}));
 
 interface DataRow {
   name: string;
@@ -172,7 +154,7 @@ const dataRows: DataRow[] = [
   { name: "Jude Brown", age: 23, tags: ["Back-end Developer", "Junior"] }
 ];
 
-const TableSelectionDemo: React.FC = () => {
+const TableSelectionDemo = () => {
   const classes = useStyles();
 
   const [selected, setSelected] = React.useState<DataRow[]>([]);
@@ -206,9 +188,7 @@ const TableSelectionDemo: React.FC = () => {
               <Checkbox
                 checked={selected.length === dataRows.length}
                 indeterminated={isIndeterminated}
-                onChange={(_, checkedState) =>
-                  void toggleSelectAll(checkedState)
-                }
+                onChange={checkedState => void toggleSelectAll(checkedState)}
                 inputProps={{ "aria-label": "Select all names" }}
               />
               Name
@@ -224,7 +204,7 @@ const TableSelectionDemo: React.FC = () => {
                 <TableCell>
                   <Checkbox
                     checked={selected.some(s => s.name === dataRow.name)}
-                    onChange={(_, checkedState) =>
+                    onChange={checkedState =>
                       void toggleSelectRow(checkedState, dataRow)
                     }
                     inputProps={{ "aria-label": `Select ${dataRow.name}` }}

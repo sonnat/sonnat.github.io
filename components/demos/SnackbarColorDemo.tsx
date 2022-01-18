@@ -12,26 +12,26 @@ import clx from "classnames";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
-const componentName = "SnackbarPlacementDemo";
+const componentName = "SnackbarColorDemo";
 
-type Placement = NonNullable<SnackbarProps>["placement"];
+type Color = NonNullable<SnackbarProps>["color"];
 
 const useStyles = makeStyles(
   ({ spacings: { spaces } }) => ({
     demoRow: { display: "flex", "& + &": { marginTop: spaces[7].rem } },
     placementControl: { alignItems: "center" }
   }),
-  { name: "SnackbarPlacementDemo" }
+  { name: "SnackbarColorDemo" }
 );
 
-const SnackbarPlacementDemo = () => {
+const SnackbarColorDemo = () => {
   const classes = useStyles();
 
-  const [placement, setPlacement] = React.useState<Placement>("center");
+  const [color, setColor] = React.useState<Color>("default");
   const [isOpen, setOpen] = React.useState(false);
 
   const demoCode = `<Snackbar
-  placement="${placement as string}"
+  color="${color as string}"
 />`;
 
   return (
@@ -43,29 +43,18 @@ const SnackbarPlacementDemo = () => {
       <div className={classes.demoRow}>
         <FormControl className={clx("demoSubject", classes.placementControl)}>
           <FormControlLabel htmlFor="radiogroup-horizontal-align">
-            Placement
+            Color
           </FormControlLabel>
           <RadioGroup
-            id="radiogroup-horizontal-align"
-            defaultValue="center"
+            defaultValue={color}
             layoutDirection="row"
-            onChange={v => void setPlacement(v as Placement)}
+            onChange={v => void setColor(v as Color)}
           >
-            <Radio
-              inputProps={{ id: "radiogroup-horizontal-align-left" }}
-              label="left"
-              value="left"
-            />
-            <Radio
-              inputProps={{ id: "radiogroup-horizontal-align-center" }}
-              label="center"
-              value="center"
-            />
-            <Radio
-              inputProps={{ id: "radiogroup-horizontal-align-right" }}
-              label="right"
-              value="right"
-            />
+            <Radio label="default" value="default" />
+            <Radio label="success" value="success" />
+            <Radio label="warning" value="warning" />
+            <Radio label="error" value="error" />
+            <Radio label="info" value="info" />
           </RadioGroup>
         </FormControl>
       </div>
@@ -77,18 +66,13 @@ const SnackbarPlacementDemo = () => {
             size="small"
             onClick={() => void setOpen(o => !o)}
           />
-          <Snackbar
-            key={placement}
-            text="The informative text!"
-            open={isOpen}
-            placement={placement}
-          />
+          <Snackbar text="The informative text!" open={isOpen} color={color} />
         </div>
       </div>
     </DemoBox>
   );
 };
 
-SnackbarPlacementDemo.displayName = componentName;
+SnackbarColorDemo.displayName = componentName;
 
-export default SnackbarPlacementDemo;
+export default SnackbarColorDemo;

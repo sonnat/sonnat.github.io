@@ -1,22 +1,20 @@
-import Radio from "@sonnat/ui/Radio";
-import RadioGroup from "@sonnat/ui/RadioGroup";
+import { Radio, RadioGroup } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "RadioGroupDemo";
 
-const demoCode = `import RadioGroup from "@sonnat/ui/RadioGroup";
-import Radio from "@sonnat/ui/Radio";
+const demoCode = `import { Radio, RadioGroup } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState("");
 
   return (
     <React.Fragment>
       <RadioGroup
         value={value}
-        onChange={(e, selectedValue) => void setValue(selectedValue)}
+        onChange={selectedValue => void setValue(selectedValue)}
       >
         <Radio label="Ali" value="Ali" />
         <Radio label="David" value="David" />
@@ -32,7 +30,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const RadioGroupDemo: React.FC = () => {
+const RadioGroupDemo = () => {
   const [value, setValue] = React.useState("");
 
   return (
@@ -40,7 +38,7 @@ const RadioGroupDemo: React.FC = () => {
       <React.Fragment>
         <RadioGroup
           value={value}
-          onChange={(_, selectedValue) => void setValue(selectedValue)}
+          onChange={selectedValue => void setValue(selectedValue)}
         >
           <Radio label="Ali" value="Ali" />
           <Radio label="David" value="David" />

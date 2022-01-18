@@ -1,5 +1,5 @@
 import { Heart, Link, Tune, ChevronDown, Eye } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
+import { Button, IconButton } from "@sonnat/ui";
 import PageEditButton from "components/PageEditButton";
 import AnchorButton from "components/AnchorButton";
 import WithSidebar from "components/layouts/WithSidebar";
@@ -203,43 +203,43 @@ export const meta = {
 
 <DemoBox
   code={[
-    `<Button
+    `<IconButton
   variant="filled"
   aria-label="Default"
-  leadingIcon={<Heart />}
+  icon={<Heart />}
 />`,
-    `<Button
+    `<IconButton
   variant="outlined"
   aria-label="Secondary"
   color="secondary"
-  leadingIcon={<Link />}
+  icon={<Link />}
 />`,
-    `<Button
+    `<IconButton
   variant="inlined"
   aria-label="Primary"
   color="primary"
-  leadingIcon={<Tune />}
+  icon={<Tune />}
 />`
   ].join("\n")}
 >
-  <Button
+  <IconButton
     variant="filled"
     aria-label="Default"
     className="demoSubject"
-    leadingIcon={<Heart />}
+    icon={<Heart />}
   />
-  <Button
+  <IconButton
     variant="outlined"
     aria-label="Secondary"
     color="secondary"
-    leadingIcon={<Link />}
+    icon={<Link />}
     className="demoSubject"
   />
-  <Button
+  <IconButton
     variant="inlined"
     aria-label="Primary"
     color="primary"
-    leadingIcon={<Tune />}
+    icon={<Tune />}
     className="demoSubject"
   />
 </DemoBox>
@@ -388,11 +388,11 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import Button from "@sonnat/ui/Button";
+import IconButton from "@sonnat/ui/IconButton";
 
 //or
-import { Button } from "@sonnat/ui";
+import { Button, IconButton } from "@sonnat/ui";
 ```
 
 <h3>
@@ -405,8 +405,15 @@ import { Button } from "@sonnat/ui";
   a lot) in this section of the components.
 </p>
 
+<h4>
+  <span>Shared Properties</span>
+  <AnchorButton anchorId="shared-properties" />
+</h4>
+
+<p>The properties that are common to normal and icon buttons.</p>
+
 <table cols={4}>
-  <caption>Button Properties</caption>
+  <caption>Buttons Shared Properties</caption>
   <thead>
     <tr>
       <th>Name</th>
@@ -417,13 +424,7 @@ import { Button } from "@sonnat/ui";
   </thead>
   <tbody>
     <tr>
-      <td>label</td>
-      <td>string</td>
-      <td>-</td>
-      <td>The content of the button.</td>
-    </tr>
-    <tr>
-      <td>rootNode</td>
+      <td>as</td>
       <td>elementType</td>
       <td>"button"</td>
       <td>
@@ -525,6 +526,53 @@ import { Button } from "@sonnat/ui";
       <td>"filled"</td>
       <td>The variant of the button.</td>
     </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>Button</mark> Specific Properties
+  </span>
+  <AnchorButton anchorId="button-specific-properties" />
+</h4>
+
+<p>The properties that are only available to normal buttons.</p>
+
+<table cols={4}>
+  <caption>Button Specific Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        label
+        <br />
+        <mark>(required)</mark>
+      </td>
+      <td>string</td>
+      <td>-</td>
+      <td>The content of the button.</td>
+    </tr>
     <tr>
       <td>leadingIcon</td>
       <td>node</td>
@@ -536,6 +584,53 @@ import { Button } from "@sonnat/ui";
       <td>node</td>
       <td>-</td>
       <td>The trailing icon element placed before the label.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan="4">
+        <ul>
+          <li>
+            The <inlineCode>ref</inlineCode> is forwarded to the root element.
+          </li>
+          <li>
+            Any other properties supplied will be provided to the root element.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4>
+  <span>
+    <mark>IconButton</mark> Specific Properties
+  </span>
+  <AnchorButton anchorId="iconbutton-specific-properties" />
+</h4>
+
+<p>The properties that are only available to icon-buttons.</p>
+
+<table cols={4}>
+  <caption>IconButton Specific Properties</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        icon
+        <br />
+        <mark>(required)</mark>
+      </td>
+      <td>node</td>
+      <td>-</td>
+      <td>The icon element.</td>
     </tr>
   </tbody>
   <tfoot>

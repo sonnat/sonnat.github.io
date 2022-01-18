@@ -1,13 +1,14 @@
-import Button from "@sonnat/ui/Button";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Table, {
+import {
+  Button,
+  Table,
   TableBody,
   TableCell,
   TableFooter,
   TableHeader,
-  TableRow
-} from "@sonnat/ui/Table";
-import Tag from "@sonnat/ui/Tag";
+  TableRow,
+  Tag
+} from "@sonnat/ui";
+import makeStyles from "@sonnat/ui/styles/makeStyles";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
@@ -78,7 +79,7 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const TableBasicDemo: React.FC = () => {
+const TableBasicDemo = () => {
   const classes = useStyles();
 
   return (

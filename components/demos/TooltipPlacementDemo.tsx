@@ -1,8 +1,12 @@
-import FormControl, { FormControlLabel } from "@sonnat/ui/FormControl";
-import Radio from "@sonnat/ui/Radio";
-import RadioGroup from "@sonnat/ui/RadioGroup";
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Tooltip,
+  type TooltipProps
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Tooltip, { TooltipProps } from "@sonnat/ui/Tooltip";
 import clx from "classnames";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
@@ -12,16 +16,11 @@ const componentName = "TooltipPlacementDemo";
 type Placement = NonNullable<TooltipProps["placement"]>;
 
 const useStyles = makeStyles(
-  theme => ({
-    demoRow: {
-      display: "flex",
-      "& + &": { marginTop: theme.typography.pxToRem(40) }
-    },
+  ({ typography: { pxToRem } }) => ({
+    demoRow: { display: "flex", "& + &": { marginTop: pxToRem(40) } },
     placementControl: { alignItems: "center" }
   }),
-  {
-    name: "TooltipPlacementDemo"
-  }
+  { name: "TooltipPlacementDemo" }
 );
 
 const TooltipPlacementDemo: React.FC = () => {
@@ -54,8 +53,8 @@ const TooltipPlacementDemo: React.FC = () => {
             id="radiogroup-placement"
             defaultValue="left"
             layoutDirection="row"
-            onChange={e => {
-              setPlacement(e.target.value as Placement);
+            onChange={selectedValue => {
+              setPlacement(selectedValue as Placement);
             }}
           >
             <Radio

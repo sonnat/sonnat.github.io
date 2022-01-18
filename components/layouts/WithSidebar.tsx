@@ -10,32 +10,27 @@ const useStyles = makeStyles(
   theme => {
     const {
       breakpoints,
+      spacings: { spacer },
       typography: { pxToRem }
     } = theme;
 
     return {
-      root: { paddingTop: pxToRem(64) },
-      container: { display: "flex", paddingTop: pxToRem(64) },
+      root: { paddingTop: pxToRem(spacer.px * 4) },
+      container: { display: "flex", paddingTop: pxToRem(spacer.px * 4) },
       sidebar: {
         height: `calc(100vh - ${pxToRem(192)})`,
         width: pxToRem(256),
         flexShrink: 0,
-        [breakpoints.down("lg")]: {
-          display: "none"
-        }
+        [breakpoints.down("lg")]: { display: "none" }
       },
       content: {
         flex: "1 1",
         minWidth: 0,
-        [breakpoints.up("lg")]: {
-          paddingLeft: pxToRem(32)
-        }
+        [breakpoints.up("lg")]: { paddingLeft: pxToRem(spacer.px * 2) }
       },
       article: {
         minHeight: `calc(100vh - ${pxToRem(328)})`,
-        [breakpoints.down("sm")]: {
-          minHeight: "auto"
-        }
+        [breakpoints.down("sm")]: { minHeight: "auto" }
       }
     };
   },

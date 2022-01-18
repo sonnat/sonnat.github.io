@@ -202,7 +202,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import TextArea from "@sonnat/ui/TextArea";
 
 //or
@@ -396,15 +395,7 @@ import { TextArea } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.ChangeEvent, value: string) => void
-        </inlineCode>
-        <br />
-        <em>
-          <strong>Note:</strong>
-        </em>{" "}
-        You can also pull out the current value by accessing{" "}
-        <inlineCode>event.target.value</inlineCode> (string).
+        <inlineCode>function(value: string) => void</inlineCode>
       </td>
     </tr>
   </tbody>

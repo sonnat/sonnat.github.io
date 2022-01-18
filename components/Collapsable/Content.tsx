@@ -1,15 +1,13 @@
 import * as React from "react";
 
-export const componentName = "CollapsableContent";
+const componentName = "CollapsableContent";
 
 interface Props {
   className?: string;
   children?: React.ReactNode;
 }
 
-const CollapsableContent = React.memo<Props>(function CollapsableContent(
-  props
-) {
+const CollapsableContentBase = (props: Props) => {
   const { className, children, ...otherProps } = props;
 
   return (
@@ -17,7 +15,9 @@ const CollapsableContent = React.memo<Props>(function CollapsableContent(
       {children}
     </div>
   );
-});
+};
+
+const CollapsableContent = React.memo(CollapsableContentBase);
 
 CollapsableContent.displayName = componentName;
 

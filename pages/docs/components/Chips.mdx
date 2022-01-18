@@ -147,7 +147,7 @@ export const meta = {
     `<RemovableChip
   label="with onRemove"
   color="default"
-  onClick={() => {
+  onRemove={() => {
     alert("tryin to remove!");
   }}
 />`
@@ -157,7 +157,7 @@ export const meta = {
     <RemovableChip
       label="with onRemove"
       color="default"
-      onClick={() => {
+      onRemove={() => {
         alert("tryin to remove!");
       }}
     />
@@ -354,7 +354,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import ActionChip from "@sonnat/ui/ActionChip";
 import RemovableChip from "@sonnat/ui/RemovableChip";
 import ChoiceChip from "@sonnat/ui/ChoiceChip";
@@ -392,7 +391,11 @@ import { ActionChip, RemovableChip, ChoiceChip } from "@sonnat/ui";
   </thead>
   <tbody>
     <tr>
-      <td>label</td>
+      <td>
+        label
+        <br />
+        <mark>required</mark>
+      </td>
       <td>string</td>
       <td>-</td>
       <td>The content of the chip.</td>
@@ -594,9 +597,7 @@ import { ActionChip, RemovableChip, ChoiceChip } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.MouseEvent, isSelected: boolean) => void
-        </inlineCode>
+        <inlineCode>function(isSelected: boolean) => void</inlineCode>
       </td>
     </tr>
   </tbody>

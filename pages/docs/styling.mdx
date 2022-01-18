@@ -104,7 +104,7 @@ export const meta = {
 <p>Links a style sheet with a function component using the hook pattern.</p>
 
 ```typescript
-function makeStyles(styles, [options]) => useStylesHook;
+function makeStyles(styles, options?) => useStylesHook;
 ```
 
 <table cols={3}>
@@ -226,29 +226,16 @@ function ComponentC(props) {
 
 ```typescript
 function createTheme<CustomOptions extends object = {}>(
-  options?: Partial<ThemeOptions> & CustomThemeOptions<CustomOptions>
-): Theme & { custom: CustomOptions };
+  themeInput?: Partial<ThemeInput> & {
+    custom?: CustomProps | ((theme: ThemeBase) => CustomProps);
+  }
+): ThemeBase & { custom: CustomProps };
 ```
 
 ```typescript
-type CustomThemeOptions<O = {}> = {
-  custom: O | ((theme: Omit<Theme, "custom">) => O);
-};
-
-export interface ThemeOptions {
-  breakpoints?: {
-    unit?: string;
-    step?: number;
-    values?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xlg";
-  };
-  direction?: "ltr" | "rtl";
-  mixins?: {
-    useDisableUserSelect: () => CSSProperties;
-    useIconWrapper: (size?: number) => CSSProperties;
-    usePreserveAspectRatio: (ratio: string = "1:1") => CSSProperties;
-    [P: string]: any;
-  };
-  colors?: {
+export interface ThemeInput {
+  breakpoints: { values?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xlg" };
+  colors: {
     primary?: string | { origin?: string; light?: string; dark?: string };
     secondary?: string | { origin?: string; light?: string; dark?: string };
     error?: string | { origin?: string; light?: string; dark?: string };
@@ -256,17 +243,21 @@ export interface ThemeOptions {
     info?: string | { origin?: string; light?: string; dark?: string };
     success?: string | { origin?: string; light?: string; dark?: string };
     contrastThreshold?: number;
-    [P: string]: any;
   };
-  typography?: {
+  typography: {
     fontSize?: number;
     htmlFontSize?: number;
     ltrFontFamily?: string;
     rtlFontFamily?: string;
     monospaceFontFamily?: string;
+  };
+  mixins: {
+    disableUserSelect?: () => CSSProperties;
+    asIconWrapper?: (size?: number) => CSSProperties;
     [P: string]: any;
   };
-  zIndex?: {
+  spacings: { spacer?: number };
+  zIndexes: {
     sticky?: number;
     header?: number;
     drawer?: number;
@@ -275,8 +266,25 @@ export interface ThemeOptions {
     popover?: number;
     [P: string]: any;
   };
-  darkMode?: boolean;
-  [P: string]: any;
+  direction: "ltr" | "rtl";
+  darkMode: boolean;
+}
+
+export interface ThemeBase {
+  mixins: ThemeInput["mixins"] & Mixins;
+  zIndexes: ThemeInput["zIndexes"] & ZIndexes;
+  spacings: Spacings;
+  radius: Radius;
+  breakpoints: Breakpoints;
+  direction: Direction;
+  colors: Colors;
+  typography: Typography;
+  darkMode: boolean;
+  swatches: Swatches;
+  hacks: {
+    safariTransitionRadiusOverflowCombinationFix: React.CSSProperties;
+    backfaceVisibilityFix: React.CSSProperties;
+  };
 }
 ```
 
@@ -824,10 +832,7 @@ function jssPreset(): JssPreset;
 </p>
 
 ```typescript
-function useDarkMode<Theme = DefaultTheme>(
-  isDarkMode: boolean,
-  theme?: Theme
-): Theme;
+function useDarkMode(isDarkMode?: boolean, theme?: Theme): Theme;
 ```
 
 <h4>

@@ -1,7 +1,13 @@
-import { Github, SonnatOThin, Twitter } from "@sonnat/icons";
+import {
+  Github,
+  SonnatThin,
+  Telegram,
+  Discord,
+  Codesandbox
+} from "@sonnat/icons";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import Text from "@sonnat/ui/Text";
-import createClassName from "classnames";
+import c from "classnames";
 import Link from "next/link";
 import * as React from "react";
 
@@ -16,6 +22,7 @@ const useStyles = makeStyles(
     const {
       colors,
       breakpoints,
+      spacings: { spaces, spacer },
       typography: { pxToRem }
     } = theme;
 
@@ -24,13 +31,13 @@ const useStyles = makeStyles(
         display: "flex",
         alignItems: "center",
         height: pxToRem(72),
-        marginTop: pxToRem(128),
+        marginTop: pxToRem(spacer.px * 8),
         justifyContent: "space-between",
         borderTop: `1px solid ${colors.divider}`
       },
       navigation: { display: "flex", alignItems: "center" },
       logo: {
-        marginRight: pxToRem(16),
+        marginRight: spaces[7].rem,
         cursor: "pointer",
         color: colors.text.secondary,
         transition: [
@@ -38,9 +45,7 @@ const useStyles = makeStyles(
           "visibility 360ms ease",
           "color 360ms ease"
         ].join(", "),
-        "&:hover": {
-          color: colors.text.primary
-        }
+        "&:hover": { color: colors.text.primary }
       },
       navigationList: {
         padding: "0",
@@ -50,7 +55,7 @@ const useStyles = makeStyles(
         alignItems: "center"
       },
       navigationItem: {
-        padding: pxToRem(8),
+        padding: spaces[3].rem,
         cursor: "pointer",
         "&:hover > $navigationItemLink": { color: colors.text.primary }
       },
@@ -59,13 +64,13 @@ const useStyles = makeStyles(
         transition: "color 360ms ease"
       },
       navigationDivider: {
-        width: pxToRem(1),
+        width: 1,
         height: pxToRem(16),
         backgroundColor: colors.divider
       },
       socials: { display: "flex", alignItems: "center" },
       social: {
-        marginLeft: pxToRem(8),
+        marginLeft: spaces[3].rem,
         cursor: "pointer",
         transition: "color 360ms ease",
         color: colors.text.secondary,
@@ -73,20 +78,18 @@ const useStyles = makeStyles(
       },
       [breakpoints.down("sm")]: {
         root: {
-          paddingTop: pxToRem(16),
-          paddingBottom: pxToRem(16),
+          paddingTop: spaces[7].rem,
+          paddingBottom: spaces[7].rem,
           height: "auto",
           flexDirection: "column"
         },
         navigation: { flexDirection: "column" },
-        navigationList: { marginTop: pxToRem(16), marginBottom: pxToRem(16) },
-        social: {
-          marginLeft: pxToRem(8),
-          marginRight: pxToRem(8)
+        navigationList: {
+          marginTop: spaces[7].rem,
+          marginBottom: spaces[7].rem
         },
-        logo: {
-          marginRight: 0
-        }
+        social: { marginLeft: spaces[3].rem, marginRight: spaces[3].rem },
+        logo: { marginRight: 0 }
       }
     };
   },
@@ -99,32 +102,19 @@ const Footer = React.memo(function Footer(props: Props) {
   const classes = useStyles();
 
   return (
-    <footer className={createClassName(classes.root, className)}>
+    <footer className={c(classes.root, className)}>
       <nav className={classes.navigation}>
         <Link href="/">
           <a title="Home" className={classes.logo}>
-            <SonnatOThin size={32} title="Sonnat Design System's Logo" />
+            <SonnatThin size={32} title="Sonnat Design System's Logo" />
           </a>
         </Link>
         <ul className={classes.navigationList}>
           <li className={classes.navigationItem}>
-            <Link href="/docs/installation" passHref>
-              <Text
-                title="Documentation"
-                rootNode="a"
-                variant="caption"
-                className={classes.navigationItemLink}
-              >
-                Docs
-              </Text>
-            </Link>
-          </li>
-          <li className={classes.navigationDivider}></li>
-          <li className={classes.navigationItem}>
             <Link href="https://sonnat.design" passHref>
               <Text
                 title="Design"
-                rootNode="a"
+                as="a"
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="caption"
@@ -142,7 +132,7 @@ const Footer = React.memo(function Footer(props: Props) {
             >
               <Text
                 title="Feedback"
-                rootNode="a"
+                as="a"
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="caption"
@@ -160,7 +150,7 @@ const Footer = React.memo(function Footer(props: Props) {
             >
               <Text
                 title="Careers"
-                rootNode="a"
+                as="a"
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="caption"
@@ -173,12 +163,26 @@ const Footer = React.memo(function Footer(props: Props) {
         </ul>
       </nav>
       <div className={classes.socials}>
-        <Link href="https://twitter.com/sonnatdesign" passHref>
-          <a title="Twitter" target="_blank" rel="noopener noreferrer">
-            <Twitter size={24} className={classes.social} />
+        <Link href="https://discord.gg/h4Dpr4PnXW" passHref>
+          <a title="Discord" target="_blank" rel="noopener noreferrer">
+            <Discord size={24} className={classes.social} />
           </a>
         </Link>
-        <Link href="https://github.com/sonnat/sonnat-ui" passHref>
+        <Link href="https://t.me/designdivar" passHref>
+          <a title="Telegram" target="_blank" rel="noopener noreferrer">
+            <Telegram size={24} className={classes.social} />
+          </a>
+        </Link>
+        <Link href="https://github.com/sonnat" passHref>
+          <a
+            title="CodeSandbox Playground"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Codesandbox size={24} className={classes.social} />
+          </a>
+        </Link>
+        <Link href="https://github.com/sonnat" passHref>
           <a title="GitHub" target="_blank" rel="noopener noreferrer">
             <Github size={24} className={classes.social} />
           </a>

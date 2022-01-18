@@ -1,29 +1,41 @@
 import { AccountPlusO, CloseLarge } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Dialog, { DialogBody, DialogHeader } from "@sonnat/ui/Dialog";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogHeader,
+  IconButton,
+  Text
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "FullScreenDialogDemo";
 
 const demoCode = `import { CloseLarge, AccountPlusO } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Dialog, { DialogBody, DialogHeader } from "@sonnat/ui/Dialog";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogHeader,
+  IconButton,
+  Text
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
 import * as React from "react";
 
 const useStyles = makeStyles(theme => {
   const {
     colors,
     darkMode,
+    radius,
+    spacings: { spaces },
     typography: { pxToRem }
   } = theme;
 
   return {
-    description: { marginBottom: pxToRem(16) },
+    description: { marginBottom: spaces[7].rem },
     accounts: { display: "flex", flexDirection: "column" },
     accountRow: {
       display: "flex",
@@ -42,17 +54,17 @@ const useStyles = makeStyles(theme => {
     avatar: {
       width: pxToRem(32),
       height: pxToRem(32),
-      borderRadius: "50%",
-      marginRight: pxToRem(16),
+      borderRadius: radius.rounded,
+      marginRight: spaces[7].rem,
       backgroundColor: colors.text.secondary
     },
     accountName: { display: "flex", flexDirection: "column" },
-    addBtn: { marginTop: pxToRem(8), alignSelf: "flex-start" },
+    addBtn: { marginTop: spaces[3].rem, alignSelf: "flex-start" },
     closeBtn: { marginLeft: "auto" }
   };
 });
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const classes = useStyles();
 
   const [isDialogOpen, setDialogOpen] = React.useState(false);
@@ -75,9 +87,9 @@ const Demo: React.FC = () => {
         aria-describedby="dialog-body-1"
       >
         <DialogHeader id="dialog-header-1" title="Choose your google account">
-          <Button
+          <IconButton
             aria-label="Close the Dialog"
-            leadingIcon={<CloseLarge />}
+            icon={<CloseLarge />}
             variant="inlined"
             className={classes.closeBtn}
             onClick={() => void setDialogOpen(false)}
@@ -85,7 +97,7 @@ const Demo: React.FC = () => {
         </DialogHeader>
         <DialogBody>
           <Text
-            rootNode="p"
+            as="p"
             variant="body"
             color="textSecondary"
             className={classes.description}
@@ -97,10 +109,10 @@ const Demo: React.FC = () => {
             <div className={classes.accountRow} role="button" tabIndex={0}>
               <div className={classes.avatar}></div>
               <div className={classes.accountName}>
-                <Text variant="subtitleSmall" rootNode="strong">
+                <Text variant="subtitleSmall" as="strong">
                   Mostafa Shamsitabar
                 </Text>
-                <Text variant="caption" rootNode="strong" color="textSecondary">
+                <Text variant="caption" as="strong" color="textSecondary">
                   mostafa.sh.coderino@gmail.com
                 </Text>
               </div>
@@ -108,10 +120,10 @@ const Demo: React.FC = () => {
             <div className={classes.accountRow} role="button" tabIndex={0}>
               <div className={classes.avatar}></div>
               <div className={classes.accountName}>
-                <Text variant="subtitleSmall" rootNode="strong">
+                <Text variant="subtitleSmall" as="strong">
                   Mostafa Shamsitabar
                 </Text>
-                <Text variant="caption" rootNode="strong" color="textSecondary">
+                <Text variant="caption" as="strong" color="textSecondary">
                   mostafa.sh.jobs@gmail.com
                 </Text>
               </div>
@@ -135,11 +147,13 @@ const useStyles = makeStyles(theme => {
   const {
     colors,
     darkMode,
+    radius,
+    spacings: { spaces },
     typography: { pxToRem }
   } = theme;
 
   return {
-    description: { marginBottom: pxToRem(16) },
+    description: { marginBottom: spaces[7].rem },
     accounts: { display: "flex", flexDirection: "column" },
     accountRow: {
       display: "flex",
@@ -158,17 +172,17 @@ const useStyles = makeStyles(theme => {
     avatar: {
       width: pxToRem(32),
       height: pxToRem(32),
-      borderRadius: "50%",
-      marginRight: pxToRem(16),
+      borderRadius: radius.rounded,
+      marginRight: spaces[7].rem,
       backgroundColor: colors.text.secondary
     },
     accountName: { display: "flex", flexDirection: "column" },
-    addBtn: { marginTop: pxToRem(8), alignSelf: "flex-start" },
+    addBtn: { marginTop: spaces[3].rem, alignSelf: "flex-start" },
     closeBtn: { marginLeft: "auto" }
   };
 });
 
-const FullScreenDialogDemo: React.FC = () => {
+const FullScreenDialogDemo = () => {
   const classes = useStyles();
 
   const [isDialogOpen, setDialogOpen] = React.useState(false);
@@ -187,9 +201,9 @@ const FullScreenDialogDemo: React.FC = () => {
         aria-describedby="dialog-body-1"
       >
         <DialogHeader id="dialog-header-1" title="Choose your google account">
-          <Button
+          <IconButton
             aria-label="Close the Dialog"
-            leadingIcon={<CloseLarge />}
+            icon={<CloseLarge />}
             variant="inlined"
             className={classes.closeBtn}
             onClick={() => void setDialogOpen(false)}
@@ -197,7 +211,7 @@ const FullScreenDialogDemo: React.FC = () => {
         </DialogHeader>
         <DialogBody>
           <Text
-            rootNode="p"
+            as="p"
             variant="body"
             color="textSecondary"
             className={classes.description}
@@ -209,10 +223,10 @@ const FullScreenDialogDemo: React.FC = () => {
             <div className={classes.accountRow} role="button" tabIndex={0}>
               <div className={classes.avatar}></div>
               <div className={classes.accountName}>
-                <Text variant="subtitleSmall" rootNode="strong">
+                <Text variant="subtitleSmall" as="strong">
                   Mostafa Shamsitabar
                 </Text>
-                <Text variant="caption" rootNode="strong" color="textSecondary">
+                <Text variant="caption" as="strong" color="textSecondary">
                   mostafa.sh.coderino@gmail.com
                 </Text>
               </div>
@@ -220,10 +234,10 @@ const FullScreenDialogDemo: React.FC = () => {
             <div className={classes.accountRow} role="button" tabIndex={0}>
               <div className={classes.avatar}></div>
               <div className={classes.accountName}>
-                <Text variant="subtitleSmall" rootNode="strong">
+                <Text variant="subtitleSmall" as="strong">
                   Mostafa Shamsitabar
                 </Text>
-                <Text variant="caption" rootNode="strong" color="textSecondary">
+                <Text variant="caption" as="strong" color="textSecondary">
                   mostafa.sh.jobs@gmail.com
                 </Text>
               </div>

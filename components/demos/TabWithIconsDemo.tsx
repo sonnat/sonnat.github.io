@@ -1,6 +1,5 @@
 import Heart from "@sonnat/icons/Heart";
-import Divider from "@sonnat/ui/Divider";
-import TabBar, { Tab } from "@sonnat/ui/TabBar";
+import { Divider, Tab, TabBar } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 

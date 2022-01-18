@@ -154,7 +154,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import Radio from "@sonnat/ui/Radio";
 
 //or
@@ -237,6 +236,15 @@ import { Radio } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
+      <td>fluid</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        If <inlineCode>true</inlineCode>, the radio will fill the entire width
+        of the parent.
+      </td>
+    </tr>
+    <tr>
       <td>readOnly</td>
       <td>boolean</td>
       <td>false</td>
@@ -311,15 +319,7 @@ import { Radio } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.ChangeEvent, checkedState: boolean) => void
-        </inlineCode>
-        <br />
-        <em>
-          <strong>Note:</strong>
-        </em>{" "}
-        You can also pull out the new checked state by accessing{" "}
-        <inlineCode>event.target.checked</inlineCode> (boolean).
+        <inlineCode>function(checkedState: boolean) => void</inlineCode>
       </td>
     </tr>
   </tbody>

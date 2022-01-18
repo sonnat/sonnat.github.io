@@ -1,7 +1,11 @@
-import Badge, { BadgeProps } from "@sonnat/ui/Badge";
-import FormControl, { FormControlLabel } from "@sonnat/ui/FormControl";
-import Radio from "@sonnat/ui/Radio";
-import RadioGroup from "@sonnat/ui/RadioGroup";
+import {
+  Badge,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  type BadgeProps
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
@@ -12,24 +16,18 @@ type VerticalPlacement = NonNullable<BadgeProps["verticalPosition"]>;
 type HorizontalPlacement = NonNullable<BadgeProps["horizontalPosition"]>;
 
 const useStyles = makeStyles(
-  theme => ({
-    demoRow: {
-      display: "flex",
-      "& + &": { marginTop: theme.typography.pxToRem(16) }
-    }
+  ({ spacings: { spaces } }) => ({
+    demoRow: { display: "flex", "& + &": { marginTop: spaces[7].rem } }
   }),
-  {
-    name: "BadgeAlignmentDemo"
-  }
+  { name: "BadgeAlignmentDemo" }
 );
 
 const BadgeAlignmentDemo: React.FC = () => {
   const classes = useStyles();
 
   const [vertical, setVertical] = React.useState<VerticalPlacement>("top");
-  const [horizontal, setHorizontal] = React.useState<HorizontalPlacement>(
-    "right"
-  );
+  const [horizontal, setHorizontal] =
+    React.useState<HorizontalPlacement>("right");
 
   const demoCode = `<Badge
   variant="dotted"
@@ -43,7 +41,7 @@ const BadgeAlignmentDemo: React.FC = () => {
 <Badge
   childShape="circular"
   color="secondary"
-  textContent="9"
+  text="9"
   verticalPosition="${vertical}"
   horizontalPosition="${horizontal}"
 >
@@ -65,8 +63,8 @@ const BadgeAlignmentDemo: React.FC = () => {
           <RadioGroup
             id="radiogroup-vertical-align"
             defaultValue="top"
-            onChange={e =>
-              void setVertical(e.target.value as VerticalPlacement)
+            onChange={selectedValue =>
+              void setVertical(selectedValue as VerticalPlacement)
             }
           >
             <Radio
@@ -88,8 +86,8 @@ const BadgeAlignmentDemo: React.FC = () => {
           <RadioGroup
             id="radiogroup-horizontal-align"
             defaultValue="right"
-            onChange={e =>
-              void setHorizontal(e.target.value as HorizontalPlacement)
+            onChange={selectedValue =>
+              void setHorizontal(selectedValue as HorizontalPlacement)
             }
           >
             <Radio
@@ -125,7 +123,7 @@ const BadgeAlignmentDemo: React.FC = () => {
         </div>
         <div className="demoSubject">
           <Badge
-            textContent="9"
+            text="9"
             childShape="circular"
             color="secondary"
             verticalPosition={vertical}

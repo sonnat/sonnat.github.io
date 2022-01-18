@@ -3,14 +3,12 @@ import * as React from "react";
 
 const componentName = "WithHeader";
 
-const WithHeader: React.FC = ({ children }) => {
-  return (
-    <React.Fragment>
-      <Header />
-      {children}
-    </React.Fragment>
-  );
-};
+const WithHeader: React.FC = ({ children }) => (
+  <>
+    <Header />
+    {children}
+  </>
+);
 
 WithHeader.displayName = componentName;
 

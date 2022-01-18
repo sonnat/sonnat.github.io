@@ -109,7 +109,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import InputSlider from "@sonnat/ui/InputSlider";
 
 //or
@@ -263,10 +262,7 @@ import { InputSlider } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.MouseEvent | React.TouchEvent, value: number[] |
-          number) => void
-        </inlineCode>
+        <inlineCode>function(value: number[] | number) => void</inlineCode>
       </td>
     </tr>
     <tr>
@@ -279,10 +275,7 @@ import { InputSlider } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.MouseEvent | React.TouchEvent, state: State) =>
-          void
-        </inlineCode>
+        <inlineCode>function(state: State) => void</inlineCode>
         <br />
         Where the <inlineCode>State</inlineCode> is:
         <Code
@@ -312,10 +305,7 @@ interface State {
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.MouseEvent | React.TouchEvent, state: State) =>
-          void
-        </inlineCode>
+        <inlineCode>function(state: State) => void</inlineCode>
         <br />
         Where the <inlineCode>State</inlineCode> is:
         <Code
@@ -345,10 +335,7 @@ interface State {
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>
-          function(event: React.MouseEvent | React.TouchEvent, state: State) =>
-          void
-        </inlineCode>
+        <inlineCode>function(state: State) => void</inlineCode>
         <br />
         Where the <inlineCode>State</inlineCode> is:
         <Code

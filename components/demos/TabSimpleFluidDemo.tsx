@@ -15,7 +15,7 @@ const content = {
   2: "The content of Third Tab!",
 };
 
-const TabSimpleFluidDemo: React.FC = () => {
+const TabSimpleFluidDemo = () => {
   const [activeTab, setActiveTab] = React.useState(defaultActiveTab);
 
   return (
@@ -23,7 +23,7 @@ const TabSimpleFluidDemo: React.FC = () => {
       <TabBar
         variant="fluid"
         defaultActiveTab={defaultActiveTab}
-        onChange={(_, identifier) => void setActiveTab(identifier)}
+        onChange={identifier => void setActiveTab(identifier)}
       >
         <Tab label="First tab" />
         <Tab label="Second tab" />
@@ -55,7 +55,7 @@ const content = {
   2: "The content of Third Tab!"
 };
 
-const TabSimpleFluidDemo: React.FC = () => {
+const TabSimpleFluidDemo = () => {
   const classes = useStyles();
 
   const [activeTab, setActiveTab] = React.useState<number | string>(
@@ -68,7 +68,7 @@ const TabSimpleFluidDemo: React.FC = () => {
         <TabBar
           variant="fluid"
           defaultActiveTab={defaultActiveTab}
-          onChange={(_, identifier) => void setActiveTab(identifier)}
+          onChange={identifier => void setActiveTab(identifier)}
         >
           <Tab label="First tab" />
           <Tab label="Second tab" />

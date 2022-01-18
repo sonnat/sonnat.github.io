@@ -14,25 +14,20 @@ interface Props {
 const useStyles = makeStyles(
   {
     root: { width: "100%" },
-    collapseWrapper: {
-      transition: "height 360ms ease"
-    },
+    collapseWrapper: { transition: "height 360ms ease" },
     collapseContainer: {}
   },
   { name: componentName }
 );
 
-const CollapsableNavItem = React.memo(function CollapsableNavItem(
-  props: Props
-) {
+const CollapsableNavItemBase = (props: Props) => {
   const { trigger: triggerComponent, content, isExpanded = false } = props;
 
   const classes = useStyles();
   const [isCollapsed, setCollapsed] = React.useState(!isExpanded);
 
-  const { setExpanded: setParentExpanded } = React.useContext(
-    CollapsableContext
-  );
+  const { setExpanded: setParentExpanded } =
+    React.useContext(CollapsableContext);
 
   const triggerClickListener = React.useCallback(() => {
     setCollapsed(c => !c);
@@ -72,7 +67,9 @@ const CollapsableNavItem = React.memo(function CollapsableNavItem(
       </CollapsableContext.Provider>
     </div>
   );
-});
+};
+
+const CollapsableNavItem = React.memo(CollapsableNavItemBase);
 
 CollapsableNavItem.displayName = componentName;
 

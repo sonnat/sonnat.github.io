@@ -1,15 +1,13 @@
-import Button from "@sonnat/ui/Button";
-import Menu, { MenuItem } from "@sonnat/ui/Menu";
+import { Button, Menu, MenuItem } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "MenuSimpleDemo";
 
-const demoCode = `import Menu, { MenuItem } from "@sonnat/ui/Menu";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Button, Menu, MenuItem } from "@sonnat/ui";
 import * as React from "react";
 
-const MenuSimpleDemo: React.FC = () => {
+const MenuSimpleDemo = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const anchorElement = React.useRef();
 
@@ -39,7 +37,7 @@ const MenuSimpleDemo: React.FC = () => {
 export default MenuSimpleDemo;
 `;
 
-const MenuSimpleDemo: React.FC = () => {
+const MenuSimpleDemo = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const anchorElement = React.useRef<HTMLButtonElement>(null);
 

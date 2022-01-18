@@ -19,14 +19,14 @@ const content = {
   6: "The content of Seventh Tab!"
 };
 
-const TabSimpleScrollableDemo: React.FC = () => {
+const TabSimpleScrollableDemo = () => {
   const [activeTab, setActiveTab] = React.useState(defaultActiveTab);
 
   return (
     <React.Fragment>
       <TabBar
         defaultActiveTab={defaultActiveTab}
-        onChange={(_, identifier) => void setActiveTab(identifier)}
+        onChange={identifier => void setActiveTab(identifier)}
       >
         <Tab label="First tab" />
         <Tab label="Second tab" />
@@ -66,7 +66,7 @@ const content = {
   6: "The content of Seventh Tab!"
 };
 
-const TabSimpleScrollableDemo: React.FC = () => {
+const TabSimpleScrollableDemo = () => {
   const classes = useStyles();
 
   const [activeTab, setActiveTab] = React.useState<string | number>(
@@ -78,7 +78,7 @@ const TabSimpleScrollableDemo: React.FC = () => {
       <React.Fragment>
         <TabBar
           defaultActiveTab={defaultActiveTab}
-          onChange={(_, identifier) => void setActiveTab(identifier)}
+          onChange={identifier => void setActiveTab(identifier)}
         >
           <Tab label="First tab" />
           <Tab label="Second tab" />

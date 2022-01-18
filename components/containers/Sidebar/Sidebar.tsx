@@ -1,12 +1,12 @@
-import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
+import { makeStyles, type DefaultTheme } from "@sonnat/ui/styles";
 import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
-import createClass from "classnames";
+import c from "classnames";
 import { useNavJsx } from "nav-schema";
 import * as React from "react";
 
 interface Props {
   className?: string;
+  children?: React.ReactNode;
 }
 
 interface MakeStylesData {
@@ -18,14 +18,15 @@ const componentName = "Sidebar";
 const useStyles = makeStyles<DefaultTheme, MakeStylesData, "root" | "hintText">(
   theme => {
     const {
+      spacings: { spacer },
       typography: { pxToRem }
     } = theme;
 
     return {
       root: ({ scrollBarWidth }) => ({
         position: "sticky",
-        top: pxToRem(128),
-        paddingBottom: pxToRem(32),
+        top: pxToRem(spacer.px * 8),
+        paddingBottom: pxToRem(spacer.px * 2),
         zIndex: 1,
         "&:after": {
           marginRight: pxToRem(scrollBarWidth),
@@ -33,21 +34,17 @@ const useStyles = makeStyles<DefaultTheme, MakeStylesData, "root" | "hintText">(
           position: "absolute",
           left: 0,
           right: 0,
-          bottom: pxToRem(32),
+          bottom: pxToRem(spacer.px * 2),
           height: pxToRem(16)
-          // background: `linear-gradient(transparent, ${colors.background.origin})`
         }
       }),
-      hintText: { marginTop: pxToRem(4) }
+      hintText: { marginTop: pxToRem(spacer.px * 0.25) }
     };
   },
   { name: componentName }
 );
 
-const Sidebar: React.FC<Props> = React.memo(function Sidebar({
-  children,
-  className
-}) {
+const Sidebar = ({ children, className }: Props) => {
   const navJsx = useNavJsx();
 
   const scrollBarWidth = React.useMemo(
@@ -58,12 +55,12 @@ const Sidebar: React.FC<Props> = React.memo(function Sidebar({
   const classes = useStyles({ scrollBarWidth });
 
   return (
-    <aside className={createClass(className, classes.root)}>
+    <aside className={c(className, classes.root)}>
       {navJsx}
       {children}
     </aside>
   );
-});
+};
 
 Sidebar.displayName = componentName;
 

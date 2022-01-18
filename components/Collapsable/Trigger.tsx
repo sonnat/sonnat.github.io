@@ -3,7 +3,7 @@ import Text from "@sonnat/ui/Text";
 import createClass from "classnames";
 import * as React from "react";
 
-export const componentName = "CollapsableTrigger";
+const componentName = "CollapsableTrigger";
 
 interface Props {
   title?: string;
@@ -13,35 +13,31 @@ interface Props {
 }
 
 const useStyles = makeStyles(
-  theme => ({
+  ({ colors, spacings: { spaces }, typography: { fontWeight, pxToRem } }) => ({
     root: {},
     title: {
-      color: theme.colors.text.secondary,
+      color: colors.text.secondary,
       transition: "color 360ms ease",
-      "&:hover": {
-        color: theme.colors.text.primary
-      }
+      "&:hover": { color: colors.text.primary }
     },
     divider: {
       width: 1,
-      height: `calc(100% - ${theme.typography.pxToRem(24)})`,
-      marginRight: theme.typography.pxToRem(10),
-      marginLeft: theme.typography.pxToRem(8),
-      backgroundColor: theme.colors.divider
+      height: `calc(100% - ${pxToRem(24)})`,
+      marginRight: spaces[4].rem,
+      marginLeft: spaces[3].rem,
+      backgroundColor: colors.divider
     },
     active: {
       "& $title": {
-        color: theme.colors.text.primary,
-        fontWeight: theme.typography.fontWeight.medium
+        color: colors.text.primary,
+        fontWeight: fontWeight.medium
       }
     }
   }),
   { name: componentName }
 );
 
-const CollapsableTrigger = React.memo(function CollapsableTrigger(
-  props: Props
-) {
+const CollapsableTriggerBase = (props: Props) => {
   const { className, title, onClick, active = false } = props;
 
   const classes = useStyles();
@@ -59,7 +55,9 @@ const CollapsableTrigger = React.memo(function CollapsableTrigger(
       </Text>
     </div>
   );
-});
+};
+
+const CollapsableTrigger = React.memo(CollapsableTriggerBase);
 
 CollapsableTrigger.displayName = componentName;
 

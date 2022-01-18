@@ -106,7 +106,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import Menu, { MenuItem, MenuItemGroup } from "@sonnat/ui/Menu";
 
 //or
@@ -148,13 +147,14 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       <td>The content of the menu.</td>
     </tr>
     <tr>
-      <td>anchorNode</td>
-      <td>null | Element | (element: Element) => Element</td>
-      <td>-</td>
       <td>
-        An HTML element, or a function that returns one. It's used to set the
-        position of the menu.
+        anchorNode
+        <br />
+        <mark>required</mark>
       </td>
+      <td>null | Element</td>
+      <td>-</td>
+      <td>An HTML element. It's used to set the position of the menu.</td>
     </tr>
     <tr>
       <td>className</td>
@@ -281,7 +281,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+        <inlineCode>function(event: MouseEvent) => void</inlineCode>
       </td>
     </tr>
     <tr>
@@ -381,7 +381,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+        <inlineCode>function(event: React.FocusEvent) => void</inlineCode>
       </td>
     </tr>
     <tr>
@@ -394,7 +394,7 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
         <em>
           <strong>Signature:</strong>
         </em>{" "}
-        <inlineCode>function(event: React.MouseEvent) => void</inlineCode>
+        <inlineCode>function(event: React.FocusEvent) => void</inlineCode>
       </td>
     </tr>
   </tbody>

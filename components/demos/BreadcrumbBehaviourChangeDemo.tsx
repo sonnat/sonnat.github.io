@@ -11,7 +11,7 @@ const demoCode = `<Breadcrumb showOnlyPreviousStep>
   <BreadcrumbItem><a href="#">Breadcrumb</a></BreadcrumbItem>
 </Breadcrumb>`;
 
-const BreadcrumbBehaviourChangeDemo: React.FC = () => {
+const BreadcrumbBehaviourChangeDemo = () => {
   return (
     <DemoBox code={demoCode}>
       <React.Fragment>

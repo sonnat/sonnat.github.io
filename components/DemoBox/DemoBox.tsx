@@ -1,8 +1,6 @@
 import { ChevronDown, ChevronUp, ContentCopy } from "@sonnat/icons";
-import Button from "@sonnat/ui/Button";
-import Code from "@sonnat/ui/Code";
+import { Button, Code, IconButton, Tooltip } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Tooltip from "@sonnat/ui/Tooltip";
 import createClassName from "classnames";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import * as React from "react";
@@ -18,6 +16,7 @@ type FlexDirectionKeys = "flexDirectionRow" | "flexDirectionColumn";
 
 interface Props {
   className?: string;
+  children?: React.ReactNode;
   code?: string;
   horizontalAlignment?: "start" | "end" | "center";
   verticalAlignment?: "start" | "end" | "center";
@@ -29,6 +28,7 @@ const useStyles = makeStyles(
     const {
       colors,
       darkMode,
+      swatches,
       typography: { pxToRem }
     } = theme;
 
@@ -79,7 +79,7 @@ const useStyles = makeStyles(
       codeBlock: {
         border: "none",
         borderRadius: 0,
-        backgroundColor: theme.colors.pallete.grey[900],
+        backgroundColor: swatches.grey[900],
         maxHeight: pxToRem(500)
       },
       expanded: {
@@ -146,7 +146,7 @@ const toCapitalize = (text: string) => {
   return `${first.toUpperCase()}${rest.join("")}`;
 };
 
-const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
+const DemoBoxBase = (props: Props) => {
   const {
     className,
     children,
@@ -204,16 +204,16 @@ const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
             />
           )}
           <Tooltip text="Copied to clipboard!" open={isCopied}>
-            <Button
-              leadingIcon={<ContentCopy />}
+            <IconButton
+              icon={<ContentCopy />}
               aria-label="Copy the code"
               variant="inlined"
               className={classes.copyCode}
               onClick={() => setCopied()}
             />
           </Tooltip>
-          <Button
-            leadingIcon={isExpanded ? <ChevronUp /> : <ChevronDown />}
+          <IconButton
+            icon={isExpanded ? <ChevronUp /> : <ChevronDown />}
             aria-label="Expand the codebox"
             variant="inlined"
             className={classes.expandCode}
@@ -261,7 +261,9 @@ const DemoBox: React.FC<Props> = React.memo(function DemoBox(props) {
       </div>
     </div>
   );
-});
+};
+
+const DemoBox = React.memo(DemoBoxBase);
 
 DemoBox.displayName = componentName;
 

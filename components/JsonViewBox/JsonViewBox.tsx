@@ -8,8 +8,9 @@ interface Props {
   className?: string;
 }
 
-const JsonViewBox = React.memo(function JsonViewBox(props: Props) {
+const JsonViewBoxBase = (props: Props) => {
   const { className, ...otherProps } = props;
+
   const theme = useTheme();
 
   const JsonView = dynamic(() => import("react-json-view"), { ssr: false });
@@ -28,7 +29,9 @@ const JsonViewBox = React.memo(function JsonViewBox(props: Props) {
       />
     </div>
   );
-});
+};
+
+const JsonViewBox = React.memo(JsonViewBoxBase);
 
 JsonViewBox.displayName = componentName;
 

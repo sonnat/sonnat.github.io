@@ -8,7 +8,7 @@ const componentName = "FlexFillDemo";
 const demoCode = `import Flex, { FlexItem } from "@sonnat/ui/Flex";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <React.Fragment>
       <Flex>
@@ -29,29 +29,30 @@ export default Demo;
 `;
 
 const useStyles = makeStyles(
-  theme => ({
+  ({
+    colors,
+    swatches,
+    darkMode,
+    spacings: { gutter, spaces },
+    typography: { variants }
+  }) => ({
     box: {
       width: "100%",
-      border: `1px solid ${theme.colors.divider}`,
-      backgroundColor: theme.darkMode
-        ? theme.colors.pallete.grey[900]
-        : theme.colors.pallete.grey[100],
-      "& + &": { marginTop: theme.typography.pxToRem(8) }
+      border: `1px solid ${colors.divider}`,
+      backgroundColor: darkMode ? swatches.grey[900] : swatches.grey[100],
+      "& + &": { marginTop: spaces[3].rem }
     },
     item: {
-      padding: theme.typography.pxToRem(theme.spacings.gutter),
-      lineHeight: 1.45,
-      fontSize: theme.typography.pxToRem(14),
-      border: `1px solid ${theme.colors.divider}`,
-      color: theme.colors.text.primary,
-      backgroundColor: theme.darkMode
-        ? "rgba(0, 0, 0, 0.25)"
-        : "rgba(0, 0, 0, 0.04)"
+      ...variants.bodySmall,
+      padding: gutter,
+      border: `1px solid ${colors.divider}`,
+      color: colors.text.primary,
+      backgroundColor: darkMode ? "rgba(0, 0, 0, 0.25)" : "rgba(0, 0, 0, 0.04)"
     }
   }),
   { name: componentName }
 );
-const FlexFillDemo: React.FC = () => {
+const FlexFillDemo = () => {
   const classes = useStyles();
 
   return (

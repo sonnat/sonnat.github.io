@@ -1,8 +1,7 @@
 import Link from "@sonnat/icons/Link";
-import Button from "@sonnat/ui/Button";
+import { IconButton, Tooltip } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Tooltip from "@sonnat/ui/Tooltip";
-import createClassName from "classnames";
+import c from "classnames";
 import * as React from "react";
 import useClipboard from "react-use-clipboard";
 
@@ -16,23 +15,23 @@ interface Props {
 }
 
 const useStyles = makeStyles(
-  theme => ({
+  ({ breakpoints, spacings: { spaces }, typography: { pxToRem } }) => ({
     root: {
       position: "relative",
-      marginLeft: theme.typography.pxToRem(8),
-      marginRight: theme.typography.pxToRem(8)
+      marginLeft: spaces[3].rem,
+      marginRight: spaces[3].rem
     },
     button: {},
     anchor: {
       position: "absolute",
-      top: theme.typography.pxToRem(-64),
-      [theme.breakpoints.down("sm")]: { top: theme.typography.pxToRem(-105) }
+      top: pxToRem(-64),
+      [breakpoints.down("sm")]: { top: pxToRem(-105) }
     }
   }),
   { name: componentName }
 );
 
-const AnchorButton = React.memo<Props>(function AnchorButton(props) {
+const AnchorButtonBase = (props: Props) => {
   const { className, anchorId, ...otherProps } = props;
 
   const anchorHref = isServer
@@ -45,23 +44,25 @@ const AnchorButton = React.memo<Props>(function AnchorButton(props) {
   });
 
   return (
-    <div {...otherProps} className={createClassName(classes.root, className)}>
+    <div {...otherProps} className={c(classes.root, className)}>
       <span id={anchorId} className={classes.anchor}></span>
       <Tooltip text="Copied to clipboard!" open={isCopied} placement="right">
-        <Button
-          className={createClassName(classes.button, "anchor-button")}
-          rootNode="a"
+        <IconButton
+          className={c(classes.button, "anchor-button")}
+          as="a"
           href={`#${anchorId}`}
           onClick={() => void setCopied()}
           variant="inlined"
           title="Anchor link"
           aria-label="Anchor link"
-          leadingIcon={<Link />}
+          icon={<Link />}
         />
       </Tooltip>
     </div>
   );
-});
+};
+
+const AnchorButton = React.memo(AnchorButtonBase);
 
 AnchorButton.displayName = componentName;
 

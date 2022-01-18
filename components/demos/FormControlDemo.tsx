@@ -1,49 +1,46 @@
-import FormControl, {
+import {
+  FormControl,
   FormControlDescription,
   FormControlFeedback,
-  FormControlLabel
-} from "@sonnat/ui/FormControl";
+  FormControlLabel,
+  TextField
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import TextField from "@sonnat/ui/TextField";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "FormControlDemo";
 
 const useStyles = makeStyles(
-  theme => ({
+  ({ spacings: { spaces } }) => ({
     root: {},
     label: {},
-    descriptor: {
-      paddingBottom: theme.typography.pxToRem(8)
-    },
-    feedback: { paddingTop: theme.typography.pxToRem(4) }
+    descriptor: { paddingBottom: spaces[3].rem },
+    feedback: { paddingTop: spaces[1].rem }
   }),
   { name: componentName }
 );
 
-const demoCode = `import FormControl, {
+const demoCode = `import {
+  FormControl,
   FormControlDescription,
   FormControlFeedback,
-  FormControlLabel
-} from "@sonnat/ui/FormControl";
+  FormControlLabel,
+  TextField
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import TextField from "@sonnat/ui/TextField";
 import * as React from "react";
 
 const useStyles = makeStyles(
-  theme => ({
+  ({ spacings: { spaces } }) => ({
     root: {},
     label: {},
-    descriptor: {
-      paddingBottom: theme.typography.pxToRem(8)
-    },
-    feedback: { paddingTop: theme.typography.pxToRem(4) }
-  }),
-  { name: componentName }
+    descriptor: { paddingBottom: spaces[3].rem },
+    feedback: { paddingTop: spaces[1].rem }
+  })
 );
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const classes = useStyles();
 
   const [hasError, setHasError] = React.useState(false);
@@ -80,7 +77,7 @@ const Demo: React.FC = () => {
         </FormControlDescription>
         <TextField
           value={value}
-          onChange={e => void setValue(e.target.value)}
+          onChange={v => void setValue(v)}
           placeholder="Your email address goes here"
           inputProps={{ id: "input-0", "aria-describedby": "descriptor-0" }}
         />
@@ -97,7 +94,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const FormControlDemo: React.FC = () => {
+const FormControlDemo = () => {
   const classes = useStyles();
 
   const [hasError, setHasError] = React.useState(false);
@@ -135,7 +132,7 @@ const FormControlDemo: React.FC = () => {
           </FormControlDescription>
           <TextField
             value={value}
-            onChange={e => void setValue(e.target.value)}
+            onChange={v => void setValue(v)}
             placeholder="Your email address goes here"
             inputProps={{ id: "input-0", "aria-describedby": "descriptor-0" }}
           />

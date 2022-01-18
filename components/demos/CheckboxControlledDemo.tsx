@@ -1,15 +1,13 @@
-import Button from "@sonnat/ui/Button";
-import Checkbox from "@sonnat/ui/Checkbox";
+import { Button, Checkbox } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "CheckboxControlledDemo";
 
-const demoCode = `import Checkbox from "@sonnat/ui/Checkbox";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Button, Checkbox } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [checked, setChecked] = React.useState(false);
 
   return (
@@ -33,7 +31,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const CheckboxControlledDemo: React.FC = () => {
+const CheckboxControlledDemo = () => {
   const [checked, setChecked] = React.useState(false);
 
   return (

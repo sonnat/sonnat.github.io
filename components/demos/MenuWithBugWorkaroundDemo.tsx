@@ -1,15 +1,13 @@
-import Button from "@sonnat/ui/Button";
-import Menu, { MenuItem } from "@sonnat/ui/Menu";
+import { Button, Menu, MenuItem } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "MenuWithBugWorkaroundDemo";
 
-const demoCode = `import Menu, { MenuItem } from "@sonnat/ui/Menu";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Button, Menu, MenuItem } from "@sonnat/ui";
 import * as React from "react";
 
-const MenuWithBugWorkaroundDemo: React.FC = () => {
+const MenuWithBugWorkaroundDemo = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const anchorElement = React.useRef();
 
@@ -46,7 +44,7 @@ const MenuWithBugWorkaroundDemo: React.FC = () => {
 export default MenuWithBugWorkaroundDemo;
 `;
 
-const MenuWithBugWorkaroundDemo: React.FC = () => {
+const MenuWithBugWorkaroundDemo = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const anchorElement = React.useRef<HTMLButtonElement>(null);
 

@@ -1,7 +1,7 @@
 import PortalDestination from "@sonnat/ui/PortalDestination";
 import type { DefaultTheme } from "@sonnat/ui/styles/defaultTheme";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import createClass from "classnames";
+import c from "classnames";
 import { useNavJsx } from "nav-schema";
 import * as React from "react";
 
@@ -23,6 +23,7 @@ const useStyles = makeStyles<
       zIndexes,
       darkMode,
       breakpoints,
+      spacings: { spaces, spacer },
       typography: { pxToRem }
     } = theme;
 
@@ -35,11 +36,11 @@ const useStyles = makeStyles<
         width: pxToRem(256),
         height: `calc(100% - ${pxToRem(64)})`,
         overflow: "auto",
-        top: pxToRem(64),
-        backgroundColor: darkMode ? colors.background.level?.[2] : colors.white,
+        top: pxToRem(spacer.px * 4),
+        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
         zIndex: zIndexes.header - 1,
         opacity: 0,
-        padding: [[pxToRem(48), pxToRem(16)]],
+        padding: [[pxToRem(spacer.px * 3), spaces[7].rem]],
         visibility: "hidden",
         transition:
           "transform 360ms ease, opacity 260ms ease, visibility 260ms ease"
@@ -76,15 +77,13 @@ const useStyles = makeStyles<
   { name: componentName }
 );
 
-const BurgerMenu = React.memo(function BurgerMenu(props: Props) {
+const BurgerMenuBase = (props: Props) => {
   const { open = false, toggle: toggleFn } = props;
 
   const classes = useStyles();
   const [isOpen, setOpen] = React.useState(false);
 
-  const navJsx = useNavJsx(
-    createClass(classes.root, { [classes.open]: isOpen })
-  );
+  const navJsx = useNavJsx(c(classes.root, { [classes.open]: isOpen }));
 
   const toggle = React.useCallback(() => {
     if (toggleFn) requestAnimationFrame(toggleFn);
@@ -99,14 +98,16 @@ const BurgerMenu = React.memo(function BurgerMenu(props: Props) {
     <PortalDestination>
       {navJsx}
       <div
-        className={createClass(classes.dimmer, {
+        className={c(classes.dimmer, {
           [classes.open]: isOpen
         })}
         onClick={toggle}
       ></div>
     </PortalDestination>
   );
-});
+};
+
+const BurgerMenu = React.memo(BurgerMenuBase);
 
 BurgerMenu.displayName = componentName;
 

@@ -1,5 +1,5 @@
-import createClassName from "classnames";
-import Link, { LinkProps } from "next/link";
+import c from "classnames";
+import Link, { type LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -23,10 +23,10 @@ const ActiveLink: React.FC<Props> = props => {
 
   const router = useRouter();
 
-  const isActive = React.useMemo(() => router.pathname === href, [
-    href,
-    router.pathname
-  ]);
+  const isActive = React.useMemo(
+    () => router.pathname === href,
+    [href, router.pathname]
+  );
 
   React.useEffect(() => {
     if (isActive && onActive) onActive();
@@ -35,7 +35,7 @@ const ActiveLink: React.FC<Props> = props => {
   return (
     <Link href={href} {...otherProps}>
       {React.cloneElement(child, {
-        className: createClassName(child.props?.className, {
+        className: c(child.props?.className, {
           [activeClassName]: isActive
         })
       })}

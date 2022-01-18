@@ -7,12 +7,12 @@ const componentName = "InputStepperControlledDemo";
 const demoCode = `import InputStepper from "@sonnat/ui/InputStepper";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState("");
 
   return (
     <React.Fragment>
-      <InputStepper value={value} onChange={e => void setValue(e.target.value)} />
+      <InputStepper value={value} onChange={newValue => void setValue(newValue)} />
       <span>The value is {\`"\${value}"\`}</span>
     </React.Fragment>
   );
@@ -21,7 +21,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const InputStepperControlledDemo: React.FC = () => {
+const InputStepperControlledDemo = () => {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -29,7 +29,7 @@ const InputStepperControlledDemo: React.FC = () => {
       <React.Fragment>
         <InputStepper
           value={value}
-          onChange={(_, newValue) => void setValue(newValue)}
+          onChange={newValue => void setValue(newValue)}
         />
         <span style={{ marginTop: 16, textAlign: "center" }}>
           The value is

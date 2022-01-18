@@ -7,15 +7,12 @@ const componentName = "TextAreaControlledDemo";
 const demoCode = `import TextArea from "@sonnat/ui/TextArea";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState("");
 
   return (
     <React.Fragment>
-      <TextArea
-        value={value}
-        onChange={e => void setValue(e.target.value)}
-      />
+      <TextArea value={value} onChange={v => void setValue(v)} />
       <span>The value is {\`"\${value}"\`}</span>
     </React.Fragment>
   );
@@ -24,13 +21,13 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const TextAreaControlledDemo: React.FC = () => {
+const TextAreaControlledDemo = () => {
   const [value, setValue] = React.useState("");
 
   return (
     <DemoBox flexDirection="column" code={demoCode}>
       <React.Fragment>
-        <TextArea value={value} onChange={e => void setValue(e.target.value)} />
+        <TextArea value={value} onChange={v => void setValue(v)} />
         <span
           style={{ marginTop: 16, whiteSpace: "pre-wrap", textAlign: "center" }}
         >

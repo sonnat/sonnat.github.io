@@ -1,12 +1,10 @@
-import Badge from "@sonnat/ui/Badge";
-import Button from "@sonnat/ui/Button";
+import { Badge, Button } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "BadgeVisibilityDemo";
 
-const demoCode = `import Badge from "@sonnat/ui/Badge";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Badge, Button } from "@sonnat/ui";
 import * as React from "react";
 
 const BadgeVisibilityDemo: React.FC = () => {

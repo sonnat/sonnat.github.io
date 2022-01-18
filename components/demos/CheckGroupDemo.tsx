@@ -1,22 +1,20 @@
-import Checkbox from "@sonnat/ui/Checkbox";
-import CheckGroup from "@sonnat/ui/CheckGroup";
+import { Checkbox, CheckGroup } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "CheckGroupDemo";
 
-const demoCode = `import CheckGroup from "@sonnat/ui/CheckGroup";
-import Checkbox from "@sonnat/ui/Checkbox";
+const demoCode = `import { Checkbox, CheckGroup } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [values, setValues] = React.useState([]);
 
   return (
     <React.Fragment>
       <CheckGroup
         value={values}
-        onChange={(e, selectedValues) => void setValues(selectedValues)}
+        onChange={selectedValues => void setValues(selectedValues)}
       >
         <Checkbox label="Ali" value="Ali" />
         <Checkbox label="David" value="David" />
@@ -34,7 +32,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const CheckGroupDemo: React.FC = () => {
+const CheckGroupDemo = () => {
   const [values, setValues] = React.useState<string[]>([]);
 
   return (
@@ -42,7 +40,7 @@ const CheckGroupDemo: React.FC = () => {
       <React.Fragment>
         <CheckGroup
           value={values}
-          onChange={(_, selectedValues) => void setValues(selectedValues)}
+          onChange={selectedValues => void setValues(selectedValues)}
         >
           <Checkbox label="Ali" value="Ali" />
           <Checkbox label="David" value="David" />

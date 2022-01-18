@@ -1,15 +1,13 @@
-import Button from "@sonnat/ui/Button";
-import Snackbar from "@sonnat/ui/Snackbar";
+import { Button, Snackbar } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "SnackbarSimpleDemo";
 
-const demoCode = `import Snackbar from "@sonnat/ui/Snackbar";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Button, Snackbar } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [isOpen, setOpen] = React.useState(false);
   
   return (
@@ -32,7 +30,7 @@ const Demo: React.FC = () => {
 
 export default Demo;`;
 
-const SnackbarSimpleDemo: React.FC = () => {
+const SnackbarSimpleDemo = () => {
   const [isOpen, setOpen] = React.useState(false);
 
   return (

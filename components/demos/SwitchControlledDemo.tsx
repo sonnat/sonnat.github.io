@@ -1,15 +1,13 @@
-import Button from "@sonnat/ui/Button";
-import Switch from "@sonnat/ui/Switch";
+import { Button, Switch } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "SwitchControlledDemo";
 
-const demoCode = `import Switch from "@sonnat/ui/Switch";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Button, Switch } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [checked, setChecked] = React.useState(false);
 
   return (
@@ -33,7 +31,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const SwitchControlledDemo: React.FC = () => {
+const SwitchControlledDemo = () => {
   const [checked, setChecked] = React.useState(false);
 
   return (

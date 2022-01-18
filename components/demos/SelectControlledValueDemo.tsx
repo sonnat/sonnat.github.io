@@ -7,17 +7,16 @@ const componentName = "SelectControlledValueDemo";
 const demoCode = `import Select, { SelectOption, SelectOptionGroup } from "@sonnat/ui/Select";;
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState("");
   
   return (
     <React.Fragment>
       <Select
         value={value}
-        onChange={(_, v) => void setValue(v)}
+        onChange={v => void setValue(v)}
         fluid
         placeholder="Placeholder"
-        name="input"
       >
         <SelectOption value="jack" key="k0">Jack</SelectOption>,
         <SelectOption value="asghar" key="k1">Asghar</SelectOption>,
@@ -48,7 +47,7 @@ const Demo: React.FC = () => {
 
 export default Demo;`;
 
-const SelectControlledValueDemo: React.FC = () => {
+const SelectControlledValueDemo = () => {
   const [value, setValue] = React.useState("");
 
   return (
@@ -56,10 +55,9 @@ const SelectControlledValueDemo: React.FC = () => {
       <React.Fragment>
         <Select
           value={value}
-          onChange={(_, v) => void setValue(v as string)}
+          onChange={v => void setValue(v as string)}
           fluid
           placeholder="Placeholder"
-          name="input"
         >
           <SelectOption value="jack" key="k0">
             Jack

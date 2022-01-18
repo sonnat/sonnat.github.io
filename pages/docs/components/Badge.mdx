@@ -1,4 +1,5 @@
 import Button from "@sonnat/ui/Button";
+import IconButton from "@sonnat/ui/IconButton";
 import Badge from "@sonnat/ui/Badge";
 import { EmailO, Download } from "@sonnat/icons";
 import Text from "@sonnat/ui/Text";
@@ -54,40 +55,40 @@ export const meta = {
 
 <DemoBox
   code={[
-    '<Badge textContent="NEW" />',
-    '<Badge textContent="NEW" color="secondary" />',
-    `<Badge textContent="5">
-  <Button
+    '<Badge text="NEW" />',
+    '<Badge text="NEW" color="secondary" />',
+    `<Badge text="5">
+  <IconButton
     aria-label="Demo notification button"
-    leadingIcon={<EmailO />}
+    icon={<EmailO />}
     variant="inlined"
     size="large"
   />
 </Badge>`,
-    `<Badge textContent="5" color="secondary">
-  <Button
+    `<Badge text="5" color="secondary">
+  <IconButton
     aria-label="Demo notification button"
-    leadingIcon={<EmailO />}
+    icon={<EmailO />}
     variant="inlined"
     size="large"
   />
 </Badge>`
   ].join("\n")}
 >
-  <Badge textContent="NEW" className="demoSubject" />
-  <Badge textContent="NEW" className="demoSubject" color="secondary" />
-  <Badge textContent="5" className="demoSubject">
-    <Button
+  <Badge text="NEW" className="demoSubject" />
+  <Badge text="NEW" className="demoSubject" color="secondary" />
+  <Badge text="5" className="demoSubject">
+    <IconButton
       aria-label="Demo notification button"
-      leadingIcon={<EmailO />}
+      icon={<EmailO />}
       variant="inlined"
       size="large"
     />
   </Badge>
-  <Badge textContent="5" className="demoSubject" color="secondary">
-    <Button
+  <Badge text="5" className="demoSubject" color="secondary">
+    <IconButton
       aria-label="Demo notification button"
-      leadingIcon={<EmailO />}
+      icon={<EmailO />}
       variant="inlined"
       size="large"
     />
@@ -112,14 +113,14 @@ export const meta = {
     '<Badge variant="dotted" />',
     '<Badge color="secondary" variant="dotted" />',
     `<Badge variant="dotted">
-  <Text variant="caption" rootNode="p">
+  <Text variant="caption" as="p">
     This is a typography!
   </Text>
 </Badge>`,
     `<Badge variant="dotted" color="secondary">
-  <Button
+  <IconButton
     aria-label="Demo download button"
-    leadingIcon={<Download />}
+    icon={<Download />}
     variant="inlined"
   />
 </Badge>`
@@ -129,15 +130,15 @@ export const meta = {
   <Badge className="demoSubject" color="secondary" variant="dotted" />
   <div className="demoSubject">
     <Badge variant="dotted">
-      <Text variant="caption" rootNode="p">
+      <Text variant="caption" as="p">
         This is a typography!
       </Text>
     </Badge>
   </div>
   <Badge className="demoSubject" color="secondary" variant="dotted">
-    <Button
+    <IconButton
       aria-label="Demo download button"
-      leadingIcon={<Download />}
+      icon={<Download />}
       variant="inlined"
     />
   </Badge>
@@ -239,7 +240,6 @@ export const meta = {
 </h3>
 
 ```typescript
-// recommended
 import Badge from "@sonnat/ui/Badge";
 
 //or
@@ -268,7 +268,7 @@ import { Badge } from "@sonnat/ui";
   </thead>
   <tbody>
     <tr>
-      <td>textContent</td>
+      <td>text</td>
       <td>string</td>
       <td>-</td>
       <td>The content of the badge.</td>

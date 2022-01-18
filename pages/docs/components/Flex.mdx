@@ -54,9 +54,10 @@ type WithBreakpoint<T> = {
   md?: T;
   lg?: T;
   xlg?: T;
+  fallback?: T;
 };
 
-type ResponsivePropType<T> = T | WithBreakpoint<T>;
+type ResponsivePropType<T> = T | Partial<WithBreakpoint<T>>;
 
 type Prop<PropValue> = ResponsivePropType<PropValue>;
 ```
@@ -167,11 +168,10 @@ type Prop<PropValue> = ResponsivePropType<PropValue>;
 </h3>
 
 ```typescript
-// recommended
-import Flex, { FlexItem } from "@sonnat/ui/Flex";
+import Flex, { value FlexItem } from "@sonnat/ui/Flex";
 
 //or
-import { Flex, FlexItem } from "@sonnat/ui";
+import { value Flex, value FlexItem } from "@sonnat/ui";
 ```
 
 <h3>
@@ -218,7 +218,7 @@ import { Flex, FlexItem } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>rootNode</td>
+      <td>as</td>
       <td>elementType</td>
       <td>"div"</td>
       <td>
@@ -334,7 +334,7 @@ import { Flex, FlexItem } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>rootNode</td>
+      <td>as</td>
       <td>elementType</td>
       <td>"div"</td>
       <td>

@@ -1,15 +1,13 @@
-import Button from "@sonnat/ui/Button";
-import Menu, { MenuItem, MenuItemGroup } from "@sonnat/ui/Menu";
+import { Button, Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "MenuWithGroupedItemsDemo";
 
-const demoCode = `import Menu, { MenuItem, MenuItemGroup } from "@sonnat/ui/Menu";
-import Button from "@sonnat/ui/Button";
+const demoCode = `import { Button, Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
 import * as React from "react";
 
-const MenuWithGroupedItemsDemo: React.FC = () => {
+const MenuWithGroupedItemsDemo = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const anchorElement = React.useRef();
 
@@ -51,7 +49,7 @@ const MenuWithGroupedItemsDemo: React.FC = () => {
 export default MenuWithGroupedItemsDemo;
 `;
 
-const MenuWithGroupedItemsDemo: React.FC = () => {
+const MenuWithGroupedItemsDemo = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const anchorElement = React.useRef<HTMLButtonElement>(null);
 

@@ -1,9 +1,5 @@
-import Button from "@sonnat/ui/Button";
-import Container from "@sonnat/ui/Container";
-import Divider from "@sonnat/ui/Divider";
-import { adjustColor } from "@sonnat/ui/styles/colorUtils";
-import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
+import { Button, Container, Divider, Text } from "@sonnat/ui";
+import { adjustColorHsla, makeStyles } from "@sonnat/ui/styles";
 import Footer from "components/containers/Footer";
 import SonnatSvgLogo from "components/SonnatSvgLogo";
 import type { NextPage } from "next";
@@ -18,8 +14,6 @@ import {
   setTitleMeta
 } from "utils";
 
-const pageName = "LandingPage";
-
 const useStyles = makeStyles(
   theme => {
     const {
@@ -31,21 +25,19 @@ const useStyles = makeStyles(
 
     const primary = !darkMode ? colors.primary.origin : colors.primary.light;
 
-    const primaryHover = adjustColor(primary, {
+    const primaryHover = adjustColorHsla(primary, {
       saturation: -8,
       lightness: +8
     });
 
-    const primaryActive = adjustColor(primary, {
+    const primaryActive = adjustColorHsla(primary, {
       saturation: +8,
       lightness: -4
     });
 
     return {
       "@global": {
-        "#main": {
-          paddingTop: pxToRem(64)
-        }
+        "#main": { paddingTop: pxToRem(64) }
       },
       section: {
         minHeight: `calc(100vh - ${pxToRem(72 + 64)})`,
@@ -67,9 +59,7 @@ const useStyles = makeStyles(
         marginTop: pxToRem(32),
         marginBottom: pxToRem(32)
       },
-      license: {
-        display: "flex"
-      },
+      license: { display: "flex" },
       licenseText: {},
       licenseDivider: {
         marginRight: pxToRem(8),
@@ -84,17 +74,13 @@ const useStyles = makeStyles(
         color: primary,
         "&:hover": {
           color: primaryActive,
-          "&:after": {
-            backgroundColor: primary
-          }
+          "&:after": { backgroundColor: primary }
         },
         "&:visited": {
           color: primaryHover,
           "&:hover": {
             color: primaryActive,
-            "&:after": {
-              backgroundColor: primary
-            }
+            "&:after": { backgroundColor: primary }
           }
         },
         "&:after": {
@@ -122,37 +108,23 @@ const useStyles = makeStyles(
       [breakpoints.down("md")]: {
         "@global": { "#main": { paddingTop: pxToRem(104) } },
         section: { minHeight: `calc(100vh - ${pxToRem(104 + 72)})` },
-        sectionBody: {
-          flexDirection: "column-reverse"
-        },
-        sectionImagery: {
-          margin: "0 auto",
-          width: "60%"
-        },
+        sectionBody: { flexDirection: "column-reverse" },
+        sectionImagery: { margin: "0 auto", width: "60%" },
         logo: { display: "none" },
-        sectionContent: {
-          textAlign: "center"
-        },
-        license: {
-          justifyContent: "center"
-        }
+        sectionContent: { textAlign: "center" },
+        license: { justifyContent: "center" }
       },
       [breakpoints.down("sm")]: {
         section: { minHeight: `calc(100vh - ${pxToRem(104 + 160)})` },
-        heroTitle: {
-          fontSize: theme.typography.variants.h4.fontSize
-        },
-        sectionImagery: {
-          margin: "0 auto",
-          width: "75%"
-        }
+        heroTitle: { fontSize: theme.typography.variants.h4.fontSize },
+        sectionImagery: { margin: "0 auto", width: "75%" }
       }
     };
   },
-  { name: pageName }
+  { name: "Page" }
 );
 
-const LandingPage: NextPage = () => {
+const Page: NextPage = () => {
   const classes = useStyles();
 
   return (
@@ -186,7 +158,7 @@ const LandingPage: NextPage = () => {
               <div className={classes.sectionContent}>
                 <SonnatSvgLogo className={classes.logo} size={64} />
                 <Text
-                  rootNode="h1"
+                  as="h1"
                   variant="h3"
                   weight="bold"
                   className={classes.heroTitle}
@@ -196,7 +168,7 @@ const LandingPage: NextPage = () => {
                   React Components & Resources
                 </Text>
                 <Text
-                  rootNode="p"
+                  as="p"
                   variant="body"
                   color="textSecondary"
                   className={classes.heroParagraph}
@@ -209,7 +181,7 @@ const LandingPage: NextPage = () => {
                 <div className={classes.heroFooter}>
                   <Link passHref href="/docs/installation">
                     <Button
-                      rootNode="a"
+                      as="a"
                       label="Get Started"
                       color="primary"
                       size="large"
@@ -218,7 +190,7 @@ const LandingPage: NextPage = () => {
                   </Link>
                   <div className={classes.license}>
                     <Text
-                      rootNode="p"
+                      as="p"
                       variant="caption"
                       color="textSecondary"
                       className={classes.licenseText}
@@ -227,10 +199,10 @@ const LandingPage: NextPage = () => {
                     </Text>
                     <Divider vertical className={classes.licenseDivider} />
                     <Text
-                      rootNode="a"
+                      as="a"
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://github.com/sonnat/sonnat-ui"
+                      href="https://github.com/sonnat"
                       variant="caption"
                       color="textSecondary"
                       className={classes.githubLink}
@@ -265,6 +237,4 @@ const LandingPage: NextPage = () => {
   );
 };
 
-LandingPage.displayName = pageName;
-
-export default LandingPage;
+export default Page;

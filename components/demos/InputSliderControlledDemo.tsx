@@ -1,15 +1,13 @@
-import InputSlider from "@sonnat/ui/InputSlider";
-import InputStepper from "@sonnat/ui/InputStepper";
+import { InputSlider, InputStepper } from "@sonnat/ui";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "InputSliderControlledDemo";
 
-const demoCode = `import InputSlider from "@sonnat/ui/InputSlider";
-import InputStepper from "@sonnat/ui/InputStepper";
+const demoCode = `import { InputSlider, InputStepper } from "@sonnat/ui";
 import * as React from "react";
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -18,7 +16,7 @@ const Demo: React.FC = () => {
       min={0}
       max={10}
       value={value}
-      onChange={(_, newValue) => void setValue(newValue as number)}
+      onChange={newValue => void setValue(newValue as number)}
     />
     <InputStepper
       size="small"
@@ -35,7 +33,7 @@ const Demo: React.FC = () => {
 export default Demo;
 `;
 
-const InputSliderControlledDemo: React.FC = () => {
+const InputSliderControlledDemo = () => {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -45,7 +43,7 @@ const InputSliderControlledDemo: React.FC = () => {
           min={0}
           max={10}
           value={value}
-          onChange={(_, newValue) => void setValue(newValue as number)}
+          onChange={newValue => void setValue(newValue as number)}
         />
         <br />
         <InputStepper

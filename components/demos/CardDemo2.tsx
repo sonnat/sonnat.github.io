@@ -1,27 +1,28 @@
-import { Heart } from "@sonnat/icons";
-import DotsVertical from "@sonnat/icons/DotsVertical";
-import Button from "@sonnat/ui/Button";
-import Card, {
+import { DotsVertical, Heart } from "@sonnat/icons";
+import {
+  Button,
+  Card,
   CardActionableArea,
   CardActionBar,
   CardBody,
   CardHeader,
-  CardMedia
-} from "@sonnat/ui/Card";
-import Image from "@sonnat/ui/Image";
+  CardMedia,
+  IconButton,
+  Image,
+  Text
+} from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
-import Text from "@sonnat/ui/Text";
 import DemoBox from "components/DemoBox";
 import * as React from "react";
 
 const componentName = "CardDemo2";
 
-const demoCode = `<Card>
+const demoCode = `<Card variant="outlined">
   <CardHeader
     action={
-      <Button
+      <IconButton
         variant="inlined"
-        leadingIcon={<DotsVertical />}
+        icon={<DotsVertical />}
         aria-label="Demo Button"
       />
     }
@@ -39,7 +40,7 @@ const demoCode = `<Card>
       />
     </CardMedia>
     <CardBody>
-      <Text variant="body" rootNode="p" color="textSecondary">
+      <Text variant="body" as="p" color="textSecondary">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
         doloribus molestiae fugit molestias.
       </Text>
@@ -48,38 +49,30 @@ const demoCode = `<Card>
   <CardActionBar>
     <Button label="Action 1" variant="inlined" />
     <Button label="Action 2" variant="inlined" />
-    <Button
+    <IconButton
       style={{ marginLeft: "auto" }}
-      leadingIcon={<Heart />}
+      icon={<Heart />}
       variant="inlined"
       aria-label="Demo Button"
     />
   </CardActionBar>
 </Card>`;
 
-const useStyles = makeStyles(theme => {
-  const {
-    typography: { pxToRem }
-  } = theme;
+const useStyles = makeStyles(({ typography: { pxToRem } }) => ({
+  root: { maxWidth: pxToRem(300) }
+}));
 
-  return {
-    root: {
-      maxWidth: pxToRem(300)
-    }
-  };
-});
-
-const CardDemo2: React.FC = () => {
+const CardDemo2 = () => {
   const classes = useStyles();
 
   return (
     <DemoBox flexDirection="column" code={demoCode}>
-      <Card className={classes.root}>
+      <Card className={classes.root} variant="outlined">
         <CardHeader
           action={
-            <Button
+            <IconButton
               variant="inlined"
-              leadingIcon={<DotsVertical />}
+              icon={<DotsVertical />}
               aria-label="Demo Button"
             />
           }
@@ -97,7 +90,7 @@ const CardDemo2: React.FC = () => {
             />
           </CardMedia>
           <CardBody>
-            <Text variant="body" rootNode="p" color="textSecondary">
+            <Text variant="body" as="p" color="textSecondary">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
               doloribus molestiae fugit molestias.
             </Text>
@@ -106,9 +99,9 @@ const CardDemo2: React.FC = () => {
         <CardActionBar>
           <Button label="Action 1" variant="inlined" />
           <Button label="Action 2" variant="inlined" />
-          <Button
+          <IconButton
             style={{ marginLeft: "auto" }}
-            leadingIcon={<Heart />}
+            icon={<Heart />}
             variant="inlined"
             aria-label="Demo Button"
           />

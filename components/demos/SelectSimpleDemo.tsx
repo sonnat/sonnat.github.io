@@ -36,20 +36,15 @@ const renderChildren = children => {
   return children.map(child => child);
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <React.Fragment>
-      <Select
-        fluid
-        placeholder="Placeholder"
-        name="input"
-      >
+      <Select fluid placeholder="Placeholder">
         {renderChildren(children)}
       </Select>
       <Select
         fluid
         placeholder="Filled variant"
-        name="input"
         variant="filled"
       >
         {renderChildren(children)}
@@ -57,7 +52,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="Searchable"
-        name="input"
         searchable
       >
         {renderChildren(children)}
@@ -65,7 +59,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="Multiple"
-        name="input"
         searchable
         multiple
       >
@@ -74,7 +67,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="With searchable + multiple"
-        name="input"
         searchable
         multiple
       >
@@ -83,14 +75,12 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="Disabled"
-        name="input"
       >
         {renderChildren(children)}
       </Select>
       <Select
         fluid
         placeholder="With default value"
-        name="input"
         defaultValue="kyle"
       >
         {renderChildren(children)}
@@ -98,7 +88,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="With default value"
-        name="input"
         defaultValue={["ali", "kyle"]}
         multiple
       >
@@ -107,7 +96,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="With default value"
-        name="input"
         defaultValue={["ali", "kyle"]}
         multiple
         disabled
@@ -117,7 +105,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="With default value + disabled"
-        name="input"
         defaultValue="kyle"
         disabled
       >
@@ -126,7 +113,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="With rounded + hasError"
-        name="input"
         hasError
         rounded
       >
@@ -135,7 +121,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="With helperText"
-        name="input"
         helperText="This is an informative helper text."
       >
         {renderChildren(children)}
@@ -143,7 +128,6 @@ const Demo: React.FC = () => {
       <Select
         fluid
         placeholder="Small"
-        name="input"
         size="small"
       >
         {renderChildren(children)}
@@ -193,22 +177,16 @@ const renderChildren = (children: JSX.Element[]) => {
   return children.map(child => child);
 };
 
-const SelectSimpleDemo: React.FC = () => {
+const SelectSimpleDemo = () => {
   return (
     <DemoBox code={demoCode}>
       <React.Fragment>
-        <Select
-          fluid
-          placeholder="Placeholder"
-          name="input"
-          className="demoSubject"
-        >
+        <Select fluid placeholder="Placeholder" className="demoSubject">
           {renderChildren(children)}
         </Select>
         <Select
           fluid
           placeholder="Filled variant"
-          name="input"
           variant="filled"
           className="demoSubject"
         >
@@ -217,7 +195,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="Searchable"
-          name="input"
           className="demoSubject"
           searchable
         >
@@ -226,7 +203,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="Multiple"
-          name="input"
           className="demoSubject"
           searchable
           multiple
@@ -236,26 +212,18 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="With searchable + multiple"
-          name="input"
           className="demoSubject"
           searchable
           multiple
         >
           {renderChildren(children)}
         </Select>
-        <Select
-          fluid
-          placeholder="Disabled"
-          name="input"
-          disabled
-          className="demoSubject"
-        >
+        <Select fluid placeholder="Disabled" disabled className="demoSubject">
           {renderChildren(children)}
         </Select>
         <Select
           fluid
           placeholder="With default value"
-          name="input"
           className="demoSubject"
           defaultValue="kyle"
         >
@@ -264,7 +232,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="With default value"
-          name="input"
           className="demoSubject"
           defaultValue={["ali", "kyle"]}
           multiple
@@ -274,7 +241,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="With default value"
-          name="input"
           className="demoSubject"
           defaultValue={["ali", "kyle"]}
           multiple
@@ -285,7 +251,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="With default value + disabled"
-          name="input"
           className="demoSubject"
           defaultValue="kyle"
           disabled
@@ -295,7 +260,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="With rounded + hasError"
-          name="input"
           className="demoSubject"
           hasError
           rounded
@@ -305,7 +269,6 @@ const SelectSimpleDemo: React.FC = () => {
         <Select
           fluid
           placeholder="With helperText"
-          name="input"
           className="demoSubject"
           helperText="This is an informative helper text."
         >
@@ -315,7 +278,6 @@ const SelectSimpleDemo: React.FC = () => {
           fluid
           multiple
           placeholder="Large"
-          name="input"
           className="demoSubject"
           size="large"
         >
@@ -325,7 +287,6 @@ const SelectSimpleDemo: React.FC = () => {
           fluid
           multiple
           placeholder="Medium (default)"
-          name="input"
           className="demoSubject"
           size="medium"
         >
@@ -335,7 +296,6 @@ const SelectSimpleDemo: React.FC = () => {
           fluid
           multiple
           placeholder="Small"
-          name="input"
           className="demoSubject"
           size="small"
         >
