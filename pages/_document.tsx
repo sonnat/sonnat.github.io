@@ -3,7 +3,7 @@ import Document, {
   Html,
   Main,
   NextScript,
-  DocumentContext
+  type DocumentContext
 } from "next/document";
 import ServerStyleSheets from "@sonnat/ui/styles/ServerStyleSheets";
 import * as React from "react";
@@ -74,7 +74,7 @@ export default class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="Sonnat Component Library" />
-          <meta name="og:image" content="/meta-image-compressed.jpg" />
+          <meta name="og:image" content="/meta-image-compressed.png" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <meta
             name="twitter:image:alt"
