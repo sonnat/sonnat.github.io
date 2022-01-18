@@ -17,6 +17,7 @@
     "@sonnat/ui": "^2.0.0",
     "@utilityjs/use-is-mounted": "^1.0.2",
     "@utilityjs/use-media-query": "^1.0.0",
+    "@utilityjs/use-scroll-guard": "^1.0.0",
     "autoprefixer": "^10.4.2",
     "classnames": "^2.3.1",
     "clean-css": "^5.2.2",
