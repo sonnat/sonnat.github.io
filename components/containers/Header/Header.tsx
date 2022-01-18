@@ -163,7 +163,10 @@ const HeaderBase = (props: Props) => {
             </Link>
           </li>
           <li className={classes.navItem}>
-            <Link href="https://github.com/sonnat" passHref>
+            <Link
+              href="https://codesandbox.io/s/sonnat-with-nextjs-ts-mkfum"
+              passHref
+            >
               <Text
                 title="CodeSandbox Playground"
                 as="a"

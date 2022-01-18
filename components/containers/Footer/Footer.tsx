@@ -173,7 +173,10 @@ const Footer = React.memo(function Footer(props: Props) {
             <Telegram size={24} className={classes.social} />
           </a>
         </Link>
-        <Link href="https://github.com/sonnat" passHref>
+        <Link
+          href="https://codesandbox.io/s/sonnat-with-nextjs-ts-mkfum"
+          passHref
+        >
           <a
             title="CodeSandbox Playground"
             target="_blank"
