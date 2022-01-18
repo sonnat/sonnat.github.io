@@ -8,7 +8,11 @@ const nextConfig = {
   pageExtensions: ["jsx", "js", "mdx", "md", "ts", "tsx"],
   reactStrictMode: true,
   trailingSlash: false,
-  pwa: { dest: "public", dynamicStartUrl: false }
+  pwa: {
+    dest: "public",
+    dynamicStartUrl: false,
+    disable: process.env.NODE_ENV === "development"
+  }
 };
 
 module.exports = withMdx(withPwa(nextConfig));
