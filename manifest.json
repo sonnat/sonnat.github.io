@@ -1,5 +1,5 @@
 {
-  "short_name": "Sonnat-UI",
+  "short_name": "Sonnat",
   "name": "Sonnat Component Library",
   "icons": [
     {
@@ -8,20 +8,20 @@
       "sizes": "192x192"
     },
     {
-      "src": "android-chrome-192x192.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable"
-    },
-    {
       "src": "android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "android-chrome-256x256.png",
+      "type": "image/png",
+      "sizes": "256x256",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#EA475B",
+  "theme_color": "#EE3F7C",
   "orientation": "portrait"
 }
