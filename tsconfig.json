@@ -20,7 +20,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "types": ["node", "react"]
+    "types": ["node", "react"],
+    "incremental": true
   },
   "exclude": ["node_modules", "out", ".next"],
   "include": ["**/*.ts", "**/*.tsx"]
