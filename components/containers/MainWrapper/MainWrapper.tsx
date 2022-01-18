@@ -14,7 +14,7 @@ const useStyles = makeStyles(
     root: {},
     suspend: {
       position: "fixed",
-      zIndex: zIndexes.sticky,
+      zIndex: zIndexes.modal,
       top: 0,
       left: 0,
       right: 0,
