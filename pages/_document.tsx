@@ -56,13 +56,24 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta property="robots" content="Index, Follow" />
+          <meta name="application-name" content="Sonnat Component Library" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="theme-color" content="#EA475B" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="default"
+          />
+          <meta
+            name="apple-mobile-web-app-title"
+            content="Sonnat Component Library"
+          />
+          <meta name="format-detection" content="telephone=no" />
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <meta property="robots" content="Index, Follow" />
           <meta name="google" content="notranslate" />
           <meta name="twitter:card" content="summary_large_image" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Sonnat Component Library" />
           <meta name="og:image" content="/meta-image-compressed.jpg" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <meta
@@ -86,9 +97,12 @@ export default class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ea475b" />
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#EE3F7C" />
+          <meta name="msapplication-tap-highlight" content="no" />
+          <meta name="msapplication-config" content="/browserconfig.xml" />
           <meta name="msapplication-TileColor" content="#2e294e" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="#EE3F7C" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <body dir="ltr">
