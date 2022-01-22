@@ -2,6 +2,12 @@ import type { AppProps } from "next/app";
 import type { NextComponentType, NextPageContext } from "next";
 import * as React from "react";
 
+/** To be or not to be... */
+export type Maybe<T> = T | void;
+
+export type Optional<T> = T | undefined;
+export type Nullable<T> = Optional<T> | null;
+
 export type GetLayout = () => (page: React.ReactNode) => React.ReactNode;
 
 export type NextComponentTypeWithLayout<P = Record<string, never>> =
