@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, ContentCopy } from "@sonnat/icons";
+import { ChevronDown, ChevronUp, ContentCopyO } from "@sonnat/icons";
 import { Button, Code, IconButton, Tooltip } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import createClassName from "classnames";
@@ -202,7 +202,7 @@ const DemoBoxBase = (props: Props) => {
           )}
           <Tooltip text="Copied to clipboard!" open={isCopied}>
             <IconButton
-              icon={<ContentCopy />}
+              icon={<ContentCopyO />}
               aria-label="Copy the code"
               variant="inlined"
               className={classes.copyCode}

@@ -11,21 +11,20 @@ import {
   InputAdornment,
   Row,
   Text,
-  TextField,
-  type IconProps
+  TextField
 } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import WithSidebar from "components/layouts/WithSidebar";
 import IconDrawer from "components/partials/IconDrawer";
 import IconSample from "components/partials/IconSample";
 import { MediaQueryContext } from "context";
-import globAsync from "fast-glob";
-import fse from "fs-extra";
 import throttle from "lodash.throttle";
+import prepareIcons, {
+  type IconData,
+  type NormalizedIcons
+} from "modules/prepareIcons";
 import type { GetStaticProps } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
-import path from "path";
 import * as React from "react";
 import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
 import type { NextPageWithLayout } from "types";
@@ -97,25 +96,8 @@ const useStyles = makeStyles(
   { name: pageName }
 );
 
-interface IconData {
-  kebabCaseName: string;
-  pascalCaseName: string;
-  file: string;
-}
-
-interface IconDataState extends IconData {
-  component: React.ReactNode;
-}
-
-interface IconsProp {
-  byName: {
-    [P: string]: IconData;
-  };
-  allNames: string[];
-}
-
 interface PageProps {
-  icons: IconsProp;
+  icons: NormalizedIcons;
   zipPath: string;
 }
 
@@ -133,11 +115,9 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
   const [isDrawerOpen, setDrawerOpen] = React.useState(false);
   const [hasEmptyState, setHasEmptyState] = React.useState(false);
 
-  const [selectedIcon, setSelectedIcon] = React.useState<IconDataState | null>(
-    null
-  );
+  const [selectedIcon, setSelectedIcon] = React.useState<IconData | null>(null);
 
-  const onIconSelect = (iconData: IconDataState) => {
+  const onIconSelect = (iconData: IconData) => {
     setSelectedIcon(iconData);
     setDrawerOpen(true);
   };
@@ -146,32 +126,18 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
     return icons.allNames.map(iconName => {
       const iconData = icons.byName[iconName];
 
-      const IconComponent = dynamic<IconProps>(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        async () =>
-          import(`@sonnat/icons`).then(
-            module => module[iconData.pascalCaseName]
-          )
-      );
-
       return (
         <Column
           data-key={`${iconData.kebabCaseName}`}
-          key={iconData.pascalCaseName}
+          key={iconData.kebabCaseName}
           sm={2}
           all={4}
         >
           <IconSample
             className={classes.iconSample}
-            icon={<IconComponent />}
+            iconSrc={iconData.src}
             name={iconData.kebabCaseName}
-            onSelect={() =>
-              void onIconSelect({
-                ...iconData,
-                component: <IconComponent color="textSecondary" />
-              })
-            }
+            onSelect={() => void onIconSelect(iconData)}
           />
         </Column>
       );
@@ -204,12 +170,12 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
     if (variant === "filled") {
       filtered = filteredIcons.filter(jsx => {
         const jsxKey: string = jsx.props["data-key"];
-        return !jsxKey.includes("-o");
+        return !jsxKey.split("-").includes("o");
       });
     } else if (variant === "outlined") {
       filtered = filteredIcons.filter(jsx => {
         const jsxKey: string = jsx.props["data-key"];
-        return jsxKey.includes("-o");
+        return jsxKey.split("-").includes("o");
       });
     }
 
@@ -355,63 +321,10 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
   );
 };
 
-const toPascalCase = (string: string, splitRegex: string | RegExp) => {
-  const baseCase = string.split(splitRegex);
-
-  return baseCase
-    .map(part => part.charAt(0).toUpperCase() + part.substring(1))
-    .join("");
-};
-
-const cleanSvgData = (data: string) => {
-  return data
-    .replace(/ fill=".+?"/g, "")
-    .replace(/ fill-opacity=".+?"/g, "")
-    .replace(/ clip-path=".+?"/g, "") // Fix visibility issue and save some bytes.
-    .trim();
-};
-
 export const getStaticProps: GetStaticProps = async () => {
-  const icons: IconsProp = { byName: {}, allNames: [] };
+  const { icons, zipPath } = await prepareIcons();
 
-  const rootPath = process.cwd();
-  const svgsSrc = path.join(rootPath, "public/static/svgs");
-  const zipPath = path.join(rootPath, "public/static/sonnat-icons.zip");
-
-  const iconsExist = fse.existsSync(svgsSrc);
-  if (!iconsExist) return { props: { icons } };
-
-  const svgs = await globAsync(path.join(svgsSrc, "**/*.svg"));
-  if (!svgs || !svgs.length) return { props: { icons } };
-
-  await Promise.all(
-    svgs.map(async svgPath => {
-      const normalizedSvgPath = path.normalize(svgPath);
-      const svgPathObj = path.parse(normalizedSvgPath);
-
-      const initData = await fse.readFile(svgPath, { encoding: "utf8" });
-      const cleansedData = cleanSvgData(initData);
-      const kebabCaseName = svgPathObj.name;
-      const pascalCaseName = toPascalCase(kebabCaseName, "-");
-
-      await fse.writeFile(svgPath, cleansedData);
-      const instance = {
-        kebabCaseName,
-        pascalCaseName,
-        file: normalizedSvgPath.replace(path.join(rootPath, "/public"), "")
-      };
-
-      icons.byName[kebabCaseName] = instance;
-      icons.allNames.push(kebabCaseName);
-    })
-  );
-
-  return {
-    props: {
-      icons,
-      zipPath: zipPath.replace(path.join(rootPath, "/public"), "")
-    }
-  };
+  return { props: { icons, zipPath } };
 };
 
 const PageLayout = (page: React.ReactNode) => {

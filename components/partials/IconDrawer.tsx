@@ -3,6 +3,7 @@ import { Button, Code, IconButton, PortalDestination, Text } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
 import c from "classnames";
+import type { IconData } from "modules/prepareIcons";
 import * as React from "react";
 
 const componentName = "IconDrawer";
@@ -46,7 +47,10 @@ const useStyles = makeStyles(
         marginBottom: spaces[7].rem,
         marginTop: spaces[7].rem
       },
-      iconWrapper: asIconWrapper(64),
+      iconWrapper: {
+        ...asIconWrapper(64),
+        "& > svg": { fill: colors.text.secondary }
+      },
       usage: { paddingTop: spaces[7].rem },
       usageTitle: { marginBottom: spaces[7].rem },
       usageCase: { marginBottom: spaces[7].rem },
@@ -100,18 +104,24 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
-interface IconData {
-  kebabCaseName: string;
-  pascalCaseName: string;
-  file: string;
-  component: React.ReactNode;
-}
-
 interface IconDrawerProps {
   data: IconData | null;
   open?: boolean;
   toggle?: () => void;
 }
+
+const createSvgBase64 = (src: string) =>
+  `data:image/svg+xml;base64,${Buffer.from(src).toString("base64")}`;
+
+const createSvgFromSrc = (src: string) => (
+  <svg
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    dangerouslySetInnerHTML={{
+      __html: src.replace(/<svg[^>]*>/g, "").replace(/<\/svg>/g, "")
+    }}
+  />
+);
 
 const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
   props
@@ -152,7 +162,9 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
           />
         </div>
         <div className={classes.showcase}>
-          <i className={classes.iconWrapper}>{data?.component}</i>
+          <i className={classes.iconWrapper}>
+            {data && createSvgFromSrc(data.src)}
+          </i>
           <Text variant="bodySmall" color="textSecondary">
             {data?.kebabCaseName as string}
           </Text>
@@ -189,8 +201,8 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
             label="Download the SVG"
             leadingIcon={<Download />}
             color="primary"
-            href={data?.file}
             download={`${data?.kebabCaseName as string}.svg`}
+            href={data ? createSvgBase64(data.src) : undefined}
           />
         </div>
       </section>
