@@ -45,13 +45,36 @@ export const meta = {
 
 <p>{meta.description}</p>
 
+<p>
+  If you have questions about anything related to Sonnat UI, you're always
+  welcome to ask our community on{" "}
+  <a
+    href="https://github.com/sonnat/sonnat-ui/discussions"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="GitHub Discussions"
+  >
+    GitHub Discussions
+  </a>{" "}
+  and{" "}
+  <a
+    href="https://discord.gg/h4Dpr4PnXW"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Discord"
+  >
+    Discord
+  </a>
+  .
+</p>
+
 <h2>
   <span>Setup</span>
   <AnchorButton anchorId="setup" />
 </h2>
 
 <p>
-  Ensure your have the latest version of NodeJS, and a package manager:{" "}
+  Ensure you have the latest version of NodeJS, and a package manager:{" "}
   <a
     href="https://www.npmjs.com/get-npm"
     target="_blank"
@@ -72,7 +95,51 @@ export const meta = {
   .
 </p>
 
+<h3>
+  <span>
+    Using <mark>create-sonnat-app</mark>
+  </span>
+  <AnchorButton anchorId="create-sonnat-app" />
+</h3>
+
+<p>
+  We recommend creating a new Sonnat App using{" "}
+  <inlineCode>create-sonnat-app</inlineCode>, which sets up everything
+  automatically for you. To create a new project, run:
+</p>
+
+```bash
+yarn create sonnat-app <project-name> <project-template> [options]
+
+# or
+npx create-sonnat-app <project-name> <project-template> [options]
+```
+
+<p>
+  If you want to start with a TypeScript project you can use the{" "}
+  <inlineCode>--typescript</inlineCode> flag.
+</p>
+
 <div data-notebox style={{ marginTop: "-0.5rem", marginBottom: "1rem" }}>
+  For more information on how to use <inlineCode>create-sonnat-app</inlineCode>,
+  you can review the{" "}
+  <a
+    href="https://github.com/sonnat/create-sonnat-app"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Create Sonnat App Documentation"
+  >
+    documentation
+  </a>
+  .
+</div>
+
+<h3>
+  <span>Adding Sonnat to existing project</span>
+  <AnchorButton anchorId="adding-sonnat-to-existing-project" />
+</h3>
+
+<div data-notebox style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
   Please note that{" "}
   <a
     href="https://www.npmjs.com/package/react"
