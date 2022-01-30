@@ -32,7 +32,7 @@ const useStyles = makeStyles(
     iconWrapper: {
       ...asIconWrapper(40),
       marginBottom: spaces[7].rem,
-      "& > svg": { fill: colors.text.secondary }
+      "& > svg": { fill: colors.text.secondary, width: "100%", height: "100%" }
     },
     iconName: { color: colors.text.secondary, textAlign: "center" }
   }),
