@@ -126,9 +126,15 @@ const IconsPackagePage: NextPageWithLayout = () => {
           const Icon = Icons[iconKey] as React.NamedExoticComponent;
           /* eslint-enable */
 
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          const pascalCaseName = Icon.displayName!.replace("Sonnat", "");
-          const kebabCaseName = kebabCase(pascalCaseName);
+          const splited = kebabCase(Icon.displayName).split("-");
+          splited[0] === "sonnat" && splited.splice(0, 1);
+          splited[splited.length - 1] === "icon" &&
+            splited.splice(splited.length - 1, 1);
+
+          const kebabCaseName = splited.join("-");
+          const pascalCaseName = splited
+            .map(part => part.charAt(0).toUpperCase() + part.substring(1))
+            .join("");
 
           const iconData: IconData = {
             pascalCaseName,
