@@ -19,10 +19,7 @@ import IconDrawer from "components/partials/IconDrawer";
 import IconSample from "components/partials/IconSample";
 import { MediaQueryContext } from "context";
 import throttle from "lodash.throttle";
-import prepareIcons, {
-  type IconData,
-  type NormalizedIcons
-} from "modules/prepareIcons";
+import prepareIcons, { type IconData, type Icons } from "modules/prepareIcons";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import * as React from "react";
@@ -97,7 +94,7 @@ const useStyles = makeStyles(
 );
 
 interface PageProps {
-  icons: NormalizedIcons;
+  icons: Icons;
   zipPath: string;
 }
 
@@ -122,11 +119,9 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
     setDrawerOpen(true);
   };
 
-  const cachedSource = React.useMemo(() => {
-    return icons.allNames.map(iconName => {
-      const iconData = icons.byName[iconName];
-
-      return (
+  const cachedSource = React.useMemo(
+    () =>
+      icons.map(iconData => (
         <Column
           data-key={`${iconData.kebabCaseName}`}
           key={iconData.kebabCaseName}
@@ -140,10 +135,10 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
             onSelect={() => void onIconSelect(iconData)}
           />
         </Column>
-      );
-    });
+      )),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
   const [filteredIcons, setFilteredIcons] =
     React.useState<JSX.Element[]>(cachedSource);

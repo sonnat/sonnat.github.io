@@ -269,8 +269,8 @@ export const getSchema = (): Readonly<typeof schema> => {
 const useStyles = makeStyles(
   theme => {
     const {
-      colors,
       darkMode,
+      colors: { text, divider, transparent, primary },
       typography: { pxToRem, fontWeight }
     } = theme;
 
@@ -297,7 +297,7 @@ const useStyles = makeStyles(
               top: pxToRem(8),
               bottom: pxToRem(8),
               content: '""',
-              backgroundColor: colors.divider,
+              backgroundColor: !darkMode ? divider.dark : divider.light,
               width: pxToRem(1)
             }
           }
@@ -318,16 +318,14 @@ const useStyles = makeStyles(
                 content: '""',
                 position: "absolute",
                 left: 0,
-                backgroundColor: colors.transparent,
+                backgroundColor: transparent,
                 width: pxToRem(1),
                 height: pxToRem(24),
                 transition: "background-color 360ms ease"
               }
             },
             "& > $navigationItemLink$active:before": {
-              backgroundColor: !darkMode
-                ? colors.primary.origin
-                : colors.primary.light
+              backgroundColor: !darkMode ? primary.origin : primary.light
             }
           }
         }
@@ -339,14 +337,14 @@ const useStyles = makeStyles(
         display: "inline-flex",
         alignItems: "center",
         cursor: "pointer",
-        color: colors.text.secondary,
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
         transition: "color 360ms ease, font-weight 360ms ease",
         "&$active": {
-          color: !darkMode ? colors.primary.origin : colors.primary.light,
+          color: !darkMode ? primary.origin : primary.light,
           fontWeight: fontWeight.medium
         },
         "&:not($active):hover": {
-          color: colors.text.primary
+          color: !darkMode ? text.dark.primary : text.light.primary
         }
       },
       active: {}

@@ -142,8 +142,9 @@ const useInlineCodeStyles = makeStyles(
 
 const useTableStyles = makeStyles(
   ({
-    colors,
     breakpoints,
+    darkMode,
+    colors: { text },
     typography: { pxToRem, variants },
     spacings: { spaces }
   }) => ({
@@ -165,7 +166,7 @@ const useTableStyles = makeStyles(
       },
       "& caption": {
         ...variants.caption,
-        color: colors.text.secondary,
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
         textAlign: "left",
         padding: [[spaces[3].rem, 0]]
       }
@@ -175,10 +176,15 @@ const useTableStyles = makeStyles(
 );
 
 const useTHStyles = makeStyles(
-  ({ colors, typography: { pxToRem, variants }, spacings: { spaces } }) => ({
+  ({
+    darkMode,
+    colors: { text },
+    typography: { pxToRem, variants },
+    spacings: { spaces }
+  }) => ({
     root: {
       ...variants.subtitleSmall,
-      color: colors.text.primary,
+      color: !darkMode ? text.dark.primary : text.light.primary,
       textAlign: "left",
       padding: [[spaces[6].rem, spaces[7].rem]],
       whiteSpace: "pre",
@@ -189,10 +195,15 @@ const useTHStyles = makeStyles(
 );
 
 const useTDStyles = makeStyles(
-  ({ colors, typography: { variants }, spacings: { spaces } }) => ({
+  ({
+    darkMode,
+    colors: { text },
+    typography: { variants },
+    spacings: { spaces }
+  }) => ({
     root: {
       ...variants.bodySmall,
-      color: colors.text.primary,
+      color: !darkMode ? text.dark.primary : text.light.primary,
       padding: [[spaces[4].rem, spaces[7].rem]]
     }
   }),
@@ -200,9 +211,9 @@ const useTDStyles = makeStyles(
 );
 
 const useTableRowStyles = makeStyles(
-  ({ colors }) => ({
+  ({ darkMode, colors: { divider } }) => ({
     root: {
-      borderBottom: `1px solid ${colors.divider}`,
+      borderBottom: `1px solid ${!darkMode ? divider.dark : divider.light}`,
       verticalAlign: "top"
     }
   }),
@@ -210,11 +221,16 @@ const useTableRowStyles = makeStyles(
 );
 
 const useTableFooterStyles = makeStyles(
-  ({ colors, typography: { variants }, spacings: { spaces } }) => ({
+  ({
+    darkMode,
+    colors: { text },
+    typography: { variants },
+    spacings: { spaces }
+  }) => ({
     root: {
       "& td": {
         ...variants.caption,
-        color: colors.text.primary,
+        color: !darkMode ? text.dark.primary : text.light.primary,
         padding: [[spaces[3].rem, 0]]
       }
     }
@@ -312,15 +328,16 @@ const useUnorderedListStyles = makeStyles(
 
 const useListItemStyles = makeStyles(
   ({
-    colors,
+    darkMode,
     radius,
+    colors: { text },
     spacings: { spaces, spacer },
     typography: { variants, pxToRem }
   }) => ({
     root: {
       ...variants.body,
       position: "relative",
-      color: colors.text.primary,
+      color: !darkMode ? text.dark.primary : text.light.primary,
       "& pre": {
         marginTop: spaces[7].rem,
         marginBottom: pxToRem(spacer.px * 2)
@@ -334,7 +351,7 @@ const useListItemStyles = makeStyles(
         height: pxToRem(4),
         borderRadius: radius.medium,
         flexShrink: 0,
-        backgroundColor: colors.text.primary
+        backgroundColor: !darkMode ? text.dark.primary : text.light.primary
       }
     }
   }),
