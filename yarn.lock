@@ -1297,10 +1297,10 @@
   resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.1.0.tgz#243563507c540369121152ce4112a3f9bd48fcfd"
   integrity sha512-yJ7v9Gv40XUZMpLahnFmtgNDpfSSAIJirYWOjV1YQum8Fe++3CpdXJRbz1tZ7EYu41/eNMJA2Mytl5wL+gJb9A==
 
-"@sonnat/ui@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.2.tgz#2000d64738e85afd19a615a0e200c9a2bdb44619"
-  integrity sha512-y0hwxh23lNx8SGQOpjN1hFTKa9jaC+uDaIN+ZIH1UyWRR/9liSp37ltQBtM5vCCjwszZhLhJMq2v0reo+8FEmA==
+"@sonnat/ui@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.3.tgz#33c2657cb873c653498a1d469d7532000bd0316b"
+  integrity sha512-P0veZr5oRAoYL6S1yEYFNOTs+D2Kn0yT55H4Hmy3KDjPSp7w5IYENfpzoJWmi5ur5E1mfbc9ATZ/i8n9JIMLlA==
   dependencies:
     classnames "^2.3.1"
     color "^3.2.1"
@@ -1380,6 +1380,13 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
+"@types/lodash.kebabcase@^4.1.6":
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.kebabcase/-/lodash.kebabcase-4.1.6.tgz#07b07aeca6c0647836de46f87a3cdfff72166c8e"
+  integrity sha512-+RAD9pCAa8kuVyCYTeDNiwBXwD/0u0p+hos3NSqD+tXTjJextbfF3farfYB+ssAKgEssoewXEtBsfwBpsI7gsA==
+  dependencies:
+    "@types/lodash" "*"
 
 "@types/lodash.throttle@^4.1.6":
   version "4.1.6"
@@ -1557,6 +1564,11 @@
     "@typescript-eslint/types" "5.9.0"
     eslint-visitor-keys "^3.0.0"
 
+"@utilityjs/use-get-latest@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@utilityjs/use-get-latest/-/use-get-latest-1.0.2.tgz#7151efdaad46ab0eff9961464367943545696fa2"
+  integrity sha512-GeKhniDJDEjzOQmteGRRFr26x5LNA0FMcWPNIjJEClAC/D6kFXmi3a/sHVynOM3h6rgUqrIVxIIFlf/EFJ9LBQ==
+
 "@utilityjs/use-get-scrollbar-width@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@utilityjs/use-get-scrollbar-width/-/use-get-scrollbar-width-1.0.1.tgz#06a1dfacc07ece5cc04465c8a233ee97a2c11fc6"
@@ -1571,6 +1583,13 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@utilityjs/use-media-query/-/use-media-query-1.0.0.tgz#ee4675348bce4d064b775cb7b8a7b206f363feee"
   integrity sha512-wHdGcBtQUUMbYTdUk4IowAF0YmKEkz1TTxbYB4PWUhQlbdd+Wvwh/Vdhu4J9ESEgKqXG8Y4MWyXV+qRiCSXEGw==
+
+"@utilityjs/use-register-node-ref@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@utilityjs/use-register-node-ref/-/use-register-node-ref-1.0.4.tgz#0431f87e03e41666d76f07856db69e075d071bae"
+  integrity sha512-jO5jQ6sMatLvYx+dBMNoqaf3p6+U+LU2wGz5L19BFlY3bouYf1ptKCjS0zeKXa44gWqJ79CdbAzhnBO7Ge1VFg==
+  dependencies:
+    "@utilityjs/use-get-latest" "^1.0.2"
 
 "@utilityjs/use-scroll-guard@^1.0.0":
   version "1.0.0"
@@ -4224,6 +4243,11 @@ lodash.flow@^3.3.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/lodash.flow/-/lodash.flow-3.5.0.tgz#87bf40292b8cf83e4e8ce1a3ae4209e20071675a"
   integrity sha1-h79AKSuM+D5OjOGjrkIJ4gBxZ1o=
+
+lodash.kebabcase@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.kebabcase/-/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
+  integrity sha1-hImxyw0p/4gZXM7KRI/21swpXDY=
 
 lodash.merge@^4.6.2:
   version "4.6.2"
