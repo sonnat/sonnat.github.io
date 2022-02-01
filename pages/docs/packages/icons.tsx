@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Close, Download, Github, Magnifier } from "@sonnat/icons";
+import * as Icons from "@sonnat/icons";
 import {
   Button,
   ChoiceChip,
@@ -18,9 +18,8 @@ import WithSidebar from "components/layouts/WithSidebar";
 import IconDrawer from "components/partials/IconDrawer";
 import IconSample from "components/partials/IconSample";
 import { MediaQueryContext } from "context";
+import kebabCase from "lodash.kebabcase";
 import throttle from "lodash.throttle";
-import prepareIcons, { type IconData, type Icons } from "modules/prepareIcons";
-import type { GetStaticProps } from "next";
 import Head from "next/head";
 import * as React from "react";
 import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
@@ -31,6 +30,12 @@ import {
   setKeywordsMeta,
   setTitleMeta
 } from "utils";
+
+type IconData = {
+  pascalCaseName: string;
+  kebabCaseName: string;
+  iconComponent: React.NamedExoticComponent;
+};
 
 const pageName = "IconsPackagePage";
 
@@ -93,15 +98,7 @@ const useStyles = makeStyles(
   { name: pageName }
 );
 
-interface PageProps {
-  icons: Icons;
-  zipPath: string;
-}
-
-const IconsPackagePage: NextPageWithLayout<PageProps> = ({
-  icons,
-  zipPath
-}) => {
+const IconsPackagePage: NextPageWithLayout = () => {
   const classes = useStyles();
 
   const mediaQuery = React.useContext(MediaQueryContext);
@@ -121,21 +118,40 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
   const cachedSource = React.useMemo(
     () =>
-      icons.map(iconData => (
-        <Column
-          data-key={`${iconData.kebabCaseName}`}
-          key={iconData.kebabCaseName}
-          sm={2}
-          all={4}
-        >
-          <IconSample
-            className={classes.iconSample}
-            iconSrc={iconData.src}
-            name={iconData.kebabCaseName}
-            onSelect={() => void onIconSelect(iconData)}
-          />
-        </Column>
-      )),
+      Object.keys(Icons)
+        .sort()
+        .map(iconKey => {
+          /* eslint-disable */
+          // @ts-ignore
+          const Icon = Icons[iconKey] as React.NamedExoticComponent;
+          /* eslint-enable */
+
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          const pascalCaseName = Icon.displayName!.replace("Sonnat", "");
+          const kebabCaseName = kebabCase(pascalCaseName);
+
+          const iconData: IconData = {
+            pascalCaseName,
+            kebabCaseName,
+            iconComponent: Icon
+          };
+
+          return (
+            <Column
+              data-key={`${kebabCaseName}`}
+              key={kebabCaseName}
+              sm={2}
+              all={4}
+            >
+              <IconSample
+                className={classes.iconSample}
+                iconComponent={iconData.iconComponent}
+                name={kebabCaseName}
+                onSelect={() => void onIconSelect(iconData)}
+              />
+            </Column>
+          );
+        }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
@@ -148,7 +164,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
     if (key && key.length >= 2) {
       const filtered = cachedSource.filter(jsx => {
-        const jsxKey: string = jsx.props["data-key"];
+        const jsxKey = (jsx.props as { "data-key": string })["data-key"];
 
         return jsxKey.includes(key);
       });
@@ -164,12 +180,12 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
 
     if (variant === "filled") {
       filtered = filteredIcons.filter(jsx => {
-        const jsxKey: string = jsx.props["data-key"];
+        const jsxKey = (jsx.props as { "data-key": string })["data-key"];
         return !jsxKey.split("-").includes("o");
       });
     } else if (variant === "outlined") {
       filtered = filteredIcons.filter(jsx => {
-        const jsxKey: string = jsx.props["data-key"];
+        const jsxKey = (jsx.props as { "data-key": string })["data-key"];
         return jsxKey.split("-").includes("o");
       });
     }
@@ -232,9 +248,9 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
           <Button
             as="a"
             download="sonnat-icons.zip"
-            href={zipPath}
+            href="/static/sonnat-icons.zip"
             label="Download"
-            leadingIcon={<Download />}
+            leadingIcon={<Icons.Download />}
             color="primary"
           />
           <Button
@@ -243,7 +259,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             label="Github"
-            leadingIcon={<Github />}
+            leadingIcon={<Icons.Github />}
             variant="inlined"
           />
         </div>
@@ -259,7 +275,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
             placeholder="Search for icon"
             leadingAdornment={
               <InputAdornment variant="icon">
-                <Magnifier />
+                <Icons.Magnifier />
               </InputAdornment>
             }
             trailingAdornment={
@@ -268,7 +284,7 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
                   variant="icon"
                   onClick={() => void clearSearch()}
                 >
-                  <Close />
+                  <Icons.Close />
                 </InputAdornment>
               )
             }
@@ -316,11 +332,11 @@ const IconsPackagePage: NextPageWithLayout<PageProps> = ({
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { icons, zipPath } = await prepareIcons();
+// export const getStaticProps: GetStaticProps = async () => {
+//   const { icons, zipPath } = await prepareIcons();
 
-  return { props: { icons, zipPath } };
-};
+//   return { props: { icons, zipPath } };
+// };
 
 const PageLayout = (page: React.ReactNode) => {
   return <WithSidebar>{page}</WithSidebar>;

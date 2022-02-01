@@ -2,8 +2,8 @@ import { CloseLarge, Download } from "@sonnat/icons";
 import { Button, Code, IconButton, PortalDestination, Text } from "@sonnat/ui";
 import makeStyles from "@sonnat/ui/styles/makeStyles";
 import detectScrollBarWidth from "@sonnat/ui/utils/detectScrollBarWidth";
+import useRegisterNodeRef from "@utilityjs/use-register-node-ref";
 import c from "classnames";
-import type { IconData } from "modules/prepareIcons";
 import * as React from "react";
 
 const componentName = "IconDrawer";
@@ -118,6 +118,12 @@ const useStyles = makeStyles(
   { name: componentName }
 );
 
+type IconData = {
+  pascalCaseName: string;
+  kebabCaseName: string;
+  iconComponent: React.NamedExoticComponent;
+};
+
 interface IconDrawerProps {
   data: IconData | null;
   open?: boolean;
@@ -127,15 +133,16 @@ interface IconDrawerProps {
 const createSvgBase64 = (src: string) =>
   `data:image/svg+xml;base64,${Buffer.from(src).toString("base64")}`;
 
-const createSvgFromSrc = (src: string) => (
-  <svg
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    dangerouslySetInnerHTML={{
-      __html: src.replace(/<svg[^>]*>/g, "").replace(/<\/svg>/g, "")
-    }}
-  />
-);
+const downloadSvg = (base64: string, filename: string) => {
+  const link = document.createElement("a");
+  link.href = base64;
+  link.download = filename;
+  link.style.display = "none";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
   props
@@ -143,7 +150,22 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
   const { open = false, toggle: toggleFn, data } = props;
 
   const classes = useStyles();
+
+  const svgBase64Ref = React.useRef("");
   const [isOpen, setOpen] = React.useState(false);
+
+  const registerNode = useRegisterNodeRef(node => {
+    const svg = node.firstElementChild;
+
+    if (!svg) return;
+
+    svgBase64Ref.current = createSvgBase64(
+      svg.outerHTML.replace(
+        /<svg[^>]*>/,
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">'
+      )
+    );
+  });
 
   const toggle = React.useCallback(() => {
     if (toggleFn) requestAnimationFrame(toggleFn);
@@ -176,8 +198,12 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
           />
         </div>
         <div className={classes.showcase}>
-          <i className={classes.iconWrapper}>
-            {data && createSvgFromSrc(data.src)}
+          <i
+            key={isOpen.toString()}
+            ref={registerNode}
+            className={classes.iconWrapper}
+          >
+            {data && <data.iconComponent />}
           </i>
           <Text variant="bodySmall" color="textSecondary">
             {data?.kebabCaseName as string}
@@ -210,13 +236,16 @@ const IconDrawer: React.FC<IconDrawerProps> = React.memo(function IconDrawer(
         </div>
         <div className={classes.bottomBar}>
           <Button
-            as="a"
             className={classes.downloadBtn}
             label="Download the SVG"
             leadingIcon={<Download />}
             color="primary"
-            download={`${data?.kebabCaseName as string}.svg`}
-            href={data ? createSvgBase64(data.src) : undefined}
+            onClick={() =>
+              void downloadSvg(
+                svgBase64Ref.current,
+                `${data?.kebabCaseName as string}.svg`
+              )
+            }
           />
         </div>
       </section>

@@ -48,23 +48,19 @@ const useStyles = makeStyles(
 
 interface IconSampleProps {
   name: string;
-  iconSrc: string;
+  iconComponent: React.NamedExoticComponent;
   className: string;
   onSelect: React.MouseEventHandler;
 }
 
-const createSvgFromSrc = (src: string) => (
-  <svg
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    dangerouslySetInnerHTML={{
-      __html: src.replace(/<svg[^>]*>/g, "").replace(/<\/svg>/g, "")
-    }}
-  />
-);
-
 const IconSample = (props: IconSampleProps) => {
-  const { name, iconSrc, onSelect, className, ...otherProps } = props;
+  const {
+    name,
+    iconComponent: Icon,
+    onSelect,
+    className,
+    ...otherProps
+  } = props;
 
   const classes = useStyles();
 
@@ -74,7 +70,9 @@ const IconSample = (props: IconSampleProps) => {
       {...otherProps}
       onClick={onSelect}
     >
-      <i className={classes.iconWrapper}>{createSvgFromSrc(iconSrc)}</i>
+      <i className={classes.iconWrapper}>
+        <Icon />
+      </i>
       <Text variant="caption" className={classes.iconName}>
         {name}
       </Text>
