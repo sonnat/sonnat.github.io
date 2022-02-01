@@ -13,8 +13,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@sonnat/icons": "^2.0.0",
-    "@sonnat/ui": "^2.0.0",
+    "@sonnat/icons": "^2.1.0",
+    "@sonnat/ui": "^2.0.2",
     "@utilityjs/use-is-mounted": "^1.0.2",
     "@utilityjs/use-media-query": "^1.0.0",
     "@utilityjs/use-scroll-guard": "^1.0.0",

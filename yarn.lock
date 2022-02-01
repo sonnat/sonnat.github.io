@@ -1292,18 +1292,18 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@sonnat/icons@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.0.0.tgz#02616a5c2b3e549599a4dce38be9699dcf60dad7"
-  integrity sha512-adB0ib50VVIig55JcayONDon8kqsXoul4sJ968VqxTTrHYYUkaAsJ+Dn5llm56gSWu+I4FZX/fKsB8r+vE/1BQ==
+"@sonnat/icons@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.1.0.tgz#243563507c540369121152ce4112a3f9bd48fcfd"
+  integrity sha512-yJ7v9Gv40XUZMpLahnFmtgNDpfSSAIJirYWOjV1YQum8Fe++3CpdXJRbz1tZ7EYu41/eNMJA2Mytl5wL+gJb9A==
 
-"@sonnat/ui@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.0.tgz#b466e3e439c7c6a822af8dd4fa7b5b47492817e3"
-  integrity sha512-50ielWh2xQIpQkHpDpV/c46t+pJljRz0PczWz8aFz50FvN6xEGZajyzQ8pifbo2oRwkLlIqzsiQ+NWvidNzapg==
+"@sonnat/ui@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.2.tgz#2000d64738e85afd19a615a0e200c9a2bdb44619"
+  integrity sha512-y0hwxh23lNx8SGQOpjN1hFTKa9jaC+uDaIN+ZIH1UyWRR/9liSp37ltQBtM5vCCjwszZhLhJMq2v0reo+8FEmA==
   dependencies:
     classnames "^2.3.1"
-    color "^4.1.0"
+    color "^3.2.1"
     jss "^10.9.0"
     jss-plugin-camel-case "^10.9.0"
     jss-plugin-default-unit "^10.9.0"
@@ -2239,7 +2239,7 @@ collapse-white-space@^1.0.2:
   resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-1.0.6.tgz#e63629c0016665792060dbbeb79c42239d2c5287"
   integrity sha512-jEovNnrhMuqyCcjfEJA56v0Xq8SkIoPKDyaHahwo3POf4qcSXqMYuwNcOTzp74vTsR9Tn08z4MxWqAhcekogkQ==
 
-color-convert@^1.9.0:
+color-convert@^1.9.0, color-convert@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
@@ -2263,7 +2263,7 @@ color-name@^1.0.0, color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-color-string@^1.9.0:
+color-string@^1.6.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.9.0.tgz#63b6ebd1bec11999d1df3a79a7569451ac2be8aa"
   integrity sha512-9Mrz2AQLefkH1UvASKj6v6hj/7eWgjnT/cVsR8CumieLoT+g900exWeNogqtweI8dxloXN9BDQTYro1oWu/5CQ==
@@ -2271,13 +2271,13 @@ color-string@^1.9.0:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/color/-/color-4.1.0.tgz#9502e6a2dcacb26adf4c60910a27628d010b3de3"
-  integrity sha512-o2rkkxyLGgYoeUy1OodXpbPAQNmlNBrirQ8ODO8QutzDiDMNdezSOZLNnusQ6pUpCQJUsaJIo9DZJKqa2HgH7A==
+color@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/color/-/color-3.2.1.tgz#3544dc198caf4490c3ecc9a790b54fe9ff45e164"
+  integrity sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==
   dependencies:
-    color-convert "^2.0.1"
-    color-string "^1.9.0"
+    color-convert "^1.9.3"
+    color-string "^1.6.0"
 
 colorette@^1.2.2:
   version "1.4.0"
