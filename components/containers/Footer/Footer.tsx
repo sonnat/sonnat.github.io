@@ -20,8 +20,9 @@ interface Props {
 const useStyles = makeStyles(
   theme => {
     const {
-      colors,
+      darkMode,
       breakpoints,
+      colors: { text, divider },
       spacings: { spaces, spacer },
       typography: { pxToRem }
     } = theme;
@@ -33,19 +34,19 @@ const useStyles = makeStyles(
         height: pxToRem(72),
         marginTop: pxToRem(spacer.px * 8),
         justifyContent: "space-between",
-        borderTop: `1px solid ${colors.divider}`
+        borderTop: `1px solid ${!darkMode ? divider.dark : divider.light}`
       },
       navigation: { display: "flex", alignItems: "center" },
       logo: {
         marginRight: spaces[7].rem,
         cursor: "pointer",
-        color: colors.text.secondary,
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
         transition: [
           "opacity 360ms ease",
           "visibility 360ms ease",
           "color 360ms ease"
         ].join(", "),
-        "&:hover": { color: colors.text.primary }
+        "&:hover": { color: !darkMode ? text.dark.primary : text.light.primary }
       },
       navigationList: {
         padding: "0",
@@ -57,24 +58,26 @@ const useStyles = makeStyles(
       navigationItem: {
         padding: spaces[3].rem,
         cursor: "pointer",
-        "&:hover > $navigationItemLink": { color: colors.text.primary }
+        "&:hover > $navigationItemLink": {
+          color: !darkMode ? text.dark.primary : text.light.primary
+        }
       },
       navigationItemLink: {
-        color: colors.text.secondary,
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
         transition: "color 360ms ease"
       },
       navigationDivider: {
         width: 1,
         height: pxToRem(16),
-        backgroundColor: colors.divider
+        backgroundColor: !darkMode ? divider.dark : divider.light
       },
       socials: { display: "flex", alignItems: "center" },
       social: {
         marginLeft: spaces[3].rem,
         cursor: "pointer",
         transition: "color 360ms ease",
-        color: colors.text.secondary,
-        "&:hover": { color: colors.text.primary }
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
+        "&:hover": { color: !darkMode ? text.dark.primary : text.light.primary }
       },
       [breakpoints.down("sm")]: {
         root: {

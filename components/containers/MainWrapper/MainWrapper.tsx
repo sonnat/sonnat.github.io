@@ -10,7 +10,13 @@ import { usePageStore } from "store";
 const componentName = "MainWrapper";
 
 const useStyles = makeStyles(
-  ({ colors, breakpoints, zIndexes, typography: { pxToRem } }) => ({
+  ({
+    darkMode,
+    breakpoints,
+    zIndexes,
+    colors: { background },
+    typography: { pxToRem }
+  }) => ({
     root: {},
     suspend: {
       position: "fixed",
@@ -19,7 +25,9 @@ const useStyles = makeStyles(
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: colors.background.origin
+      backgroundColor: !darkMode
+        ? background.light.origin
+        : background.dark.origin
     },
     pageLoader: {
       top: [[pxToRem(64)], "!important"],

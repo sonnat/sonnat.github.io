@@ -27,9 +27,9 @@ export default Demo;
 
 const useStyles = makeStyles(
   ({
-    colors,
     darkMode,
     swatches,
+    colors: { text, divider },
     typography: { variants },
     spacings: { gutter }
   }) => ({
@@ -38,10 +38,10 @@ const useStyles = makeStyles(
       display: "flex",
       paddingTop: gutter,
       paddingBottom: gutter,
-      color: colors.text.primary,
+      color: !darkMode ? text.dark.primary : text.light.primary,
       alignItems: "center",
       justifyContent: "center",
-      border: `1px solid ${colors.divider}`,
+      border: `1px solid ${!darkMode ? divider.dark : divider.light}`,
       backgroundColor: darkMode ? swatches.grey[900] : swatches.grey[100]
     }
   }),

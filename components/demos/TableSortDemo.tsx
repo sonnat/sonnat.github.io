@@ -46,14 +46,14 @@ const useStyles = makeStyles(theme => {
       marginLeft: spaces[3].rem,
       opacity: 0,
       visibility: "hidden",
-      color: colors.text.disabled,
+      color: colors.text.dark.disabled,
       transition: ["opacity 180ms ease", "visibility 180ms ease"].join(", ")
     },
     active: {
       "& > $sortIcon": {
         opacity: 1,
         visibility: "visible",
-        color: colors.text.primary
+        color: colors.text.dark.primary
       }
     }
   };
@@ -179,7 +179,8 @@ export default Demo;`;
 
 const useStyles = makeStyles(theme => {
   const {
-    colors,
+    darkMode,
+    colors: { text },
     spacings: { spaces }
   } = theme;
 
@@ -196,14 +197,14 @@ const useStyles = makeStyles(theme => {
       marginLeft: spaces[3].rem,
       opacity: 0,
       visibility: "hidden",
-      color: colors.text.disabled,
+      color: !darkMode ? text.dark.disabled : text.light.disabled,
       transition: ["opacity 180ms ease", "visibility 180ms ease"].join(", ")
     },
     active: {
       "& > $sortIcon": {
         opacity: 1,
         visibility: "visible",
-        color: colors.text.primary
+        color: !darkMode ? text.dark.primary : text.light.primary
       }
     }
   };

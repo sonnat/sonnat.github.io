@@ -13,10 +13,10 @@ interface Props {
 }
 
 const useStyles = makeStyles(
-  ({ colors, typography: { fontWeight } }) => ({
+  ({ darkMode, colors: { text }, typography: { fontWeight } }) => ({
     active: {
       "& > span": {
-        color: colors.text.primary,
+        color: !darkMode ? text.dark.primary : text.light.primary,
         fontWeight: fontWeight.medium
       }
     }

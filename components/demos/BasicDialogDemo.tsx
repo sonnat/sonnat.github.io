@@ -28,7 +28,6 @@ import * as React from "react";
 const useStyles = makeStyles(theme => {
   const {
     colors,
-    darkMode,
     typography: { pxToRem }
   } = theme;
 
@@ -39,14 +38,12 @@ const useStyles = makeStyles(theme => {
       display: "flex",
       alignItems: "center",
       height: pxToRem(48),
-      boxShadow: \`0 1px 0 0 $\{colors.divider}\`,
+      boxShadow: \`0 1px 0 0 $\{colors.divider.dark}\`,
       cursor: "pointer",
       backgroundColor: colors.transparent,
       transition: "background-color 180ms ease",
       "&:hover": {
-        backgroundColor: darkMode
-          ? "rgba(255, 255, 255, 0.04)"
-          : "rgba(0, 0, 0, 0.04)"
+        backgroundColor: "rgba(0, 0, 0, 0.04)"
       }
     },
     avatar: {
@@ -54,7 +51,7 @@ const useStyles = makeStyles(theme => {
       height: pxToRem(32),
       borderRadius: "50%",
       marginRight: pxToRem(16),
-      backgroundColor: colors.text.secondary
+      backgroundColor: colors.text.dark.secondary
     },
     accountName: { display: "flex", flexDirection: "column" },
     addBtn: { marginTop: pxToRem(8), alignSelf: "flex-start" }
@@ -137,9 +134,9 @@ export default Demo;`;
 
 const useStyles = makeStyles(theme => {
   const {
-    colors,
     darkMode,
     radius,
+    colors: { divider, text, transparent },
     spacings: { spaces },
     typography: { pxToRem }
   } = theme;
@@ -151,9 +148,9 @@ const useStyles = makeStyles(theme => {
       display: "flex",
       alignItems: "center",
       height: pxToRem(48),
-      boxShadow: `0 1px 0 0 ${colors.divider}`,
+      boxShadow: `0 1px 0 0 ${!darkMode ? divider.dark : divider.light}`,
       cursor: "pointer",
-      backgroundColor: colors.transparent,
+      backgroundColor: transparent,
       transition: "background-color 180ms ease",
       "&:hover": {
         backgroundColor: darkMode
@@ -166,7 +163,7 @@ const useStyles = makeStyles(theme => {
       height: pxToRem(32),
       borderRadius: radius.rounded,
       marginRight: spaces[7].rem,
-      backgroundColor: colors.text.secondary
+      backgroundColor: !darkMode ? text.dark.secondary : text.light.secondary
     },
     accountName: { display: "flex", flexDirection: "column" },
     addBtn: { marginTop: spaces[3].rem, alignSelf: "flex-start" }

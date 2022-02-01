@@ -11,9 +11,9 @@ const componentName = "IconDrawer";
 const useStyles = makeStyles(
   theme => {
     const {
-      colors,
       zIndexes,
       darkMode,
+      colors: { text, divider, background, ...colors },
       spacings: { spaces },
       mixins: { asIconWrapper },
       typography: { pxToRem }
@@ -25,13 +25,19 @@ const useStyles = makeStyles(
         display: "flex",
         flexDirection: "column",
         transform: "translateX(100%)",
-        boxShadow: `-1px 0 2px 0 ${colors.createBlackColor({ alpha: 0.12 })}`,
+        boxShadow: `-1px 0 2px 0 ${colors.createBlackColor(
+          { alpha: 0.12 },
+          false,
+          darkMode
+        )}`,
         position: "fixed",
         width: pxToRem(320),
         height: `100%`,
         overflow: "auto",
         top: 0,
-        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
+        backgroundColor: darkMode
+          ? background.dark.accents[2]
+          : background.light.origin,
         zIndex: zIndexes.drawer,
         opacity: 0,
         padding: [[0, spaces[7].rem]],
@@ -50,7 +56,7 @@ const useStyles = makeStyles(
       iconWrapper: {
         ...asIconWrapper(64),
         "& > svg": {
-          fill: colors.text.secondary,
+          fill: !darkMode ? text.dark.secondary : text.light.secondary,
           width: "100%",
           height: "100%"
         }
@@ -67,8 +73,10 @@ const useStyles = makeStyles(
         marginRight: pxToRem(-spaces[7].px),
         marginLeft: pxToRem(-spaces[7].px),
         padding: [[spaces[1].rem, spaces[7].rem]],
-        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
-        borderBottom: `1px solid ${colors.divider}`
+        backgroundColor: darkMode
+          ? background.dark.accents[2]
+          : background.light.origin,
+        borderBottom: `1px solid ${!darkMode ? divider.dark : divider.light}`
       },
       bottomBar: {
         position: "sticky",
@@ -77,8 +85,10 @@ const useStyles = makeStyles(
         marginLeft: pxToRem(-spaces[7].px),
         marginTop: "auto",
         padding: spaces[7].rem,
-        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
-        borderTop: `1px solid ${colors.divider}`
+        backgroundColor: darkMode
+          ? background.dark.accents[2]
+          : background.light.origin,
+        borderTop: `1px solid ${!darkMode ? divider.dark : divider.light}`
       },
       downloadBtn: { width: "100%" },
       dimmer: {

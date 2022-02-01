@@ -26,9 +26,9 @@ interface Props {
 const useStyles = makeStyles(
   theme => {
     const {
-      colors,
       darkMode,
       swatches,
+      colors: { divider, background },
       spacings: { spacer },
       typography: { pxToRem }
     } = theme;
@@ -50,12 +50,16 @@ const useStyles = makeStyles(
         alignItems: "center",
         minHeight: pxToRem(100),
         padding: pxToRem(spacer.px * 2),
-        backgroundColor: colors.background.origin,
+        backgroundColor: !darkMode
+          ? background.light.origin
+          : background.dark.origin,
         [theme.breakpoints.down("sm")]: { flexDirection: "column" }
       },
       codeWrapper: {
-        borderTop: `1px solid ${colors.divider}`,
-        backgroundColor: colors.background.origin
+        borderTop: `1px solid ${!darkMode ? divider.dark : divider.light}`,
+        backgroundColor: !darkMode
+          ? background.light.origin
+          : background.dark.origin
       },
       codeHeader: {
         display: "flex",

@@ -45,24 +45,24 @@ export default Demo;
 
 const useStyles = makeStyles(
   ({
-    colors,
     swatches,
     darkMode,
+    colors: { text, divider },
     spacings: { gutter, spaces },
     typography: { variants }
   }) => ({
     box: {
       width: "100%",
       height: 100,
-      border: `1px solid ${colors.divider}`,
+      border: `1px solid ${!darkMode ? divider.dark : divider.light}`,
       backgroundColor: darkMode ? swatches.grey[900] : swatches.grey[100],
       "& + &": { marginTop: spaces[3].rem }
     },
     item: {
       ...variants.bodySmall,
       padding: gutter,
-      border: `1px solid ${colors.divider}`,
-      color: colors.text.primary,
+      border: `1px solid ${!darkMode ? divider.dark : divider.light}`,
+      color: !darkMode ? text.dark.primary : text.light.primary,
       backgroundColor: darkMode ? "rgba(0, 0, 0, 0.25)" : "rgba(0, 0, 0, 0.04)"
     }
   }),

@@ -45,11 +45,11 @@ export default TabControllingDemo;
 `;
 
 const useStyles = makeStyles(
-  theme => ({
+  ({ darkMode, colors: { divider }, spacings: { spaces } }) => ({
     tabPanel: {
       width: "100%",
-      borderTop: `1px solid ${theme.colors.divider}`,
-      paddingTop: theme.typography.pxToRem(16)
+      borderTop: `1px solid ${!darkMode ? divider.dark : divider.light}`,
+      paddingTop: spaces[7].rem
     }
   }),
   { name: componentName }

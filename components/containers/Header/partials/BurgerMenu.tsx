@@ -19,10 +19,10 @@ const useStyles = makeStyles<
 >(
   theme => {
     const {
-      colors,
       zIndexes,
       darkMode,
       breakpoints,
+      colors: { divider, background },
       spacings: { spaces, spacer },
       typography: { pxToRem }
     } = theme;
@@ -31,13 +31,15 @@ const useStyles = makeStyles<
       root: {
         left: 0,
         transform: "translateX(-100%)",
-        boxShadow: `1px 0 2px 0 ${colors.divider}`,
+        boxShadow: `1px 0 2px 0 ${!darkMode ? divider.dark : divider.light}`,
         position: "fixed",
         width: pxToRem(256),
         height: `calc(100% - ${pxToRem(64)})`,
         overflow: "auto",
         top: pxToRem(spacer.px * 4),
-        backgroundColor: darkMode ? colors.background.accents[2] : colors.white,
+        backgroundColor: darkMode
+          ? background.dark.accents[2]
+          : background.light.origin,
         zIndex: zIndexes.header - 1,
         opacity: 0,
         padding: [[pxToRem(spacer.px * 3), spaces[7].rem]],

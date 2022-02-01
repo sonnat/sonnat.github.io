@@ -7,9 +7,9 @@ const componentName = "IconSample";
 
 const useStyles = makeStyles(
   ({
-    colors,
     darkMode,
     radius,
+    colors: { text, ...colors },
     mixins: { asIconWrapper },
     spacings: { spaces }
   }) => ({
@@ -25,16 +25,23 @@ const useStyles = makeStyles(
       transition: "background-color 360ms ease",
       "&:hover": {
         backgroundColor: darkMode
-          ? colors.createWhiteColor({ alpha: 0.04 }, true)
-          : colors.createBlackColor({ alpha: 0.04 }, true)
+          ? colors.createWhiteColor({ alpha: 0.04 }, false, darkMode)
+          : colors.createBlackColor({ alpha: 0.04 }, false, darkMode)
       }
     },
     iconWrapper: {
       ...asIconWrapper(40),
       marginBottom: spaces[7].rem,
-      "& > svg": { fill: colors.text.secondary, width: "100%", height: "100%" }
+      "& > svg": {
+        fill: !darkMode ? text.dark.secondary : text.light.secondary,
+        width: "100%",
+        height: "100%"
+      }
     },
-    iconName: { color: colors.text.secondary, textAlign: "center" }
+    iconName: {
+      color: !darkMode ? text.dark.secondary : text.light.secondary,
+      textAlign: "center"
+    }
   }),
   { name: componentName }
 );

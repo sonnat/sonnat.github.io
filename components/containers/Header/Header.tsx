@@ -25,10 +25,10 @@ interface Props {
 const useStyles = makeStyles(
   theme => {
     const {
-      colors,
       zIndexes,
       breakpoints,
       darkMode,
+      colors: { text, divider, background, primary },
       spacings: { spaces },
       typography: { pxToRem }
     } = theme;
@@ -45,8 +45,8 @@ const useStyles = makeStyles(
         paddingTop: 0,
         minHeight: pxToRem(64),
         backgroundColor: !darkMode
-          ? colors.background.origin
-          : colors.background.accents[2],
+          ? background.light.origin
+          : background.dark.accents[2],
         boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.12)",
         transition: ["box-shadow 360ms ease", "padding-top 360ms ease"].join(
           ","
@@ -57,7 +57,9 @@ const useStyles = makeStyles(
           "& $logo": { marginRight: 0 }
         },
         [breakpoints.down("sm")]: {
-          "& $subHeaderContainer": { borderTop: `1px solid ${colors.divider}` }
+          "& $subHeaderContainer": {
+            borderTop: `1px solid ${!darkMode ? divider.dark : divider.light}`
+          }
         }
       },
       container: {
@@ -70,13 +72,13 @@ const useStyles = makeStyles(
         cursor: "pointer",
         opacity: 1,
         visibility: "visible",
-        color: colors.text.secondary,
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
         transition: [
           "opacity 360ms ease",
           "visibility 360ms ease",
           "color 360ms ease"
         ].join(", "),
-        "&:hover": { color: colors.text.primary }
+        "&:hover": { color: !darkMode ? text.dark.primary : text.light.primary }
       },
       divider: {
         marginTop: "auto",
@@ -98,14 +100,16 @@ const useStyles = makeStyles(
       navItem: {
         padding: [[spaces[2].rem, spaces[7].rem]],
         cursor: "pointer",
-        "&:hover > $navItemLink": { color: colors.text.primary }
+        "&:hover > $navItemLink": {
+          color: !darkMode ? text.dark.primary : text.light.primary
+        }
       },
       navItemLink: {
-        color: colors.text.secondary,
+        color: !darkMode ? text.dark.secondary : text.light.secondary,
         transition: "color 360ms ease"
       },
       activeLink: {
-        color: !darkMode ? colors.primary.origin : colors.primary.light
+        color: !darkMode ? primary.origin : primary.light
       },
       darkModeToggle: {},
       burgerMenuToggle: { display: "inline-flex" },
