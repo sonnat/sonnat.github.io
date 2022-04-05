@@ -1292,10 +1292,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
   integrity sha512-JLo+Y592QzIE+q7Dl2pMUtt4q8SKYI5jDrZxrozEQxnGVOyYE+GWK9eLkwTaeN9DDctlaRAQ3TBmzZ1qdLE30A==
 
-"@sonnat/icons@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.1.0.tgz#243563507c540369121152ce4112a3f9bd48fcfd"
-  integrity sha512-yJ7v9Gv40XUZMpLahnFmtgNDpfSSAIJirYWOjV1YQum8Fe++3CpdXJRbz1tZ7EYu41/eNMJA2Mytl5wL+gJb9A==
+"@sonnat/icons@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.2.0.tgz#67f4f8701918aac2d735f94b1c55245892012377"
+  integrity sha512-SV9BTe8H9ZEvwV0PoDJ2hEBSMqU2Znm5wcXyDr5C2uDyx1U/r7/C3Pgc50ji/2/r75ugAryHA6zjUGlgZsMeog==
 
 "@sonnat/ui@^2.0.3":
   version "2.0.3"
