@@ -1,0 +1,164 @@
+import PageEditButton from "components/PageEditButton";
+import AnchorButton from "components/AnchorButton";
+import WithSidebar from "components/layouts/WithSidebar";
+import SystemColorDemo from "components/demos/SystemColorDemo";
+import SwatchesDemo from "components/demos/SwatchesDemo";
+import Head from "next/head";
+import { defaultKeywordsMetaContent, siteFullAddress } from "sharedVars";
+import {
+  setCanonicalMeta,
+  setDescriptionMeta,
+  setKeywordsMeta,
+  setTitleMeta
+} from "utils";
+
+export const meta = {
+  title: "Colors",
+  description: "Convey meaning through color.",
+  getLayout: () => page => <WithSidebar>{page}</WithSidebar>
+};
+
+<Head>
+  {setTitleMeta(
+    `${meta.title} | Sonnat Developer Tools, React Components & Resources`
+  )}
+  {setDescriptionMeta(meta.description)}
+  {setCanonicalMeta(`${siteFullAddress}/docs/colors`)}
+  {setKeywordsMeta([
+    ...defaultKeywordsMetaContent,
+    "colors",
+    "color system",
+    "رنگ‌ها"
+  ])}
+</Head>
+
+<h1>
+  <span>{meta.title}</span>
+  <AnchorButton anchorId="overview" />
+  <PageEditButton href={`pages/docs/colors.mdx`} />
+</h1>
+
+<p>{meta.description}</p>
+
+<p>
+  Out of the box you get access to all colors in the Sonnat Design System. You
+  can use any color anywhere, all colors change with the theme.
+</p>
+
+```tsx
+import { useTheme } from '@sonnat/ui/styles'
+
+const Component = () => {
+  const { colors, swatches } = useTheme()
+
+  ...
+}
+```
+
+```tsx
+import { makeStyles } from "@sonnat/ui/styles";
+
+const useStyles = makeStyles(
+  ({ colors, swatches }) => ({
+    root: {
+      ...
+    },
+    ...
+  }),
+  { name: "MyComponentStyle" }
+);
+```
+
+<div data-notebox>
+  To learn more about how to create and customize theme, check out the{" "}
+  <a href="/docs/styling#create-theme" title="createTheme's documentation">
+    <strong>createTheme's documentation</strong>
+  </a>
+  .
+</div>
+
+<h2>
+  <span>Primary Color</span>
+  <AnchorButton anchorId="primary-color" />
+</h2>
+
+<p>
+  Represents primary interface elements for a user. It's the color displayed
+  most frequently across your app's screens and components.
+</p>
+
+<SystemColorDemo colorClass="primary" />
+
+<h2>
+  <span>Secondary Color</span>
+  <AnchorButton anchorId="secondary-color" />
+</h2>
+
+<p>
+  Represents secondary interface elements for a user. It provides more ways to
+  accent and distinguish your product. Having it is optional.
+</p>
+
+<SystemColorDemo colorClass="secondary" />
+
+<h2>
+  <span>Status Colors</span>
+  <AnchorButton anchorId="status-colors" />
+</h2>
+
+<p>
+  Represents a clear message as well as status, such as success, error, failure,
+  reminder, link and so on. Status color selection need to comply with the
+  user's basic understanding of color.
+</p>
+
+<h3>
+  <span>Error</span>
+  <AnchorButton anchorId="status-error" />
+</h3>
+
+<p>Indicates errors in components, such as invalid text in a text field.</p>
+
+<SystemColorDemo colorClass="error" />
+
+<h3>
+  <span>Success</span>
+  <AnchorButton anchorId="status-success" />
+</h3>
+
+<p>Indicates the successful completion of an action.</p>
+
+<SystemColorDemo colorClass="success" />
+
+<h3>
+  <span>Warning</span>
+  <AnchorButton anchorId="status-warning" />
+</h3>
+
+<p>Represents potentially dangerous actions or important messages.</p>
+
+<SystemColorDemo colorClass="warning" />
+
+<h3>
+  <span>Info</span>
+  <AnchorButton anchorId="status-info" />
+</h3>
+
+<p>
+  Presents information to the user that is neutral and not necessarily
+  important.
+</p>
+
+<SystemColorDemo colorClass="info" />
+
+<h2>
+  <span>Swatches</span>
+  <AnchorButton anchorId="swatches" />
+</h2>
+
+<p>
+  Here is a collection of colors, i.e. hues and their shades. This color palette
+  has been designed with colors that work harmoniously with each other.
+</p>
+
+<SwatchesDemo />
