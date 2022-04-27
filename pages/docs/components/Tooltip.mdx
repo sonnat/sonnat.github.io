@@ -222,8 +222,7 @@ import { Tooltip } from "@sonnat/ui";
       </td>
       <td>-</td>
       <td>
-        The tooltip's placement. It will be auto updated when it collide with
-        the window.
+        The tooltip's placement. It will be auto updated when <inlineCode>{`autoPlacement={true}`}</inlineCode>
       </td>
     </tr>
     <tr>
@@ -235,7 +234,22 @@ import { Tooltip } from "@sonnat/ui";
         <br />| "mouseMove"
       </td>
       <td>-</td>
-      <td>The source of the event that will trigger the tooltip.</td>
+      <td>
+        The source of the event that will trigger the tooltip.
+        <br />
+        <strong>Note</strong>: Choosing <inlineCode>"mouseMove"</inlineCode>{" "}
+        will disable <inlineCode>autoPlacement</inlineCode> property.
+      </td>
+    </tr>
+    <tr>
+      <td>autoPlacement</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>
+        By enabling this option, tooltip chooses the placement automatically
+        (the one with the most space available) and ignores the{" "}
+        <inlineCode>placement</inlineCode> property value.
+      </td>
     </tr>
     <tr>
       <td>tailed</td>

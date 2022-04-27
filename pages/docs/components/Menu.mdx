@@ -44,10 +44,8 @@ export const meta = {
 </h2>
 
 <p>
-  Simple menus open under the anchor element and stick to the left when{" "}
-  <inlineCode>theme.direction === 'ltr'</inlineCode> or to the right when{" "}
-  <inlineCode>theme.direction === 'rtl'</inlineCode>. (you can force the
-  starting point via <inlineCode>placement</inlineCode> property).
+  Simple menus open under the anchor element's starting edge. (you can change
+  the alignment via <inlineCode>alignment</inlineCode> property).
 </p>
 
 <MenuSimpleDemo />
@@ -148,13 +146,15 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
     </tr>
     <tr>
       <td>
-        anchorNode
+        anchorNodeReference
         <br />
         <mark>required</mark>
       </td>
-      <td>null | Element</td>
+      <td>React.RefObject&lt;HTMLElement&gt;</td>
       <td>-</td>
-      <td>An HTML element. It's used to set the position of the menu.</td>
+      <td>
+        An HTML element reference. It's used to set the position of the menu.
+      </td>
     </tr>
     <tr>
       <td>className</td>
@@ -166,16 +166,22 @@ import { Menu, MenuItem, MenuItemGroup } from "@sonnat/ui";
       </td>
     </tr>
     <tr>
-      <td>placement</td>
-      <td>"left" | "right"</td>
-      <td>-</td>
-      <td>The placement of the menu. (start from "left" or "right")</td>
+      <td>alignment</td>
+      <td>"middle" | "start" | "end"</td>
+      <td>"start"</td>
+      <td>The menu positioning alignment.</td>
     </tr>
     <tr>
       <td>minWidth</td>
-      <td>number</td>
-      <td>0</td>
+      <td>"anchorWidth" | number</td>
+      <td>-</td>
       <td>Sets the minimum width of the menu.</td>
+    </tr>
+    <tr>
+      <td>maxWidth</td>
+      <td>"anchorWidth" | number</td>
+      <td>-</td>
+      <td>Sets the maximum width of the menu.</td>
     </tr>
     <tr>
       <td>searchPlaceholder</td>

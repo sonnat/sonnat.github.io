@@ -83,6 +83,7 @@ const TooltipPlacementDemo: React.FC = () => {
       <div className={classes.demoRow}>
         <Tooltip
           text="The informative text!"
+          key={placement}
           placement={placement}
           tailed
           open={true}

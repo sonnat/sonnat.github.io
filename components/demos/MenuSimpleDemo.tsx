@@ -24,7 +24,7 @@ const MenuSimpleDemo = () => {
       <Menu
         id="simple-menu-1"
         open={isMenuOpen}
-        anchorNode={anchorElement.current}
+        anchorNodeReference={anchorElement}
       >
         <MenuItem>First item</MenuItem>
         <MenuItem>Second item</MenuItem>
@@ -55,7 +55,7 @@ const MenuSimpleDemo = () => {
         <Menu
           id="simple-menu-1"
           open={isMenuOpen}
-          anchorNode={anchorElement.current}
+          anchorNodeReference={anchorElement}
         >
           <MenuItem>First item</MenuItem>
           <MenuItem>Second item</MenuItem>

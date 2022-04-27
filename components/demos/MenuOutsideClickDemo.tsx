@@ -24,7 +24,7 @@ const MenuOutsideClickDemo = () => {
       <Menu
         id="simple-menu-2"
         open={isMenuOpen}
-        anchorNode={anchorElement.current}
+        anchorNodeReference={anchorElement}
         onOutsideClick={() => void setMenuOpen(false)}
       >
         <MenuItem>First item</MenuItem>
@@ -56,7 +56,7 @@ const MenuOutsideClickDemo = () => {
         <Menu
           id="simple-menu-2"
           open={isMenuOpen}
-          anchorNode={anchorElement.current}
+          anchorNodeReference={anchorElement}
           onOutsideClick={() => void setMenuOpen(false)}
         >
           <MenuItem>First item</MenuItem>

@@ -26,8 +26,9 @@ const MenuWithBugWorkaroundDemo = () => {
       <Menu
         id="with-workaround-0"
         open={isMenuOpen}
+        maxWidth="anchorWidth"
         onOutsideClick={closeCallback}
-        anchorNode={anchorElement.current}
+        anchorNodeReference={anchorElement}
       >
         <MenuItem onClick={closeCallback}>First item</MenuItem>
         <MenuItem onClick={closeCallback}>
@@ -63,9 +64,10 @@ const MenuWithBugWorkaroundDemo = () => {
         />
         <Menu
           id="with-workaround-0"
+          maxWidth="anchorWidth"
           open={isMenuOpen}
           onOutsideClick={closeCallback}
-          anchorNode={anchorElement.current}
+          anchorNodeReference={anchorElement}
         >
           <MenuItem onClick={closeCallback}>First item</MenuItem>
           <MenuItem onClick={closeCallback}>

@@ -27,7 +27,7 @@ const MenuWithGroupedItemsDemo = () => {
         id="with-grouped-items-0"
         open={isMenuOpen}
         onOutsideClick={closeCallback}
-        anchorNode={anchorElement.current}
+        anchorNodeReference={anchorElement}
       >
         <MenuItemGroup title="1st Group">
           <MenuItem onClick={closeCallback}>First item</MenuItem>
@@ -70,7 +70,7 @@ const MenuWithGroupedItemsDemo = () => {
           id="with-grouped-items-0"
           open={isMenuOpen}
           onOutsideClick={closeCallback}
-          anchorNode={anchorElement.current}
+          anchorNodeReference={anchorElement}
         >
           <MenuItemGroup title="1st Group">
             <MenuItem onClick={closeCallback}>First item</MenuItem>
