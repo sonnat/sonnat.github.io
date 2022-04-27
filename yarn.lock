@@ -1297,10 +1297,10 @@
   resolved "https://registry.yarnpkg.com/@sonnat/icons/-/icons-2.2.0.tgz#67f4f8701918aac2d735f94b1c55245892012377"
   integrity sha512-SV9BTe8H9ZEvwV0PoDJ2hEBSMqU2Znm5wcXyDr5C2uDyx1U/r7/C3Pgc50ji/2/r75ugAryHA6zjUGlgZsMeog==
 
-"@sonnat/ui@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.3.tgz#33c2657cb873c653498a1d469d7532000bd0316b"
-  integrity sha512-P0veZr5oRAoYL6S1yEYFNOTs+D2Kn0yT55H4Hmy3KDjPSp7w5IYENfpzoJWmi5ur5E1mfbc9ATZ/i8n9JIMLlA==
+"@sonnat/ui@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@sonnat/ui/-/ui-2.0.7.tgz#a65a9fb93fdc1ebcffa5bf3004e9036ad96a3225"
+  integrity sha512-GWJs7Y8EuNItsKc+c2a92AFl2JYetgrOox1QbPmoBH4fdlxuzOnkJDPp3ur1JCW+5fNxOi9/d+EyQ+rZxLykIg==
   dependencies:
     classnames "^2.3.1"
     color "^3.2.1"

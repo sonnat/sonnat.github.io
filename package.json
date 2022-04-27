@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@sonnat/icons": "^2.2.0",
-    "@sonnat/ui": "^2.0.3",
+    "@sonnat/ui": "^2.0.7",
     "@utilityjs/use-is-mounted": "^1.0.2",
     "@utilityjs/use-media-query": "^1.0.0",
     "@utilityjs/use-register-node-ref": "^1.0.4",
